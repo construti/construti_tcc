@@ -1,0 +1,453 @@
+@charset "utf-8";
+/**
+ *
+ *Autor: Jorge David Muffareg Junior 
+ *Data: 24/05/2012
+ *
+ *Sistema: Construti
+ *
+ */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+/** Estilo Geral **/
+body {
+	background: #aaa;
+	color: #00f;
+	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-size:90%;
+	margin: 0;
+}
+a {
+	color: #003d4c;
+	text-decoration: underline;
+	font-weight: bold;
+}
+a:hover {
+	color: #367889;
+	text-decoration:none;
+}
+a img {
+	border:none;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+	margin-bottom:0.5em;
+}
+h1 {
+	background:#00f;
+	color: #003d4c;
+	font-size: 100%;
+}
+h2 {
+	background:#fff;
+	color: #e32;
+	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 190%;
+}
+h3 {
+	color: #2c6877;
+	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 165%;
+}
+h4 {
+	color: #993;
+	font-weight: normal;
+}
+ul, li {
+	margin: 0 12px;
+}
+p {
+	margin: 0 0 1em 0;
+}
+
+/** Layout Geral **/
+/** Corpo e Cabeçalho **/
+#corpo {
+	text-align: left;
+	border-width: 4px;
+	border-color: #008;
+	border-style: solid;
+}
+#cabecalho{
+	padding: 10px 20px;
+}
+#cabecalho h1 {
+	height: 100px;
+	width: 542px;
+	line-height:20px;
+	background: #aaa url('../img/logo.png') no-repeat left;
+	color: #00f;
+	margin: 0 auto 2px;
+	padding: 0px 30px;
+}
+/** Menu **/
+#menu {
+	width: 100%;
+	height: 40px;
+	background: #008;
+	text-align: center;
+}
+#menu ul {
+	width: 800px;
+	list-style: none;
+	cursor: pointer;
+	margin: 0 auto;
+	padding: 10px 0 0;
+}
+#menu ul li {
+	display: inline;
+	cursor: pointer;
+	position: relative;
+	text-align: center;
+	color: #aaa;
+	background: #0011aa;
+	margin: auto 12px;
+	padding: 5px ;
+	border-style: outset;
+	border-width: 2px;
+}
+#menu ul li a {
+	color: #aaa;
+	font-weight: normal;
+	text-decoration: none;
+}
+#menu ul li ul {
+	position: absolute;
+	width: auto;
+	left: 0;
+	top: 31px;
+	z-index: 2;
+	margin: 0;
+	padding: 0;
+	visibility: hidden;
+	background: #0011aa;
+	border-style: solid;
+	border-width: 1px;
+}
+#menu ul li ul li {
+	height: 25px;
+	text-align: left;
+	background: none;
+	margin: 0;
+	padding: 5px;	
+	display: block;
+	border-style: none;
+}
+#menu ul li ul li a {
+	color: #aaa;
+	font-weight: normal;
+	text-decoration: none;
+}
+#menu ul li ul li ul{
+	position: absolute;
+	left: 100%;
+	top: -30px;
+	z-index: 2;
+	margin: 0;
+	padding: 0;
+	visibility: hidden;
+	border-style: solid;
+	border-width: 1px;
+}
+#menu ul li ul li ul li {
+	height: 25px;
+	background: #0011aa;
+	margin: 0;
+	padding: 5px 5px 0;	
+	display: block;	
+	border-style: none;
+}
+#menu ul li:hover {
+	border-style: inset;
+}
+#menu ul li:hover ul {
+	visibility: visible;
+}
+#menu ul li:hover ul li ul {
+	visibility: hidden;
+}
+#menu ul li ul li:hover {
+	background: url('../img/efeitobotao.png') no-repeat left;
+	border-style: none;
+}
+#menu ul li ul li:hover a {
+	text-decoration: underline;
+}
+#menu ul li ul li:hover ul {
+	visibility: visible;
+}
+#menu ul li ul li:hover ul li ul {
+	visibility: hidden;
+}
+#menu ul li ul li:hover ul li a {
+	text-decoration: none;
+}
+#menu ul li ul li ul li:hover a {
+	text-decoration: underline;
+}
+#menu ul li ul li ul li:hover ul {
+	visibility: visible;
+}
+#menu ul li ul li ul li:hover ul li a {
+	text-decoration: none;
+}
+#menu ul li ul li ul li ul li:hover a {
+	text-decoration: underline;
+}
+/** Transições **/
+#transicaostatus {
+	width: 100%;
+	height: 15px;
+	background: url('../img/transicaomenustatus.png') repeat-x;
+}
+#transicaocorpo{
+	width: 100%;
+	height: 15px;
+	background: url('../img/transicaostatuscorpo.png') repeat-x;
+}
+#transicaorodape{
+	width: 100%;
+	height: 15px;
+	background: #fff url('../img/transicaocorporodape.png') repeat-x;
+}
+/** Outros Layouts **/
+#status {
+	width: 100%;
+	height: 40px;
+	color: #aaa;
+	background: #0044aa;
+}
+#local { 
+	float: left;
+	width: 25%;
+	text-align: left;
+	padding: 25px 0 0 5px;
+}
+#titulo { 
+	float: left;
+	width: 48%;
+	font-size: 160%;
+	text-align: center;
+	padding: 0 0 16px;
+}
+#identificacao { 
+	float: left;
+	width: 25%;
+	text-align: right;
+	padding: 25px 5px 0 0;
+}
+#conteudo {
+	background: #fff;
+	clear: both;
+	color: #0011aa;
+	overflow: auto;
+	padding: 0;
+}
+#rodape {
+	clear: both;
+	height: 30px;
+	text-align: left;
+	font-style: italic;
+	background: url('../img/cake.power.gif') no-repeat right;
+	padding: 6px 5px;
+	margin: 0 5px;
+}
+#certificaoCSS{
+	float: left;
+}
+#assinatura {
+	width: 500px;
+	text-align: center;
+	margin: 0 auto;
+	padding: 5px 0 0;
+}
+#fundo {
+	width: 600px;
+	height: 300px;
+	text-align: center;
+	background: url('../img/fundologin.png') no-repeat;
+	margin: 20px auto 0;
+	padding: 150px 0 0;
+}
+#fundo p {
+	width: 300px;
+	margin: 0 auto;
+	padding: 0;
+}
+/** Página Formulários **/
+#formulariotopo {
+	width: 1000px;
+	height: 100px;
+	background: url('../img/fundoformulariostopo.png') no-repeat;
+	margin: 0 auto;
+}
+#formulariocorpo {
+	width: 1000px;
+	background: url('../img/fundoformularioscorpo.png') repeat-y;
+	margin: 0 auto;
+}
+#formulariofim {
+	width: 1000px;
+	height: 100px;
+	background: url('../img/fundoformulariosfim.png') no-repeat;
+	margin: 0 auto;
+}
+#tituloform {
+	height: 20px;
+	text-align: center;
+	font-size: 140%;
+	margin: 0 auto;
+	padding: 50px 0 0;
+}
+#camposdescricao {
+	float: left;
+	width: 150px;
+	margin: 0 auto 10px;
+	text-align: right;
+	font-size: 14px;
+	padding: 0 0 0 30%;
+}
+#camposlacunas {
+	float: left;
+	width: 200px;
+	margin: 0 auto 10px;
+	padding: 0;
+}
+#areaBotao{
+	width: 100px;
+	margin: 0 auto;
+}
+#resultados {
+	margin: 0 0 10px;
+	padding: 0;
+}
+#resultados h1 {
+	width: 1200px;
+	font-size: 140%;
+	text-align: center;
+	color: #0011aa;
+	background: #aaa;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #444;
+	margin: 0 auto;
+	padding: 0;
+}
+/** Menu de 4 Colunas **/
+#camposdescricaoE {
+	float: left;
+	width: 150px;
+	margin: 0 auto 10px;
+	text-align: right;
+	font-size: 14px;
+	padding: 0 0 0 15%;
+}
+#camposlacunasE {
+	float: left;
+	width: 200px;
+	margin: 0 auto 10px;
+	padding: 0;
+}
+#camposdescricaoD {
+	float: left;
+	width: 150px;
+	margin: 0 auto 10px;
+	text-align: right;
+	font-size: 14px;
+	padding: 0;
+}
+#camposlacunasD {
+	float: left;
+	width: 200px;
+	margin: 0 auto 10px;
+	padding: 0;
+}
+#camposdescricaoB {
+	float: left;
+	width: 150px;
+	margin: 0 auto 10px;
+	text-align: right;
+	font-size: 14px;
+	padding: 0 0 0 15%;
+}
+#camposlacunasB {
+	float: left;
+	width: 200px;
+	margin: 0 auto 10px;
+	padding: 0;
+}
+#obra_funcionarios {
+	width: 150px;
+}
+/** Mensagens JQuery **/
+#sending {
+	width: 200px;
+	display: none;
+	text-align: center;
+	background-color: lightgreen;
+	margin: 0 auto;
+}
+#sucesso {
+	width: 300px;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+	border-color: darkgreen;
+	background-color: lightgreen;
+	margin: 2px auto 0;
+}
+/** Classes **/
+.intexto {
+	height: 15px;
+	margin: 0;
+	padding: 0;
+}
+.descricao {
+	width: 300px;
+	resize: none;
+}
+.campoDescricao {
+	height: 20px;
+	resize: none;
+}
+.botao {
+	color: #0011aa;
+}
+.tabela {
+	width: 1200px;
+	background: #aaa;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #444;
+	border-top-width: 0;
+	border-collapse:collapse;
+	margin: 0 auto;
+	padding: 0;
+}
+.tabela tr th{
+	border-style: solid;
+	border-width: 2px;
+	border-color: #444;
+	border-top-width: 0;
+	margin: 0;
+	padding: 0 2px;
+}
+.tabela tr td {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #444;
+	margin: 0;
+	padding: 0;
+}
+.cake-error {
+	position: absolute;
+	z-index: 4; 
+}
+.error-message {
+	position: absolute;
+	z-index: 4; 
+}
