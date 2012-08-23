@@ -42,7 +42,7 @@ $cakeDescription = __d('cake_dev', 'Construti');
                                 <li><a href="<?php echo $this->params->base."/equipamentos/search"; ?>">Pesquisar</a></li>
 							</ul>
 						</li>
-						<li>Terrenos
+						<!--<li>Terrenos
 							<ul>
 								<li><a href="<?php echo $this->params->base."/terrenos/add"; ?>">Cadastrar</a></li>
                                 <li><a href="<?php echo $this->params->base."/terrenos/search"; ?>">Pesquisar</a></li>
@@ -53,7 +53,7 @@ $cakeDescription = __d('cake_dev', 'Construti');
 								<li><a href="<?php echo $this->params->base."/projetos/add"; ?>">Cadastrar</a></li>
                                 <li><a href="<?php echo $this->params->base."/projetos/search"; ?>">Pesquisar</a></li>
 							</ul>
-						</li>
+						</li>-->
 					</ul>
 				</li>
 				<li>Programas de Obra
@@ -127,8 +127,11 @@ $cakeDescription = __d('cake_dev', 'Construti');
 			<div id="assinatura">Construti - Sistema de Administração de Construção Civil</div>
 		</div> <!-- fim do rodapé -->
 	</div> <!-- fim do corpo -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	<?php 
-		echo $this->Js->writeBuffer(array('cache' => false));
+		echo $scripts_for_layout;
+		if (class_exists('JsHelper') && method_exists($this->Js, 'writeBuffer')) echo $this->Js->writeBuffer();
+		//echo $this->Js->writeBuffer(array('cache' => false));
 		//echo $this->element('sql_dump'); 
 	?> 
 </body>

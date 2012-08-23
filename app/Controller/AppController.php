@@ -39,7 +39,7 @@ class AppController extends Controller {
 		Security::setHash('md5');
 		$this->Auth->allow('login', 'view', 'home');
 		
-		
+		/*
 		// Carrega o model de clientes
 		$this->loadModel('Usuario');
 
@@ -50,7 +50,7 @@ class AppController extends Controller {
 			'usuario_senha' => $this->Auth->password('123456'),
 			'usuario_ativo' => true
 		));
-		
+		*/
 		
     }
 }

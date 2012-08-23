@@ -1,7 +1,23 @@
 <?php  
 	echo $this->Html->script("validationFuncionario", false); 
 	$this->pageTitle = 'Funcionários';
-?> 
+	//echo $this->Html->script('listar_tipos');
+	$funcionario_tipo = '';
+?>
+
+	<script>
+		$(document).ready(function(){
+			$("#funcionario_area").change(function(){  // quando mudar o valor do campo funcionario_area é atribuido o valor desse campo e passado como parametro GET para a action pega_tipo_area
+				area=$(this).val();
+				txt_str="funcionario_area="+area;
+				$.get("../funcionarios/pega_tipo_area",txt_str,function(result){ 
+					$("#funcionario_tipo").html(result); // o html renderizado na action pega_tipo_area é carregado no campo funcionario_tipo
+				});
+			});
+		 });
+
+	</script>
+ 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Cadastro</div> <!-- título do formulário -->
 </div>
@@ -37,7 +53,8 @@
 			<br/>
 			
 			<?php $opcoes_area = array('construcao' => 'Construção', 'administracao' => 'Administração' , 'tecnica' => 'Técnica');
-				  echo $this->Form->select('funcionario_area', $opcoes_area, array('label' => '', 'id' => 'funcionario_area', 'class' => array('intexto'), 'empty' => 'Escolha...')); 
+				//echo $this->Form->select('funcionario_area', $opcoes_areas, array('label' => '', 'id' => 'funcionario_area', 'class' => array('intexto'), 'empty' => 'Escolha...'));
+				echo $this->Form->input('funcionario_area', array('label' => '', 'id' => 'funcionario_area', 'type' => 'select', 'options' => $opcoes_area , 'class' => array('intexto'), 'empty' => 'Escolha...'));
 			?>
 			<br/>			
 		</div>
@@ -65,7 +82,7 @@
 			<br/>
 			<?php echo $this->Form->input('funcionario_salario', array('label' => '', 'id' => 'funcionario_salario', 'class' => array('intexto'))); ?>
 			<br/>
-			<?php echo $this->Form->select('funcionario_tipo', $tipos, array('label' => '', 'id' => 'funcionario_tipo', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
+			<?php echo $this->Form->select('funcionario_tipo', $funcionario_tipo, array('label' => '', 'id' => 'funcionario_tipo', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
 			<br/>
 		</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
@@ -83,8 +100,8 @@
 </div>
 <div id="formulariofim"></div> <!-- final do formulário -->
 <?php 
-	$this->Js->get('#funcionario_area')->event('change', $this->Js->request(
-		array('controller' => 'tipos', 'action' => 'getTipos'),
+	/*$this->Js->get('#funcionario_area')->event('change', $this->Js->request(
+		array('controller' => 'funcionarios', 'action' => 'listar_tipos'),
 		array('update' => '#funcionario_tipo',
 				'async' => true,
 				'method' => 'post',
@@ -93,5 +110,5 @@
 					array('isForm' => true, 'inline' => true)
 				)
 			) 
-	) ) 
+	) )*/ 
 ?>

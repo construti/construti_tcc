@@ -1,3 +1,7 @@
-<?php foreach ($tipos as $key => $value): ?>
-<option value="<?php echo $key; ?>"><?php echo $value; ?></option>
-<?php endforeach; ?>
+<?php
+// Recebo $tipos
+echo '<option value="">Selecione...</option>\n';      
+foreach($tipos as $id => $tipo)
+    echo "<option value='$id'>$tipo</option>\n";      
+?> 
+

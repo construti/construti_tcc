@@ -9,9 +9,13 @@ class FuncionariosController extends AppController {
 	public $helpers = array('Form','Js');
 	
     public $components = array('RequestHandler'); 
+	
+	/*function beforeFilter() {
+        $this->loadModel('Area');
+        $this->loadModel('Tipo');
+    }*/
 	    
     public function add() { //adiciona um funcionário
-		$this->set('tipos', array());
         if(!empty($this->data)){
             if($this->Funcionario->save($this->data)){
 				if($this->request->is('Ajax')){    // o ajax roda aqui
@@ -27,6 +31,9 @@ class FuncionariosController extends AppController {
                 $this->render('delete','ajax');
 			}			
         }
+		
+        //$areas = $this->Area->find('list', array('fields' => array('id', 'nome')));
+        //$this->set('areas', $areas);    
     }
     
     public function validate_form() { //validação do formulário
@@ -97,7 +104,28 @@ class FuncionariosController extends AppController {
 				$this->redirect(array('action' => 'search'));
 			}
 		}		
-    }
+    }	
     
+	/*public function listarTipos(){
+        // Se foi informado a Area via POST
+		alert('teste');
+		$this->layout = false;
+       if ($this->RequestHandler->isAjax()) {
+            $this->set('tipos', $this->Tipo->find('list', array('conditions' =>
+                        array('Tipo.area_id' => $this->params['url']['areaId']),
+                        'recursive' => -1)
+                    ));
+        }
+    }*/
+	
+	public function pega_tipo_area(){
+		$Area = $this->loadModel('Area');
+		
+		$funcionario_area = $this->params['url']['funcionario_area'];
+		$funcionario_tipo = $this->Area->find('all', array('conditions' => array('Area.funcionario_area LIKE' => "$funcionario_area")));
+		//print_r($funcionario_tipo);
+		$this->set('funcionario_tipo',$funcionario_tipo);
+		$this->Render('pega_tipo_area','ajax');
+	}
 }
 ?>

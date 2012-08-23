@@ -1,28 +1,30 @@
 <?php
+
+App::uses('AuthComponent', 'Controller/Component');
+
 class Usuario extends AppModel{
+
     var $name = 'Usuario';
+	
+	var $primaryKey = 'usuario_id';
     
-       var $validate = array(
-        'funcionario_id' => array(
-            'rule' => 'alphaNumeric', // ou: array('ruleName', 'param1', 'param2' ...)
-            'required' => true,
-            'allowEmpty' => false,
-            'message' => 'Um usuário deve estar ligado à um funcionário.'
-        ) ,
-        'usuario_senha' => array(
-            'rule' => array('minLength',6), // ou: array('ruleName', 'param1', 'param2' ...)
-            'required' => true,
-            'allowEmpty' => false,
-            'message' => 'Por favor, verifique se o campo SENHA foi preenchido e tem no mínimo 6 caracteres.'
+    public $validate = array(
+		'usuario_login' => array(
+            'rule' => 'notEmpty',
+            'message' => 'UsuÃ¡rio obrigatÃ³rio!',
+            'required' => true
         ),
-        'usuario_login' => array(
-            'rule' => array('minLength',6), // ou: array('ruleName', 'param1', 'param2' ...)
-            'required' => true,
-            'allowEmpty' => false,
-            'message' => 'Por favor, verifique se o campo LOGIN foi preenchido e tem no mínimo 6 caracteres.'
-        )
-        
+        'usuario_senha' => array(
+            'rule' => 'notEmpty',
+            'message' => 'Senha obrigatÃ³ria!',
+			'required' => true
+        )        
     );
+	
+	public function beforeSave($options = array()) {
+        $this->data['Usuario']['usuario_senha'] = AuthComponent::password($this->data['Usuario']['usuario_senha']);
+        return true;
+    }
 
 }
 ?>
