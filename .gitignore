@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ###
 # CakePHP tmp content
 ###
@@ -7,3 +8,6 @@
 */tmp/tests/*
 
 #
+=======
+/app/tmp
+>>>>>>> tcc_construti/master
