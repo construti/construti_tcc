@@ -46,8 +46,8 @@ class AppController extends Controller {
 		// Cria um novo usuário
 		$this->Usuario->create();
 		$this->Usuario->save(array(
-			'usuario_login' => 'jdmjunior',
-			'usuario_senha' => $this->Auth->password('123456'),
+			'usuario_login' => 'eduserra',
+			'usuario_senha' => $this->Auth->password('teste'),
 			'usuario_ativo' => true
 		));
 		*/

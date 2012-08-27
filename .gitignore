@@ -1,1 +1,9 @@
-app/tmp
+###
+# CakePHP tmp content
+###
+*/tmp/cache/*
+*/tmp/logs/*
+*/tmp/sessions/*
+*/tmp/tests/*
+
+#

@@ -65,7 +65,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'construtiadm',
 		'password' => '7GbypVTECnr9zmm8',
-		'database' => 'construti',
+		'database' => 'construti_oficial',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
