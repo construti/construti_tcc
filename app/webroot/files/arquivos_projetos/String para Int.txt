@@ -1,0 +1,60 @@
+public static void ler ( String nome )
+{
+// definir dados
+FILE arquivo = new FILE ( FILE.INPUT, nome );
+String linha;
+int x;
+// identificar
+IO.println ( );
+IO.println ( "Ler arquivo" );
+IO.println ( "Conteudo do arquivo " + nome + " :" );
+// ler a primeira linha do arquivo
+linha = arquivo.readln ( );
+// ler ate' encontrar fim de arquivo
+while ( ! arquivo.eof ( ) )
+{
+// converter dado para inteiro
+x = IO.getint ( linha );
+// mostrar linha na tela
+IO.println ( x );
+// ler a proxima linha do arquivo
+linha = arquivo.readln ( );
+} // fim while
+// fechar arquivo
+arquivo.close ( );
+// encerrar
+IO.pause ( "Apertar ENTER para continuar." );
+} // end ler ( )
+
+----------------------------------------------------------------
+
+Vc jah tentou:
+
+  String meuFloat = "12.3";
+  float f;
+  try {
+    f = Float.parseFloat( meuFloat );
+  }
+  catch( NumberFormatException nfe ) {
+    System.out.println( nfe );
+  }
+
+  // A maioria dos tipos numericos possui a funcao parse!
+
+----------------------------------------------------------------
+
+ Use o Integer.parseInt();
+
+
+
+- Ex.:
+String a = "1" ;
+String b = "2" ;
+
+int soma = Integer.parseInt(a) + Integer.parseInr(b) ;
+
+O valor da soma tem que ser 3 . 
+
+----------------------------------------------------------------
+
+int numero = Integer.parse("algumaString");

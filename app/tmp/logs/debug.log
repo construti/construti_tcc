@@ -1,0 +1,16 @@
+2012-06-11 18:19:43 Debug: Notice (8): Undefined property: View::$Js in [C:\xampp\htdocs\construti_oficial\lib\Cake\View\View.php, line 804]
+Trace:
+View::__get() - CORE\Cake\View\View.php, line 804
+include - APP\View\Layouts\construtilayout.ctp, line 123
+View::_evaluate() - CORE\Cake\View\View.php, line 908
+View::_render() - CORE\Cake\View\View.php, line 872
+View::renderLayout() - CORE\Cake\View\View.php, line 527
+View::render() - CORE\Cake\View\View.php, line 471
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+PagesController::display() - APP\Controller\PagesController.php, line 31
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
