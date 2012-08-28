@@ -451,3 +451,9 @@ p {
 	position: absolute;
 	z-index: 4; 
 }
+.legenda {
+	width: 300px;
+	margin: 0 auto;
+	padding: 5px 0 0;
+}
+}
