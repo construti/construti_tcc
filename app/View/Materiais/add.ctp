@@ -11,8 +11,8 @@
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
 			Nome: <br/><br/>
 			Tipo: <br/><br/>
+			<div style="color: #ee0;">Preço(R$):</div> <br/>
 			Descrição: <br/><br/>
-			 
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
             <?php echo $this->Form->input('material_nome', array('label' => '', 'id' => 'material_nome', 'class' => array('intexto'))); ?>
@@ -23,7 +23,14 @@
 									   );
 				  echo $this->Form->select('material_tipo', $opcoes_tipo) ?>
 			<br/><br/>
+			<?php echo $this->Form->input('material_ultimo_preco', array('label' => '', 'id' => 'material_ultimo_preco', 'class' => array('intexto'))); ?>
+			<br/>
 			<?php echo $this->Form->input('material_descricao', array('type' => 'textarea', 'escape' => false,'label' => '', 'id' => 'material_descricao', 'class' => array('descricao'))); ?>
+		</div>
+		<div class="legenda">
+			<div style="text-align: center; font-size: 120%;">Legenda</div>
+			<div style="text-align: justify;">Itens Obrigatórios</div>
+			<div style="text-align: justify; color: #ee0">Itens Opcionais</div>
 		</div>
 		<div id="areaBotao"> <!-- botão de cadastro -->
             <?php 

@@ -18,6 +18,11 @@ class Material extends AppModel{
 		'material_descricao' => array(
 			'rule' => 'notEmpty',
 			'message' => "Este campo não pode ser vazio"
+		),
+		'material_ultimo_preco' => array(
+			'rule' => 'numeric',
+			'allowEmpty' => false,
+			'message' => "Somente numeros."
 		)
 	);   
 
