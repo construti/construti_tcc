@@ -1,0 +1,72 @@
+TESTES:
+
+http://www.lastcraft.com/first_test_tutorial.php   PHPUNIT
+
+http://nathanj.github.com/gitguide/tour.html  GIT
+
+:::
+
+modelagem:::::
+
+entro na tela de obra
+
+digito os dados da obra e submeto os dados, cadastrando a obra e passando para o passo seguinte.
+
+***preencho a lista de materiais para a obra
+
+	- em cada item escolhido, o sistema carrega o último preço de quando o item foi comprado, tudo no evento 'onblur'.
+
+	- tipo do material[combo], nome[realiza pesquisa de texto], quantidade , embaixo um botão de adicionar mais um.
+
+	- se já existir, vai sugerir no texto do campo 'nome', se não existir irá cadastrar cada item inexistente no banco com o nome e o tipo ao submeter a página. 
+
+	- é feita a escolha do fornecedores, pode ser um combo, e possuir um botão para carregar mais fornecedores caso escolha.
+
+ao clicar para carregar o proximo passo, é cadastrada e enviada a lista dos respectivos materiais para os respectivos fornecedores. 
+
+deverá haver uma área no sistema para ser feita a escolha do fornecedor vencedor das propostas enviadas, ao definir o vencedor, o preço do respectivo item é atualizado na tabela do mesmo, seja material ou equipamento.
+
+
+
+
+***preencho a lista de equipamentos para a obra
+- tipo do equipamento[combo], nome[realiza pesquisa de texto], quantidade
+- mesmas funcionalidades que o cadastro de materiais, porem com um campo a mais de selecionar se o equipamento será alugado ou se já possui o mesmo, caso seja alugado, dois campos de data devem ser preenchidos referindo-se ao tempo que terá o item alugado.
+
+
+preencho a lista de funcionários para a obra
+- escolhe a area de trabalho do funcionário
+- escolhe o funcionário, e o sistema carrega o salário (ou o preço por hora?) de cada um.
+- é definida a quantidade de horas a serem trabalhadas.
+- o campo 'alocado' guarda o ID da obra que ele está participando, separando por ';'
+
+
+
+
+
+  100 = 0,24 tb para torpedos passou = 0,38 min      after 2 years 194,74
+  416 qualquer operadora 	
+
+  200 = 0,23 tb para torpedos			     after 2 years ??????
+  869 qualquer operadora 			  
+
+  3 linhas ilimitados
+
+  135,04 + 59,70  
+
+  galaxy y 100= zero desconto  175, 
+	   200= 
+
+  miriele
+
+
+
+
+
+
+
+
+
+
+
+
