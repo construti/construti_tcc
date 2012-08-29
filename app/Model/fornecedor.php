@@ -14,9 +14,30 @@ class Fornecedor extends AppModel{
 			'rule' => 'notEmpty',
 			'message' => "Preencha corretamente."
 		) ,
+		'fornecedor_cnpj' => array(
+			'rule' => 'numeric',
+			'allowEmpty' => true,
+			'message' => "Somente numeros."
+		) ,
+		'fornecedor_estado' => array(
+			'rule' => 'notEmpty',
+			'message' => "Preencha corretamente."
+		) ,
+		'fornecedor_cidade' => array(
+			'rule' => 'notEmpty',
+			'message' => "Preencha corretamente."
+		) ,
+		'fornecedor_bairro' => array(
+			'rule' => 'notEmpty',
+			'message' => "Preencha corretamente."
+		) ,
+		'fornecedor_endereco' => array(
+			'rule' => 'notEmpty',
+			'message' => "Preencha corretamente."
+		) ,
 		'fornecedor_contato' => array(
 			'rule' => 'numeric',
-			'allowEmpty' => false,
+			'allowEmpty' => true,
 			'message' => "Somente numeros."
 		) ,
 		'fornecedor_email' => array(

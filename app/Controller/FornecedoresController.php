@@ -41,11 +41,29 @@ class FornecedoresController extends AppController {
                 }
             }
             
-			if($this->request->data['field'] == 'fornecedor_contato' ) {
-                if(empty($this->data['Fornecedor']['fornecedor_contato'])) {
+			if($this->request->data['field'] == 'fornecedor_estado' ) {
+                if(empty($this->data['Fornecedor']['fornecedor_estado'])) {
                     $error = 'este campo não pode ser vazio!';
                 }
-            }  
+            }
+			
+			if($this->request->data['field'] == 'fornecedor_cidade' ) {
+                if(empty($this->data['Fornecedor']['fornecedor_cidade'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
+			
+			if($this->request->data['field'] == 'fornecedor_bairro' ) {
+                if(empty($this->data['Fornecedor']['fornecedor_bairro'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
+			
+			if($this->request->data['field'] == 'fornecedor_endereco' ) {
+                if(empty($this->data['Fornecedor']['fornecedor_endereco'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
 			
             if($this->request->data['field'] == 'fornecedor_email' ) {
                 if(empty($this->data['Fornecedor']['fornecedor_email'])) {

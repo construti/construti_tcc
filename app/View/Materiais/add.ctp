@@ -12,7 +12,7 @@
 			Nome: <br/><br/>
 			Tipo: <br/><br/>
 			<div style="color: #ee0;">Preço(R$):</div> <br/>
-			Descrição: <br/><br/>
+			<div style="color: #ee0;">Descrição:</div> <br/><br/>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
             <?php echo $this->Form->input('material_nome', array('label' => '', 'id' => 'material_nome', 'class' => array('intexto'))); ?>
@@ -21,7 +21,7 @@
 									   'madeira' => 'Madeira', 'parafuso' => 'Parafuso', 'prego' => 'Prego',
 									   'telha' => 'Telha', 'tijolo' => 'Tijolo', 'viga' => 'Viga'
 									   );
-				  echo $this->Form->select('material_tipo', $opcoes_tipo) ?>
+				  echo $this->Form->select('material_tipo', $opcoes_tipo, array('label' => '', 'id' => 'material_tipo', 'class' => array('intexto'))) ?>
 			<br/><br/>
 			<?php echo $this->Form->input('material_ultimo_preco', array('label' => '', 'id' => 'material_ultimo_preco', 'class' => array('intexto'))); ?>
 			<br/>

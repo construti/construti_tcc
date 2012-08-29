@@ -50,8 +50,8 @@ class MateriaisController extends AppController {
                 }
             }
 			
-			if($this->request->data['field'] == 'material_descricao' ) {
-                if(empty($this->data['Material']['material_descricao'])) {
+			if($this->request->data['field'] == 'material_tipo' ) {
+                if(empty($this->data['Material']['material_tipo'])) {
                     $error = 'este campo não pode ser vazio!';
                 }
             }
