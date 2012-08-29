@@ -2840,3 +2840,13 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 2012-08-28 21:17:44 Error: [MissingControllerException] Controller class CssController could not be found.
 #0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2012-08-29 18:32:42 Error: [MissingTableException] Table terrenos for model Terreno was not found in datasource default.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(3408): Model->setSource('terrenos')
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): Model->getDataSource()
+#2 C:\xampp\htdocs\construti_oficial\app\Controller\ObrasController.php(16): Model->find('list', Array)
+#3 [internal function]: ObrasController->add()
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ObrasController), Array)
+#5 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
