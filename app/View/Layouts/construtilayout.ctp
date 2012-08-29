@@ -47,13 +47,13 @@ $cakeDescription = __d('cake_dev', 'Construti');
 								<li><a href="<?php echo $this->params->base."/terrenos/add"; ?>">Cadastrar</a></li>
                                 <li><a href="<?php echo $this->params->base."/terrenos/search"; ?>">Pesquisar</a></li>
 							</ul>
-						</li>
+						</li> -->
 						<li>Projetos
 							<ul>
 								<li><a href="<?php echo $this->params->base."/projetos/add"; ?>">Cadastrar</a></li>
                                 <li><a href="<?php echo $this->params->base."/projetos/search"; ?>">Pesquisar</a></li>
 							</ul>
-						</li>-->
+						</li>
 					</ul>
 				</li>
 				<li>Programas de Obra

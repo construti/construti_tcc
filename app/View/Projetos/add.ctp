@@ -8,12 +8,22 @@
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Projeto', array('type' => 'file', 'controller' => 'projetos', 'action' => 'add', 'admin' => true)); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
+			Obra: <br/><br/>
 			Projeto: <br/><br/>
-			Nome: <br/><br/>
+			Tipo: <br/><br/>
 			Descrição: <br/><br/>
 			 
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
+			
+			<?php $opcoes_obra = array('construcao' => 'Construção', 'administracao' => 'Administração' , 'tecnica' => 'Técnica');
+				  echo $this->Form->input('obra_id', array('label' => '', 'id' => 'obra_id', 'type' => 'select', 'options' => $opcoes_obra , 'class' => array('intexto'), 'empty' => 'Escolha...'));
+			?><br>
+            
+			<?php $opcoes_tipo_obra = array('arquitetural' => 'Arquitetural', 'eletrico' => 'Elétrico' , 'estrutural' => 'Estrutural', 'fundacao' => 'Fundação', 'hidraulico' => 'Hidráulico', 'terraplenagem' => 'Terraplenagem');
+				  echo $this->Form->input('projeto_tipo', array('label' => '', 'id' => 'projeto_tipo', 'type' => 'select', 'options' => $opcoes_tipo_obra , 'class' => array('intexto'), 'empty' => 'Escolha...'));
+			?>
+			<br>
 			<div id="file-uploader-demo1">
 				<noscript>
 				   <p>Por favor habilite o JavaScript para utilizar o uploader de arquivos.</p>
@@ -36,9 +46,10 @@
 				
 			</div>
 			<?php echo $this->Form->hidden('arquivos', array('id' => 'arquivos')); ?>
-            <?php echo $this->Form->input('projeto_nome', array('label' => '', 'id' => 'projeto_nome', 'class' => array('intexto'))); ?>
-			<br/>
+			<br>
 			<?php echo $this->Form->input('projeto_descricao', array('type' => 'textarea', 'label' => '', 'id' => 'projeto_descricao', 'class' => array('descricao'))); ?>
+			
+			
 		</div>
 		<div id="areaBotao">  <!-- botão de cadastro -->
             <?php 

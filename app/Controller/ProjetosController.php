@@ -20,7 +20,7 @@ class ProjetosController extends AppController {
 		//pr($this->params);
         if(!empty($this->data)){
 			$arquivos = explode(";",$this->data["Projeto"]["arquivos"]);
-            $string = "";
+			$string = "";
             $separador = "";
             for($i=0;$i < count($arquivos)-1;$i++){
                 $string .= $separador."files/arquivos_projetos/".$arquivos[$i];
@@ -28,8 +28,10 @@ class ProjetosController extends AppController {
             }
  
             $img_thumb = explode(";", $string);
-            $this->data["Trabalho"]["img_thumb"] = "../".$img_thumb[0];
-            $this->data["Projeto"]["projeto_arquivo"] = $string;
+            //$this->data["Trabalho"]["img_thumb"] = "../".$img_thumb[0];
+			//pr($string);
+			//pr($this->data["Projeto"]["projeto_arquivo"]);
+            $this->request->data["Projeto"]["projeto_arquivo"] = $string;
             if($this->Projeto->save($this->data)){
                 
                 if($this->request->is('Ajax')){    // o ajax roda aqui
