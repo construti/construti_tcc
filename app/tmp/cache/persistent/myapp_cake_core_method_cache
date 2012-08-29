@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 1346282617
 a:1:{s:4:"name";a:2:{i:-953569552;s:19:"`construti_oficial`";i:1507239229;s:14:"`funcionarios`";}}
+=======
+1346270725
+a:2:{s:4:"name";a:6:{i:-953569552;s:19:"`construti_oficial`";i:-1094999834;s:16:"`Obra`.`obra_id`";i:-1477808834;s:18:"`Obra`.`obra_nome`";i:-855013292;s:7:"`obras`";i:-1801725591;s:6:"`Obra`";i:1200497032;s:10:"`projetos`";}s:6:"fields";a:1:{s:32:"b28b519374e7f54b0607b11a9fc99edd";a:2:{i:0;s:16:"`Obra`.`obra_id`";i:1;s:18:"`Obra`.`obra_nome`";}}}
+>>>>>>> construti/master

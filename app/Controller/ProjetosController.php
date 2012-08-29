@@ -13,11 +13,23 @@ class ProjetosController extends AppController {
 	//var $uses = array('Projeto');
  	
     public function index(){
+		
         $this->render('add');
     } 
                
     public function add(){
-		//pr($this->params);
+		$this->loadModel('Obra');
+		$conditions = '';
+		$id_da_obra = 6;
+		if(!empty($id_da_obra)){ //pr($this->params);
+			$conditions = array('Obra.obra_id' => $id_da_obra);
+		}
+		//pr($conditions);
+		
+		$projeto_obras = $this->Obra->find('list', array('fields' => array('Obra.obra_nome'), 'conditions' => $conditions));
+		//pr($projeto_obras);
+		$this->set('projeto_obras',$projeto_obras);
+		
         if(!empty($this->data)){
 			$arquivos = explode(";",$this->data["Projeto"]["arquivos"]);
 			$string = "";

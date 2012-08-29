@@ -2840,7 +2840,11 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 2012-08-28 21:17:44 Error: [MissingControllerException] Controller class CssController could not be found.
 #0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+<<<<<<< HEAD
 2012-08-29 18:32:42 Error: [MissingTableException] Table terrenos for model Terreno was not found in datasource default.
+=======
+2012-08-29 15:45:53 Error: [MissingTableException] Table terrenos for model Terreno was not found in datasource default.
+>>>>>>> construti/master
 #0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(3408): Model->setSource('terrenos')
 #1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): Model->getDataSource()
 #2 C:\xampp\htdocs\construti_oficial\app\Controller\ObrasController.php(16): Model->find('list', Array)
@@ -2850,3 +2854,35 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 #6 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
 #7 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #8 {main}
+<<<<<<< HEAD
+=======
+2012-08-29 16:03:26 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=> 2' at line 1
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Obra`.`...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Obra`.`...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Obra`.`...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Obra), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(22): Model->find('list', Array)
+#6 [internal function]: ProjetosController->add()
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-08-29 16:40:35 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'conditions' in 'where clause'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Obra`.`...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Obra`.`...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Obra`.`...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Obra), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(30): Model->find('list', Array)
+#6 [internal function]: ProjetosController->add()
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-08-29 16:48:37 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+>>>>>>> construti/master
