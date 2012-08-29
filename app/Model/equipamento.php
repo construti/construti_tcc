@@ -10,9 +10,18 @@ class Equipamento extends AppModel{
 			'rule' => 'notEmpty',
 			'message' => "Preencha corretamente."
 		) ,
+		'equipamento_alugado' => array(
+			'rule' => 'notEmpty',
+			'message' => "Preencha corretamente."
+		) ,
 		'equipamento_tipo' => array(
 			'rule' => 'notEmpty',
 			'message' => "Preencha corretamente."
+		),
+		'equipamento_ultimo_preco' => array(
+			'rule' => 'numeric',
+			'allowEmpty' => true,
+			'message' => "Somente numeros."
 		)
 		
 	);

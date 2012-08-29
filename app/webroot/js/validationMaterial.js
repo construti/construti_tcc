@@ -22,24 +22,24 @@
 		
 	};	
 		
-	// DESCRICAO ---------------------------------------------
-	$('#material_descricao').blur(function(){
+	// TIPO ---------------------------------------------
+	$('#material_tipo').blur(function(){
 		$.post(
 			'/construti_oficial/materiais/validate_form',
-			{ field: $('#material_descricao').attr('id'), value: $('#material_descricao').val() },
-			verificaDescricao
+			{ field: $('#material_tipo').attr('id'), value: $('#material_tipo').val() },
+			verificaTipo
 		);
 	});
-	function verificaDescricao(error){
+	function verificaTipo(error){
 		//alert(error.length);
 		if(error.length > 3){
-			if($('#material_descricao_ERROR').length == 0){
-				$('#material_descricao').after('<div id="material_descricao_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
-				$('#material_descricao_ERROR').fadeTo(3000, 0.6);
+			if($('#material_tipo_ERROR').length == 0){
+				$('#material_tipo').after('<div id="material_tipo_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
+				$('#material_tipo_ERROR').fadeTo(3000, 0.6);
 			}
 		}
 		else{
-			$('#material_descricao_ERROR').remove();
+			$('#material_tipo_ERROR').remove();
 		}
 		
 	};	

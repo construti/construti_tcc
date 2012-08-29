@@ -15,13 +15,13 @@ class Material extends AppModel{
 			'rule' => 'notEmpty',
 			'message' => "Este campo não pode ser vazio"
 		),
-		'material_descricao' => array(
+		'material_tipo' => array(
 			'rule' => 'notEmpty',
 			'message' => "Este campo não pode ser vazio"
 		),
 		'material_ultimo_preco' => array(
 			'rule' => 'numeric',
-			'allowEmpty' => false,
+			'allowEmpty' => true,
 			'message' => "Somente numeros."
 		)
 	);   

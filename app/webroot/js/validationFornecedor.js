@@ -21,23 +21,86 @@
 		
 	};		
 	
-	// CONTATO ---------------------------------------------
-	$('#fornecedor_contato').blur(function(){
+	// ESTADO ---------------------------------------------
+	$('#fornecedor_estado').blur(function(){
 		$.post(
 			'/construti_oficial/fornecedores/validate_form',
-			{ field: $('#fornecedor_contato').attr('id'), value: $('#fornecedor_contato').val() },
-			verificaContato
+			{ field: $('#fornecedor_estado').attr('id'), value: $('#fornecedor_estado').val() },
+			verificaEstado
 		);
 	});
-	function verificaContato(error){
+	function verificaEstado(error){
 		if(error.length > 2){
-			if($('#fornecedor_contato_ERROR').length == 0){
-				$('#fornecedor_contato').after('<div id="fornecedor_contato_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
-				$('#fornecedor_contato_ERROR').fadeTo(3000, 0.6);
+			if($('#fornecedor_estado_ERROR').length == 0){
+				$('#fornecedor_estado').after('<div id="fornecedor_estado_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
+				$('#fornecedor_estado_ERROR').fadeTo(3000, 0.6);
 			}
 		}
 		else{
-			$('#fornecedor_contato_ERROR').remove();
+			$('#fornecedor_estado_ERROR').remove();
+		}
+		
+	};
+	
+	// CIDADE ---------------------------------------------
+	$('#fornecedor_cidade').blur(function(){
+		$.post(
+			'/construti_oficial/fornecedores/validate_form',
+			{ field: $('#fornecedor_cidade').attr('id'), value: $('#fornecedor_cidade').val() },
+			verificaCidade
+		);
+	});
+	function verificaCidade(error){
+		if(error.length > 2){
+			if($('#fornecedor_cidade_ERROR').length == 0){
+				$('#fornecedor_cidade').after('<div id="fornecedor_cidade_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
+				$('#fornecedor_cidade_ERROR').fadeTo(3000, 0.6);
+			}
+		}
+		else{
+			$('#fornecedor_cidade_ERROR').remove();
+		}
+		
+	};
+	
+	// BAIRRO ---------------------------------------------
+	$('#fornecedor_bairro').blur(function(){
+		$.post(
+			'/construti_oficial/fornecedores/validate_form',
+			{ field: $('#fornecedor_bairro').attr('id'), value: $('#fornecedor_bairro').val() },
+			verificaBairro
+		);
+	});
+	function verificaBairro(error){
+		if(error.length > 2){
+			if($('#fornecedor_bairro_ERROR').length == 0){
+				$('#fornecedor_bairro').after('<div id="fornecedor_bairro_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
+				$('#fornecedor_bairro_ERROR').fadeTo(3000, 0.6);
+			}
+		}
+		else{
+			$('#fornecedor_bairro_ERROR').remove();
+		}
+		
+	};
+	
+	// ENDEREÇO ---------------------------------------------
+	$('#fornecedor_endereco').blur(function(){
+		$.post(
+			'/construti_oficial/fornecedores/validate_form',
+			{ field: $('#fornecedor_endereco').attr('id'), value: $('#fornecedor_endereco').val() },
+			verificaEndereco
+		);
+	});
+	function verificaEndereco(error){
+		if(error.length > 2){
+			if($('#fornecedor_endereco_ERROR').length == 0){
+				$('#fornecedor_endereco').after('<div id="fornecedor_endereco_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
+				$('#fornecedor_endereco_ERROR').fadeTo(3000, 0.6);
+			}
+		}
+		else{
+			$('#fornecedor_endereco_ERROR').remove();
 		}
 		
 	};

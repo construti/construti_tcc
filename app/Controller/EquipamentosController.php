@@ -38,6 +38,12 @@ class EquipamentosController extends AppController {
                     $error = 'este campo não pode ser vazio!';
                 }
             }
+			
+			if($this->request->data['field'] == 'equipamento_alugado' ) {
+                if(empty($this->data['Equipamento']['equipamento_alugado'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
 
 			if($this->request->data['field'] == 'equipamento_tipo' ) {
                 if(empty($this->data['Equipamento']['equipamento_tipo'])) {

@@ -21,6 +21,27 @@
 		
 	};		
 	
+	// ALUGADO ---------------------------------------------
+	$('#equipamento_alugado').blur(function(){
+		$.post(
+			'/construti_oficial/equipamentos/validate_form',
+			{ field: $('#equipamento_alugado').attr('id'), value: $('#equipamento_alugado').val() },
+			verificaAlugado
+		);
+	});
+	function verificaAlugado(error){
+		if(error.length > 2){
+			if($('#equipamento_alugado_ERROR').length == 0){
+				$('#equipamento_alugado').after('<div id="equipamento_alugado_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
+				$('#equipamento_alugado_ERROR').fadeTo(3000, 0.6);
+			}
+		}
+		else{
+			$('#equipamento_alugado_ERROR').remove();
+		}
+		
+	};
+	
 	// TIPO ---------------------------------------------
 	$('#equipamento_tipo').blur(function(){
 		$.post(
