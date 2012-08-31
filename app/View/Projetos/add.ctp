@@ -7,10 +7,12 @@
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Projeto', array('type' => 'file', 'controller' => 'projetos', 'action' => 'add', 'admin' => true)); ?> <!-- início do formulário -->
+		* = Campos Obrigatórios 
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			Obra: <br/><br/>
-			Tipo: <br/><br/>
-			Projeto: <br/><br/>
+		
+			Obra:* <br/><br/>
+			Tipo:* <br/><br/>
+			Projeto:* <br/><br/>
 			Custo: <br/><br/>
 			Descrição: <br/><br/>
 			 

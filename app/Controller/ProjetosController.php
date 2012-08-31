@@ -20,7 +20,7 @@ class ProjetosController extends AppController {
     public function add(){
 		$this->loadModel('Obra');
 		$conditions = '';
-		$id_da_obra = 6;
+		$id_da_obra = '';
 		if(!empty($id_da_obra)){ //pr($this->params);
 			$conditions = array('Obra.obra_id' => $id_da_obra);
 		}
@@ -31,6 +31,7 @@ class ProjetosController extends AppController {
 		$this->set('projeto_obras',$projeto_obras);
 		
         if(!empty($this->data)){
+			// TRATANDO ARQUIVOS
 			$arquivos = explode(";",$this->data["Projeto"]["arquivos"]);
 			$string = "";
             $separador = "";
@@ -44,6 +45,10 @@ class ProjetosController extends AppController {
 			//pr($string);
 			//pr($this->data["Projeto"]["projeto_arquivo"]);
             $this->request->data["Projeto"]["projeto_arquivo"] = $string;
+			// FIM --- TRATANDO ARQUIVOS
+			$projeto_nome = $this->Obra->find('first', array('fields' => array('Obra.obra_nome'), 'conditions' => $this->request->data["Projeto"]["obra_id"]));
+			$this->request->data["Projeto"]["projeto_nome"] = $projeto_nome['Obra']['obra_nome'];
+			
             if($this->Projeto->save($this->data)){
                 
                 if($this->request->is('Ajax')){    // o ajax roda aqui
@@ -68,19 +73,18 @@ class ProjetosController extends AppController {
             $this->request->data['Projeto'][$this->request->data['field']] = $this->request->data['value']; 
             //pr($this->request->data);  
             $error = '';
-            if($this->request->data['field'] == 'projeto_nome' ) {
-                if(empty($this->data['Projeto']['projeto_nome'])) {
+            if($this->request->data['field'] == 'obra_id' ) {
+                if(empty($this->data['Projeto']['obra_id'])) {
                     $error = 'este campo não pode ser vazio!';
                 }
             }
 			
-			if($this->request->data['field'] == 'projeto_descricao' ) {
-                if(empty($this->data['Projeto']['projeto_descricao'])) {
+			if($this->request->data['field'] == 'projeto_tipo' ) {
+                if(empty($this->data['Projeto']['projeto_tipo'])) {
                     $error = 'este campo não pode ser vazio!';
                 }
             }
-              
-                       
+			           
             $this->set('error', $error);
             
         }

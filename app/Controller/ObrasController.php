@@ -12,8 +12,8 @@ class ObrasController extends AppController {
 	    
     public function add() { //adiciona um obra
 	
-		$Terreno = $this->loadModel('Terreno');
-		$terrenos = $this->Terreno->find('list', array('order' => array('terreno_nome' => 'asc'	)));
+		//$Terreno = $this->loadModel('Terreno');
+		//$terrenos = $this->Terreno->find('list', array('order' => array('terreno_nome' => 'asc'	)));
 		
 		$Projeto = $this->loadModel('Projeto');
 		$projetos = $this->Projeto->find('list', array('order' => array('projeto_nome' => 'asc'	)));
@@ -135,8 +135,8 @@ class ObrasController extends AppController {
 	public function edit($id = null) { //atualizar um obra
 		$this->Obra->id = $id;
 		
-		$Terreno = $this->loadModel('Terreno');
-		$terrenos = $this->Terreno->find('list', array('order' => array('terreno_nome' => 'asc'	)));
+		//$Terreno = $this->loadModel('Terreno');
+		//$terrenos = $this->Terreno->find('list', array('order' => array('terreno_nome' => 'asc'	)));
 		
 		$Projeto = $this->loadModel('Projeto');
 		$projetos = $this->Projeto->find('list', array('order' => array('projeto_nome' => 'asc'	)));
