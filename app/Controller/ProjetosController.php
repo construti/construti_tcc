@@ -20,11 +20,10 @@ class ProjetosController extends AppController {
     public function add(){
 		$this->loadModel('Obra');
 		$conditions = '';
-		$id_da_obra = '';
-		if(!empty($id_da_obra)){ //pr($this->params);
+		pr($id_da_obra);
+		if(!empty($id_da_obra)){ pr($this->params);
 			$conditions = array('Obra.obra_id' => $id_da_obra);
 		}
-		//pr($conditions);
 		
 		$projeto_obras = $this->Obra->find('list', array('fields' => array('Obra.obra_nome'), 'conditions' => $conditions));
 		//pr($projeto_obras);
@@ -46,6 +45,7 @@ class ProjetosController extends AppController {
 			//pr($this->data["Projeto"]["projeto_arquivo"]);
             $this->request->data["Projeto"]["projeto_arquivo"] = $string;
 			// FIM --- TRATANDO ARQUIVOS
+			
 			$projeto_nome = $this->Obra->find('first', array('fields' => array('Obra.obra_nome'), 'conditions' => $this->request->data["Projeto"]["obra_id"]));
 			$this->request->data["Projeto"]["projeto_nome"] = $projeto_nome['Obra']['obra_nome'];
 			

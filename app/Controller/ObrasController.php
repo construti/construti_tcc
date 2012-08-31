@@ -12,19 +12,15 @@ class ObrasController extends AppController {
 	    
     public function add() { //adiciona um obra
 	
-		//$Terreno = $this->loadModel('Terreno');
-		//$terrenos = $this->Terreno->find('list', array('order' => array('terreno_nome' => 'asc'	)));
+		$Funcionario = $this->loadModel('Funcionario');
+		$responsavel = $this->Funcionario->find('list', array('fields' => array('funcionario_nome'),'order' => array('funcionario_nome' => 'asc'	)));
 		
-		$Projeto = $this->loadModel('Projeto');
-		$projetos = $this->Projeto->find('list', array('order' => array('projeto_nome' => 'asc'	)));
-				
-		$Material = $this->loadModel('Material');
-		$materiais = $this->Material->find('list', array('order' => array('material_nome' => 'asc')));
-		
-		 $this->set(compact('terrenos','projetos','materiais')); 
+		 $this->set(compact('responsavel')); 
 	
         if(!empty($this->data)){
             if($this->Obra->save($this->data)){
+				$id_da_obra = $this->Obra->getLastInsertId(); 
+				
 				if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);
                     $this->render('success','ajax');
@@ -33,6 +29,10 @@ class ObrasController extends AppController {
                     $this->flash('Adicionado com sucesso!','add');
                     $this->redirect(array('action' => 'add'));
                 }
+				// SE SALVAR A OBRA, DEVERÁ ENCAMINHAR O USUARIO PARA O CADASTRO DE PROJETO COM A OBRA ESPECÍFICA PARA GRAVAR UM PROJETO.
+				$this->set('id_da_obra',$id_da_obra);
+				$this->redirect(array('controller' => 'my_controller', 'action' => 'my_action')); apsjidpsd
+				$this->render('/Projetos/add');
             } else {
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
                 $this->render('delete','ajax');
@@ -56,43 +56,7 @@ class ObrasController extends AppController {
                     $error = 'este campo não pode ser vazio!';
                 }
             }  
-			
-			if($this->request->data['field'] == 'obra_funcionarios' ) {
-                if(empty($this->data['Obra']['obra_funcionarios'])) {
-                    $error = 'este campo não pode ser vazio!';
-                }
-            }  
-			
-			if($this->request->data['field'] == 'terreno_id' ) {
-                if(empty($this->data['Obra']['terreno_id'])) {
-                    $error = 'este campo não pode ser vazio!';
-                }
-            }  
-			
-			if($this->request->data['field'] == 'projeto_id' ) {
-                if(empty($this->data['Obra']['projeto_id'])) {
-                    $error = 'este campo não pode ser vazio!';
-                }
-            }  
-			
-			if($this->request->data['field'] == 'material_obra_id' ) {
-                if(empty($this->data['Obra']['material_obra_id'])) {
-                    $error = 'este campo não pode ser vazio!';
-                }
-            }  
-			
-			if($this->request->data['field'] == 'equipamento_obra_id' ) {
-                if(empty($this->data['Obra']['equipamento_obra_id'])) {
-                    $error = 'este campo não pode ser vazio!';
-                }
-            }  
-			
-			if($this->request->data['field'] == 'obra_custo' ) {
-                if(empty($this->data['Obra']['obra_custo'])) {
-                    $error = 'este campo não pode ser vazio!';
-                }
-            }  
-			
+							
 			if($this->request->data['field'] == 'obra_data_inicio' ) {
                 if(empty($this->data['Obra']['obra_data_inicio'])) {
                     $error = 'este campo não pode ser vazio!';
@@ -113,6 +77,30 @@ class ObrasController extends AppController {
 			
 			if($this->request->data['field'] == 'obra_tipo' ) {
                 if(empty($this->data['Obra']['obra_tipo'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }  
+			
+			if($this->request->data['field'] == 'obra_estado' ) {
+                if(empty($this->data['Obra']['obra_estado'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }  
+			
+			if($this->request->data['field'] == 'obra_cidade' ) {
+                if(empty($this->data['Obra']['obra_cidade'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }  
+			
+			if($this->request->data['field'] == 'obra_bairro' ) {
+                if(empty($this->data['Obra']['obra_bairro'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }  
+			
+			if($this->request->data['field'] == 'obra_endereco' ) {
+                if(empty($this->data['Obra']['obra_endereco'])) {
                     $error = 'este campo não pode ser vazio!';
                 }
             }  

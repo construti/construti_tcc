@@ -13,66 +13,56 @@
 			
 			Responsável: <br/><br/>
 			
-			Funcionários: <br/><br/>
+			Data de Início: <br/><br/>
 			
-			Terreno: <br/><br/>
+			Estado: <br/><br/>
 			
-			Projeto: <br/><br/>
+			Bairro: <br/><br/>
 			
-			Materiais:
+			Descrição: <br/><br/>
 		</div>
 		<div id="camposlacunasE"> <!-- div com os campos da esquerda a serem preenchidos -->
             <?php echo $this->Form->input('obra_nome', array('label' => '', 'id' => 'obra_nome', 'class' => array('intexto'))); ?>
 			<br/>
-			<?php echo $this->Form->input('obra_responsavel', array('label' => '', 'id' => 'obra_responsavel', 'class' => array('intexto'))); ?>
+			<?php echo $this->Form->select('obra_responsavel', $responsavel, array('label' => '', 'id' => 'responsavel', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
+			<br><br>
+			<?php echo $this->Form->input('obra_data_inicio', array('label' => '', 'id' => 'obra_data_inicio', 'minYear' => date('Y') - 10, 'maxYear' => date('Y') + 20, 'class' => array('intexto'))); ?>
 			<br/>
-			<?php echo $this->Form->input('obra_funcionarios', array('label' => '', 'id' => 'obra_funcionarios',  'class' => array('campoDescricao'))); ?>
+			<?php echo $this->Form->input('obra_estado', array('label' => '', 'id' => 'obra_estado', 'class' => array('intexto'))); ?>
 			<br/>
-			<?php echo $this->Form->input('terreno_id', array('label' => '', 'id' => 'terreno_id', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
+			<?php echo $this->Form->input('obra_bairro', array('label' => '', 'id' => 'obra_bairro', 'class' => array('intexto'))); ?>
 			<br/>
-			<?php echo $this->Form->input('projeto_id', array('label' => '', 'id' => 'projeto_id', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
-			<br/>
-			<?php $opcoes_material = array($materiais);
-				  echo $this->Form->select('material_id', $materiais, array('label' => '', 'id' => 'material_id', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
-			
+			 <?php echo $this->Form->input('obra_descricao', array('label' => '', 'id' => 'obra_descricao', 'class' => array('descricao'))); ?>
+			 <br>
 		</div>
 		<div id="camposdescricaoD"> <!-- div com a descrição dos campos da direita -->
 			Tipo: <br/><br/>
 			
-			Custo(R$): <br/><br/>
-			
-			Data de Início: <br/><br/>
+			Status: <br/><br/>
 			
 			Data de Término: <br/><br/>
 			
-			Status: <br/><br/>
+			Cidade: <br/><br/>
 			
+			Endereço: <br/><br/>
 			
 		</div>
 		<div id="camposlacunasD"> <!-- div com os campos da direita a serem preenchidos -->
-			<?php $opcoes_tipo = array('R' => 'Residencial', 'C' => 'Comercial' ,
-										'I' => 'Industrial');
+			<?php $opcoes_tipo = array('R' => 'Residencial', 'C' => 'Comercial' ,'I' => 'Industrial');
 				  echo $this->Form->select('obra_tipo', $opcoes_tipo, array('label' => '', 'id' => 'obra_tipo', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
-			
 			<br/><br/>
-			<?php echo $this->Form->input('obra_custo', array('label' => '', 'id' => 'obra_custo', 'class' => array('intexto'))); ?>
-			<br/>
-			<?php echo $this->Form->input('obra_data_inicio', array('label' => '', 'id' => 'obra_data_inicio', 'minYear' => date('Y') - 10, 'maxYear' => date('Y') + 20, 'class' => array('intexto'))); ?>
-			<br/>
+			<?php $opcoes_status = array('AI' => 'A Iniciar', 'EA' => 'Em Andamento' , 'PA' => 'Parada');
+				  echo $this->Form->select('obra_status', $opcoes_status, array('label' => '', 'id' => 'obra_status', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
+			<br/><br/>
 			<?php echo $this->Form->input('obra_data_fim', array('label' => '', 'id' => 'obra_data_fim', 'minYear' => date('Y') - 10, 'maxYear' => date('Y') + 30, 'class' => array('intexto'))); ?>
 			<br/>
-			<?php $opcoes_status = array('AI' => 'A Iniciar', 'EA' => 'Em Andamento' , 'PA' => 'Parada');
-				  echo $this->Form->select('obra_status', $opcoes_status, array('label' => '', 'id' => 'obra_status', 'class' => array('intexto'))); ?>
-			<br/><br/>
+			<?php echo $this->Form->input('obra_cidade', array('label' => '', 'id' => 'obra_cidade', 'class' => array('intexto'))); ?>
+			<br/>
+			<?php echo $this->Form->input('obra_endereco', array('label' => '', 'id' => 'obra_endereco', 'class' => array('intexto'))); ?>
+			<br/>
 			
 		</div>
-		<div id="camposdescricaoB"> <!-- div com a descrição dos campos da direita -->
-			Descrição: 
-		</div>
-		<div id="camposlacunasB"> <!-- div com a descrição dos campos da direita -->
-			 <?php echo $this->Form->input('obra_descricao', array('label' => '', 'id' => 'obra_descricao', 'class' => array('descricao'))); ?>
-		</div>
-		
+				
 		<div id="areaBotao"> <!-- botão de cadastro -->
 		<?php 
             echo $this->Js->submit('Cadastrar', array(
