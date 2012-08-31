@@ -49,10 +49,52 @@ class FuncionariosController extends AppController {
             if($this->request->data['field'] == 'funcionario_cpf' ) {
                 $error = 'CPF inválido!';
             }
+			
+			if($this->request->data['field'] == 'funcionario_data_nasc' ) {
+                if(empty($this->data['Funcionario']['funcionario_data_nasc'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
+			
+			if($this->request->data['field'] == 'funcionario_endereco' ) {
+                if(empty($this->data['Funcionario']['funcionario_endereco'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
+			
+			if($this->request->data['field'] == 'funcionario_bairro' ) {
+                if(empty($this->data['Funcionario']['funcionario_bairro'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
+			
+			if($this->request->data['field'] == 'funcionario_cidade' ) {
+                if(empty($this->data['Funcionario']['funcionario_cidade'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
+			
+			if($this->request->data['field'] == 'funcionario_estado' ) {
+                if(empty($this->data['Funcionario']['funcionario_estado'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
+			
+			if($this->request->data['field'] == 'funcionario_pais' ) {
+                if(empty($this->data['Funcionario']['funcionario_pais'])) {
+                    $error = 'este campo não pode ser vazio!';
+                }
+            }
               
             if($this->request->data['field'] == 'funcionario_email' ) {
                 if(empty($this->data['Funcionario']['funcionario_email'])) {
                     $error = 'não esqueça de colocar o email!';
+                }
+            }
+			
+			if($this->request->data['field'] == 'funcionario_salario' ) {
+                if(empty($this->data['Funcionario']['funcionario_salario'])) {
+                    $error = 'este campo não pode ser vazio!';
                 }
             }
 			

@@ -15,6 +15,11 @@ class Funcionario extends AppModel{
 			'allowEmpty' => false,
 			'message' => "Somente numeros."
 		),
+		'funcionario_rg' => array(
+			'rule' => 'numeric',
+			'allowEmpty' => true,
+			'message' => "Somente numeros."
+		),
 		'funcionario_data_nasc' => array(
 			'rule' => array('date','ymd'),
 			'allowEmpty' => false,
@@ -44,6 +49,19 @@ class Funcionario extends AppModel{
 			'rule' => array('email', true), 
             'allowEmpty' => false,
 			'message' => "E-mail inexistente."
+		),
+		'funcionario_telefone' => array(
+			'rule' => 'numeric',
+			'allowEmpty' => true,
+			'message' => "Somente numeros."
+		),
+		'funcionario_area' => array(
+			'rule' => 'notEmpty',
+			'message' => "Este campo não pode ser vazio"
+		),
+		'funcionario_tipo' => array(
+			'rule' => 'notEmpty',
+			'message' => "Este campo não pode ser vazio"
 		),
 		'funcionario_salario' => array(
 			'rule' => 'numeric',

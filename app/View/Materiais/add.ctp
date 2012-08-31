@@ -28,9 +28,9 @@
 			<?php echo $this->Form->input('material_descricao', array('type' => 'textarea', 'escape' => false,'label' => '', 'id' => 'material_descricao', 'class' => array('descricao'))); ?>
 		</div>
 		<div class="legenda">
-			<div style="text-align: center; font-size: 120%;">Legenda</div>
-			<div style="text-align: justify;">Itens Obrigatórios</div>
-			<div style="text-align: justify; color: #ee0">Itens Opcionais</div>
+			<div style="font-size: 120%;">Legenda</div>
+			<div style="text-align: justify; padding: 0 0 0 30%;">Itens Obrigatórios</div>
+			<div style="text-align: justify; padding: 0 0 0 30%; color: #ee0">Itens Opcionais</div>
 		</div>
 		<div id="areaBotao"> <!-- botão de cadastro -->
             <?php 

@@ -428,7 +428,7 @@ p {
 	margin: 0 auto;
 	padding: 0;
 }
-.tabela tr th{
+.tabela tr th {
 	border-style: solid;
 	border-width: 2px;
 	border-color: #444;
@@ -452,8 +452,9 @@ p {
 	z-index: 4; 
 }
 .legenda {
-	width: 300px;
+	float: left;
+	width: 100%;
+	text-align: center; 
 	margin: 0 auto;
 	padding: 5px 0 0;
-}
 }
