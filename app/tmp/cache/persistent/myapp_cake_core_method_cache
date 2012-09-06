@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 1346969495
 a:1:{s:4:"name";a:2:{i:-953569552;s:19:"`construti_oficial`";i:409572298;s:10:"`usuarios`";}}
+=======
+1346443960
+a:2:{s:4:"name";a:21:{i:-953569552;s:19:"`construti_oficial`";i:-1116009264;s:30:"`Funcionario`.`funcionario_id`";i:-241823672;s:32:"`Funcionario`.`funcionario_nome`";i:1507239229;s:14:"`funcionarios`";i:-159530980;s:13:"`Funcionario`";i:-2142252654;s:18:"`funcionario_nome`";i:-855013292;s:7:"`obras`";i:120992293;s:11:"`obra_nome`";i:1637868318;s:18:"`obra_responsavel`";i:-509169738;s:18:"`obra_data_inicio`";i:1570955004;s:13:"`obra_estado`";i:342636386;s:13:"`obra_bairro`";i:1728462260;s:16:"`obra_descricao`";i:-434357645;s:11:"`obra_tipo`";i:1895656693;s:13:"`obra_status`";i:-2003323638;s:15:"`obra_data_fim`";i:103855411;s:13:"`obra_cidade`";i:-1362702798;s:15:"`obra_endereco`";i:-1796508974;s:10:"`modified`";i:-2047819073;s:9:"`created`";i:1200497032;s:10:"`projetos`";}s:6:"fields";a:1:{s:32:"d8d6f651bbe700932ceb20951a9b37a1";a:2:{i:0;s:30:"`Funcionario`.`funcionario_id`";i:1;s:32:"`Funcionario`.`funcionario_nome`";}}}
+>>>>>>> construti/master

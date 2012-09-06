@@ -17,7 +17,8 @@ class FuncionariosController extends AppController {
 	    
     public function add() { //adiciona um funcionário
         if(!empty($this->data)){
-            if($this->Funcionario->save($this->data)){
+			
+			if($this->Funcionario->save($this->data)){
 				if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);
 					$this->render('success','ajax');
@@ -27,6 +28,7 @@ class FuncionariosController extends AppController {
                     $this->redirect(array('action' => 'add'));
                 }
             } else {
+				
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
                 $this->render('delete','ajax');
 			}			

@@ -2885,4 +2885,224 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 2012-08-29 16:48:37 Error: [MissingControllerException] Controller class CssController could not be found.
 #0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+<<<<<<< HEAD
+2012-08-30 17:23:22 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 17:23:27 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 17:23:55 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 17:24:02 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 17:24:02 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 17:24:03 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 17:24:03 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 17:24:03 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 19:41:41 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'projeto_custo' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 19:41:43 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'projeto_custo' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 19:41:45 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'projeto_custo' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 19:41:46 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'projeto_custo' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 19:41:46 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'projeto_custo' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 19:41:51 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 19:41:54 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'obra_id' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 19:42:04 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'projeto_custo' cannot be null
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(47): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 19:47:23 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-08-30 20:13:57 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'field list'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Projeto), Array, Array)
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(54): Model->save(Array)
+#5 [internal function]: ProjetosController->add()
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-08-30 20:53:12 Error: [MissingTableException] Table terrenos for model Terreno was not found in datasource default.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(3408): Model->setSource('terrenos')
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): Model->getDataSource()
+#2 C:\xampp\htdocs\construti_oficial\app\Controller\ObrasController.php(16): Model->find('list', Array)
+#3 [internal function]: ObrasController->add()
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ObrasController), Array)
+#5 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+=======
 >>>>>>> construti/master
+>>>>>>> tcc_construti/master

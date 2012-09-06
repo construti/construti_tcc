@@ -8,14 +8,27 @@ class Projeto extends AppModel{
 	var $displayField = 'projeto_nome';
     
        var $validate = array(
-		'projeto_nome' => array(
+		/*'projeto_nome' => array(
+			'rule' => 'notEmpty',
+			'message' => "Este campo não pode ser vazio"
+		),*/
+		'obra_id' => array(
 			'rule' => 'notEmpty',
 			'message' => "Este campo não pode ser vazio"
 		),
-		'projeto_descricao' => array(
+		'projeto_tipo' => array(
+			'rule' => 'notEmpty',
+			'message' => "Este campo não pode ser vazio"
+		),
+		'projeto_custo' => array(
+			'rule' => 'notEmpty',
+			'message' => "Este campo não pode ser vazio"
+		),
+		'projeto_arquivo' => array(
 			'rule' => 'notEmpty',
 			'message' => "Este campo não pode ser vazio"
 		)
+		
 	);   
 
 }
