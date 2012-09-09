@@ -88,7 +88,6 @@
 			
 			<div style="margin: 3px 0 0;">
 				<?php $opcoes_area = array('construcao' => 'Construção', 'administracao' => 'Administração' , 'tecnica' => 'Técnica');
-					//echo $this->Form->select('funcionario_area', $opcoes_areas, array('label' => '', 'id' => 'funcionario_area', 'class' => array('intexto'), 'empty' => 'Escolha...'));
 					echo $this->Form->input('funcionario_area', array('label' => '', 'id' => 'funcionario_area', 'type' => 'select', 'options' => $opcoes_area , 'class' => array('intexto'), 'empty' => 'Escolha...'));	?>
 				<br/>	
 				
@@ -97,6 +96,9 @@
 				
 				<?php echo $this->Form->input('funcionario_salario', array('label' => '', 'id' => 'funcionario_salario', 'class' => array('intexto'))); ?>
 			</div>
+		</div>
+		<div class="botoescadastrar">
+			
 		</div>
 	<div class="legenda">
 		<div style="font-size: 120%;">Legenda</div>

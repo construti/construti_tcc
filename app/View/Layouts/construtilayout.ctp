@@ -36,6 +36,12 @@ $cakeDescription = __d('cake_dev', 'Construti');
                                 <li><a href="<?php echo $this->params->base."/funcionarios/search"; ?>">Pesquisar</a></li>
 							</ul>
 						</li>
+						<li>Materiais
+							<ul>
+								<li><a href="<?php echo $this->params->base."/materiais/add"; ?>">Cadastrar</a></li>
+                                <li><a href="<?php echo $this->params->base."/materiais/search"; ?>">Pesquisar</a></li>
+							</ul>
+						</li>
 						<li>Equipamentos
 							<ul>
 								<li><a href="<?php echo $this->params->base."/equipamentos/add"; ?>">Cadastrar</a></li>
@@ -54,35 +60,25 @@ $cakeDescription = __d('cake_dev', 'Construti');
                                 <li><a href="<?php echo $this->params->base."/projetos/search"; ?>">Pesquisar</a></li>
 							</ul>
 						</li>
+						<li>Fornecedores
+							<ul>
+								<li><a href="<?php echo $this->params->base."/fornecedores/add"; ?>">Cadastrar</a></li>
+                                <li><a href="<?php echo $this->params->base."/fornecedores/search"; ?>">Pesquisar</a></li>
+							</ul>
+						</li>
 					</ul>
 				</li>
 				<li>Programas de Obra
 					<ul>
 						<li><a href="<?php echo $this->params->base."/obras/add"; ?>">Gerar Obra</a></li>
-                                <li><a href="<?php echo $this->params->base."/obras/search"; ?>">Pesquisar</a></li>
+                    	<li><a href="<?php echo $this->params->base."/obras/search"; ?>">Pesquisar</a></li>
 					</ul>
 				</li>
-				<li>Fornecedores e Materiais
+				<li>Requisições
 					<ul>
-						<li>Fornecedores
-							<ul>
-								<li><a href="<?php echo $this->params->base."/fornecedores/add"; ?>">Cadastrar</a></li>
-								<li>Requisitar
-									<ul>
-										<li><a href="<?php echo $this->params->base."/requisicoes/reqequip"; ?>">Equipamento</a></li>
-										<li><a href="<?php echo $this->params->base."/requisicoes/reqmat"; ?>">Material</a></li>
-										<li><a href="<?php echo $this->params->base."/requisicoes/reqcomp"; ?>">Completa</a></li>
-									</ul>
-								</li>
-								<li><a href="<?php echo $this->params->base."/fornecedores/search"; ?>">Pesquisar</a></li>
-							</ul>
-						</li>
-						<li>Materiais
-							<ul>
-								<li><a href="<?php echo $this->params->base."/materiais/add"; ?>">Cadastrar</a></li>
-                                <li><a href="<?php echo $this->params->base."/materiais/search"; ?>">Pesquisar</a></li>
-							</ul>
-						</li>
+						<li><a href="<?php echo $this->params->base."/requisicoes/reqequip"; ?>">Equipamento</a></li>
+						<li><a href="<?php echo $this->params->base."/requisicoes/reqmat"; ?>">Material</a></li>
+						<li><a href="<?php echo $this->params->base."/requisicoes/reqcomp"; ?>">Completa</a></li>
 					</ul>
 				</li>
 				<li>Relatórios

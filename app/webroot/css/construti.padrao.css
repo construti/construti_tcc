@@ -451,6 +451,15 @@ p {
 	position: absolute;
 	z-index: 4; 
 }
+.botoescadastrar {
+	float: left;
+	width: 15px;
+	height: 15px;
+	margin: 0 auto 10px;
+	padding: 0;
+	
+	background: #a00;
+}
 .legenda {
 	float: left;
 	width: 100%;
