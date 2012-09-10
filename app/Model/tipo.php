@@ -5,12 +5,14 @@ App::uses('AppModel', 'Model');
 class Tipo extends AppModel{
     var $name = 'Tipo';
 	
-	public $displayField = 'nome';
+	var $primaryKey = 'tipo_id';
+	
+	var $displayField = 'tipo_funcionario';
 	
 	public $belongsTo = array(
         'Area' => array(
             'className' => 'Area',
-            'foreignKey' => 'area_id',
+            'foreignKey' => 'tipo_area_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''

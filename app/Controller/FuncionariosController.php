@@ -16,6 +16,7 @@ class FuncionariosController extends AppController {
     }*/
 	    
     public function add() { //adiciona um funcionário
+		
         if(!empty($this->data)){
 			
 			if($this->Funcionario->save($this->data)){
@@ -164,9 +165,12 @@ class FuncionariosController extends AppController {
 	
 	public function pega_tipo_area(){
 		$Area = $this->loadModel('Area');
+		$Tipo = $this->loadModel('Tipo');
 		
-		$funcionario_area = $this->params['url']['funcionario_area'];
-		$funcionario_tipo = $this->Area->find('all', array('conditions' => array('Area.funcionario_area LIKE' => "$funcionario_area")));
+		$f_area = $this->params['url']['funcionario_area'];
+		$funcionario_area = $this->Area->find('first', array('conditions' => array('Area.area_descricao LIKE' => "%$f_area%")));
+		$funcionario_area = $funcionario_area['Area']['area_id'];
+		$funcionario_tipo = $this->Tipo->find('all', array('conditions' => array('Tipo.tipo_area_id LIKE' => "%$funcionario_area%")));
 		//print_r($funcionario_tipo);
 		$this->set('funcionario_tipo',$funcionario_tipo);
 		$this->Render('pega_tipo_area','ajax');
