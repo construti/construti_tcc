@@ -362,7 +362,7 @@ p {
 }
 #camposlacunasD {
 	float: left;
-	width: 200px;
+	width: 140px;
 	margin: 0 auto 10px;
 	padding: 0;
 }
@@ -454,11 +454,15 @@ p {
 .botoescadastrar {
 	float: left;
 	width: 15px;
-	height: 15px;
 	margin: 0 auto 10px;
 	padding: 0;
-	
-	background: #a00;
+}
+.botaocadastrar {
+	width: 15px;
+	height: 15px;
+	background: url('../img/botaocadastrar.png') no-repeat;
+	margin: 0;
+	padding: 0;
 }
 .legenda {
 	float: left;

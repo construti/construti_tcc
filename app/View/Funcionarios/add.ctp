@@ -16,6 +16,12 @@
 		 });
 
 	</script>
+	
+	<script type="text/javascript" language="javascript" >
+		function popup() {
+		    window.open("popup_area","Homepage","resizable=no,status=no,scrollbars=no,height=320,width=230,left=490,top=320,menubar=no,addressbar=no");
+		}
+	</script>
  
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Cadastro</div> <!-- título do formulário -->
@@ -98,7 +104,9 @@
 			</div>
 		</div>
 		<div class="botoescadastrar">
-			
+			<div style="margin: 147px 0 0;">
+				<a onclick="popup()" title="You will see a popup window"><div class="botaocadastrar"></div></a>
+			</div>
 		</div>
 	<div class="legenda">
 		<div style="font-size: 120%;">Legenda</div>
