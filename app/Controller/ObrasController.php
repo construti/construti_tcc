@@ -30,9 +30,12 @@ class ObrasController extends AppController {
                     $this->redirect(array('action' => 'add'));
                 }
 				// SE SALVAR A OBRA, DEVERÁ ENCAMINHAR O USUARIO PARA O CADASTRO DE PROJETO COM A OBRA ESPECÍFICA PARA GRAVAR UM PROJETO.
-				$this->set('id_da_obra',$id_da_obra);
-				$this->redirect(array('controller' => 'my_controller', 'action' => 'my_action')); apsjidpsd
-				$this->render('/Projetos/add');
+				//$this->set('id_da_obra',$id_da_obra);
+				
+				//$this->redirect('/projetos/add');
+				$this->redirect(array('controller' => 'projetos', 'action' =>'add', $id_da_obra)); 
+				//$this->redirect('http://www.google.com');
+				
             } else {
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
                 $this->render('delete','ajax');

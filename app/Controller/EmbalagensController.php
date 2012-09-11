@@ -5,12 +5,12 @@ App::uses('AppController', 'Controller');
 
 
 
-class ProjetosController extends AppController {
+class EmbalagensController extends AppController {
                                         
     public $helpers = array('Form','Js');
     public $components = array('RequestHandler');
-	public $name = 'Projetos';
-	//var $uses = array('Projeto');
+	public $name = 'Embalagens';
+	var $uses = array('Embalagem');
  	
     public function index(){
 		
@@ -18,39 +18,10 @@ class ProjetosController extends AppController {
     } 
                
     public function add(){
-		$this->loadModel('Obra');
-		$conditions = '';
-		//$id_da_obra = $this->Session->read('id_da_obra'); 
-		pr($id_da_obra);
-		if(!empty($id_da_obra)){ pr($this->params);
-			$conditions = array('Obra.obra_id' => $id_da_obra);
-		}
-		
-		$projeto_obras = $this->Obra->find('list', array('fields' => array('Obra.obra_nome'), 'conditions' => $conditions));
-		//pr($projeto_obras);
-		$this->set('projeto_obras',$projeto_obras);
-		
+				
         if(!empty($this->data)){
-			// TRATANDO ARQUIVOS
-			$arquivos = explode(";",$this->data["Projeto"]["arquivos"]);
-			$string = "";
-            $separador = "";
-            for($i=0;$i < count($arquivos)-1;$i++){
-                $string .= $separador."files/arquivos_projetos/".$arquivos[$i];
-                $separador = ";";
-            }
- 
-            $img_thumb = explode(";", $string);
-            //$this->data["Trabalho"]["img_thumb"] = "../".$img_thumb[0];
-			//pr($string);
-			//pr($this->data["Projeto"]["projeto_arquivo"]);
-            $this->request->data["Projeto"]["projeto_arquivo"] = $string;
-			// FIM --- TRATANDO ARQUIVOS
-			
-			$projeto_nome = $this->Obra->find('first', array('fields' => array('Obra.obra_nome'), 'conditions' => $this->request->data["Projeto"]["obra_id"]));
-			$this->request->data["Projeto"]["projeto_nome"] = $projeto_nome['Obra']['obra_nome'];
-			
-            if($this->Projeto->save($this->data)){
+						
+            if($this->Embalagem->save($this->data)){
                 
                 if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);
@@ -71,17 +42,12 @@ class ProjetosController extends AppController {
    public function validate_form(){
        $this->layout = 'ajax';
         if($this->request->is('Ajax')){  
-            $this->request->data['Projeto'][$this->request->data['field']] = $this->request->data['value']; 
+            $this->request->data['Embalagem'][$this->request->data['field']] = $this->request->data['value']; 
             //pr($this->request->data);  
             $error = '';
-            if($this->request->data['field'] == 'obra_id' ) {
-                if(empty($this->data['Projeto']['obra_id'])) {
-                    $error = 'este campo não pode ser vazio!';
-                }
-            }
-			
-			if($this->request->data['field'] == 'projeto_tipo' ) {
-                if(empty($this->data['Projeto']['projeto_tipo'])) {
+           			
+			if($this->request->data['field'] == 'embalagem_tipo' ) {
+                if(empty($this->data['Embalagem']['embalagem_tipo'])) {
                     $error = 'este campo não pode ser vazio!';
                 }
             }
@@ -95,9 +61,9 @@ class ProjetosController extends AppController {
        
        if(!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
-            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+            //$tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
             
-            $results = $this->Projeto->find('all', array('conditions' => array('Projeto.projeto_'.$tipo.' LIKE' => "%$pesquisa%")));
+            $results = $this->Embalagem->find('all', array('conditions' => array('Embalagem.embalagem_tipo LIKE' => "%$pesquisa%")));
        } 
        if (!empty($results)){
             $this->set(compact('results'));
@@ -109,29 +75,29 @@ class ProjetosController extends AppController {
 		   if (!$this->request->is('post')) {
 				   throw new MethodNotAllowedException();
 		   }
-		   if ($this->Projeto->delete($id)) {
+		   if ($this->Embalagem->delete($id)) {
 			   if($this->request->is('Ajax')){    // o ajax roda aqui
 				   $this->set('dados',$this->request->data);
 				   $this->render('success','ajax');
 				} 
 				else {
-				   $this->flash('O Projeto de ID '.$id.' foi deletado.','/projetos/search');
+				   $this->flash('A Embalagem de ID '.$id.' foi deletado.','/embalagens/search');
 				   $this->redirect(array('action' => 'search'));
 			   }
 		   }                
    }
     
     public function edit($id = null){   
-        $this->Projeto->id = $id;
+        $this->Embalagem->id = $id;
         if ($this->request->is('get')) {
-           $this->request->data = $this->Projeto->read(); 
+           $this->request->data = $this->Embalagem->read(); 
         } else {                    
-            if ($this->Projeto->save($this->request->data)) {
+            if ($this->Embalagem->save($this->request->data)) {
                 if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);
                     $this->Render('success','ajax');
                 } else {
-                    $this->flash('Projeto atualizado.','/projetos/search');
+                    $this->flash('Embalagem atualizada.','/embalagens/search');
                     $this->redirect(array('action' => 'search'));
                 }
             } else {

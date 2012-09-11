@@ -1,2 +1,12 @@
+<<<<<<< HEAD
 1347326095
 a:2:{s:4:"name";a:10:{i:-953569552;s:19:"`construti_oficial`";i:-1559286723;s:16:"`Area`.`area_id`";i:1313756900;s:23:"`Area`.`area_descricao`";i:1512903040;s:7:"`areas`";i:1658553698;s:6:"`Area`";i:-1174661991;s:9:"`area_id`";i:1507239229;s:14:"`funcionarios`";i:632535343;s:16:"`area_descricao`";i:-1796508974;s:10:"`modified`";i:-2047819073;s:9:"`created`";}s:6:"fields";a:1:{s:32:"8df42370f76a8cb26489784a2e39e1cf";a:2:{i:0;s:16:"`Area`.`area_id`";i:1;s:23:"`Area`.`area_descricao`";}}}
+=======
+<<<<<<< HEAD
+1347318212
+a:2:{s:4:"name";a:6:{i:-953569552;s:19:"`construti_oficial`";i:-1686835809;s:12:"`embalagens`";i:1772888717;s:26:"`Embalagem`.`embalagem_id`";i:-1015029217;s:28:"`Embalagem`.`embalagem_tipo`";i:-7647669;s:11:"`Embalagem`";i:-1684970019;s:7:"`count`";}s:6:"fields";a:2:{s:32:"a0fcef7573b347dfaa7d22bddf6b416a";a:2:{i:0;s:26:"`Embalagem`.`embalagem_id`";i:1;s:28:"`Embalagem`.`embalagem_tipo`";}s:32:"0b4fb4ad1c4a97e8eaa3646d3e97e326";a:1:{i:0;s:19:"COUNT(*) AS `count`";}}}
+=======
+1347249481
+a:1:{s:4:"name";a:2:{i:-953569552;s:19:"`construti_oficial`";i:1507239229;s:14:"`funcionarios`";}}
+>>>>>>> tcc_construti/master
+>>>>>>> construti/master

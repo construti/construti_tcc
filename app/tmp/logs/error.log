@@ -3106,17 +3106,61 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 =======
 >>>>>>> construti/master
 >>>>>>> tcc_construti/master
+<<<<<<< HEAD
+2012-09-05 15:47:37 Error: [MissingControllerException] Controller class Controller could not be found.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Core\Object.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse), Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Component\RequestHandlerComponent.php(242): Object->requestAction('http://www.goog...', Array)
+#2 [internal function]: RequestHandlerComponent->beforeRedirect(Object(ObrasController), 'http://www.goog...', NULL, true)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Utility\ObjectCollection.php(130): call_user_func_array(Array, Array)
+#4 [internal function]: ObjectCollection->trigger(Object(CakeEvent))
+#5 C:\xampp\htdocs\construti_oficial\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(761): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\xampp\htdocs\construti_oficial\app\Controller\ObrasController.php(37): Controller->redirect('http://www.goog...')
+#8 [internal function]: ObrasController->add()
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ObrasController), Array)
+#10 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#11 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#12 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2012-09-05 15:48:03 Error: [MissingControllerException] Controller class Controller could not be found.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Core\Object.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse), Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Component\RequestHandlerComponent.php(242): Object->requestAction('http://www.goog...', Array)
+#2 [internal function]: RequestHandlerComponent->beforeRedirect(Object(ObrasController), 'http://www.goog...', NULL, true)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Utility\ObjectCollection.php(130): call_user_func_array(Array, Array)
+#4 [internal function]: ObjectCollection->trigger(Object(CakeEvent))
+#5 C:\xampp\htdocs\construti_oficial\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(761): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\xampp\htdocs\construti_oficial\app\Controller\ObrasController.php(37): Controller->redirect('http://www.goog...')
+#8 [internal function]: ObrasController->add()
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ObrasController), Array)
+#10 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#11 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#12 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2012-09-10 19:45:53 Error: [MissingTableException] Table embalagems for model Embalagem was not found in datasource default.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(3408): Model->setSource('embalagems')
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1276): Model->getDataSource()
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\View\Helper\FormHelper.php(196): Model->schema()
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\View\Helper\FormHelper.php(450): FormHelper->_introspectModel('Embalagem', 'fields')
+#4 C:\xampp\htdocs\construti_oficial\app\View\Embalagens\add.ctp(9): FormHelper->create('Embalagem', Array)
+=======
 2012-09-06 19:46:03 Error: [MissingTableException] Table requisicoes for model Requisicao was not found in datasource default.
 #0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(3408): Model->setSource('requisicoes')
 #1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1276): Model->getDataSource()
 #2 C:\xampp\htdocs\construti_oficial\lib\Cake\View\Helper\FormHelper.php(196): Model->schema()
 #3 C:\xampp\htdocs\construti_oficial\lib\Cake\View\Helper\FormHelper.php(450): FormHelper->_introspectModel('Requisicao', 'fields')
 #4 C:\xampp\htdocs\construti_oficial\app\View\Requisicoes\reqequip.ctp(9): FormHelper->create('Requisicao', Array)
+>>>>>>> tcc_construti/master
 #5 C:\xampp\htdocs\construti_oficial\lib\Cake\View\View.php(908): include('C:\xampp\htdocs...')
 #6 C:\xampp\htdocs\construti_oficial\lib\Cake\View\View.php(872): View->_evaluate('C:\xampp\htdocs...', Array)
 #7 C:\xampp\htdocs\construti_oficial\lib\Cake\View\View.php(463): View->_render('C:\xampp\htdocs...')
 #8 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
 #9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+<<<<<<< HEAD
+#10 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(EmbalagensController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+=======
 #10 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(RequisicoesController), Object(CakeRequest), Object(CakeResponse))
 #11 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #12 {main}
@@ -3860,6 +3904,7 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 #1 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(FuncionariosController), Object(CakeRequest), Object(CakeResponse))
 #2 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+<<<<<<< HEAD
 2012-09-10 18:43:50 Error: [MissingActionException] Action FuncionariosController::popup_area() could not be found.
 #0 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
 #1 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(FuncionariosController), Object(CakeRequest), Object(CakeResponse))
@@ -3962,3 +4007,6 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 2012-09-10 22:14:38 Error: [MissingControllerException] Controller class JsController could not be found.
 #0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+=======
+>>>>>>> tcc_construti/master
+>>>>>>> construti/master
