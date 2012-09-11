@@ -19,7 +19,7 @@
 	
 	<script type="text/javascript" language="javascript" >
 		function popup() {
-		    window.open("popup_area","Homepage","resizable=no,status=no,scrollbars=no,height=320,width=230,left=490,top=320,menubar=no,addressbar=no");
+		    window.open("popup_area","Homepage","resizable=no,status=no,scrollbars=no,height=320,width=300,left=490,top=320,menubar=no,addressbar=no");
 		}
 	</script>
  
@@ -93,8 +93,9 @@
 			<br/>
 			
 			<div style="margin: 3px 0 0;">
-				<?php $opcoes_area = array('construcao' => 'Construção', 'administracao' => 'Administração' , 'tecnica' => 'Técnica');
-					echo $this->Form->input('funcionario_area', array('label' => '', 'id' => 'funcionario_area', 'type' => 'select', 'options' => $opcoes_area , 'class' => array('intexto'), 'empty' => 'Escolha...'));	?>
+				<?php 
+					echo $this->Form->input('funcionario_area', array('label' => '', 'id' => 'funcionario_area', 'type' => 'select', 'options' => $areas , 'class' => array('intexto'), 'empty' => 'Escolha...'));	
+				?>
 				<br/>	
 				
 				<?php echo $this->Form->select('funcionario_tipo', $funcionario_tipo, array('label' => '', 'id' => 'funcionario_tipo', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
@@ -105,7 +106,7 @@
 		</div>
 		<div class="botoescadastrar">
 			<div style="margin: 147px 0 0;">
-				<a onclick="popup()" title="You will see a popup window"><div class="botaocadastrar"></div></a>
+				<a onclick="popup()" title="Cadastrar Nova Área"><div class="botaocadastrar"></div></a>
 			</div>
 		</div>
 	<div class="legenda">

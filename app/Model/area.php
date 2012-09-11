@@ -8,6 +8,14 @@ class Area extends AppModel{
 	var $primaryKey = 'area_id';
 	
 	var $displayField = 'area_descricao';
+	
+	var $validate = array(
+		'area_descricao' => array(
+			'rule' => 'notEmpty',
+			'message' => "Preencha corretamente."
+		) 
+		
+	);
 		
 }
 

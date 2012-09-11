@@ -1,0 +1,154 @@
+@charset "utf-8";
+/**
+ *
+ *Autor: Jorge David Muffareg Junior 
+ *Data: 10/09/2012
+ *
+ *Sistema: Construti
+ *
+ */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/** Estilo Geral **/
+body {
+	background: #aaa;
+	color: #00f;
+	font-family: 'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-size: 90%;
+	margin: 0;
+	padding: 0;
+}
+a {
+	color: #003d4c;
+	text-decoration: underline;
+	font-weight: bold;
+}
+a:hover {
+	color: #367889;
+	text-decoration: none;
+}
+a img {
+	border :none;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+	margin-bottom: 0.5em;
+}
+h1 {
+	background: #00f;
+	color: #003d4c;
+	font-size: 100%;
+}
+h2 {
+	background: #fff;
+	color: #e32;
+	font-family: 'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 190%;
+}
+h3 {
+	color: #2c6877;
+	font-family: 'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 165%;
+}
+h4 {
+	color: #993;
+	font-weight: normal;
+}
+ul, li {
+	margin: 0 12px;
+}
+p {
+	margin: 0 0 1em 0;
+}
+
+/** Layout Geral **/
+/** Corpo e Cabeçalho **/
+#corpo {
+	text-align: left;
+	border-width: 4px;
+	border-color: #008;
+	border-style: solid;
+}
+/** Outros Layouts **/
+#conteudo {
+	clear: both;
+	color: #0011aa;
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+}
+/** Página Formulários **/
+#tituloform {
+	height: 20px;
+	text-align: center;
+	font-size: 140%;
+	margin: 0 auto 30px;
+	padding: 0;
+}
+#formulariocorpo {
+	width: 300px;
+	margin: 0 auto;
+}
+#camposdescricao {
+	float: left;
+	width: 100px;
+	/*margin: 0 auto 10px;*/
+	text-align: right;
+	font-size: 14px;
+	padding: 0;
+}
+#camposlacunas {
+	float: left;
+	width: 200px;
+	/*margin: 0 auto 10px;*/
+	padding: 0;
+}
+#areaBotao{
+	width: 100px;
+	margin: 0 auto;
+}
+/** Mensagens JQuery **/
+#sending {
+	width: 200px;
+	display: none;
+	text-align: center;
+	background-color: lightgreen;
+	margin: 0 auto;
+}
+#sucesso {
+	width: 300px;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+	border-color: darkgreen;
+	background-color: lightgreen;
+	margin: 2px auto 0;
+}
+/** Classes **/
+.intexto {
+	height: 15px;
+	margin: 0;
+	padding: 0;
+}
+.botao {
+	color: #0011aa;
+}
+.cake-error {
+	position: absolute;
+	z-index: 4; 
+}
+.error-message {
+	position: absolute;
+	z-index: 4; 
+}
+.legenda {
+	float: left;
+	width: 100%;
+	text-align: center; 
+	margin: 0 auto;
+	padding: 5px 0 0;
+}

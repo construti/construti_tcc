@@ -1,2 +1,2 @@
-1347249481
-a:1:{s:4:"name";a:2:{i:-953569552;s:19:"`construti_oficial`";i:1507239229;s:14:"`funcionarios`";}}
+1347326095
+a:2:{s:4:"name";a:10:{i:-953569552;s:19:"`construti_oficial`";i:-1559286723;s:16:"`Area`.`area_id`";i:1313756900;s:23:"`Area`.`area_descricao`";i:1512903040;s:7:"`areas`";i:1658553698;s:6:"`Area`";i:-1174661991;s:9:"`area_id`";i:1507239229;s:14:"`funcionarios`";i:632535343;s:16:"`area_descricao`";i:-1796508974;s:10:"`modified`";i:-2047819073;s:9:"`created`";}s:6:"fields";a:1:{s:32:"8df42370f76a8cb26489784a2e39e1cf";a:2:{i:0;s:16:"`Area`.`area_id`";i:1;s:23:"`Area`.`area_descricao`";}}}

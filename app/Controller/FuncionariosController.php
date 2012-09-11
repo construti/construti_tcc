@@ -16,6 +16,11 @@ class FuncionariosController extends AppController {
     }*/
 	    
     public function add() { //adiciona um funcionário
+		$this->loadModel('Area');
+		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
+		
+		$this->set(compact('areas'));
+	
 		
         if(!empty($this->data)){
 			
@@ -29,14 +34,10 @@ class FuncionariosController extends AppController {
                     $this->redirect(array('action' => 'add'));
                 }
             } else {
-				
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
                 $this->render('delete','ajax');
 			}			
-        }
-		
-        //$areas = $this->Area->find('list', array('fields' => array('id', 'nome')));
-        //$this->set('areas', $areas);    
+        }  
     }
     
     public function validate_form() { //validação do formulário
@@ -149,26 +150,35 @@ class FuncionariosController extends AppController {
 				$this->redirect(array('action' => 'search'));
 			}
 		}		
-    }	
-    
-	/*public function listarTipos(){
-        // Se foi informado a Area via POST
-		alert('teste');
-		$this->layout = false;
-       if ($this->RequestHandler->isAjax()) {
-            $this->set('tipos', $this->Tipo->find('list', array('conditions' =>
-                        array('Tipo.area_id' => $this->params['url']['areaId']),
-                        'recursive' => -1)
-                    ));
+    }
+	
+	public function popup_area() {
+		$this->render('popup_area','popuplayout');
+		
+		if(!empty($this->data)){
+			$this->loadModel('Area');
+			if($this->Area->save($this->data)){
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+					$this->render('success','ajax');
+                } 
+                else{ 
+                    $this->flash('Adicionado com sucesso!','add');
+                    $this->redirect(array('action' => 'add'));
+                }
+            } else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}			
         }
-    }*/
+	}	
 	
 	public function pega_tipo_area(){
 		$Area = $this->loadModel('Area');
 		$Tipo = $this->loadModel('Tipo');
 		
 		$f_area = $this->params['url']['funcionario_area'];
-		$funcionario_area = $this->Area->find('first', array('conditions' => array('Area.area_descricao LIKE' => "%$f_area%")));
+		$funcionario_area = $this->Area->find('first', array('conditions' => array('Area.area_id LIKE' => "%$f_area%")));
 		$funcionario_area = $funcionario_area['Area']['area_id'];
 		$funcionario_tipo = $this->Tipo->find('all', array('conditions' => array('Tipo.tipo_area_id LIKE' => "%$funcionario_area%")));
 		//print_r($funcionario_tipo);
