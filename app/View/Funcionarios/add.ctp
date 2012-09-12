@@ -18,8 +18,20 @@
 	</script>
 	
 	<script type="text/javascript" language="javascript" >
-		function popup() {
-		    window.open("popup_area","Homepage","resizable=no,status=no,scrollbars=no,height=320,width=300,left=490,top=320,menubar=no,addressbar=no");
+		function popupAreaCad() {
+		    window.open("popup_area","Area","resizable=no,status=no,scrollbars=no,height=223,width=330,left=490,top=320,menubar=no,addressbar=no");
+		}
+		
+		function popupAreaPesq() {
+		    window.open("popup_area_pesq","Area","resizable=no,status=no,scrollbars=no,height=223,width=330,left=490,top=320,menubar=no,addressbar=no");
+		}
+		
+		function popupTipoCad() {
+		    window.open("popup_tipo","Tipo","resizable=no,status=no,scrollbars=no,height=303,width=330,left=490,top=320,menubar=no,addressbar=no");
+		}
+		
+		function popupTipoPesq() {
+		    window.open("popup_tipo_pesq","Tipo","resizable=no,status=no,scrollbars=no,height=303,width=330,left=490,top=320,menubar=no,addressbar=no");
 		}
 	</script>
  
@@ -29,84 +41,105 @@
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Funcionario'); ?> <!-- início do formulário -->
 		<div id="camposdescricaoE"> <!-- div com a descrição dos campos da esquerda -->
-			Nome: <br/><br/>
+			<div class="campos">Nome: </div>
 			
-			CPF: <br/><br/>
+			<div class="campos">CPF: </div>
 			
-			<div style="color: #ee0;">RG:</div> <br/>
+			<div class="campos"><div style="color: #ee0;">RG:</div> </div>
 			
-			Data de Nascimento: <br/><br/>
+			<div class="campos">Data de Nascimento: </div>
 			
-			Endereço: <br/><br/>
+			<div class="campos">Endereço: </div>
 			
-			Bairro: <br/><br/>
+			<div class="campos">Bairro: </div>
 			
-			Cidade: 
+			<div class="campos">Cidade: </div>
 		</div>
 		<div id="camposlacunasE"> <!-- div com os campos da esquerda a serem preenchidos -->
-            <?php echo $this->Form->input('funcionario_nome', array('label' => '', 'id' => 'funcionario_nome', 'class' => array('intexto'))); ?>
-			<br/>
+            <div class="campos">
+			<?php echo $this->Form->input('funcionario_nome', array('label' => '', 'id' => 'funcionario_nome', 'class' => array('intexto'))); ?>
+			</div>
 			
+			<div class="campos">
 			<?php echo $this->Form->input('funcionario_cpf', array('label' => '', 'id' => 'funcionario_cpf', 'maxlength' => 11, 'class' => array('intexto'))); ?>
-			<br/>
+			</div>
 			
+			<div class="campos">
 			<?php echo $this->Form->input('funcionario_rg', array('label' => '', 'id' => 'funcionario_rg', 'class' => array('intexto'))); ?>
-			<br/>
+			</div>
 			
+			<div class="campos">
 			<?php echo $this->Form->input('funcionario_data_nasc', array('label' => '', 'id' => 'funcionario_data_nasc', 'minYear' => date('Y') - 70, 'maxYear' => date('Y') - 18, 'class' => array('intexto'))); ?>
-			<br/>
+			</div>
 			
+			<div class="campos">
 			<?php echo $this->Form->input('funcionario_endereco', array('label' => '', 'id' => 'funcionario_endereco', 'class' => array('intexto'))); ?>
-			<br/>
+			</div>
 			
+			<div class="campos">
 			<?php echo $this->Form->input('funcionario_bairro', array('label' => '', 'id' => 'funcionario_bairro', 'class' => array('intexto'))); ?>
-			<br/>
+			</div>
 			
+			<div class="campos">
 			<?php echo $this->Form->input('funcionario_cidade', array('label' => '', 'id' => 'funcionario_cidade', 'class' => array('intexto'))); ?>
-		</div>
-		<div id="camposdescricaoD"> <!-- div com a descrição dos campos da direita -->
-			Estado: <br/><br/>
-			
-			País: <br/><br/>
-			
-			E-mail: <br/><br/>
-			
-			<div style="color: #ee0;">Telefone:</div> <br/>
-			
-			Área: <br/><br/>
-			
-			Tipo: <br/><br/>
-			
-			Salário(R$): 
-		</div>
-		<div id="camposlacunasD"> <!-- div com os campos da direita a serem preenchidos -->
-			<?php echo $this->Form->input('funcionario_estado', array('label' => '', 'id' => 'funcionario_estado', 'class' => array('intexto'))); ?>
-			<br/>
-			
-			<?php echo $this->Form->input('funcionario_pais', array('label' => '', 'id' => 'funcionario_pais', 'class' => array('intexto'))); ?>
-			<br/>
-			
-			<?php echo $this->Form->input('funcionario_email', array('label' => '', 'id' => 'funcionario_email', 'class' => array('intexto'))); ?>
-			<br/>
-			
-			<?php echo $this->Form->input('funcionario_telefone', array('label' => '', 'id' => 'funcionario_telefone', 'class' => array('intexto'))); ?>
-			<br/>
-			
-			<div style="margin: 3px 0 0;">
-				<?php 
-					echo $this->Form->input('funcionario_area', array('label' => '', 'id' => 'funcionario_area', 'type' => 'select', 'options' => $areas , 'class' => array('intexto'), 'empty' => 'Escolha...'));	
-				?>
-				<br/>	
-				
-				<?php echo $this->Form->select('funcionario_tipo', $funcionario_tipo, array('label' => '', 'id' => 'funcionario_tipo', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
-				<br/><br/>
-				
-				<?php echo $this->Form->input('funcionario_salario', array('label' => '', 'id' => 'funcionario_salario', 'class' => array('intexto'))); ?>
 			</div>
 		</div>
-		<div class="botoescadastrar">
-			<div style="margin: 147px 0 0;">
-				<a onclick="popup()" title="Cadastrar Nova Área"><div class="botaocadastrar"></div></a>
+		<div id="camposdescricaoD"> <!-- div com a descrição dos campos da direita -->
+			<div class="campos">Estado: </div>
+			
+			<div class="campos">País: </div>
+			
+			<div class="campos">E-mail: </div>
+			
+			<div class="campos"><div style="color: #ee0;">Telefone:</div> </div>
+			
+			<div class="campos">Área: </div>
+			
+			<div class="campos">Tipo: </div>
+			
+			<div class="campos">Salário(R$): </div>
+		</div>
+		<div id="camposlacunasD"> <!-- div com os campos da direita a serem preenchidos -->
+			<div class="campos">
+			<?php echo $this->Form->input('funcionario_estado', array('label' => '', 'id' => 'funcionario_estado', 'class' => array('intexto'))); ?>
+			</div>
+			
+			<div class="campos">
+			<?php echo $this->Form->input('funcionario_pais', array('label' => '', 'id' => 'funcionario_pais', 'class' => array('intexto'))); ?>
+			</div>
+			
+			<div class="campos">
+			<?php echo $this->Form->input('funcionario_email', array('label' => '', 'id' => 'funcionario_email', 'class' => array('intexto'))); ?>
+			</div>
+			
+			<div class="campos">
+			<?php echo $this->Form->input('funcionario_telefone', array('label' => '', 'id' => 'funcionario_telefone', 'class' => array('intexto'))); ?>
+			</div>
+			
+			<div class="campos">
+			<?php 
+				echo $this->Form->input('funcionario_area', array('label' => '', 'id' => 'funcionario_area', 'type' => 'select', 'options' => $areas , 'class' => array('selecionar'), 'empty' => 'Escolha...'));	
+			?>
+				<div style="margin: 2px 0 0 5px; float: left;">
+					<a onclick="popupAreaCad()" title="Cadastrar Nova Área"><div class="botaocadastrar"></div></a>
+				</div>
+				<div style="margin: 2px 0 0 5px; float: left;">
+					<a onclick="popupAreaPesq()" title="Pesquisar Área"><div class="botaopesquisar"></div></a>
+				</div>
+			</div>
+				
+			<div class="campos">
+			<?php echo $this->Form->select('funcionario_tipo', $funcionario_tipo, array('label' => '', 'id' => 'funcionario_tipo', 'class' => array('selecionar'), 'empty' => 'Escolha...')); ?>
+				<div style="margin: 2px 0 0 5px; float: left;">
+					<a onclick="popupTipoCad()" title="Cadastrar Novo Tipo"><div class="botaocadastrar"></div></a>
+				</div>
+				<div style="margin: 2px 0 0 5px; float: left;">
+					<a onclick="popupTipoPesq()" title="Pesquisar Tipo"><div class="botaopesquisar"></div></a>
+				</div>
+			</div>
+				
+			<div class="campos">
+			<?php echo $this->Form->input('funcionario_salario', array('label' => '', 'id' => 'funcionario_salario', 'class' => array('intexto'))); ?>
 			</div>
 		</div>
 	<div class="legenda">

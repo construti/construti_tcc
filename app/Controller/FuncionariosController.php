@@ -171,7 +171,32 @@ class FuncionariosController extends AppController {
                 $this->render('delete','ajax');
 			}			
         }
-	}	
+	}
+	
+	public function popup_tipo() {
+		$this->loadModel('Area');
+		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
+		
+		$this->set(compact('areas'));
+		$this->render('popup_tipo','popuplayout');
+		
+		if(!empty($this->data)){
+			$this->loadModel('Tipo');
+			if($this->Tipo->save($this->data)){
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+					$this->render('success','ajax');
+                } 
+                else{ 
+                    $this->flash('Adicionado com sucesso!','add');
+                    $this->redirect(array('action' => 'add'));
+                }
+            } else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}			
+        }
+	}
 	
 	public function pega_tipo_area(){
 		$Area = $this->loadModel('Area');
