@@ -18,24 +18,6 @@ class Tipo extends AppModel{
             'order' => ''
         )
     );
-	
-	var $validate = array(
-		'tipo_area_id' => array(
-			'rule' => 'numeric',
-			'allowEmpty' => false,
-			'message' => "Somente numeros."
-		),
-		'tipo_funcionario' => array(
-			'rule' => 'notEmpty',
-			'message' => "Este campo não pode ser vazio"
-		),
-		'tipo_valor_hora' => array(
-			'rule' => 'numeric',
-			'allowEmpty' => false,
-			'message' => "Somente numeros."
-		)
-		
-	);
 }
 
 ?>

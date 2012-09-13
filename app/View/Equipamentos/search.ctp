@@ -7,19 +7,17 @@
 <div id="formulariocorpo">
 	<?php echo $this->Form->create('Equipamento'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Pesquisar: </div>
-			<div class="campos">Por: </div>
+			Pesquisar: <br/><br/>
+			Por: 
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
-			<div class="campos"><input type="text" name="pesquisa" class="intexto"/></div>
-			<div class="campos">
-				<select name="tipo" class="intexto"/>
-					<option value="nome" select="selected">Nome</option>
-					<option value="tipo">Tipo</option>
-					<option value="descricao">Descrição</option>
-					<option value="valor_hora">Valor/Hora</option>
-				</select>
-			</div>
+			<input type="text" name="pesquisa" class="intexto"/><br/><br/>
+			<select name="tipo" class="intexto"/>
+				<option value="nome" select="selected">Nome</option>
+				<option value="alugado">Alugado</option>
+				<option value="tipo">Tipo</option>
+				<option value="descricao">Descrição</option>
+			</select>
 		</div>
 		<div id="areaBotao"> <!-- botão de cadastro -->
 			<?php echo $this->Form->end('Pesquisar'); ?> <!-- fim do formulário -->
@@ -33,10 +31,9 @@
 		<tr>
 			<th>ID</th>
 			<th>Nome</th>
+			<th>Alugado</th>
 			<th>Tipo</th>
-			<th>Valor/Hora</th>
 			<th>Descrição</th>
-			
 			<th>Ações</th>
 		</tr>
 		
@@ -44,8 +41,8 @@
 		<tr>
 			<td align="center"><?php echo $result['Equipamento']['equipamento_id']; ?></td>
 			<td><?php echo $result['Equipamento']['equipamento_nome']; ?></td>
-			<td><?php echo $result['Equipamentos_tipo']['tipo_equipamento']; ?></td>
-			<td><?php echo $result['Equipamento']['equipamento_valor_hora']; ?></td>
+			<td align="center"><?php echo $result['Equipamento']['equipamento_alugado']; ?></td>
+			<td><?php echo $result['Equipamento']['equipamento_tipo']; ?></td>
 			<td><?php echo $result['Equipamento']['equipamento_descricao']; ?></td>
 			
 			<td align="center">

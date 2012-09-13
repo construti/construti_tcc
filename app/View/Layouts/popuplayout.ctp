@@ -20,20 +20,15 @@ $cakeDescription = __d('cake_dev', 'Construti - Cadastro');
 	?>
 </head>
 <body>
-	<div id="corpo"> <!-- início do corpo -->
-		<div id="conteudo"> <!-- conteúdo das páginas será inserido aqui -->
+	<div id="corpo">
+		<div id="conteudo">
 
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
-		</div> <!-- fim do conteúdo -->
+		</div>
 		
-	</div> <!-- fim do corpo -->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<?php 
-		echo $scripts_for_layout;
-		if (class_exists('JsHelper') && method_exists($this->Js, 'writeBuffer')) echo $this->Js->writeBuffer();
-		//echo $this->element('sql_dump');
-	?> 
+	</div>
+	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

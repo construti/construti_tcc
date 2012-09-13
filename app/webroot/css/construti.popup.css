@@ -22,6 +22,45 @@ body {
 	margin: 0;
 	padding: 0;
 }
+a {
+	color: #003d4c;
+	text-decoration: underline;
+	font-weight: bold;
+}
+a:hover {
+	color: #367889;
+	text-decoration: none;
+}
+a img {
+	border :none;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+	margin-bottom: 0.5em;
+}
+h1 {
+	background: #00f;
+	color: #003d4c;
+	font-size: 100%;
+}
+h2 {
+	background: #fff;
+	color: #e32;
+	font-family: 'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 190%;
+}
+h3 {
+	color: #2c6877;
+	font-family: 'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 165%;
+}
+h4 {
+	color: #993;
+	font-weight: normal;
+}
+ul, li {
+	margin: 0 12px;
+}
 p {
 	margin: 0 0 1em 0;
 }
@@ -57,7 +96,7 @@ p {
 #camposdescricao {
 	float: left;
 	width: 100px;
-	margin: 0 auto 10px;
+	/*margin: 0 auto 10px;*/
 	text-align: right;
 	font-size: 14px;
 	padding: 0;
@@ -65,13 +104,12 @@ p {
 #camposlacunas {
 	float: left;
 	width: 200px;
-	margin: 0 auto 10px;
+	/*margin: 0 auto 10px;*/
 	padding: 0;
 }
 #areaBotao{
 	width: 100px;
-	margin: 10px auto;
-	padding: 0;
+	margin: 0 auto;
 }
 /** Mensagens JQuery **/
 #sending {
@@ -91,19 +129,8 @@ p {
 	margin: 2px auto 0;
 }
 /** Classes **/
-.campos{
-	height: 20px;
-	margin: 0 0 20px;
-	padding: 0;
-}
 .intexto {
-	height: 18px;
-	margin: 0;
-	padding: 0;
-}
-.selecionar{
-	float: left;
-	height: 18px;
+	height: 15px;
 	margin: 0;
 	padding: 0;
 }
@@ -117,4 +144,11 @@ p {
 .error-message {
 	position: absolute;
 	z-index: 4; 
+}
+.legenda {
+	float: left;
+	width: 100%;
+	text-align: center; 
+	margin: 0 auto;
+	padding: 5px 0 0;
 }

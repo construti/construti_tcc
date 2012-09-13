@@ -11,20 +11,15 @@ class EquipamentosController extends AppController {
     public $components = array('RequestHandler'); 
 	    
     public function add() { //adiciona um equipamento
-		$this->loadModel('Equipamentos_tipo');
-		$tipos = $this->Equipamentos_tipo->find('list', array('order' => array('tipo_id' => 'asc'), 'fields' => array('Equipamentos_tipo.tipo_id', 'Equipamentos_tipo.tipo_equipamento')));
-		
-		$this->set(compact('tipos'));
-	
         if(!empty($this->data)){
             if($this->Equipamento->save($this->data)){
 				if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);
-                    $this->render('success','ajax');
+                    $this->Render('success','ajax');
                 } 
                 else{              
                     $this->flash('Adicionado com sucesso!','add');
-                    $this->redirect(array('action' => 'add'));
+                    //$this->Redirect(array('action' => 'add'));
                 }
             } else {
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
@@ -71,12 +66,7 @@ class EquipamentosController extends AppController {
     }
 	
 	public function edit($id = null) { //atualizar um equipamento
-		$this->loadModel('Equipamentos_tipo');
-		$tipos = $this->Equipamentos_tipo->find('list', array('order' => array('tipo_id' => 'asc'), 'fields' => array('Equipamentos_tipo.tipo_id', 'Equipamentos_tipo.tipo_equipamento')));
-		
-		$this->set(compact('tipos'));
 		$this->Equipamento->id = $id;
-		
         if ($this->request->is('get')) {
 			$this->request->data = $this->Equipamento->read();
 		} else {
@@ -109,89 +99,6 @@ class EquipamentosController extends AppController {
 			}
 		}		
     }
-	
-	public function popup_tipo() { //adiciona um tipo de equipamento
-		$this->render('popup_tipo','popuplayout');
-		
-		if(!empty($this->data)){
-			$this->loadModel('Equipamentos_tipo');
-			if($this->Equipamentos_tipo->save($this->data)){
-				if($this->request->is('Ajax')){    // o ajax roda aqui
-                    $this->set('dados',$this->request->data);
-					$this->render('success','ajax');
-                } 
-                else{ 
-                    $this->flash('Adicionado com sucesso!','add');
-                    $this->redirect(array('action' => 'add'));
-                }
-            } else {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-                $this->render('delete','ajax');
-			}			
-        }
-	}
-	
-	public function search_tipo() { //pesquisar áreas
-		$this->loadModel('Equipamentos_tipo');
-		
-		if (!empty($this->data['pesquisa'])){
-            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
-            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
-			$results = $this->Equipamentos_tipo->find('all', array('conditions' => array('Equipamentos_tipo.tipo_'.$tipo.' LIKE' => "%$pesquisa%")));
-		} 
-		if (!empty($results)){
-			$this->set(compact('results'));
-        }
-	}
-	
-	public function edit_tipo($id = null) { //atualizar um tipo de equipamento
-		$this->loadModel('Equipamentos_tipo');
-		$this->Equipamentos_tipo->id = $id;
-		
-        if ($this->request->is('get')) {
-			$this->request->data = $this->Equipamentos_tipo->read();
-		} else {
-			if ($this->Equipamentos_tipo->save($this->request->data)) {
-				if($this->request->is('Ajax')){    // o ajax roda aqui
-                    $this->set('dados',$this->request->data);
-                    $this->render('success','ajax');
-                } else {
-				    $this->flash('Tipo atualizado.','/equipamentos/search_tipo');
-				    $this->redirect(array('action' => 'search_tipo'));
-                }
-			}  else {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-                $this->render('delete','ajax');
-			}
-		}
-    }
-	
-	public function delete_tipo($id) { //deletar um tipo de equipamento
-		$this->loadModel('Equipamentos_tipo');
-		
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
-		if ($this->Equipamentos_tipo->delete($id)) {
-			if($this->request->is('Ajax')){    // o ajax roda aqui
-                $this->set('dados',$this->request->data);
-                $this->render('success','ajax');
-            } else {
-				$this->flash('O Tipo de ID '.$id.' foi deletado.','/equipamentos/search_tipo');
-				$this->redirect(array('action' => 'search_tipo'));
-			}
-		}		
-    }
-	
-	public function pega_valor_tipo(){ //atualizar o campo de salário ao escolher o tipo
-		$this->loadModel('Equipamentos_tipo');
-		
-		$f_area = $this->params['url']['equipamento_tipo'];
-		$equip = $this->Equipamentos_tipo->find('first', array('conditions' => array('Equipamentos_tipo.tipo_id LIKE' => "%$f_area%")));
-		$equip = $equip['Equipamentos_tipo']['tipo_valor_hora'];
-		$this->set('valor',$equip);
-		$this->Render('pega_valor_tipo','ajax');
-	}
     
 }
 ?>

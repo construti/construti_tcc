@@ -5,18 +5,12 @@ class Equipamento extends AppModel{
     
     var $primaryKey = 'equipamento_id';
 	
-	public $belongsTo = array(
-        'Equipamentos_tipo' => array(
-            'className' => 'Equipamentos_tipo',
-            'foreignKey' => 'equipamento_tipo',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        )
-    );
-	
 	var $validate = array(
 		'equipamento_nome' => array(
+			'rule' => 'notEmpty',
+			'message' => "Preencha corretamente."
+		) ,
+		'equipamento_alugado' => array(
 			'rule' => 'notEmpty',
 			'message' => "Preencha corretamente."
 		) ,
@@ -24,11 +18,11 @@ class Equipamento extends AppModel{
 			'rule' => 'notEmpty',
 			'message' => "Preencha corretamente."
 		),
-		'equipamento_valor_hora' => array(
+		'equipamento_ultimo_preco' => array(
 			'rule' => 'numeric',
 			'allowEmpty' => true,
 			'message' => "Somente numeros."
-		) 
+		)
 		
 	);
 }

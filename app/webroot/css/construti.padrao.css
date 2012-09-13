@@ -362,7 +362,7 @@ p {
 }
 #camposlacunasD {
 	float: left;
-	width: 28%;
+	width: 140px;
 	margin: 0 auto 10px;
 	padding: 0;
 }
@@ -401,24 +401,12 @@ p {
 	margin: 2px auto 0;
 }
 /** Classes **/
-.campos{
-	height: 20px;
-	margin: 0 0 20px;
-	padding: 0;
-}
 .intexto {
-	height: 18px;
-	margin: 0;
-	padding: 0;
-}
-.selecionar{
-	float: left;
-	height: 18px;
+	height: 15px;
 	margin: 0;
 	padding: 0;
 }
 .descricao {
-	float: left;
 	width: 300px;
 	resize: none;
 }
@@ -441,7 +429,6 @@ p {
 	padding: 0;
 }
 .tabela tr th {
-	text-align: center;
 	border-style: solid;
 	border-width: 2px;
 	border-color: #444;
@@ -464,27 +451,16 @@ p {
 	position: absolute;
 	z-index: 4; 
 }
-.minibotoes {
+.botoescadastrar {
 	float: left;
-	margin: 2px 0 0 5px;
-}
-.minibotoes:hover {
-	cursor: pointer;
+	width: 15px;
+	margin: 0 auto 10px;
+	padding: 0;
 }
 .botaocadastrar {
 	width: 15px;
 	height: 15px;
 	background: url('../img/botaocadastrar.png') no-repeat;
-	margin: 0;
-	padding: 0;
-}
-.botaocadastrar:hover {
-	
-}
-.botaopesquisar {
-	width: 15px;
-	height: 15px;
-	background: url('../img/botaopesquisar.png') no-repeat;
 	margin: 0;
 	padding: 0;
 }
