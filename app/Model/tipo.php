@@ -29,7 +29,7 @@ class Tipo extends AppModel{
 			'rule' => 'notEmpty',
 			'message' => "Este campo não pode ser vazio"
 		),
-		'valor_hora' => array(
+		'tipo_valor_hora' => array(
 			'rule' => 'numeric',
 			'allowEmpty' => false,
 			'message' => "Somente numeros."

@@ -4,7 +4,7 @@
 	$funcionario_tipo = '';
 ?>
 
-	<script>
+<script>
 		$(document).ready(function(){
 			$("#funcionario_area").change(function(){  // quando mudar o valor do campo funcionario_area é atribuido o valor desse campo e passado como parametro GET para a action pega_tipo_area
 				area=$(this).val();
@@ -14,26 +14,27 @@
 				});
 			});
 		 });
-
-	</script>
+		 
+		$(document).ready(function(){
+			$("#funcionario_tipo").change(function(){  // quando mudar o valor do campo funcionario_tipo é atribuido o valor desse campo e passado como parametro GET para a action pega_valor_tipo
+				tipo=$(this).val();
+				txt_str="funcionario_tipo="+tipo;
+				$.get("../funcionarios/pega_valor_tipo",txt_str,function(result){ 
+					$("#funcionario_salario").val(result); // o html renderizado na action pega_tipo_area é carregado no campo funcionario_tipo
+				});
+			});
+		 });
+</script>
 	
-	<script type="text/javascript" language="javascript" >
+<script type="text/javascript" language="javascript" >
 		function popupAreaCad() {
-		    window.open("popup_area","Area","resizable=no,status=no,scrollbars=no,height=223,width=330,left=490,top=320,menubar=no,addressbar=no");
-		}
-		
-		function popupAreaPesq() {
-		    window.open("popup_area_pesq","Area","resizable=no,status=no,scrollbars=no,height=223,width=330,left=490,top=320,menubar=no,addressbar=no");
+		    window.open("popup_area","Area","resizable=no,status=no,scrollbars=no,height=223,width=375,left=490,top=320,menubar=no,addressbar=no");
 		}
 		
 		function popupTipoCad() {
-		    window.open("popup_tipo","Tipo","resizable=no,status=no,scrollbars=no,height=303,width=330,left=490,top=320,menubar=no,addressbar=no");
+		    window.open("popup_tipo","Tipo","resizable=no,status=no,scrollbars=no,height=303,width=375,left=490,top=320,menubar=no,addressbar=no");
 		}
-		
-		function popupTipoPesq() {
-		    window.open("popup_tipo_pesq","Tipo","resizable=no,status=no,scrollbars=no,height=303,width=330,left=490,top=320,menubar=no,addressbar=no");
-		}
-	</script>
+</script>
  
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Cadastro</div> <!-- título do formulário -->
@@ -97,7 +98,7 @@
 			
 			<div class="campos">Tipo: </div>
 			
-			<div class="campos">Salário(R$): </div>
+			<div class="campos">Salário: </div>
 		</div>
 		<div id="camposlacunasD"> <!-- div com os campos da direita a serem preenchidos -->
 			<div class="campos">
@@ -120,21 +121,21 @@
 			<?php 
 				echo $this->Form->input('funcionario_area', array('label' => '', 'id' => 'funcionario_area', 'type' => 'select', 'options' => $areas , 'class' => array('selecionar'), 'empty' => 'Escolha...'));	
 			?>
-				<div style="margin: 2px 0 0 5px; float: left;">
+				<div class="minibotoes">
 					<a onclick="popupAreaCad()" title="Cadastrar Nova Área"><div class="botaocadastrar"></div></a>
 				</div>
-				<div style="margin: 2px 0 0 5px; float: left;">
-					<a onclick="popupAreaPesq()" title="Pesquisar Área"><div class="botaopesquisar"></div></a>
+				<div class="minibotoes">
+					<a href="<?php echo $this->params->base."/funcionarios/search_area"; ?>" title="Pesquisar Área" target="_blank"><div class="botaopesquisar"></div></a>
 				</div>
 			</div>
 				
 			<div class="campos">
 			<?php echo $this->Form->select('funcionario_tipo', $funcionario_tipo, array('label' => '', 'id' => 'funcionario_tipo', 'class' => array('selecionar'), 'empty' => 'Escolha...')); ?>
-				<div style="margin: 2px 0 0 5px; float: left;">
+				<div class="minibotoes">
 					<a onclick="popupTipoCad()" title="Cadastrar Novo Tipo"><div class="botaocadastrar"></div></a>
 				</div>
-				<div style="margin: 2px 0 0 5px; float: left;">
-					<a onclick="popupTipoPesq()" title="Pesquisar Tipo"><div class="botaopesquisar"></div></a>
+				<div class="minibotoes">
+					<a href="<?php echo $this->params->base."/funcionarios/search_tipo"; ?>" title="Pesquisar Tipo" target="_blank"><div class="botaopesquisar"></div></a>
 				</div>
 			</div>
 				

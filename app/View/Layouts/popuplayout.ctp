@@ -33,6 +33,7 @@ $cakeDescription = __d('cake_dev', 'Construti - Cadastro');
 	<?php 
 		echo $scripts_for_layout;
 		if (class_exists('JsHelper') && method_exists($this->Js, 'writeBuffer')) echo $this->Js->writeBuffer();
+		//echo $this->element('sql_dump');
 	?> 
 </body>
 </html>

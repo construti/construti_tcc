@@ -128,7 +128,7 @@ $cakeDescription = __d('cake_dev', 'Construti');
 		echo $scripts_for_layout;
 		if (class_exists('JsHelper') && method_exists($this->Js, 'writeBuffer')) echo $this->Js->writeBuffer();
 		//echo $this->Js->writeBuffer(array('cache' => false));
-		//echo $this->element('sql_dump'); 
+		echo $this->element('sql_dump'); 
 	?> 
 </body>
 </html>

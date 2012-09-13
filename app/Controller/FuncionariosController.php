@@ -9,11 +9,6 @@ class FuncionariosController extends AppController {
 	public $helpers = array('Form','Js');
 	
     public $components = array('RequestHandler'); 
-	
-	/*function beforeFilter() {
-        $this->loadModel('Area');
-        $this->loadModel('Tipo');
-    }*/
 	    
     public function add() { //adiciona um funcionário
 		$this->loadModel('Area');
@@ -118,7 +113,12 @@ class FuncionariosController extends AppController {
     }
 	
 	public function edit($id = null) { //atualizar um funcionário
+		$this->loadModel('Area');
+		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
+		
+		$this->set(compact('areas'));
 		$this->Funcionario->id = $id;
+		
         if ($this->request->is('get')) {
 			$this->request->data = $this->Funcionario->read();
 		} else {
@@ -152,7 +152,7 @@ class FuncionariosController extends AppController {
 		}		
     }
 	
-	public function popup_area() {
+	public function popup_area() { //adiciona uma área de funcionário
 		$this->render('popup_area','popuplayout');
 		
 		if(!empty($this->data)){
@@ -173,7 +173,58 @@ class FuncionariosController extends AppController {
         }
 	}
 	
-	public function popup_tipo() {
+	public function search_area() { //pesquisar áreas
+		$this->loadModel('Area');
+		
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+			$results = $this->Area->find('all', array('conditions' => array('Area.area_descricao LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+	}
+	
+	public function edit_area($id = null) { //atualizar uma área
+		$this->loadModel('Area');
+		$this->Area->id = $id;
+		
+        if ($this->request->is('get')) {
+			$this->request->data = $this->Area->read();
+		} else {
+			if ($this->Area->save($this->request->data)) {
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+                    $this->render('success','ajax');
+                } else {
+				    $this->flash('Área atualizada.','/funcionarios/search_area');
+				    $this->redirect(array('action' => 'search_area'));
+                }
+			}  else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}
+		}
+    }
+	
+	public function delete_area($id) { //deletar uma área
+		$this->loadModel('Area');
+		
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		if ($this->Area->delete($id)) {
+			if($this->request->is('Ajax')){    // o ajax roda aqui
+                $this->set('dados',$this->request->data);
+                $this->render('success','ajax');
+            } else {
+				$this->flash('A Área de ID '.$id.' foi deletada.','/funcionarios/search_area');
+				$this->redirect(array('action' => 'search_area'));
+			}
+		}		
+    }
+	
+	public function popup_tipo() { //adiciona um tipo de funcionário
 		$this->loadModel('Area');
 		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
 		
@@ -198,17 +249,92 @@ class FuncionariosController extends AppController {
         }
 	}
 	
-	public function pega_tipo_area(){
-		$Area = $this->loadModel('Area');
-		$Tipo = $this->loadModel('Tipo');
+	public function search_tipo() { //pesquisar tipos
+		$this->loadModel('Tipo');
+		$this->loadModel('Area');
+		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
+		
+		$this->set(compact('areas'));
+		
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+			$tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'area_id'){
+				$areaIds = $this->Area->find('list', array('conditions' => array('Area.area_descricao LIKE' => "%$pesquisa%"), 'fields' => array('Area.area_id')));
+				$results = $this->Tipo->find('all', array('conditions' => array('Tipo.tipo_area_id' => $areaIds)));
+			} else {
+				$results = $this->Tipo->find('all', array('conditions' => array('Tipo.tipo_'.$tipo.' LIKE' => "%$pesquisa%")));
+			}
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+	}
+	
+	public function edit_tipo($id = null) { //atualizar um tipo
+		$this->loadModel('Tipo');
+		$this->loadModel('Area');
+		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
+		
+		$this->set(compact('areas'));
+		$this->Tipo->id = $id;
+		
+        if ($this->request->is('get')) {
+			$this->request->data = $this->Tipo->read();
+		} else {
+			if ($this->Tipo->save($this->request->data)) {
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+                    $this->render('success','ajax');
+                } else {
+				    $this->flash('Tipo atualizado.','/funcionarios/search_tipo');
+				    $this->redirect(array('action' => 'search_tipo'));
+                }
+			}  else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}
+		}
+    }
+	
+	public function delete_tipo($id) { //deletar um tipo
+		$this->loadModel('Tipo');
+		
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		if ($this->Tipo->delete($id)) {
+			if($this->request->is('Ajax')){    // o ajax roda aqui
+                $this->set('dados',$this->request->data);
+                $this->render('success','ajax');
+            } else {
+				$this->flash('O Tipo de ID '.$id.' foi deletado.','/funcionarios/search_tipo');
+				$this->redirect(array('action' => 'search_tipo'));
+			}
+		}		
+    }
+	
+	public function pega_tipo_area(){ //select dinâmico do tipo ao escolher a área
+		$this->loadModel('Area');
+		$this->loadModel('Tipo');
 		
 		$f_area = $this->params['url']['funcionario_area'];
 		$funcionario_area = $this->Area->find('first', array('conditions' => array('Area.area_id LIKE' => "%$f_area%")));
 		$funcionario_area = $funcionario_area['Area']['area_id'];
 		$funcionario_tipo = $this->Tipo->find('all', array('conditions' => array('Tipo.tipo_area_id LIKE' => "%$funcionario_area%")));
-		//print_r($funcionario_tipo);
 		$this->set('funcionario_tipo',$funcionario_tipo);
 		$this->Render('pega_tipo_area','ajax');
+	}
+	
+	public function pega_valor_tipo(){ //atualizar o campo de salário ao escolher o tipo
+		$this->loadModel('Tipo');
+		
+		$f_area = $this->params['url']['funcionario_tipo'];
+		$funcionario = $this->Tipo->find('first', array('conditions' => array('Tipo.tipo_funcionario LIKE' => "%$f_area%")));
+		$funcionario = $funcionario['Tipo']['tipo_valor_hora'];
+		$this->set('salario',$funcionario);
+		$this->Render('pega_valor_tipo','ajax');
 	}
 }
 ?>

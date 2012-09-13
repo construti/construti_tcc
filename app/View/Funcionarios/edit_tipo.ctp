@@ -1,9 +1,11 @@
 ﻿<?php  
 	echo $this->Html->script("validationTipo", false); 
-	$this->pageTitle = 'Tipos de Funcionários';
+	$this->pageTitle = 'Tipos';
 ?>
 
-<div id="tituloform">Cadastro de Tipos de Funcionários</div> <!-- título do formulário -->
+<div id="formulariotopo"> <!-- topo do formulário -->
+	<div id="tituloform">Atualização</div> <!-- título do formulário -->
+</div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Tipo'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
@@ -12,6 +14,7 @@
 			<div class="campos">Valor/Hora:</div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
+			<?php echo $this->Form->input('id', array('type' => 'hidden')); ?> 
             <div class="campos">
 			<?php 
 				echo $this->Form->input('tipo_area_id', array('label' => '', 'id' => 'tipo_area_id', 'type' => 'select', 'options' => $areas , 'class' => array('selecionar'), 'empty' => 'Escolha...'));	
@@ -38,4 +41,5 @@
         </div> 
 	<div id="success"></div> <!-- mensagem de sucesso no cadastro -->
 	<div id="sending"> Enviando... </div> <!-- mensagem para envio dos dados -->
-</div> 
+</div>
+<div id="formulariofim"></div> <!-- final do formulário -->

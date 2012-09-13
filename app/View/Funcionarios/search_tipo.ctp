@@ -1,11 +1,11 @@
-﻿<?php  
-	$this->pageTitle = 'Equipamentos';
+<?php  
+	$this->pageTitle = 'Tipos';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Pesquisa</div> <!-- título do formulário -->
 </div>
-<div id="formulariocorpo">
-	<?php echo $this->Form->create('Equipamento'); ?> <!-- início do formulário -->
+<div id="formulariocorpo"> <!-- corpo do formulário -->
+	<?php echo $this->Form->create('Tipo'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
 			<div class="campos">Pesquisar: </div>
 			<div class="campos">Por: </div>
@@ -14,9 +14,8 @@
 			<div class="campos"><input type="text" name="pesquisa" class="intexto"/></div>
 			<div class="campos">
 				<select name="tipo" class="intexto"/>
-					<option value="nome" select="selected">Nome</option>
-					<option value="tipo">Tipo</option>
-					<option value="descricao">Descrição</option>
+					<option value="funcionario" select="selected">Tipo</option>
+					<option value="area_id">Área Relacionada</option>
 					<option value="valor_hora">Valor/Hora</option>
 				</select>
 			</div>
@@ -32,27 +31,25 @@
 	<table class="tabela">
 		<tr>
 			<th>ID</th>
-			<th>Nome</th>
 			<th>Tipo</th>
+			<th>Área Relacionada</th>
 			<th>Valor/Hora</th>
-			<th>Descrição</th>
 			
 			<th>Ações</th>
 		</tr>
 		
 		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
 		<tr>
-			<td align="center"><?php echo $result['Equipamento']['equipamento_id']; ?></td>
-			<td><?php echo $result['Equipamento']['equipamento_nome']; ?></td>
-			<td><?php echo $result['Equipamentos_tipo']['tipo_equipamento']; ?></td>
-			<td><?php echo $result['Equipamento']['equipamento_valor_hora']; ?></td>
-			<td><?php echo $result['Equipamento']['equipamento_descricao']; ?></td>
-			
+			<td align="center"><?php echo $result['Tipo']['tipo_id']; ?></td>
+			<td><?php echo $result['Tipo']['tipo_funcionario']; ?></td>
+			<td><?php echo $result['Area']['area_descricao']; ?></td>
+			<td><?php echo $result['Tipo']['tipo_valor_hora']; ?></td>
+						
 			<td align="center">
-				<?php echo $this->Html->link('editar', array('action' => 'edit', $result['Equipamento']['equipamento_id'])); ?>
+				<?php echo $this->Html->link('editar', array('action' => 'edit_tipo', $result['Tipo']['tipo_id'])); ?>
 				<?php echo $this->Form->postLink('deletar', 
-												array('action' => 'delete', $result['Equipamento']['equipamento_id']), 
-												array('confirm' => 'Quer realmente deletar este equipamento?')); ?>
+												array('action' => 'delete_tipo', $result['Tipo']['tipo_id']), 
+												array('confirm' => 'Quer realmente deletar este tipo?')); ?>
 			</td>
 		</tr>
 		<?php endforeach; } ?>

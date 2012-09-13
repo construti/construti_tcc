@@ -7,25 +7,27 @@
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Funcionario'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			Pesquisar: <br/><br/>
-			Por: 
+			<div class="campos">Pesquisar: </div>
+			<div class="campos">Por: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
-			<input type="text" name="pesquisa" class="intexto"/><br/><br/>
-			<select name="tipo" class="intexto"/>
-				<option value="nome" select="selected">Nome</option>
-				<option value="cpf">CPF</option>
-				<option value="data_nasc">Data de Nascimento</option>
-				<option value="endereco">Endereço</option>
-				<option value="bairro">Bairro</option>
-				<option value="cidade">Cidade</option>
-				<option value="estado">Estado</option>
-				<option value="pais">País</option>
-				<option value="email">E-mail</option>
-				<option value="salario">Salário</option>
-				<option value="area">Área</option>
-				<option value="tipo">Tipo</option>
-			</select>
+			<div class="campos"><input type="text" name="pesquisa" class="intexto"/></div>
+			<div class="campos">
+				<select name="tipo" class="intexto"/>
+					<option value="nome" select="selected">Nome</option>
+					<option value="cpf">CPF</option>
+					<option value="data_nasc">Data de Nascimento</option>
+					<option value="endereco">Endereço</option>
+					<option value="bairro">Bairro</option>
+					<option value="cidade">Cidade</option>
+					<option value="estado">Estado</option>
+					<option value="pais">País</option>
+					<option value="email">E-mail</option>
+					<option value="salario">Salário</option>
+					<option value="area">Área</option>
+					<option value="tipo">Tipo</option>
+				</select>
+			</div>
 		</div>
 		<div id="areaBotao"> <!-- botão de cadastro -->
 			<?php echo $this->Form->end('Pesquisar'); ?> <!-- fim do formulário -->
@@ -47,7 +49,7 @@
 			<th>Estado</th>
 			<th>País</th>
 			<th>E-mail</th>
-			<th>Salário(R$)</th>
+			<th>Salário</th>
 			<th>Área</th>
 			<th>Tipo</th>
 			
@@ -67,7 +69,7 @@
 			<td><?php echo $result['Funcionario']['funcionario_pais']; ?></td>
 			<td><?php echo $result['Funcionario']['funcionario_email']; ?></td>
 			<td><?php echo $result['Funcionario']['funcionario_salario']; ?></td>
-			<td><?php echo $result['Funcionario']['funcionario_area']; ?></td>
+			<td><?php echo $result['Area']['area_descricao']; ?></td>
 			<td><?php echo $result['Funcionario']['funcionario_tipo']; ?></td> 
 						
 			<td align="center">

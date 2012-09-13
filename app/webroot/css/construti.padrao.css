@@ -418,6 +418,7 @@ p {
 	padding: 0;
 }
 .descricao {
+	float: left;
 	width: 300px;
 	resize: none;
 }
@@ -440,6 +441,7 @@ p {
 	padding: 0;
 }
 .tabela tr th {
+	text-align: center;
 	border-style: solid;
 	border-width: 2px;
 	border-color: #444;
@@ -462,12 +464,22 @@ p {
 	position: absolute;
 	z-index: 4; 
 }
+.minibotoes {
+	float: left;
+	margin: 2px 0 0 5px;
+}
+.minibotoes:hover {
+	cursor: pointer;
+}
 .botaocadastrar {
 	width: 15px;
 	height: 15px;
 	background: url('../img/botaocadastrar.png') no-repeat;
 	margin: 0;
 	padding: 0;
+}
+.botaocadastrar:hover {
+	
 }
 .botaopesquisar {
 	width: 15px;
