@@ -4,6 +4,16 @@ class Funcionario extends AppModel{
     var $name = 'Funcionario';
     
     var $primaryKey = 'funcionario_id';
+	
+	public $belongsTo = array(
+        'Area' => array(
+            'className' => 'Area',
+            'foreignKey' => 'funcionario_area',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
     
 	var $validate = array(
 		'funcionario_nome' => array(

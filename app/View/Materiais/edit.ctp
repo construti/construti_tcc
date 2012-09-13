@@ -6,7 +6,7 @@
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Atualização</div> <!-- título do formulário -->
 </div>
-<div id="formulariocorpo">
+<div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Material'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
 			Nome: <br/><br/>
@@ -45,5 +45,5 @@
         </div> 
 	<div id="success"></div> <!-- mensagem de sucesso no cadastro -->
 	<div id="sending"> Enviando... </div> <!-- mensagem para envio dos dados -->
-</div> <!-- corpo do formulário -->
+</div> 
 <div id="formulariofim"></div> <!-- final do formulário -->                               
