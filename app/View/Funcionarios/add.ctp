@@ -41,20 +41,21 @@
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Funcionario'); ?> <!-- início do formulário -->
+		<div class="legenda">* = Campos Obrigatórios</div>
 		<div id="camposdescricaoE"> <!-- div com a descrição dos campos da esquerda -->
-			<div class="campos">Nome: </div>
+			<div class="campos">Nome*: </div>
 			
-			<div class="campos">CPF: </div>
+			<div class="campos">CPF*: </div>
  			
-			<div class="campos"><div style="color: #ee0;">RG:</div> </div>
+			<div class="campos">RG: </div>
  			
-			<div class="campos">Data de Nascimento: </div>
+			<div class="campos">Data de Nascimento*: </div>
  			
-			<div class="campos">Endereço: </div>
+			<div class="campos">Endereço*: </div>
  			
-			<div class="campos">Bairro: </div>
+			<div class="campos">Bairro*: </div>
  			
-			<div class="campos">Cidade: </div>
+			<div class="campos">Cidade*: </div>
 		</div>
 		<div id="camposlacunasE"> <!-- div com os campos da esquerda a serem preenchidos -->
             <div class="campos">
@@ -86,19 +87,19 @@
 			</div>
 		</div>
 		<div id="camposdescricaoD"> <!-- div com a descrição dos campos da direita -->
-			<div class="campos">Estado: </div>
+			<div class="campos">Estado*: </div>
  			
-			<div class="campos">País: </div>
+			<div class="campos">País*: </div>
  			
-			<div class="campos">E-mail: </div>
+			<div class="campos">E-mail*: </div>
  			
-			<div class="campos"><div style="color: #ee0;">Telefone:</div> </div>
+			<div class="campos">Telefone: </div>
  			
-			<div class="campos">Área: </div>
+			<div class="campos">Área*: </div>
  			
-			<div class="campos">Tipo: </div>
+			<div class="campos">Tipo*: </div>
  			
-			<div class="campos">Salário: </div>
+			<div class="campos">Salário*: </div>
 		</div>
 		<div id="camposlacunasD"> <!-- div com os campos da direita a serem preenchidos -->
 			<div class="campos">
@@ -143,11 +144,6 @@
 			<?php echo $this->Form->input('funcionario_salario', array('label' => '', 'id' => 'funcionario_salario', 'class' => array('intexto'))); ?>
 			</div>
 		</div>
-	<div class="legenda">
-		<div style="font-size: 120%;">Legenda</div>
-		<div style="text-align: justify; padding: 0 0 0 30%;">Itens Obrigatórios</div>
-		<div style="text-align: justify; padding: 0 0 0 30%; color: #ee0;">Itens Opcionais</div>
-	</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
 		<?php 
             echo $this->Js->submit('Cadastrar', array(

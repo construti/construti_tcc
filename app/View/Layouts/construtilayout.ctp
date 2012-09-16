@@ -22,10 +22,11 @@ $cakeDescription = __d('cake_dev', 'Construti');
 </head>
 <body>
 	<div id="corpo"> <!-- início do corpo -->
-		<div id="cabecalho"> <!-- início do cabeçalho -->
-			<h1></h1>
+		<!-- <div id="cabecalho"> <!-- início do cabeçalho -->
+		<!--	<h1></h1>
 		</div> <!-- fim do cabeçalho -->
 		<div id="menu"> <!-- início do menu -->
+			
 			<ul>
 				<li><a href="<?php echo $this->params->base; ?>">Home</a></li>
 				<li>Cadastros
@@ -92,7 +93,7 @@ $cakeDescription = __d('cake_dev', 'Construti');
 		</div> <!-- fim do menu -->
 		<div id="transicaostatus"></div> <!-- imagem de transição -->
 		<div id="status"> <!-- início da barra de status -->
-			<div id="local"></div>  <!-- página atual -->
+			<div id="logo"></div>
 			<div id="titulo"><?php echo "$this->pageTitle" ?></div> <!-- título da página atual -->
 			<div id="identificacao"> <!-- identificação do usuário -->
 				<?php

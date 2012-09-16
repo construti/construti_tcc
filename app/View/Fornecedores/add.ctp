@@ -7,16 +7,17 @@
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Fornecedor'); ?> <!-- início do formulário -->
+		<div class="legenda">* = Campos Obrigatórios</div>
 		<div id="camposdescricaoE"> <!-- div com a descrição dos campos -->
-			<div class="campos">Nome: </div>
+			<div class="campos">Nome*: </div>
 			
-			<div class="campos"><div style="color: #ee0;">CNPJ:</div></div>
+			<div class="campos">CNPJ:</div>
 			
-			<div class="campos">Estado: </div>
+			<div class="campos">Estado*: </div>
 			
-			<div class="campos">Cidade: </div>
+			<div class="campos">Cidade*: </div>
 			
-			<div class="campos"><div style="color: #ee0;">Descrição: </div></div>	
+			<div class="campos">Descrição: </div>	
 		</div>
 		<div id="camposlacunasE"> <!-- div com os campos a serem preenchidos -->
             <div class="campos">
@@ -40,13 +41,13 @@
 			</div>
 		</div>
 		<div id="camposdescricaoD"> <!-- div com a descriÃ§Ã£o dos campos da direita -->
-			<div class="campos">Bairro: </div>
+			<div class="campos">Bairro*: </div>
 			
-			<div class="campos">Endereço: </div>
+			<div class="campos">Endereço*: </div>
 			
-			<div class="campos"><div style="color: #ee0;">Telefone: </div></div>
+			<div class="campos">Telefone: </div>
 			
-			<div class="campos">E-mail: </div>
+			<div class="campos">E-mail*: </div>
 		</div>
 		<div id="camposlacunasD"> <!-- div com os campos da direita a serem preenchidos -->
 			<div class="campos">
@@ -65,11 +66,6 @@
  			<?php echo $this->Form->input('fornecedor_email', array('label' => '', 'id' => 'fornecedor_email', 'class' => array('intexto'))); ?>
 			</div>
 		</div>
-	<div class="legenda">
-		<div style="font-size: 120%;">Legenda</div>
-		<div style="text-align: justify; padding: 0 0 0 30%;">Itens Obrigatórios</div>
-		<div style="text-align: justify; padding: 0 0 0 30%; color: #ee0">Itens Opcionais</div>
-	</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
 			echo $this->Js->submit('Cadastrar', array(

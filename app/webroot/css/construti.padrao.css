@@ -85,11 +85,18 @@ p {
 	padding: 0px 30px;
 }
 /** Menu **/
+#logo {
+	float: left;
+	height: 40px;
+	width: 25%;
+	background: url('../img/minilogo.png') no-repeat;
+}
 #menu {
 	width: 100%;
 	height: 40px;
-	background: #008;
 	text-align: center;
+	color: #fff;
+	background: #008;
 }
 #menu ul {
 	width: 800px;
@@ -103,7 +110,6 @@ p {
 	cursor: pointer;
 	position: relative;
 	text-align: center;
-	color: #aaa;
 	background: #0011aa;
 	margin: auto 12px;
 	padding: 5px ;
@@ -111,7 +117,7 @@ p {
 	border-width: 2px;
 }
 #menu ul li a {
-	color: #aaa;
+	color: #fff;
 	font-weight: normal;
 	text-decoration: none;
 }
@@ -138,7 +144,6 @@ p {
 	border-style: none;
 }
 #menu ul li ul li a {
-	color: #aaa;
 	font-weight: normal;
 	text-decoration: none;
 }
@@ -220,12 +225,6 @@ p {
 	height: 40px;
 	color: #aaa;
 	background: #0044aa;
-}
-#local { 
-	float: left;
-	width: 25%;
-	text-align: left;
-	padding: 25px 0 0 5px;
 }
 #titulo { 
 	float: left;
@@ -340,11 +339,11 @@ p {
 /** Menu de 4 Colunas **/
 #camposdescricaoE {
 	float: left;
-	width: 150px;
+	width: 200px;
 	margin: 0 auto 10px;
 	text-align: right;
 	font-size: 14px;
-	padding: 0 0 0 15%;
+	padding: 0 0 0 9%;
 }
 #camposlacunasE {
 	float: left;
@@ -488,8 +487,8 @@ p {
  }
 .legenda {
 	float: left;
-	width: 100%;
-	text-align: center; 
-	margin: 0 auto;
-	padding: 5px 0 0;
+	width: 800px;
+	text-align: right; 
+	margin: 0 0 5px 100px;
+	padding: 0;
 }

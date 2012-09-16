@@ -8,29 +8,33 @@
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Material'); ?> <!-- início do formulário -->
+		<div class="legenda">* = Campos Obrigatórios</div>
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			Nome: <br/><br/>
-			Tipo: <br/><br/>
-			<div style="color: #ee0;">Preço(R$):</div> <br/>
-			<div style="color: #ee0;">Descrição:</div> <br/><br/>
+			<div class="campos">Nome*: </div> 
+			<div class="campos">Tipo*: </div> 
+			<div class="campos">Preço: </div> 
+			<div class="campos">Descrição: </div> 
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
-            <?php echo $this->Form->input('material_nome', array('label' => '', 'id' => 'material_nome', 'class' => array('intexto'))); ?>
-			<br/>
+            <div class="campos">
+			<?php echo $this->Form->input('material_nome', array('label' => '', 'id' => 'material_nome', 'class' => array('intexto'))); ?>
+			</div>
+			
+			<div class="campos">
 			<?php $opcoes_tipo = array('aco' => 'Aço', 'cal' => 'Cal' , 'cimento' => 'Cimento',
 									   'madeira' => 'Madeira', 'parafuso' => 'Parafuso', 'prego' => 'Prego',
 									   'telha' => 'Telha', 'tijolo' => 'Tijolo', 'viga' => 'Viga'
 									   );
 				  echo $this->Form->select('material_tipo', $opcoes_tipo, array('label' => '', 'id' => 'material_tipo', 'class' => array('intexto'))) ?>
-			<br/><br/>
+			</div>
+			
+			<div class="campos">
 			<?php echo $this->Form->input('material_ultimo_preco', array('label' => '', 'id' => 'material_ultimo_preco', 'class' => array('intexto'))); ?>
-			<br/>
+			</div>
+			
+			<div class="campos">
 			<?php echo $this->Form->input('material_descricao', array('type' => 'textarea', 'escape' => false,'label' => '', 'id' => 'material_descricao', 'class' => array('descricao'))); ?>
-		</div>
-		<div class="legenda">
-			<div style="font-size: 120%;">Legenda</div>
-			<div style="text-align: justify; padding: 0 0 0 30%;">Itens Obrigatórios</div>
-			<div style="text-align: justify; padding: 0 0 0 30%; color: #ee0">Itens Opcionais</div>
+			</div>
 		</div>
 		<div id="areaBotao"> <!-- botão de cadastro -->
             <?php 

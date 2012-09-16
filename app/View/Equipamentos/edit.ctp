@@ -26,11 +26,12 @@
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Equipamento'); ?> <!-- início do formulário -->
+		<div class="legenda">* = Campos Obrigatórios</div>
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Nome: </div>
-			<div class="campos">Tipo: </div>
-			<div class="campos">Valor/Hora: </div>
-			<div class="campos"><div style="color: #ee0;">Descrição:</div> </div>
+			<div class="campos">Nome*: </div>
+			<div class="campos">Tipo*: </div>
+			<div class="campos">Valor/Hora*: </div>
+			<div class="campos">Descrição: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
             <?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
@@ -40,28 +41,23 @@
 			</div>
 			
 			<div class="campos">
--			<?php echo $this->Form->select('equipamento_tipo', $tipos, array('label' => '', 'id' => 'equipamento_tipo', 'class' => array('selecionar'), 'empty' => 'Escolha...')); ?>
--				<div class="minibotoes">
--					<a onclick="popupTipoCad()" title="Cadastrar Novo Tipo"><div class="botaocadastrar"></div></a>
--				</div>
--				<div class="minibotoes">
--					<a href="<?php echo $this->params->base."/equipamentos/search_tipo"; ?>" title="Pesquisar Tipo" target="_blank"><div class="botaopesquisar"></div></a>
--				</div>
--			</div>
--			
--			<div class="campos">
--			<?php echo $this->Form->input('equipamento_valor_hora', array('label' => '', 'id' => 'equipamento_valor_hora', 'class' => array('intexto'))); ?> 
--			</div>
--			
--			<div class="campos">
+			<?php echo $this->Form->select('equipamento_tipo', $tipos, array('label' => '', 'id' => 'equipamento_tipo', 'class' => array('selecionar'), 'empty' => 'Escolha...')); ?>
+				<div class="minibotoes">
+					<a onclick="popupTipoCad()" title="Cadastrar Novo Tipo"><div class="botaocadastrar"></div></a>
+				</div>
+				<div class="minibotoes">
+					<a href="<?php echo $this->params->base."/equipamentos/search_tipo"; ?>" title="Pesquisar Tipo" target="_blank"><div class="botaopesquisar"></div></a>
+				</div>
+			</div>
+			
+			<div class="campos">
+			<?php echo $this->Form->input('equipamento_valor_hora', array('label' => '', 'id' => 'equipamento_valor_hora', 'class' => array('intexto'))); ?> 
+			</div>
+			
+			<div class="campos">
 			<?php echo $this->Form->input('equipamento_descricao', array('label' => '', 'id' => 'equipamento_descricao', 'class' => array('descricao'))); ?>
 			</div>
 		</div>
-	<div class="legenda">
-		<div style="font-size: 120%;">Legenda</div>
-		<div style="text-align: justify; padding: 0 0 0 30%;">Itens Obrigatórios</div>
-		<div style="text-align: justify; padding: 0 0 0 30%; color: #ee0">Itens Opcionais</div>
-	</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
             echo $this->Js->submit('Atualizar', array(
