@@ -23,7 +23,8 @@
 <div id="formulariofim"></div> <!-- final do formulário -->
 <div id="resultados"> <!-- resultados da pesquisa -->
 	<h1>Resultados Obtidos</h1>
-	
+	<?php 
+		if(!empty($results)){ ?>
 	<table class="tabela">
 		<tr>
 			<th>ID</th>
@@ -50,4 +51,7 @@
 		</tr>
 		<?php endforeach; } ?>
 	</table>
+	<?php } 
+		
+	?>
 </div>

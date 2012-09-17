@@ -11,7 +11,9 @@
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
 			Nome: <br/><br/>
 			Tipo: <br/><br/>
-			<div style="color: #ee0;">Preço(R$):</div> <br/>
+			Embalagem: <br><br/>
+			Quantidade: <br/><br/>
+			Medida: <br/><br/>
 			<div style="color: #ee0;">Descrição:</div> <br/><br/>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
@@ -21,11 +23,17 @@
 									   'madeira' => 'Madeira', 'parafuso' => 'Parafuso', 'prego' => 'Prego',
 									   'telha' => 'Telha', 'tijolo' => 'Tijolo', 'viga' => 'Viga'
 									   );
-				  echo $this->Form->select('material_tipo', $opcoes_tipo, array('label' => '', 'id' => 'material_tipo', 'class' => array('intexto'))) ?>
+				  echo $this->Form->select('material_tipo', $opcoes_tipo, array('label' => '', 'id' => 'material_tipo', 'class' => array('intexto'), 'empty' => 'Escolha...')) ?>
 			<br/><br/>
-			<?php echo $this->Form->input('material_ultimo_preco', array('label' => '', 'id' => 'material_ultimo_preco', 'class' => array('intexto'))); ?>
-			<br/>
+			<?php echo $this->Form->select('material_embalagem', $embalagens, array('label' => '', 'id' => 'material_embalagem', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
+			<br/><br/>
+			
+			<?php echo $this->Form->input('material_qtd_base', array('label' => '', 'id' => 'material_qtd_base', 'class' => array('intexto'))); ?>		<br>
+			<?php echo $this->Form->select('material_medida', $medidas, array('label' => '', 'id' => 'material_medida', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
+			<br><BR>
 			<?php echo $this->Form->input('material_descricao', array('type' => 'textarea', 'escape' => false,'label' => '', 'id' => 'material_descricao', 'class' => array('descricao'))); ?>
+			<br/><br/>
+			
 		</div>
 		<div class="legenda">
 			<div style="font-size: 120%;">Legenda</div>

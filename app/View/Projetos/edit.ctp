@@ -30,7 +30,7 @@
 			
 
 			<?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
-            <?php $projeto_obras=''; echo $this->Form->select('obra_id', $projeto_obras, array('label' => '', 'id' => 'projeto_obras', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
+            <?php echo $this->Form->select('obra_id', $projeto_obras, array('label' => '', 'id' => 'projeto_obras', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
 			<br><br>
             
 			<?php $opcoes_tipo_obra = array('arquitetural' => 'Arquitetural', 'eletrico' => 'Elétrico' , 'estrutural' => 'Estrutural', 'fundacao' => 'Fundação', 'hidraulico' => 'Hidráulico', 'terraplenagem' => 'Terraplenagem');

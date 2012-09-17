@@ -14,7 +14,6 @@
 			<input type="text" name="pesquisa" class="intexto"/><br/><br/>
 			<select name="tipo" class="intexto"/>
 				<option value="nome" select="selected">Nome</option>
-				<option value="tipo">Tipo</option>
 				<option value="descricao">Descrição</option>
 			</select>
 		</div>
@@ -32,7 +31,7 @@
 			<th>Descrição</th>
 		</tr>
 		
-		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
+		<?php if(!empty($results)) { foreach ($results as $result): ?>
 		<tr>
 			<td align="center"><?php echo $result['Material']['material_id']; ?></td>
 			<td><?php echo $result['Material']['material_nome']; ?></td>
