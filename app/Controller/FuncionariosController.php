@@ -167,8 +167,8 @@ class FuncionariosController extends AppController {
 					$this->render('success','ajax');
                 } 
                 else{ 
-                    $this->flash('Adicionado com sucesso!','add');
-                    $this->redirect(array('action' => 'add'));
+                    $this->flash('Adicionada com sucesso!','popup_area');
+                    $this->redirect(array('action' => 'popup_area'));
                 }
             } else {
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
@@ -201,11 +201,11 @@ class FuncionariosController extends AppController {
                     $this->set('dados',$this->request->data);
                     $this->render('success','ajax');
                 } else {
-				    $this->flash('Ãrea atualizada.','/funcionarios/search_area');
+				    $this->flash('Área atualizada.','/funcionarios/search_area');
 				    $this->redirect(array('action' => 'search_area'));
                 }
 			}  else {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatÃ³rios foram preenchidos! </center>";
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
                 $this->render('delete','ajax');
 			}
 		}
@@ -222,7 +222,7 @@ class FuncionariosController extends AppController {
                 $this->set('dados',$this->request->data);
                 $this->render('success','ajax');
             } else {
-				$this->flash('A Ãrea de ID '.$id.' foi deletada.','/funcionarios/search_area');
+				$this->flash('A Área de ID '.$id.' foi deletada.','/funcionarios/search_area');
 				$this->redirect(array('action' => 'search_area'));
 			}
 		}		
@@ -243,11 +243,11 @@ class FuncionariosController extends AppController {
 					$this->render('success','ajax');
                 } 
                 else{ 
-                    $this->flash('Adicionado com sucesso!','add');
-                    $this->redirect(array('action' => 'add'));
+                    $this->flash('Adicionado com sucesso!','popup_tipo');
+                    $this->redirect(array('action' => 'popup_tipo'));
                 }
             } else {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatÃ³rios foram preenchidos! </center>";
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
                 $this->render('delete','ajax');
 			}			
         }
@@ -296,7 +296,7 @@ class FuncionariosController extends AppController {
 				    $this->redirect(array('action' => 'search_tipo'));
                 }
 			}  else {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatÃ³rios foram preenchidos! </center>";
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
                 $this->render('delete','ajax');
 			}
 		}

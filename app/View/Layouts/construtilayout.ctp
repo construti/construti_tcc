@@ -15,6 +15,7 @@ $cakeDescription = __d('cake_dev', 'Construti');
 		echo $this->Html->script(array('fileuploader'));
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('construti.padrao'); 
+		echo $this->Html->css('multi-select');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -67,6 +68,17 @@ $cakeDescription = __d('cake_dev', 'Construti');
                                 <li><a title="Pesquisar Fornecedor" href="<?php echo $this->params->base."/fornecedores/search"; ?>">Pesquisar</a></li>
 							</ul>
 						</li>
+					</ul>
+				</li>
+				<li>Fornecedores
+					<ul>
+						<li>Relacionar
+							<ul>
+								<li><a title="Relacionar Materiais" href="<?php echo $this->params->base."/fornecedores/relmateriais"; ?>">Materiais</a></li>
+                                <li><a title="Relacionar Equipamentos" href="<?php echo $this->params->base."/fornecedores/relequipamentos"; ?>">Equipamentos</a></li>
+							</ul>
+						</li>
+                    	<li><a title="Atualizar Necessidade de Materiais e/ou Equipamentos" href="<?php echo $this->params->base."/fornecedores/atnecessidade"; ?>">Necessidades</a></li>
 					</ul>
 				</li>
 				<li>Programas de Obra

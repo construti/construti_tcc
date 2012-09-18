@@ -1,32 +1,20 @@
 ﻿<?php  
-	echo $this->Html->script("validationTipo", false); 
-	$this->pageTitle = 'Tipos';
+	echo $this->Html->script("validationStatus", false); 
+	$this->pageTitle = 'Status';
 ?>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Atualização</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
-	<?php echo $this->Form->create('Tipo'); ?> <!-- início do formulário -->
+	<?php echo $this->Form->create('Obras_status'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Área: </div>
-			<div class="campos">Tipo: </div>
-			<div class="campos">Valor/Hora:</div>
+			<div class="campos">Status:</div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
 			<?php echo $this->Form->input('id', array('type' => 'hidden')); ?> 
             <div class="campos">
-			<?php 
-				echo $this->Form->input('tipo_area_id', array('label' => '', 'id' => 'tipo_area_id', 'type' => 'select', 'options' => $areas , 'class' => array('selecionar'), 'empty' => 'Escolha...'));	
-			?>
-			</div>
-			
-			<div class="campos">
-			<?php echo $this->Form->input('tipo_funcionario', array('label' => '', 'id' => 'tipo_funcionario', 'class' => array('intexto'))); ?>
-			</div>
-			
-			<div class="campos">
-			<?php echo $this->Form->input('tipo_valor_hora', array('label' => '', 'id' => 'tipo_valor_hora', 'class' => array('intexto'))); ?>
+			<?php echo $this->Form->input('status_obra', array('label' => '', 'id' => 'status_obra', 'class' => array('intexto'))); ?>
 			</div>
 		</div>
 		<div id="areaBotao"> <!-- botão de cadastro -->
