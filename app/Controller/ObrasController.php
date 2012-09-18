@@ -22,7 +22,7 @@ class ObrasController extends AppController {
 	
         if(!empty($this->data)){
             if($this->Obra->save($this->data)){
-				$id_da_obra = $this->Obra->getLastInsertId(); 
+				//$id_da_obra = $this->Obra->getLastInsertId(); 
 				
 				if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);
@@ -32,12 +32,6 @@ class ObrasController extends AppController {
                     $this->flash('Adicionado com sucesso!','add');
                     $this->redirect(array('action' => 'add'));
                 }
-				// SE SALVAR A OBRA, DEVERÁ ENCAMINHAR O USUARIO PARA O CADASTRO DE PROJETO COM A OBRA ESPECÍFICA PARA GRAVAR UM PROJETO.
-				//$this->set('id_da_obra',$id_da_obra);
-				
-				//$this->redirect('/projetos/add');
-				$this->redirect(array('controller' => 'projetos', 'action' =>'add', $id_da_obra)); 
-				//$this->redirect('http://www.google.com');
 				
             } else {
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
@@ -128,12 +122,18 @@ class ObrasController extends AppController {
 	
 	public function edit($id = null) { //atualizar um obra
 		$this->Obra->id = $id;
+		$Funcionario = $this->loadModel('Funcionario');
+		$responsavel = $this->Funcionario->find('list', array('fields' => array('funcionario_nome'),'order' => array('funcionario_nome' => 'asc'	)));
 		
+<<<<<<< HEAD
 		$Projeto = $this->loadModel('Projeto');
 		$projetos = $this->Projeto->find('list', array('order' => array('projeto_nome' => 'asc'	)));
 		
 		$this->set(compact('terrenos','projetos'));
 		
+=======
+		 $this->set(compact('responsavel')); 
+>>>>>>> construti/master
         if ($this->request->is('get')) {
 			$this->request->data = $this->Obra->read();
 		} else {

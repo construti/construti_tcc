@@ -4321,6 +4321,71 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 #14 C:\xampp\htdocs\construti\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(UsuariosController), Object(CakeRequest), Object(CakeResponse))
 #15 C:\xampp\htdocs\construti\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #16 {main}
+<<<<<<< HEAD
+2012-09-13 11:51:32 Error: [MissingTableException] Table tipos for model Tipo was not found in datasource default.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(3408): Model->setSource('tipos')
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): Model->getDataSource()
+#2 C:\xampp\htdocs\construti_oficial\app\Controller\FuncionariosController.php(183): Model->find('all', Array)
+#3 [internal function]: FuncionariosController->pega_tipo_area()
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(FuncionariosController), Array)
+#5 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(FuncionariosController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-09-13 11:51:37 Error: [MissingTableException] Table tipos for model Tipo was not found in datasource default.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(3408): Model->setSource('tipos')
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): Model->getDataSource()
+#2 C:\xampp\htdocs\construti_oficial\app\Controller\FuncionariosController.php(183): Model->find('all', Array)
+#3 [internal function]: FuncionariosController->pega_tipo_area()
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(FuncionariosController), Array)
+#5 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(FuncionariosController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-09-13 13:49:17 Error: [MissingTableException] Table requisicoes for model Requisicao was not found in datasource default.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(3408): Model->setSource('requisicoes')
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1276): Model->getDataSource()
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\View\Helper\FormHelper.php(196): Model->schema()
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\View\Helper\FormHelper.php(450): FormHelper->_introspectModel('Requisicao', 'fields')
+#4 C:\xampp\htdocs\construti_oficial\app\View\Requisicoes\reqequip.ctp(9): FormHelper->create('Requisicao', Array)
+#5 C:\xampp\htdocs\construti_oficial\lib\Cake\View\View.php(908): include('C:\xampp\htdocs...')
+#6 C:\xampp\htdocs\construti_oficial\lib\Cake\View\View.php(872): View->_evaluate('C:\xampp\htdocs...', Array)
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\View\View.php(463): View->_render('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#10 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(RequisicoesController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-09-13 14:20:31 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-13 14:24:42 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Projeto.projeto_' in 'where clause'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Projeto...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Projeto...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Projeto...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Projeto), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\ProjetosController.php(94): Model->find('all', Array)
+#6 [internal function]: ProjetosController->search()
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjetosController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ProjetosController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-09-13 16:24:31 Error: [MissingControllerException] Controller class MateriaisTiposController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-13 16:25:06 Error: [MissingControllerException] Controller class MateriaisTiposController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-13 16:25:09 Error: [MissingControllerException] Controller class MateriaisTiposController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-13 16:25:19 Error: [MissingControllerException] Controller class MateriaisTiposController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-09-13 17:37:29 Error: [MissingControllerException] Controller class CssController could not be found.
+=======
 2012-09-14 18:10:58 Error: [MissingControllerException] Controller class JsController could not be found.
 #0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
@@ -4406,6 +4471,7 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 #0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
 2012-09-16 19:14:36 Error: [MissingControllerException] Controller class JsController could not be found.
+>>>>>>> tcc_construti/master
 #0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
 2012-09-17 16:22:13 Error: [MissingControllerException] Controller class JsController could not be found.

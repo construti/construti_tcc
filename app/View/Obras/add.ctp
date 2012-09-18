@@ -20,7 +20,7 @@
 			
 			<div class="campos">Responsável*: </div>
 			
-			<div class="campos">Data de Início*: </div>
+			<div class="campos">Início previsto*: </div>
 			
 			<div class="campos">Estado*: </div>
 			
@@ -58,7 +58,7 @@
 			
 			<div class="campos">Status*: </div>
 			
-			<div class="campos">Data de Término*: </div>
+			<div class="campos">Término previsto*: </div>
 			
 			<div class="campos">Cidade*: </div>
 			

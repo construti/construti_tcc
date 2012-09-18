@@ -18,6 +18,13 @@ class MateriaisController extends AppController {
                
     public function add(){
 		//pr($this->params);
+		$Embalagem = $this->loadModel('Embalagem');
+		$embalagens = $this->Embalagem->find('list', array('fields' => array('embalagem_tipo'),'order' => array('embalagem_tipo' => 'asc'	)));
+		$Medida = $this->loadModel('Medida');
+		$medidas = $this->Medida->find('list', array('fields' => array('medida_tipo'),'order' => array('medida_tipo' => 'asc')));
+		
+		$this->set(compact('medidas','embalagens')); 
+		
         if(!empty($this->data)){
             if($this->Material->save($this->data)){
                 
@@ -93,6 +100,14 @@ class MateriaisController extends AppController {
     
     public function edit($id = null){   
         $this->Material->id = $id;
+		
+		$Embalagem = $this->loadModel('Embalagem');
+		$embalagens = $this->Embalagem->find('list', array('fields' => array('embalagem_tipo'),'order' => array('embalagem_tipo' => 'asc'	)));
+		$Medida = $this->loadModel('Medida');
+		$medidas = $this->Medida->find('list', array('fields' => array('medida_tipo'),'order' => array('medida_tipo' => 'asc')));
+		
+		$this->set(compact('medidas','embalagens')); 
+		
         if ($this->request->is('get')) {
            $this->request->data = $this->Material->read(); 
         } else {                    

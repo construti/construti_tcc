@@ -15,11 +15,6 @@
 			<select name="tipo" class="intexto"/>
 				<option value="obra_nome" select="selected">Título</option>
 				<option value="obra_responsavel">Responsável</option>
-				<option value="obra_funcionarios">Funcionários</option>
-				<option value="terreno_id">Terreno</option>
-				<option value="projeto_id">Projeto</option>
-				<option value="material_obra_id">Materiais</option>
-				<option value="equipamento_obra_id">Equipamentos</option>
 				<option value="obra_custo">Custo</option>
 				<option value="obra_data_inicio">Data de Início</option>
 				<option value="obra_data_fim">Data de Término</option>
@@ -41,11 +36,6 @@
 			<th>ID</th>
 			<th>Título</th>
 			<th>Responsável</th>
-			<th>Funcionários</th>
-			<th>Terreno</th>
-			<th>Projeto</th>
-			<th>Materiais</th>
-			<th>Equipamentos</th>
 			<th>Custo(R$)</th>
 			<th>Data Início</th>
 			<th>Data Fim</th>
@@ -55,16 +45,11 @@
 			<th>Ações</th>
 		</tr>
 		
-		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
+		<?php if(!empty($results)) { foreach ($results as $result): ?>
 		<tr>
 			<td align="center"><?php echo $result['Obra']['obra_id']; ?></td>
 			<td><?php echo $result['Obra']['obra_nome']; ?></td>
 			<td><?php echo $result['Obra']['obra_responsavel']; ?></td>
-			<td align="center"><?php echo $result['Obra']['obra_funcionarios']; ?></td>
-			<td><?php echo $result['Obra']['terreno_id']; ?></td>
-			<td><?php echo $result['Obra']['projeto_id']; ?></td>
-			<td><?php echo $result['Obra']['material_obra_id']; ?></td>
-			<td><?php echo $result['Obra']['equipamento_obra_id']; ?></td>
 			<td><?php echo $result['Obra']['obra_custo']; ?></td>
 			<td><?php echo $result['Obra']['obra_data_inicio']; ?></td>
 			<td><?php echo $result['Obra']['obra_data_fim']; ?></td>

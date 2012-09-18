@@ -10,10 +10,12 @@
 	<?php echo $this->Form->create('Material'); ?> <!-- início do formulário -->
 		<div class="legenda">* = Campos Obrigatórios</div>
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Nome*: </div> 
-			<div class="campos">Tipo*: </div> 
-			<div class="campos">Preço: </div> 
-			<div class="campos">Descrição: </div> 
+			<div class="campos">Nome:*: </div> 
+			<div class="campos">Tipo:*: </div> 
+			<div class="campos">Embalagem*: </div> 
+			<div class="campos">Quantidade*: </div> 
+			<div class="campos">Medida*: </div> 
+			<div class="campos">Descrição:</div> <br/><br/>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
             <div class="campos">
@@ -25,16 +27,23 @@
 									   'madeira' => 'Madeira', 'parafuso' => 'Parafuso', 'prego' => 'Prego',
 									   'telha' => 'Telha', 'tijolo' => 'Tijolo', 'viga' => 'Viga'
 									   );
-				  echo $this->Form->select('material_tipo', $opcoes_tipo, array('label' => '', 'id' => 'material_tipo', 'class' => array('intexto'))) ?>
+
+			
+				  echo $this->Form->select('material_tipo', $opcoes_tipo, array('label' => '', 'id' => 'material_tipo', 'class' => array('intexto'), 'empty' => 'Escolha...')) ?>
+			</div>
+			<div class="campos">
+				<?php echo $this->Form->select('material_embalagem', $embalagens, array('label' => '', 'id' => 'material_embalagem', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
+			</div>
+			<div class="campos">
+			<?php echo $this->Form->input('material_qtd_base', array('label' => '', 'id' => 'material_qtd_base', 'class' => array('intexto'))); ?>		</div>
+			<div class="campos">
+			<?php echo $this->Form->select('material_medida', $medidas, array('label' => '', 'id' => 'material_medida', 'class' => array('intexto'), 'empty' => 'Escolha...')); ?>
+			</div>
+			<div class="campos">
+				<?php echo $this->Form->input('material_descricao', array('type' => 'textarea', 'escape' => false,'label' => '', 'id' => 'material_descricao', 'class' => array('descricao'))); ?>
 			</div>
 			
-			<div class="campos">
-			<?php echo $this->Form->input('material_ultimo_preco', array('label' => '', 'id' => 'material_ultimo_preco', 'class' => array('intexto'))); ?>
-			</div>
-			
-			<div class="campos">
-			<?php echo $this->Form->input('material_descricao', array('type' => 'textarea', 'escape' => false,'label' => '', 'id' => 'material_descricao', 'class' => array('descricao'))); ?>
-			</div>
+		
 		</div>
 		<div id="areaBotao"> <!-- botão de cadastro -->
             <?php 
