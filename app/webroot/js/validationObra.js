@@ -221,7 +221,7 @@
 	function verificaStatus(error){
 		if(error.length > 2){
 			if($('#obra_status_ERROR').length == 0){
-				$('#obra_status').after('<div id="obra_status_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
+				$('#obra_status').after('<div id="obra_status_ERROR" style="margin: 18px 0 0; position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
 				$('#obra_status_ERROR').fadeTo(3000, 0.6);
 			}
 		}
@@ -242,7 +242,7 @@
 	function verificaTipo(error){
 		if(error.length > 2){
 			if($('#obra_tipo_ERROR').length == 0){
-				$('#obra_tipo').after('<div id="obra_tipo_ERROR" style="position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
+				$('#obra_tipo').after('<div id="obra_tipo_ERROR" style="margin: 18px 0 0; position: absolute; z-index: 4; background-color: tomato;">' + error + '</div>');
 				$('#obra_tipo_ERROR').fadeTo(3000, 0.6);
 			}
 		}

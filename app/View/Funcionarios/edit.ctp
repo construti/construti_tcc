@@ -80,7 +80,7 @@
 			</div>
 			
 			<div class="campos">
-			<?php echo $this->Form->input('funcionario_data_nasc', array('label' => '', 'id' => 'funcionario_data_nasc', 'minYear' => date('Y') - 70, 'maxYear' => date('Y') - 18, 'class' => array('intexto'))); ?>
+			<?php echo $this->Form->input('funcionario_data_nasc', array('label' => '', 'id' => 'funcionario_data_nasc', 'minYear' => date('Y') - 70, 'maxYear' => date('Y') - 18, 'dateFormat' => 'DMY', 'class' => array('intexto'))); ?>
 			</div>
 			
 			<div class="campos">

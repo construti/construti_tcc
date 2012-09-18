@@ -71,7 +71,7 @@
 			</div>
 			
 			<div class="campos">
-			<?php echo $this->Form->input('funcionario_data_nasc', array('label' => '', 'id' => 'funcionario_data_nasc', 'minYear' => date('Y') - 70, 'maxYear' => date('Y') - 18, 'class' => array('intexto'))); ?>
+			<?php echo $this->Form->input('funcionario_data_nasc', array('label' => '', 'id' => 'funcionario_data_nasc', 'minYear' => date('Y') - 70, 'maxYear' => date('Y') - 18, 'dateFormat' => 'DMY', 'class' => array('intexto'))); ?>
 			</div>
 			
 			<div class="campos">
@@ -123,10 +123,10 @@
 				echo $this->Form->input('funcionario_area', array('label' => '', 'id' => 'funcionario_area', 'type' => 'select', 'options' => $areas , 'class' => array('selecionar'), 'empty' => 'Escolha...'));	
 			?>
 				<div class="minibotoes">
-					<a onclick="popupAreaCad()" title="Cadastrar Nova Ãrea"><div class="botaocadastrar"></div></a>
+					<a onclick="popupAreaCad()" title="Cadastrar Nova Área"><div class="botaocadastrar"></div></a>
 				</div>
 				<div class="minibotoes">
-					<a href="<?php echo $this->params->base."/funcionarios/search_area"; ?>" title="Pesquisar Ãrea" target="_blank"><div class="botaopesquisar"></div></a>
+					<a href="<?php echo $this->params->base."/funcionarios/search_area"; ?>" title="Pesquisar Área" target="_blank"><div class="botaopesquisar"></div></a>
 				</div>
 			</div>
 			

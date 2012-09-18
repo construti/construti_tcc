@@ -126,6 +126,33 @@ class FornecedoresController extends AppController {
 			}
 		}		
     }
+	
+	public function relmateriais() { //adiciona um Fornecedor
+		$this->loadModel('Material');
+		
+		$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_id' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
+		$materiais = $this->Material->find('list', array('order' => array('material_id' => 'asc'), 'fields' => array('Material.material_id', 'Material.material_nome')));
+		
+		$this->set(compact('fornecedores'));
+		$this->set(compact('materiais'));
+	
+        if(!empty($this->data)){
+            if($this->Fornecedor->save($this->data)){
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+                    $this->render('success','ajax');
+                } 
+                else{              
+                    $this->flash('Adicionado com sucesso!','add');
+                    $this->redirect(array('action' => 'add'));
+                }
+            } else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}
+        }  
+    }
+    
     
 }
 ?>
