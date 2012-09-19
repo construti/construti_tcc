@@ -1,14 +1,24 @@
 <?php  
 	echo $this->Html->script("validationFornecedor", false);
+	echo $this->Html->script('jquery-ui', array('inline' => false));
+	echo $this->Html->script('plugins/localisation/jquery.localisation-min', array('inline' => false));
+	echo $this->Html->script('plugins/scrollTo/jquery.scrollTo-min', array('inline' => false));
+	echo $this->Html->script('ui.multiselect', array('inline' => false));
 	$this->pageTitle = 'Fornecedores';
 ?> 
 
+<script>	
+	$(function(){
+		$.localise('ui-multiselect', {/*language: 'en', */path: 'js/locale/'});
+		$("#material_id").multiselect();
+	});
+</script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Relacionar Materiais</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
-	<?php echo $this->Form->create('Fornecedor'); ?> <!-- início do formulário -->
+	<?php echo $this->Form->create('Fornecedor_materiais'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
 			<div class="campos">Fornecedor: </div>
 			
@@ -20,7 +30,7 @@
             </div>
 			
 			<div class="campos">
-			<?php echo $this->Form->select('material_id', $materiais, array('label' => '', 'name' => 'material_id[]', 'class' => array('multiselect'), 'multiple' => 'multiple')); ?>
+			<?php echo $this->Form->select('material_id', $materiais, array('label' => '', 'id' => 'material_id', 'class' => array('multiselect'), 'multiple' => 'multiple')); ?>
             </div>
 			<?php  ?> 
 		</div>
