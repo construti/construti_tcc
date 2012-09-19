@@ -6,12 +6,9 @@ App::uses('CakeEmail', 'Network/Email');
 class RequisicoesController extends AppController {
  
 	public $name = 'Requisicoes';
-	
 	public $helpers = array('Form','Js');
-	
-    public $components = array('RequestHandler','Email'); 
-	
-	public $uses = array('Requisicao'); //usa a Model Requisicao
+	public $components = array('RequestHandler','Email'); 
+	public $uses = array('Fornecedor', 'Material'); 
     
     public function validate_form() { //validação do formulário
        $this->layout = 'ajax';
@@ -41,8 +38,12 @@ class RequisicoesController extends AppController {
 	}
 	
 	function reqmat() { //Enviar requisição de Materiais
-		$this->loadModel('Fornecedor');
-		$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_nome' => 'asc'), 'fields' => array('Fornecedor.fornecedor_email', 'Fornecedor.fornecedor_nome'), 'conditions' => array('Fornecedor.fornecedor_tipo' => 'material') ));
+		
+		$materiais = $this->Material->find('all');
+		
+		pr($materiais);
+		
+		$fornecedores = $this->Fornecedor->find('list', array('fields' => array('fornecedor_nome'),'order' => array('fornecedor_nome' => 'asc'	)));
 		
 		$this->set(compact('fornecedores'));
 		

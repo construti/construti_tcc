@@ -9,6 +9,10 @@ class Material extends AppModel{
 	var $primaryKey = 'material_id';
 	
 	var $displayField = 'material_nome';
+	
+	var $hasMany = array('Embalagem','Medida');
+	
+	 
     
     var $validate = array(
 		'material_nome' => array(
