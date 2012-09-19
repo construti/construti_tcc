@@ -127,7 +127,7 @@ class FornecedoresController extends AppController {
 		}		
     }
 	
-	public function relmateriais() { //adiciona um Fornecedor
+	public function relmateriais() { //relacionar materiais à um Fornecedor
 		$this->loadModel('Material');
 		
 		$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_id' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
@@ -137,22 +137,74 @@ class FornecedoresController extends AppController {
 		$this->set(compact('materiais'));
 	
         if(!empty($this->data)){
-            if($this->Fornecedor->save($this->data)){
-				if($this->request->is('Ajax')){    // o ajax roda aqui
-                    $this->set('dados',$this->request->data);
-                    $this->render('success','ajax');
-                } 
-                else{              
-                    $this->flash('Adicionado com sucesso!','add');
-                    $this->redirect(array('action' => 'add'));
-                }
-            } else {
+			$this->loadModel('Fornecedor_materiais');
+			if( ($this->data['Fornecedor_materiais']['fornecedor_id'] == '') || ($this->data['Fornecedor_materiais']['material_id'] == '') ) {
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-                $this->render('delete','ajax');
+	            $this->render('delete','ajax');
+			} else {
+				$contar = count($this->data['Fornecedor_materiais']['material_id']);
+				for($i = 0; $i < $contar; $i++) {
+					$this->Fornecedor_materiais->set(array(
+						'fornecedor_id' => $this->data['Fornecedor_materiais']['fornecedor_id'],
+						'material_id' => $this->data['Fornecedor_materiais']['material_id'][$i]
+					));
+					
+					if($this->Fornecedor_materiais->saveAll()) {
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+		                    $this->set('dados',$this->request->data);
+		                    $this->render('success','ajax');
+		                } 
+		                else{              
+		                    $this->flash('Adicionado com sucesso!','add');
+		                    $this->redirect(array('action' => 'add'));
+		                }
+					} else {
+						echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+		                $this->render('delete','ajax');
+					}
+				}
 			}
         }  
     }
     
-    
+    public function relequipamentos() { //relacionar materiais à um Fornecedor
+		$this->loadModel('Equipamento');
+		
+		$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_id' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
+		$equipamentos = $this->Equipamento->find('list', array('order' => array('equipamento_id' => 'asc'), 'fields' => array('Equipamento.equipamento_id', 'Equipamento.equipamento_nome')));
+		
+		$this->set(compact('fornecedores'));
+		$this->set(compact('equipamentos'));
+	
+        if(!empty($this->data)){
+			$this->loadModel('Fornecedor_equipamentos');
+			if( ($this->data['Fornecedor_equipamentos']['fornecedor_id'] == '') || ($this->data['Fornecedor_equipamentos']['equipamento_id'] == '') ) {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+	            $this->render('delete','ajax');
+			} else {
+				$contar = count($this->data['Fornecedor_equipamentos']['equipamento_id']);
+				for($i = 0; $i < $contar; $i++) {
+					$this->Fornecedor_equipamentos->set(array(
+						'fornecedor_id' => $this->data['Fornecedor_equipamentos']['fornecedor_id'],
+						'equipamento_id' => $this->data['Fornecedor_equipamentos']['equipamento_id'][$i]
+					));
+					
+					if($this->Fornecedor_equipamentos->saveAll()) {
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+		                    $this->set('dados',$this->request->data);
+		                    $this->render('success','ajax');
+		                } 
+		                else{              
+		                    $this->flash('Adicionado com sucesso!','add');
+		                    $this->redirect(array('action' => 'add'));
+		                }
+					} else {
+						echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+		                $this->render('delete','ajax');
+					}
+				}
+			}
+        }  
+    }
 }
 ?>

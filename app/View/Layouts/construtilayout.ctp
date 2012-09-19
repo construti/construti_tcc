@@ -10,12 +10,9 @@ $cakeDescription = __d('cake_dev', 'Construti');
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $this->Html->script('jquery'); 
-		echo $this->Html->css(array('fileuploader'));
-		echo $this->Html->script(array('fileuploader'));
+		echo $this->Html->script(array('jquery', 'fileuploader')); 
+		echo $this->Html->css(array('fileuploader', 'ui.multiselect', 'smoothness/jquery-ui', 'construti.padrao'));
 		echo $this->Html->meta('icon');
-		echo $this->Html->css('construti.padrao'); 
-		echo $this->Html->css('multi-select');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
