@@ -1,2 +1,17 @@
+<<<<<<< HEAD
 1348018640
 a:2:{s:4:"name";a:7:{i:-953569552;s:19:"`construti_oficial`";i:-1454841469;s:31:"`Fornecedor`.`fornecedor_email`";i:-1964661901;s:30:"`Fornecedor`.`fornecedor_nome`";i:524638325;s:14:"`fornecedores`";i:1808771877;s:30:"`Fornecedor`.`fornecedor_tipo`";i:-135655678;s:12:"`Fornecedor`";i:-1452617582;s:17:"`fornecedor_nome`";}s:6:"fields";a:1:{s:32:"83221715f6b273b8c85f4cab61df6e2d";a:2:{i:0;s:31:"`Fornecedor`.`fornecedor_email`";i:1;s:30:"`Fornecedor`.`fornecedor_nome`";}}}
+=======
+<<<<<<< HEAD
+1347930559
+a:2:{s:4:"name";a:9:{i:-953569552;s:19:"`construti_oficial`";i:1512903040;s:7:"`areas`";i:-1559286723;s:16:"`Area`.`area_id`";i:1313756900;s:23:"`Area`.`area_descricao`";i:-1627129317;s:16:"`Area`.`created`";i:1162536475;s:17:"`Area`.`modified`";i:1658553698;s:6:"`Area`";i:-1174661991;s:9:"`area_id`";i:1507239229;s:14:"`funcionarios`";}s:6:"fields";a:2:{s:32:"135aa16344543665267e01b6780b4441";a:4:{i:0;s:16:"`Area`.`area_id`";i:1;s:23:"`Area`.`area_descricao`";i:2;s:16:"`Area`.`created`";i:3;s:17:"`Area`.`modified`";}s:32:"8df42370f76a8cb26489784a2e39e1cf";a:2:{i:0;s:16:"`Area`.`area_id`";i:1;s:23:"`Area`.`area_descricao`";}}}
+=======
+<<<<<<< HEAD
+1347929858
+a:2:{s:4:"name";a:11:{i:-953569552;s:19:"`construti_oficial`";i:-233741972;s:28:"`Fornecedor`.`fornecedor_id`";i:-1964661901;s:30:"`Fornecedor`.`fornecedor_nome`";i:524638325;s:14:"`fornecedores`";i:-135655678;s:12:"`Fornecedor`";i:1435219289;s:15:"`fornecedor_id`";i:393227014;s:24:"`Material`.`material_id`";i:-2080477775;s:26:"`Material`.`material_nome`";i:-97365111;s:11:"`materiais`";i:1228713312;s:10:"`Material`";i:940351491;s:13:"`material_id`";}s:6:"fields";a:2:{s:32:"08b816d3e9ef105e13b0337cc30064ce";a:2:{i:0;s:28:"`Fornecedor`.`fornecedor_id`";i:1;s:30:"`Fornecedor`.`fornecedor_nome`";}s:32:"8d957fd7e9dbf2619e3fcf49c34962b2";a:2:{i:0;s:24:"`Material`.`material_id`";i:1;s:26:"`Material`.`material_nome`";}}}
+=======
+1347930424
+a:2:{s:4:"name";a:7:{i:-953569552;s:19:"`construti_oficial`";i:-1116009264;s:30:"`Funcionario`.`funcionario_id`";i:-241823672;s:32:"`Funcionario`.`funcionario_nome`";i:1507239229;s:14:"`funcionarios`";i:-159530980;s:13:"`Funcionario`";i:-2142252654;s:18:"`funcionario_nome`";i:-855013292;s:7:"`obras`";}s:6:"fields";a:1:{s:32:"d8d6f651bbe700932ceb20951a9b37a1";a:2:{i:0;s:30:"`Funcionario`.`funcionario_id`";i:1;s:32:"`Funcionario`.`funcionario_nome`";}}}
+>>>>>>> construti/master
+>>>>>>> tcc_construti/master
+>>>>>>> construti/master
