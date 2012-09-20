@@ -110,7 +110,7 @@ p {
 	position: relative;
 	text-align: center;
 	background: #0011aa;
-	margin: auto 12px;
+	margin: 0 12px;
 	padding: 5px ;
 	border-style: outset;
 	border-width: 2px;
@@ -124,7 +124,7 @@ p {
 	position: absolute;
 	width: auto;
 	left: 0;
-	top: 31px;
+	top: 29px;
 	z-index: 2;
 	margin: 0;
 	padding: 0;
@@ -381,6 +381,266 @@ p {
 #obra_funcionarios {
 	width: 150px;
 }
+
+#camposdescricaoorc {
+	float: left;
+	width: 150px;
+	margin: 0 auto 10px;
+	text-align: right;
+	font-size: 14px;
+	padding: 20px 0 0 15%;
+}
+#camposlacunasorc {
+	float: left;
+	width: 500px;
+	margin: 0 auto 10px;
+	padding: 0;
+}
+/** Listagem **/
+#lista {
+	width: 800px;
+	margin: 10px auto;
+}
+#sublistaA, #sublistaB {
+	clear: both;
+	border-width: 2px;
+	border-color: #008;
+	border-style: solid;
+	margin: 0 0 10px;
+}
+#listatitulo {
+	text-align: center;
+	font-size: 120%;
+	border-bottom-width: 2px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	
+	background: #f4f4f4;
+}
+#sublistaA #nome {
+	float: left;
+	width: 40%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #f4f4f4;
+}
+#sublistaA #qtd {
+	float: left;
+	text-align: center;
+	width: 14%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #f4f4f4;
+}
+#sublistaA #forn {
+	float: left;
+	width: 39%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #f4f4f4;
+}
+#sublistaA #acao {
+	float: left;
+	text-align: center;
+	width: 5%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #008;
+	border-right-style: solid;
+	background: #f4f4f4;
+}
+#sublistaA .nomeM {
+	float: left;
+	width: 40%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #fff;
+}
+#sublistaA .qtdM {
+	float: left;
+	text-align: center;
+	width: 14%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #fff;
+}
+#sublistaA .fornM {
+	float: left;
+	width: 39%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #fff;
+}
+#sublistaA .acaoM {
+	float: left;
+	text-align: center;
+	width: 5%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #008;
+	border-right-style: solid;
+	background: #fff;
+}
+
+#sublistaB #nome {
+	float: left;
+	width: 35%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #f4f4f4;
+}
+#sublistaB #qtd {
+	float: left;
+	text-align: center;
+	width: 14%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #f4f4f4;
+}
+#sublistaB #nec {
+	float: left;
+	text-align: center;
+	width: 13%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #f4f4f4;
+}
+#sublistaB #forn {
+	float: left;
+	width: 31%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #f4f4f4;
+}
+#sublistaB #acao {
+	float: left;
+	text-align: center;
+	width: 5%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #008;
+	border-right-style: solid;
+	background: #f4f4f4;
+}
+#sublistaB .nomeE {
+	float: left;
+	width: 35%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #fff;
+}
+#sublistaB .qtdE {
+	float: left;
+	text-align: center;
+	width: 14%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #fff;
+}
+#sublistaB .alugE {
+	float: left;
+	text-align: center;
+	width: 13%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #fff;
+}
+#sublistaB .fornE {
+	float: left;
+	width: 31%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	background: #fff;
+}
+#sublistaB .acaoE {
+	float: left;
+	text-align: center;
+	width: 5%;
+	border-left-width: 1px;
+	border-left-color: #008;
+	border-left-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #008;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #008;
+	border-right-style: solid;
+	background: #fff;
+}
+#sublistaB {
+	margin: 10px 0 0;
+}
 /** Mensagens JQuery **/
 #sending {
 	width: 200px;
@@ -490,12 +750,24 @@ p {
 	margin: 0 0 5px 100px;
 	padding: 0;
 }
+.inputtabela {
+	border-style: none;
+	text-align: center;
+	width: 100%;
+	background: #fff;
+	margin: 0 auto;
+	padding: 0;
+}
 	/* multiselect styles */
 .multiselect {
 	float: left;
 	width: 460px;
 	height: 200px;
 }
+.deldiv {
+	width: 17px;
+	height: 17px;
+}
 #switcher {
-margin-top: 20px;
+	margin-top: 20px;
 }

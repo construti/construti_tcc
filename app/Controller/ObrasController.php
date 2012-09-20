@@ -125,15 +125,9 @@ class ObrasController extends AppController {
 		$Funcionario = $this->loadModel('Funcionario');
 		$responsavel = $this->Funcionario->find('list', array('fields' => array('funcionario_nome'),'order' => array('funcionario_nome' => 'asc'	)));
 		
-<<<<<<< HEAD
-		$Projeto = $this->loadModel('Projeto');
-		$projetos = $this->Projeto->find('list', array('order' => array('projeto_nome' => 'asc'	)));
-		
-		$this->set(compact('terrenos','projetos'));
-		
-=======
+
 		 $this->set(compact('responsavel')); 
->>>>>>> construti/master
+
         if ($this->request->is('get')) {
 			$this->request->data = $this->Obra->read();
 		} else {

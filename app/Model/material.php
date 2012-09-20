@@ -12,7 +12,9 @@ class Material extends AppModel{
 	
 	var $hasMany = array('Embalagem','Medida');
 	
-	 
+	public $virtualFields = array(
+    'descricao' => 'CONCAT(material_nome, " - ", material_embalagem, " - ", material_qtd_base, " - ", material_medida)'
+);
     
     var $validate = array(
 		'material_nome' => array(
