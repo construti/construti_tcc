@@ -209,20 +209,39 @@ class FornecedoresController extends AppController {
         }  
     }
 	
+	public function pega_fornecedores_mat_equip(){ //atualizar o campo de salário ao escolher o tipo
+		
+		$matID = $this->params['url']['material_id'];
+		
+		$this->loadModel('Fornecedor_materiais');
+		$fornecedores = $this->Fornecedor_materiais->find('all', array('order' => array('fornecedor_nome' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome'), 'conditions' => array('Material.material_id' => $matID)));
+		
+		$this->set('fornecedores',$fornecedores);
+		$this->Render('pega_fornecedores_mat_equip','ajax');
+	}
+	
 	public function orcamento() { //requisitar Orçamento à Fornecedor(es)
 		$this->loadModel('Fornecedor');
 		$this->loadModel('Material');
 		$this->loadModel('Equipamento');
 		
-		$materiais = $this->Material->find('list', array('order' => array('material_nome' => 'asc'), 'fields' => array('Material.material_id', 'descricao')));		
-		$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_nome' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
+		$materiais = $this->Material->query("SELECT Material.material_id,(CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.materiais AS Material LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) ORDER BY material_nome asc"); // WHERE Material.material_id =$matID");
+		
+		$materiais_array = array();	
+		foreach($materiais as $m):
+			$materiais_array[$m['Material']['material_id']] = $m['Material']['descricao'];
+		endforeach;
+			
+		//pr($materiais_array);
+			
+		//$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_nome' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
 		$equipamentos = $this->Equipamento->find('list', array('order' => array('equipamento_nome' => 'asc'), 'fields' => array('Equipamento.equipamento_id', 'Equipamento.equipamento_nome')));
 		
-		$this->set(compact('fornecedores'));
+		//$this->set(compact('fornecedores'));
 		$this->set(compact('equipamentos'));
-		$this->set(compact('materiais'));
+		$this->set(compact('materiais_array'));
 	
-        if(!empty($this->data)){
+        if(!empty($this->datao)){
 			$this->loadModel('Fornecedor_equipamentos');
 			if( ($this->data['Fornecedor_equipamentos']['fornecedor_id'] == '') || ($this->data['Fornecedor_equipamentos']['equipamento_id'] == '') ) {
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
