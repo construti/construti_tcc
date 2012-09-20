@@ -5,6 +5,8 @@
 	echo $this->Html->script('plugins/scrollTo/jquery.scrollTo-min', array('inline' => false));
 	echo $this->Html->script('ui.multiselect', array('inline' => false));
 	$this->pageTitle = 'Fornecedores';
+	
+	$fornecedores = '';
 ?> 
 
 <script>	
@@ -26,10 +28,24 @@
 			$('#acaoE'+k).remove();
 		})
 	}
-
+	
+	$(document).ready(function(){
+		$("#material").change(function(){  // quando mudar o valor do campo material, é atribuido o valor desse campo, e passado como parametro GET para a action pega_fornecedores_mat_equip
+			matID=$(this).val();
+			txt_str="material_id="+matID;
+			$.get("../fornecedores/pega_fornecedores_mat_equip",txt_str,function(result){ 
+				$("#forns").html(result); // o html renderizado, na action pega_fornecedores_mat_equip, é carregado no campo forns
+				$('.remove-all').trigger('click');
+			});
+		});
+	});
+	
+	
 	$(function(){
 		var i = 0;
+		
 		$("#adicionarLista").click(function() {
+		
 			var materialID = $("#material").val();
 			var materialNOME = $('#material option:selected').html();
 			var materialQTD = $("#qtd_material").val();
@@ -41,23 +57,37 @@
 			
 			var fornecedores = $('select#forns').val();
 			
-			if (materialID == ''){
-				alert('vazio');
-			}
-			
-			$('#inputsmat').append('<div class="nomeM" id="nomeM'+i+'">'+materialNOME+'<input value='+materialID+' name="materialid'+i+'" type="hidden" readonly></input></div>');
-			$('#inputsmat').append('<div class="qtdM" id="qtdM'+i+'">'+materialQTD+'<input value='+materialQTD+' name="materialqtd'+i+'" type="hidden" readonly></input></div>');
-			$('#inputsmat').append('<div class="fornM" id="fornM'+i+'">'+fornecedores+'<input value='+fornecedores+' name="materialforn'+i+'" type="hidden" readonly></input></div>');
-			$('#inputsmat').append('<div class="acaoM" id="acaoM'+i+'"><input value="-" class="deldiv" name="botao" type="button" id="botao'+i+'" onclick="deldivM('+i+')" readonly></input></div>');
-			
-			
-			$('#inputsequip').append('<div class="nomeE" id="nomeE'+i+'">'+equipamentoNOME+'<input value='+equipamentoID+' name="equipamentoid'+i+'" type="hidden" readonly></input></div>');
-			$('#inputsequip').append('<div class="qtdE" id="qtdE'+i+'">'+equipamentoQTD+'<input value='+equipamentoQTD+' name="equipamentoqtd'+i+'" type="hidden" readonly></input></div>');
-			$('#inputsequip').append('<div class="alugE" id="alugE'+i+'">'+equipamentoAL+'<input value='+equipamentoAL+' name="equipamentoal'+i+'" type="hidden" readonly></input></div>');
-			$('#inputsequip').append('<div class="fornE" id="fornE'+i+'">'+fornecedores+'<input value='+fornecedores+' name="equipamentoforn'+i+'" type="hidden" readonly></input></div>');
-			$('#inputsequip').append('<div class="acaoE" id="acaoE'+i+'"><input value="-" class="deldiv" name="botao" type="button" id="botao'+i+'" onclick="deldivE('+i+')" readonly></input></div>');
-			//alert(materialID+" "+materialQTD+" "+equipamentoID+" "+equipamentoQTD+" "+equipamentoAL+" Forns: "+fornecedores);
+			if(fornecedores!=''){
+				
+				$.each(fornecedores, function(key, forn) { 
+				  	var fornec = $('#forns option:eq('+key+')').html(); // pega o nome do fornecedor
+					//alert('idM: '+ materialID + ' qtdM: ' + materialQTD + ' idE: ' + equipamentoID + ' qtdE: ' + equipamentoQTD + ' alugE:  ' + equipamentoAL);
+					if (materialID != '' && materialQTD!=''){
 						
+					$('#inputsmat').append('<div class="nomeM" id="nomeM'+i+'">'+materialNOME+'<input value='+materialID+' name="materialid'+i+'" type="hidden" readonly></input></div>');
+					$('#inputsmat').append('<div class="qtdM" id="qtdM'+i+'">'+materialQTD+'<input value='+materialQTD+' name="materialqtd'+i+'" type="hidden" readonly></input></div>');
+					$('#inputsmat').append('<div class="fornM" id="fornM'+i+'">'+fornec+'<input value='+forn+' name="materialforn'+i+'" type="hidden" readonly></input></div>');
+					$('#inputsmat').append('<div class="acaoM" id="acaoM'+i+'"><input value="X" class="deldiv" name="botao" type="button" id="botao'+i+'" onclick="deldivM('+i+')" readonly></input></div>');
+					
+					}
+					
+					if (equipamentoID != '' && equipamentoQTD!='' && typeof equipamentoAL!='undefined'){
+						$('#inputsequip').append('<div class="nomeE" id="nomeE'+i+'">'+equipamentoNOME+'<input value='+equipamentoID+' name="equipamentoid'+i+'" type="hidden" readonly></input></div>');
+						$('#inputsequip').append('<div class="qtdE" id="qtdE'+i+'">'+equipamentoQTD+'<input value='+equipamentoQTD+' name="equipamentoqtd'+i+'" type="hidden" readonly></input></div>');
+						$('#inputsequip').append('<div class="alugE" id="alugE'+i+'">'+equipamentoAL+'<input value='+equipamentoAL+' name="equipamentoal'+i+'" type="hidden" readonly></input></div>');
+						$('#inputsequip').append('<div class="fornE" id="fornE'+i+'">'+fornec+'<input value='+forn+' name="equipamentoforn'+i+'" type="hidden" readonly></input></div>');
+						$('#inputsequip').append('<div class="acaoE" id="acaoE'+i+'"><input value="X" class="deldiv" name="botao" type="button" id="botao'+i+'" onclick="deldivE('+i+')" readonly></input></div>');
+					}
+				
+					$("#material").val('');
+					$("#qtd_material").val('');
+					
+					$("#equip").val('');
+					$("#qtd_equip").val('');
+					$("input[@name=equip_al]:checked").prop('checked', false);;
+				});
+			}	
+								
 			i++;
 		})
 	});
@@ -84,7 +114,7 @@
 			<div class="campos">
 				<div style="margin: 0 165px 0 5px; float: left;">Nome:</div><div style="margin: 0 135px 0 5px; float: left;">Qtd:</div>
 				<div style="margin: 0 5px 0 5px; float: left;">
-					<?php echo $this->Form->select('material', $materiais, array('label' => '', 'id' => 'material', 'empty' => 'Escolha...', 'class' => array('selecionar'))); ?>
+					<?php echo $this->Form->select('material', $materiais_array, array('label' => '', 'id' => 'material', 'empty' => 'Escolha...', 'class' => array('selecionar'))); ?>
 				</div>
 				<div style="margin: 0 5px 0 5px; float: left;">
 					<?php echo $this->Form->input('qtd_material', array('label' => '', 'id' => 'qtd_material', 'size' => '5', 'class' => array('intexto')));  ?>

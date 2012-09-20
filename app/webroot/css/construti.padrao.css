@@ -469,6 +469,7 @@ p {
 #sublistaA .nomeM {
 	float: left;
 	width: 40%;
+	height: 19px;
 	border-left-width: 1px;
 	border-left-color: #008;
 	border-left-style: solid;
@@ -481,6 +482,7 @@ p {
 	float: left;
 	text-align: center;
 	width: 14%;
+	height: 19px;
 	border-left-width: 1px;
 	border-left-color: #008;
 	border-left-style: solid;
@@ -492,6 +494,7 @@ p {
 #sublistaA .fornM {
 	float: left;
 	width: 39%;
+	height: 19px;
 	border-left-width: 1px;
 	border-left-color: #008;
 	border-left-style: solid;
@@ -504,6 +507,7 @@ p {
 	float: left;
 	text-align: center;
 	width: 5%;
+	height: 19px;
 	border-left-width: 1px;
 	border-left-color: #008;
 	border-left-style: solid;
@@ -580,6 +584,7 @@ p {
 #sublistaB .nomeE {
 	float: left;
 	width: 35%;
+	height: 19px;
 	border-left-width: 1px;
 	border-left-color: #008;
 	border-left-style: solid;
@@ -592,6 +597,7 @@ p {
 	float: left;
 	text-align: center;
 	width: 14%;
+	height: 19px;
 	border-left-width: 1px;
 	border-left-color: #008;
 	border-left-style: solid;
@@ -604,6 +610,7 @@ p {
 	float: left;
 	text-align: center;
 	width: 13%;
+	height: 19px;
 	border-left-width: 1px;
 	border-left-color: #008;
 	border-left-style: solid;
@@ -615,6 +622,7 @@ p {
 #sublistaB .fornE {
 	float: left;
 	width: 31%;
+	height: 19px;
 	border-left-width: 1px;
 	border-left-color: #008;
 	border-left-style: solid;
@@ -627,6 +635,7 @@ p {
 	float: left;
 	text-align: center;
 	width: 5%;
+	height: 19px;
 	border-left-width: 1px;
 	border-left-color: #008;
 	border-left-style: solid;
@@ -765,8 +774,8 @@ p {
 	height: 200px;
 }
 .deldiv {
-	width: 17px;
-	height: 17px;
+	width: 19px;
+	height: 19px;
 }
 #switcher {
 	margin-top: 20px;
