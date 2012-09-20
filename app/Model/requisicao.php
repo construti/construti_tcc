@@ -1,12 +1,8 @@
 <?php
-
+// não é usado.....
 class Requisicao extends AppModel{
     var $name = 'Requisicao';
-    
-    var $primaryKey = 'requisicao_id';
-	
-	var $useTable ='requisicoes';
-	
+        
 	var $validate = array(
 		'requisicao_nome' => array(
 			'rule' => 'notEmpty',
