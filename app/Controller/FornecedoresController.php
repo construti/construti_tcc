@@ -252,5 +252,37 @@ class FornecedoresController extends AppController {
 			}
         }  
     }
+	
+	public function searchorcmat() { //pesquisar fornecedores
+		if (!empty($this->data['pesquisa'])){
+			$this->loadModel(Orcamento_materiais);
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function atprecosmat($id = null) { //atualizar um fornecedor
+		$this->Material->id = $id;
+        if ($this->request->is('get')) {
+			$this->request->data = $this->Fornecedor->read();
+		} else {
+			if ($this->Fornecedor->save($this->request->data)) {
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+                    $this->render('success','ajax');
+                } else {
+				    $this->flash('Fornecedor atualizado.','/fornecedores/search');
+				    $this->redirect(array('action' => 'search'));
+                }
+			} else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}
+		}
+    }
 }
 ?>
