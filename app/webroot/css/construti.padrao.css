@@ -669,6 +669,207 @@ p {
 	background-color: lightgreen;
 	margin: 2px auto 0;
 }
+/** Orçamentos **/
+#tabelaorc {
+	margin: 0 0 0 15%;
+}
+#titulosorc {
+
+}
+#tituloA, #tituloB {
+	float: left;
+	width: 26%;
+	font-size: 120%;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	background: #f4f4f4;
+}
+#tituloC {
+	float: left;
+	width: 12%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	background: #f4f4f4;
+}
+#tituloD {
+	float: left;
+	width: 11%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	background: #f4f4f4;
+}
+#campoA, #campoB {
+	float: left;
+	width: 26%;
+	height: 23px;	
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	border-top: none;
+}
+#campoC {
+	float: left;
+	width: 12%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	border-top: none;
+}
+#campoD {
+	float: left;
+	width: 11%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-top: none;
+}
+
+#tituloE, #tituloF {
+	float: left;
+	width: 26%;
+	font-size: 120%;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	background: #f4f4f4;
+}
+#tituloG {
+	float: left;
+	width: 13%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	background: #f4f4f4;
+}
+#tituloH {
+	float: left;
+	width: 12%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	background: #f4f4f4;
+}
+#tituloI {
+	float: left;
+	width: 11%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	background: #f4f4f4;
+}
+#campoE, #campoF {
+	float: left;
+	width: 26%;
+	height: 23px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	border-top: none;
+}
+#campoG {
+	float: left;
+	width: 13%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	border-top: none;
+}
+#campoH {
+	float: left;
+	width: 12%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	border-top: none;
+}
+#campoI {
+	float: left;
+	width: 11%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-top: none;
+}
+
+#tabelaest {
+	margin: 0 0 0 32%;
+	width: 500px;
+}
+#tituloJ {
+	float: left;
+	width: 80%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	background: #f4f4f4;
+}
+#tituloK {
+	float: left;
+	width: 18%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	background: #f4f4f4;
+}
+#campoJ {
+	float: left;
+	width: 80%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	border-top: none;
+}
+#campoK {
+	float: left;
+	width: 18%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-top: none;
+}
 /** Classes **/
 .campos{
 	height: 20px;
@@ -678,6 +879,14 @@ p {
 .intexto {
 	height: 18px;
 	margin: 0;
+	padding: 0;
+}
+.intextoOrc {
+	height: 18px;
+	text-align: center;
+	width: 94%;
+	background: #fff;
+	margin: 0 auto;
 	padding: 0;
 }
 .selecionar{
@@ -726,7 +935,7 @@ p {
 	padding: 0;
 }
 .cake-error {
-	position: absolute;
+	/*position: absolute;*/
 	z-index: 4; 
 }
 .error-message {

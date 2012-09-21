@@ -6,6 +6,16 @@ class Medida extends AppModel{
 	var $primaryKey = 'medida_id';
 	
 	var $displayField = 'medida_tipo';
+	
+	/*public $belongsTo = array(
+        'Material' => array(
+            'className' => 'Material',
+            'foreignKey' => 'material_medida',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );*/
     
        var $validate = array(
 		/*'embalagem_tipo' => array(

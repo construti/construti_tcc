@@ -27,6 +27,9 @@
 		<tr>
 			<th>ID</th>
 			<th>Nome</th>
+			<!--<th>Embalagem</th>
+			<th>Qtd. Base</th>			
+			<th>Medida</th>-->
 			<th>Tipo</th>
 			<th>Descrição</th>
 		</tr>
@@ -35,6 +38,9 @@
 		<tr>
 			<td align="center"><?php echo $result['Material']['material_id']; ?></td>
 			<td><?php echo $result['Material']['material_nome']; ?></td>
+			<!--<td align="center"><?php echo $result['Embalagem']['embalagem_tipo']; ?></td>
+			<td align="center"><?php echo $result['Material']['material_qtd_base']; ?></td>
+			<td align="center"><?php echo $result['Medida']['medida_tipo']; ?></td>-->			
 			<td align="center"><?php echo $result['Material']['material_tipo']; ?></td>
 			<td align="center"><?php echo $result['Material']['material_descricao']; ?></td>
 			

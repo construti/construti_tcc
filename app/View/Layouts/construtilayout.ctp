@@ -79,9 +79,10 @@ $cakeDescription = __d('cake_dev', 'Construti');
 						<li>At. Preços
 							<ul>
 								<li><a title="Atualizar Preços de Materiais" href="<?php echo $this->params->base."/fornecedores/searchorcmat"; ?>">Materiais</a></li>
-                                <li><a title="Atualizar Preços de Equipamentos" href="<?php echo $this->params->base."/fornecedores/atprecosequip"; ?>">Equipamentos</a></li>								
+                                <li><a title="Atualizar Preços de Equipamentos" href="<?php echo $this->params->base."/fornecedores/searchorcequip"; ?>">Equipamentos</a></li>								
 							</ul>
 						</li>
+						<li><a title="Checar Estoque" href="<?php echo $this->params->base."/fornecedores/estoque"; ?>">Estoque</a></li>
 					</ul>
 				</li>
 				<li>Programas de Obra
