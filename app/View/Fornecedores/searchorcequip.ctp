@@ -2,10 +2,10 @@
 	$this->pageTitle = 'Fornecedores';
 ?>
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Pesquisar Orçamento de Materiais</div> <!-- título do formulário -->
+	<div id="tituloform">Pesquisar Orçamento de Equipamentos</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo">
-	<?php echo $this->Form->create('Orcamento_materiais'); ?> <!-- início do formulário -->
+	<?php echo $this->Form->create('Orcamento_equipamentos'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
 			<div class="campos">Pesquisar: </div>
 			<div class="campos">Por: </div>
@@ -40,13 +40,13 @@
 		
 		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
 		<tr>
-			<td><?php echo $result['Orcamento_materiais']['orcamento_id']; ?></td>
+			<td><?php echo $result['Orcamento_equipamentos']['orcamento_id']; ?></td>
 			<td><?php echo $result['Fornecedor']['fornecedor_nome']; ?></td>
-			<td align="center"><?php echo $result['Orcamento_materiais']['created']; ?></td>
-			<td align="center"><?php echo $result['Orcamento_materiais']['modified']; ?></td>
+			<td align="center"><?php echo $result['Orcamento_equipamentos']['created']; ?></td>
+			<td align="center"><?php echo $result['Orcamento_equipamentos']['modified']; ?></td>
 						
 			<td align="center">
-				<?php echo $this->Html->link('atualizar', array('action' => 'atprecosmat', $result['Orcamento_materiais']['orcamento_id'])); ?>
+				<?php echo $this->Html->link('atualizar', array('action' => 'atprecosequip', $result['Orcamento_equipamentos']['orcamento_id'])); ?>
 			</td>
 		</tr>
 		<?php endforeach; } ?>

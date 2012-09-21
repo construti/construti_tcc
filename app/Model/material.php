@@ -10,10 +10,25 @@ class Material extends AppModel{
 	
 	var $displayField = 'material_nome';
 	
-	var $hasMany = array('Embalagem','Medida');
+	var $hasMany = array(
+		'Embalagem' => array(
+			'className' => 'Embalagem',
+            'foreignKey' => 'embalagem_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+		),
+		'Medida' => array(
+			'className' => 'Medida',
+            'foreignKey' => 'medida_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+		)
+	);
 	
 	public $virtualFields = array(
-    'descricao' => 'CONCAT(material_nome, " - ", material_embalagem, " - ", material_qtd_base, " - ", material_medida)'
+    'descricao' => 'CONCAT(material_nome, " - ", material_embalagem , " - ", material_qtd_base, " - ", material_medida)'
 );
 
     
