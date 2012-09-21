@@ -117,29 +117,40 @@
 		</div>
 		<div id="camposlacunasorc"> <!-- div com os campos a serem preenchidos -->
 			<div class="campos">
-				<div style="margin: 0 165px 0 5px; float: left;">Nome:</div><div style="margin: 0 135px 0 5px; float: left;">Qtd:</div>
-				<div style="margin: 0 5px 0 5px; float: left;">
-					<?php echo $this->Form->select('material', $materiais_array, array('label' => '', 'id' => 'material', 'empty' => 'Escolha...', 'class' => array('selecionar'))); ?>
+				<div style="margin: 0 10px 0 5px; float: left;">
+					<div style="margin: 0 5px 0;">Nome:</div>
+					<div style="margin: 0 5px 0;">
+						<?php echo $this->Form->select('material', $materiais_array, array('label' => '', 'id' => 'material', 'empty' => 'Escolha...', 'class' => array('selecionar'))); ?>
+					</div>
 				</div>
-				<div style="margin: 0 5px 0 5px; float: left;">
-					<?php echo $this->Form->input('qtd_material', array('label' => '', 'id' => 'qtd_material', 'size' => '5', 'class' => array('intexto')));  ?>
+				<div style="margin: 0 10px 0 5px; float: left;">
+					<div style="margin: 0 5px 0;">Qtd:</div>
+					<div style="margin: 0 5px 0;">
+						<?php echo $this->Form->input('qtd_material', array('label' => '', 'id' => 'qtd_material', 'size' => '5', 'class' => array('intexto')));  ?>
+					</div>
 				</div>
             </div>
-			
 			<div class="campos">
-				<div style="margin: 5px 75px 0 5px; float: left;">Nome:</div><div style="margin: 5px 225px 0 5px; float: left;">Qtd:</div>
-				<div style="margin: 0 5px 0 5px; float: left;">
-					<?php echo $this->Form->select('equip', $equipamentos, array('label' => '', 'id' => 'equip', 'empty' => 'Escolha...', 'class' => array('selecionar'))); ?>
+				<div style="margin: 5px 10px 0 5px; float: left;">
+					<div style="margin: 0 5px 0;">Nome:</div>
+					<div style="margin: 0 5px 0;">
+						<?php echo $this->Form->select('equip', $equipamentos, array('label' => '', 'id' => 'equip', 'empty' => 'Escolha...', 'class' => array('selecionar'))); ?>
+					</div>
 				</div>
-				<div style="margin: 0 5px 0 5px; float: left;">
-					<?php echo $this->Form->input('qtd_equip', array('label' => '', 'id' => 'qtd_equip', 'size' => '5', 'class' => array('intexto')));  ?>
+				<div style="margin: 5px 10px 0 5px; float: left;">
+					<div style="margin: 0 5px 0;">Qtd:</div>
+					<div style="margin: 0 5px 0;">
+						<?php echo $this->Form->input('qtd_equip', array('label' => '', 'id' => 'qtd_equip', 'size' => '5', 'class' => array('intexto')));  ?>
+					</div>
 				</div>
-				<div style="margin: 0 5px 0 5px; float: left;">
-				<?php 
-					$opcoes_alugado = array('A' => 'Alugar', 'C' => 'Comprar');
-					$atributos_alugado = array('label' => '', 'legend' => false, 'id' => 'equip_al', 'class' => array('intexto'));
-					echo $this->Form->radio('equip_al', $opcoes_alugado, $atributos_alugado);
-				?>
+				<div style="margin: 5px 10px 0 5px; float: left;">
+					<div style="margin: 15px 5px 0;">
+					<?php 
+						$opcoes_alugado = array('A' => 'Alugar', 'C' => 'Comprar');
+						$atributos_alugado = array('label' => '', 'legend' => false, 'id' => 'equip_al', 'class' => array('intexto'));
+						echo $this->Form->radio('equip_al', $opcoes_alugado, $atributos_alugado);
+					?>
+					</div>
 				</div>
             </div>
 			
@@ -166,6 +177,7 @@
 				
 			</div>
 		</div>
+		<div style="height: 1px; clear: both;"></div>
 		<div id="sublistaB">
 			<div id="listatitulo">Equipamento</div>
 			<div id="lacunas">
