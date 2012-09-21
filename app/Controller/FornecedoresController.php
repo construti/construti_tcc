@@ -269,37 +269,51 @@ class FornecedoresController extends AppController {
 		//$this->set(compact('fornecedores'));
 		$this->set(compact('equipamentos'));
 		$this->set(compact('materiais_array'));
+		
+		$usuID = $this->Session->read();
+		
+		
 	
-        if(!empty($this->datao)){
-			$this->loadModel('Fornecedor_equipamentos');
-			if( ($this->data['Fornecedor_equipamentos']['fornecedor_id'] == '') || ($this->data['Fornecedor_equipamentos']['equipamento_id'] == '') ) {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-	            $this->render('delete','ajax');
+        if(!empty($this->data)){
+			$this->loadModel('Orcamento');
+			$orcamento['Orcamento']['usuario_id'] = $usuID['Auth']['User']['usuario_id'];
+			
+			if($this->Orcamento->save($orcamento)){
+				$orcamento_id = $this->Orcamento->getLastInsertID();
+
+				$orcamento_material = $this->request->data;
+				$orcamento_equipamento = $this->request->data;
+				
+				
+				$this->loadModel('Orcamento_material');
+				$this->loadModel('Orcamento_equipamento');
+				
+				foreach($orcamento_material as $orcMat):
+					pr($orcMat);
+					$orcMat['Orcamento_material']['orcamento_id'] = $orcamento_id;
+					$this->Orcamento_material->save($orcMat);
+				endforeach;
+				
+				foreach($orcamento_equipamento as $orcEquip):
+					pr($orcEquip);
+					$orcEquip['Orcamento_equipamento']['orcamento_id'] = $orcamento_id;
+					$this->Orcamento_equipamento->save($orcEquip);
+				endforeach;
+				
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+                    $this->render('success','ajax');
+                } 
+                else{              
+                    $this->flash('Adicionado com sucesso!','add');
+                    $this->redirect(array('action' => 'add'));
+                }
 			} else {
-				$contar = count($this->data['Fornecedor_equipamentos']['equipamento_id']);
-				for($i = 0; $i < $contar; $i++) {
-					$this->Fornecedor_equipamentos->set(array(
-						'fornecedor_id' => $this->data['Fornecedor_equipamentos']['fornecedor_id'],
-						'equipamento_id' => $this->data['Fornecedor_equipamentos']['equipamento_id'][$i]
-					));
-					
-					if($this->Fornecedor_equipamentos->saveAll()) {
-						if($this->request->is('Ajax')){    // o ajax roda aqui
-		                    $this->set('dados',$this->request->data);
-		                    $this->render('success','ajax');
-		                } 
-		                else{              
-		                    $this->flash('Adicionado com sucesso!','add');
-		                    $this->redirect(array('action' => 'add'));
-		                }
-					} else {
-						echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-		                $this->render('delete','ajax');
-					}
-				}
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
 			}
-        }  
-    }
+		}
+	}
 	
 	public function searchorcmat() { //pesquisar fornecedores
 		if (!empty($this->data['pesquisa'])){
