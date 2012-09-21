@@ -30,9 +30,14 @@
 	}
 	
 	$(document).ready(function(){
-		$("#material").change(function(){  // quando mudar o valor do campo material, é atribuido o valor desse campo, e passado como parametro GET para a action pega_fornecedores_mat_equip
-			matID=$(this).val();
-			txt_str="material_id="+matID;
+		$(".selecionar").change(function(){  // quando mudar o valor do campo material, é atribuido o valor desse campo, e passado como parametro GET para a action pega_fornecedores_mat_equip
+			matID=$("#material").val();
+			if(matID=='') matID='-1';
+			
+			equipID=$("#equip").val();
+			if(equipID=='') equipID='-1';
+			
+			txt_str="material_id="+matID+"&equipamento_id="+equipID;
 			$.get("../fornecedores/pega_fornecedores_mat_equip",txt_str,function(result){ 
 				$("#forns").html(result); // o html renderizado, na action pega_fornecedores_mat_equip, é carregado no campo forns
 				$('.remove-all').trigger('click');
