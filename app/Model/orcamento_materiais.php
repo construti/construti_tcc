@@ -44,7 +44,12 @@ class Orcamento_materiais extends AppModel{
 		),
 		'material_preco' => array(
 			'rule' => 'numeric',
-			'allowEmpty' => false,
+			'allowEmpty' => true,
+			'message' => "Somente numeros."
+		),
+		'prazo' => array(
+			'rule' => 'numeric',
+			'allowEmpty' => true,
 			'message' => "Somente numeros."
 		)
 		

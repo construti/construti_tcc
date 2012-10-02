@@ -44,7 +44,7 @@
 			<td align="center"><?php echo $result['Equipamento']['equipamento_id']; ?></td>
 			<td><?php echo $result['Equipamento']['equipamento_nome']; ?></td>
 			<td><?php echo $result['Equipamentos_tipo']['tipo_equipamento']; ?></td>
-			<td><?php echo $result['Equipamento']['equipamento_valor_hora']; ?></td>
+			<td align="center"><?php echo $result['Equipamentos_tipo']['tipo_valor_hora']; ?></td>
 			<td><?php echo $result['Equipamento']['equipamento_descricao']; ?></td>
 			
 			<td align="center">

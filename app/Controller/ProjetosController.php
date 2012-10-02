@@ -20,8 +20,7 @@ class ProjetosController extends AppController {
     public function add(){
 		$this->loadModel('Obra');
 				
-		$projeto_obras = $this->Obra->find('list', array('fields' => array('Obra.obra_nome')));
-		//pr($projeto_obras);
+		$projeto_obras = $this->Obra->find('list', array('order' => array('obra_nome' => 'asc'), 'fields' => array('Obra.obra_nome')));
 		$this->set('projeto_obras',$projeto_obras);
 		
         if(!empty($this->data)){
@@ -66,7 +65,6 @@ class ProjetosController extends AppController {
        $this->layout = 'ajax';
         if($this->request->is('Ajax')){  
             $this->request->data['Projeto'][$this->request->data['field']] = $this->request->data['value']; 
-            //pr($this->request->data);  
             $error = '';
             if($this->request->data['field'] == 'obra_id' ) {
                 if(empty($this->data['Projeto']['obra_id'])) {
@@ -118,7 +116,7 @@ class ProjetosController extends AppController {
     public function edit($id = null){   
         $this->Projeto->id = $id;
 		$this->loadModel('Obra');		
-		$projeto_obras = $this->Obra->find('list', array('fields' => array('Obra.obra_nome')));
+		$projeto_obras = $this->Obra->find('list', array('order' => array('obra_nome' => 'asc'), 'fields' => array('Obra.obra_nome')));
 		$this->set('projeto_obras',$projeto_obras);
         if ($this->request->is('get')) {
            $this->request->data = $this->Projeto->read(); 

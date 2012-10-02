@@ -10,8 +10,8 @@
 	<?php echo $this->Form->create('Material'); ?> <!-- início do formulário -->
 		<div class="legenda">* = Campos Obrigatórios</div>
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Nome:*: </div> 
-			<div class="campos">Tipo:*: </div> 
+			<div class="campos">Nome*: </div> 
+			<div class="campos">Tipo*: </div> 
 			<div class="campos">Embalagem*: </div> 
 			<div class="campos">Quantidade*: </div> 
 			<div class="campos">Medida*: </div> 

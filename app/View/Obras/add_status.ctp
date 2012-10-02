@@ -3,7 +3,9 @@
 	$this->pageTitle = 'Status de Obras';
 ?>
 
-<div id="tituloform">Cadastro de Status de Obras</div> <!-- título do formulário -->
+<div id="formulariotopo"> <!-- topo do formulário -->
+	<div id="tituloform">Cadastro de Status de Obras</div> <!-- título do formulário -->
+</div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Obras_status'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
@@ -27,3 +29,4 @@
 	<div id="success"></div> <!-- mensagem de sucesso no cadastro -->
 	<div id="sending"> Enviando... </div> <!-- mensagem para envio dos dados -->
 </div> 
+<div id="formulariofim"></div> <!-- final do formulário -->    

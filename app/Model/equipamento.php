@@ -23,11 +23,6 @@ class Equipamento extends AppModel{
 		'equipamento_tipo' => array(
 			'rule' => 'notEmpty',
 			'message' => "Preencha corretamente."
-		),
-		'equipamento_valor_hora' => array(
-			'rule' => 'numeric',
-			'allowEmpty' => true,
-			'message' => "Somente numeros."
 		)
 		
 	);

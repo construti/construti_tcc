@@ -29,7 +29,7 @@ class FornecedoresController extends AppController {
 			}
         }  
     }
-   /////////////////////////////////////////////////////////////////////////  
+	
     public function validate_form() { //validação do formulário
        $this->layout = 'ajax';
         if($this->request->is('Ajax')){  
@@ -80,7 +80,7 @@ class FornecedoresController extends AppController {
             $this->set('error', $error);      
         }
    } 
-   /////////////////////////////////////////////////////////////////////////  
+   
 	public function search() { //pesquisar fornecedores
 		if (!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
@@ -91,7 +91,7 @@ class FornecedoresController extends AppController {
 			$this->set(compact('results'));
         }
     }
-	///////////////////////////////////////////////////////////////////////// 
+	 
 	public function edit($id = null) { //atualizar um fornecedor
 		$this->Fornecedor->id = $id;
         if ($this->request->is('get')) {
@@ -111,7 +111,7 @@ class FornecedoresController extends AppController {
 			}
 		}
     }
-	///////////////////////////////////////////////////////////////////////// 
+	
 	public function delete($id) { //deletar um fornecedor
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
@@ -126,7 +126,7 @@ class FornecedoresController extends AppController {
 			}
 		}		
     }
-	///////////////////////////////////////////////////////////////////////// 
+	
 	public function relmateriais() { //relacionar materiais à um Fornecedor
 		$this->loadModel('Material');
 		
@@ -210,7 +210,6 @@ class FornecedoresController extends AppController {
         }  
     }
 	
-/////////////////////////////////////////////////////////////////////////////	
 	public function pega_fornecedores_mat_equip(){ //atualizar o campo de salário ao escolher o tipo
 		
 		$matID = $this->params['url']['material_id'];
@@ -251,8 +250,7 @@ class FornecedoresController extends AppController {
 		$this->set('fornecedores',$fornecedores);
 		$this->Render('pega_fornecedores_mat_equip','ajax');
 	}
-	
-//////////////////////////////////////////////////////////////////////		
+		
 	public function orcamento() { //requisitar Orçamento à Fornecedor(es)
 		$this->loadModel('Fornecedor');
 		$this->loadModel('Material');
@@ -350,9 +348,11 @@ class FornecedoresController extends AppController {
 				if($this->data['Orcamento_materiais']['material_preco'.$i] != ''){
 					$this->Orcamento_materiais->id = $orcamento[$i]['Orcamento_materiais']['orcamentos_materiais_id'];
 					$materialPrecoAtual = $this->data['Orcamento_materiais']['material_preco'.$i];
+					$prazo = $this->data['Orcamento_materiais']['prazo'.$i];
 					
 					$this->Orcamento_materiais->set(array(
-						'material_preco' => $materialPrecoAtual
+						'material_preco' => $materialPrecoAtual,
+						'prazo' => $prazo
 					));
 					
 					if($this->Orcamento_materiais->save()) {
@@ -369,7 +369,7 @@ class FornecedoresController extends AppController {
 		                $this->render('delete','ajax');
 					}
 					
-					$this->loadModel('Material');
+					/*$this->loadModel('Material');
 					$materialid = $orcamento[$i]['Orcamento_materiais']['material_id'];
 					$this->Material->id = $materialid;
 					$materialUltimoPreco = $this->Material->find('first', array('conditions' => array('Material.material_id LIKE' => $materialid)));
@@ -393,7 +393,7 @@ class FornecedoresController extends AppController {
 							echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
 			                $this->render('delete','ajax');
 						}
-					}
+					}*/
 				} else {
 					echo "<center> O valor do campo de preço da ".($i+1)."ª linha está vazio, portanto não foi atualizado. </center><br />";
 					$this->render('delete','ajax');
@@ -434,9 +434,11 @@ class FornecedoresController extends AppController {
 				if($this->data['Orcamento_equipamentos']['equipamento_preco'.$i] != ''){
 					$this->Orcamento_equipamentos->id = $orcamento[$i]['Orcamento_equipamentos']['orcamentos_equipamentos_id'];
 					$equipPrecoAtual = $this->data['Orcamento_equipamentos']['equipamento_preco'.$i];
+					$prazo = $this->data['Orcamento_equipamentos']['prazo'.$i];
 					
 					$this->Orcamento_equipamentos->set(array(
-						'equipamento_preco' => $equipPrecoAtual
+						'equipamento_preco' => $equipPrecoAtual,
+						'prazo' => $prazo
 					));
 					
 					if($this->Orcamento_equipamentos->save()) {
@@ -453,7 +455,7 @@ class FornecedoresController extends AppController {
 		                $this->render('delete','ajax');
 					}
 					
-					$this->loadModel('Equipamento');
+					/*$this->loadModel('Equipamento');
 					$equipid = $orcamento[$i]['Orcamento_equipamentos']['equipamento_id'];
 					$this->Equipamento->id = $equipid;
 					$equipUltimoPreco = $this->Equipamento->find('first', array('conditions' => array('Equipamento.equipamento_id LIKE' => $equipid)));
@@ -477,7 +479,7 @@ class FornecedoresController extends AppController {
 							echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
 			                $this->render('delete','ajax');
 						}
-					}
+					}*/
 				} else {
 					echo "<center> O valor do campo de preço da ".($i+1)."ª linha está vazio, portanto não foi atualizado. </center><br />";
 					$this->render('delete','ajax');

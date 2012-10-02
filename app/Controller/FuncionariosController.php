@@ -17,7 +17,7 @@ class FuncionariosController extends AppController {
 	    
     public function add() { //adiciona um funcionário
 		$this->loadModel('Area');
-		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
+		$areas = $this->Area->find('list', array('order' => array('area_descricao' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
 		
 		$this->set(compact('areas'));
 	
@@ -119,7 +119,7 @@ class FuncionariosController extends AppController {
 	
 	public function edit($id = null) { //atualizar um funcionário
 		$this->loadModel('Area');
-		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
+		$areas = $this->Area->find('list', array('order' => array('area_descricao' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
 		
 		$this->set(compact('areas'));
 		$this->Funcionario->id = $id;
@@ -230,7 +230,7 @@ class FuncionariosController extends AppController {
 	
 	public function popup_tipo() { //adiciona um tipo de funcionário
 		$this->loadModel('Area');
-		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
+		$areas = $this->Area->find('list', array('order' => array('area_descricao' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
 		
 		$this->set(compact('areas'));
 		$this->render('popup_tipo','popuplayout');
@@ -279,7 +279,7 @@ class FuncionariosController extends AppController {
 	public function edit_tipo($id = null) { //atualizar um tipo
 		$this->loadModel('Tipo');
 		$this->loadModel('Area');
-		$areas = $this->Area->find('list', array('order' => array('area_id' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
+		$areas = $this->Area->find('list', array('order' => array('area_descricao' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
 		
 		$this->set(compact('areas'));
 		$this->Tipo->id = $id;
@@ -326,7 +326,7 @@ class FuncionariosController extends AppController {
 		$f_area = $this->params['url']['funcionario_area'];
 		$funcionario_area = $this->Area->find('first', array('conditions' => array('Area.area_id LIKE' => "%$f_area%")));
 		$funcionario_area = $funcionario_area['Area']['area_id'];
-		$funcionario_tipo = $this->Tipo->find('all', array('conditions' => array('Tipo.tipo_area_id LIKE' => "%$funcionario_area%")));
+		$funcionario_tipo = $this->Tipo->find('all', array('order' => array('tipo_funcionario' => 'asc'), 'conditions' => array('Tipo.tipo_area_id LIKE' => "%$funcionario_area%")));
 		$this->set('funcionario_tipo',$funcionario_tipo);
 		$this->Render('pega_tipo_area','ajax');
 	}

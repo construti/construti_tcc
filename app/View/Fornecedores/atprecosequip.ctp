@@ -7,13 +7,14 @@
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Orcamento_equipamentos'); ?> <!-- início do formulário -->
-		<div id="tabelaorc">
+		<div id="tabelaorcB">
 			<div id="titulosorc">
 				<div id="tituloE">Equipamento</div>
 				<div id="tituloF">Fornecedor</div>
 				<div id="tituloG">Necessidade</div>
 				<div id="tituloH">Quantidade</div>
 				<div id="tituloI">Valor/Hora</div>
+				<div id="tituloEI">Prazo(dias)</div>
 			</div>
 			
 			<?php $k = 0; ?>
@@ -33,6 +34,9 @@
 					<div id="campoH"><?php echo $result['Orcamento_equipamentos']['quantidade']; ?></div>
 					<div id="campoI">
 						<?php echo $this->Form->input('equipamento_preco'.$k, array('label' => '', 'id' => 'equipamento_preco', 'class' => array('intextoOrc'))); ?>
+					</div>
+					<div id="campoEI">
+						<?php echo $this->Form->input('prazo'.$k, array('label' => '', 'id' => 'prazo', 'class' => array('intextoOrc'))); ?>
 					</div>
 					<?php $k++; ?>
 				</div>

@@ -671,7 +671,10 @@ p {
 }
 /** Orçamentos **/
 #tabelaorc {
-	margin: 0 0 0 15%;
+	margin: 0 0 0 12%;
+}
+#tabelaorcB {
+	margin: 0 0 0 6%;
 }
 #titulosorc {
 
@@ -698,6 +701,17 @@ p {
 	background: #f4f4f4;
 }
 #tituloD {
+	float: left;
+	width: 11%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	background: #f4f4f4;
+}
+#tituloAD {
 	float: left;
 	width: 11%;
 	font-size: 120%;
@@ -736,12 +750,23 @@ p {
 	border-style: solid;
 	border-width: 2px;
 	border-color: #008;
+	border-right: none;
+	border-top: none;
+}
+#campoAD {
+	float: left;
+	width: 11%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
 	border-top: none;
 }
 
 #tituloE, #tituloF {
 	float: left;
-	width: 26%;
+	width: 24%;
 	font-size: 120%;
 	border-style: solid;
 	border-width: 2px;
@@ -750,17 +775,6 @@ p {
 	background: #f4f4f4;
 }
 #tituloG {
-	float: left;
-	width: 13%;
-	font-size: 120%;
-	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #008;
-	border-right: none;
-	background: #f4f4f4;
-}
-#tituloH {
 	float: left;
 	width: 12%;
 	font-size: 120%;
@@ -771,7 +785,29 @@ p {
 	border-right: none;
 	background: #f4f4f4;
 }
+#tituloH {
+	float: left;
+	width: 11%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	background: #f4f4f4;
+}
 #tituloI {
+	float: left;
+	width: 10%;
+	font-size: 120%;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	background: #f4f4f4;
+}
+#tituloEI {
 	float: left;
 	width: 11%;
 	font-size: 120%;
@@ -783,7 +819,7 @@ p {
 }
 #campoE, #campoF {
 	float: left;
-	width: 26%;
+	width: 24%;
 	height: 23px;
 	border-style: solid;
 	border-width: 2px;
@@ -792,17 +828,6 @@ p {
 	border-top: none;
 }
 #campoG {
-	float: left;
-	width: 13%;
-	height: 23px;
-	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #008;
-	border-right: none;
-	border-top: none;
-}
-#campoH {
 	float: left;
 	width: 12%;
 	height: 23px;
@@ -813,7 +838,29 @@ p {
 	border-right: none;
 	border-top: none;
 }
+#campoH {
+	float: left;
+	width: 11%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	border-top: none;
+}
 #campoI {
+	float: left;
+	width: 10%;
+	height: 23px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #008;
+	border-right: none;
+	border-top: none;
+}
+#campoEI {
 	float: left;
 	width: 11%;
 	height: 23px;
@@ -887,6 +934,12 @@ p {
 	width: 94%;
 	background: #fff;
 	margin: 0 auto;
+	padding: 0;
+}
+.intextoDes {
+	height: 18px;
+	background: #ccc;
+	margin: 0;
 	padding: 0;
 }
 .selecionar{

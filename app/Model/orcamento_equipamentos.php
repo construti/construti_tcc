@@ -46,9 +46,14 @@ class Orcamento_equipamentos extends AppModel{
 			'allowEmpty' => false,
 			'message' => "Somente numeros."
 		),
-		'material_preco' => array(
+		'equipamento_preco' => array(
 			'rule' => 'numeric',
-			'allowEmpty' => false,
+			'allowEmpty' => true,
+			'message' => "Somente numeros."
+		),
+		'prazo' => array(
+			'rule' => 'numeric',
+			'allowEmpty' => true,
 			'message' => "Somente numeros."
 		)
 		
