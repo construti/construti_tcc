@@ -124,7 +124,7 @@ $cakeDescription = __d('cake_dev', 'Construti');
 			<div id="identificacao"> <!-- identificação do usuário -->
 				<?php
 					$sessao = $this->Session->read();
-					if ($sessao['Auth']['User'] != '') {
+					if (isset($sessao['Auth']['User']['usuario_login']) ) {
 						echo "Olá ".$sessao['Auth']['User']['usuario_login'];
 					}
 				?>
