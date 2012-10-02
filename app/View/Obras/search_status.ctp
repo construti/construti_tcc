@@ -1,5 +1,5 @@
 <?php  
-	$this->pageTitle = 'Status';
+	$this->pageTitle = 'Status de Obras';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Pesquisa</div> <!-- título do formulário -->

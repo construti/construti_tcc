@@ -13,6 +13,7 @@
 				<div id="tituloB">Fornecedor</div>
 				<div id="tituloC">Quantidade</div>
 				<div id="tituloD">Preço</div>
+				<div id="tituloAD">Prazo(dias)</div>
 			</div>
 			
 			<?php $k = 0; ?>
@@ -24,6 +25,9 @@
 					<div id="campoC"><?php echo $result['Orcamento_materiais']['quantidade']; ?></div>
 					<div id="campoD">
 						<?php echo $this->Form->input('material_preco'.$k, array('label' => '', 'id' => 'material_preco', 'class' => array('intextoOrc'))); ?>
+					</div>
+					<div id="campoAD">
+						<?php echo $this->Form->input('prazo'.$k, array('label' => '', 'id' => 'prazo', 'class' => array('intextoOrc'))); ?>
 					</div>
 					<?php $k++; ?>
 				</div>

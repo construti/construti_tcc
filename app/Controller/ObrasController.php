@@ -12,10 +12,10 @@ class ObrasController extends AppController {
 	    
     public function add() { //adiciona um obra
 		$this->loadModel('Obras_status');
-		$status = $this->Obras_status->find('list', array('order' => array('status_id' => 'asc'), 'fields' => array('Obras_status.status_id', 'Obras_status.status_obra')));
+		$status = $this->Obras_status->find('list', array('order' => array('status_obra' => 'asc'), 'fields' => array('Obras_status.status_id', 'Obras_status.status_obra')));
 		
-		$Funcionario = $this->loadModel('Funcionario');
-		$responsavel = $this->Funcionario->find('list', array('fields' => array('funcionario_nome'),'order' => array('funcionario_nome' => 'asc')));
+		$this->loadModel('Funcionario');
+		$responsavel = $this->Funcionario->find('list', array('fields' => array('funcionario_nome'), 'order' => array('funcionario_nome' => 'asc')));
 		
 		$this->set(compact('responsavel'));
 		$this->set(compact('status'));
@@ -122,11 +122,14 @@ class ObrasController extends AppController {
 	
 	public function edit($id = null) { //atualizar um obra
 		$this->Obra->id = $id;
-		$Funcionario = $this->loadModel('Funcionario');
+		$this->loadModel('Obras_status');
+		$status = $this->Obras_status->find('list', array('order' => array('status_obra' => 'asc'), 'fields' => array('Obras_status.status_id', 'Obras_status.status_obra')));
+		
+		$this->loadModel('Funcionario');
 		$responsavel = $this->Funcionario->find('list', array('fields' => array('funcionario_nome'),'order' => array('funcionario_nome' => 'asc'	)));
 		
 
-		 $this->set(compact('responsavel')); 
+		$this->set(compact('responsavel')); 
 
         if ($this->request->is('get')) {
 			$this->request->data = $this->Obra->read();
@@ -161,9 +164,7 @@ class ObrasController extends AppController {
 		}		
     }
 	
-	public function popup_status() { //adiciona um Status de obra
-		$this->render('popup_status','popuplayout');
-		
+	public function add_status() { //adiciona um Status de obra		
 		if(!empty($this->data)){
 			$this->loadModel('Obras_status');
 			if($this->Obras_status->save($this->data)){
@@ -172,8 +173,8 @@ class ObrasController extends AppController {
 					$this->render('success','ajax');
                 } 
                 else{ 
-                    $this->flash('Adicionado com sucesso!','popup_status');
-                    $this->redirect(array('action' => 'popup_status'));
+                    $this->flash('Adicionado com sucesso!','add_status');
+                    $this->redirect(array('action' => 'add_status'));
                 }
             } else {
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";

@@ -12,7 +12,7 @@ class EquipamentosController extends AppController {
 	    
     public function add() { //adiciona um equipamento
 		$this->loadModel('Equipamentos_tipo');
-		$tipos = $this->Equipamentos_tipo->find('list', array('order' => array('tipo_id' => 'asc'), 'fields' => array('Equipamentos_tipo.tipo_id', 'Equipamentos_tipo.tipo_equipamento')));
+		$tipos = $this->Equipamentos_tipo->find('list', array('order' => array('tipo_equipamento' => 'asc'), 'fields' => array('Equipamentos_tipo.tipo_id', 'Equipamentos_tipo.tipo_equipamento')));
 		
 		$this->set(compact('tipos'));
 	
@@ -72,7 +72,7 @@ class EquipamentosController extends AppController {
 	
 	public function edit($id = null) { //atualizar um equipamento
 		$this->loadModel('Equipamentos_tipo');
-		$tipos = $this->Equipamentos_tipo->find('list', array('order' => array('tipo_id' => 'asc'), 'fields' => array('Equipamentos_tipo.tipo_id', 'Equipamentos_tipo.tipo_equipamento')));
+		$tipos = $this->Equipamentos_tipo->find('list', array('order' => array('tipo_equipamento' => 'asc'), 'fields' => array('Equipamentos_tipo.tipo_id', 'Equipamentos_tipo.tipo_equipamento')));
 		
 		$this->set(compact('tipos'));
 		$this->Equipamento->id = $id;

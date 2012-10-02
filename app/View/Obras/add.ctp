@@ -3,12 +3,6 @@
 	$this->pageTitle = 'Obras';
 ?> 
 
-<script type="text/javascript" language="javascript" >
-		function popupStatusCad() {
-		    window.open("popup_status","Status","resizable=no,status=no,scrollbars=no,height=245,width=375,left=490,top=320,menubar=no,addressbar=no");
-		}
-</script>
-
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Cadastro</div> <!-- título do formulário -->
 </div>
@@ -73,12 +67,6 @@
 			<div class="campos">
 			<?php 
 				  echo $this->Form->select('obra_status', $status, array('label' => '', 'id' => 'obra_status', 'class' => array('selecionar'), 'empty' => 'Escolha...')); ?>
-				<div class="minibotoes">
-					<a onclick="popupStatusCad()" title="Cadastrar Novo Status"><div class="botaocadastrar"></div></a>
-				</div>
-				<div class="minibotoes">
-					<a href="<?php echo $this->params->base."/obras/search_status"; ?>" title="Pesquisar Status" target="_blank"><div class="botaopesquisar"></div></a>
-				</div>
 			</div>
 			
 			<div class="campos">

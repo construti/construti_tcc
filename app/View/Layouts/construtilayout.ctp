@@ -87,8 +87,18 @@ $cakeDescription = __d('cake_dev', 'Construti');
 				</li>
 				<li>Programas de Obra
 					<ul>
-						<li><a title="Cadastrar Programa de Obra" href="<?php echo $this->params->base."/obras/add"; ?>">Gerar Obra</a></li>
-                    	<li><a title="Pesquisar Programa de Obra" href="<?php echo $this->params->base."/obras/search"; ?>">Pesquisar</a></li>
+						<li>Obra
+							<ul>
+								<li><a title="Cadastrar Programa de Obra" href="<?php echo $this->params->base."/obras/add"; ?>"><div style="width: 80px;">Gerar Obra</div></a></li>
+                                <li><a title="Pesquisar Programa de Obra" href="<?php echo $this->params->base."/obras/search"; ?>">Pesquisar</a></li>
+							</ul>
+						</li>
+						<li>Status
+							<ul>
+								<li><a title="Cadastrar Status de Obra" href="<?php echo $this->params->base."/obras/add_status"; ?>">Cadastrar</a></li>
+                                <li><a title="Pesquisar Status de Obra" href="<?php echo $this->params->base."/obras/search_status"; ?>">Pesquisar</a></li>
+							</ul>
+						</li>
 					</ul>
 				</li>
 				<li>Requisições
