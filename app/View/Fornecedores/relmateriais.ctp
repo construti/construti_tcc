@@ -5,12 +5,24 @@
 	echo $this->Html->script('plugins/scrollTo/jquery.scrollTo-min', array('inline' => false));
 	echo $this->Html->script('ui.multiselect', array('inline' => false));
 	$this->pageTitle = 'Fornecedores';
+	
+	$materiais = '';
 ?> 
 
 <script>	
+	$(document).ready(function(){
+		fornID=$("#fid").val();
+		if(fornID=='') fornID='-1';
+		
+		txt_str="fornecedor_id="+fornID;
+		$.get("../pega_materiais",txt_str,function(result){ 
+			$("#materiais").html(result); // o html renderizado, na action pega_materiais, é carregado no campo materiais
+		});
+	});
+	
 	$(function(){
 		$.localise('ui-multiselect', {/*language: 'en', */path: 'js/locale/'});
-		$("#material_id").multiselect();
+		$("#materiais").multiselect();
 	});
 </script>
 
@@ -26,18 +38,19 @@
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
             <?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
+			<?php echo $this->Form->input('fid', array('label' => '', 'id' => 'fid', 'value' => $fornecedorId, 'type' => 'hidden')); ?>
 			<div class="campos">
-			<?php echo $this->Form->input('fornecedor_id', array('label' => '', 'id' => 'fornecedor_id', 'value' => $fornecedor, 'readonly', 'class' => array('intextoDes'))); ?> 
+			<?php echo $this->Form->input('fornecedor', array('label' => '', 'id' => 'fornecedor', 'value' => $fornecedor, 'readonly', 'class' => array('intextoDes'))); ?>
 			</div>
 			
 			<div class="campos">
-			<?php echo $this->Form->select('material_id', $materiais, array('label' => '', 'id' => 'material_id', 'class' => array('multiselect'), 'multiple' => 'multiple')); ?>
+			<?php echo $this->Form->select('materiais', $materiais, array('label' => '', 'id' => 'materiais', 'class' => array('multiselect'), 'multiple' => 'multiple')); ?>
             </div>
 			<?php  ?> 
 		</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
-			echo $this->Js->submit('Cadastrar', array(
+			echo $this->Js->submit('Relacionar', array(
                 'before' => $this->Js->get('#sending')->effect('fadeIn'),
                 'success' => $this->Js->get('#sending')->effect('fadeOut'),
                 'update' => '#success'

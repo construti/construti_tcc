@@ -143,59 +143,94 @@ class FornecedoresController extends AppController {
 		
 		$forn = $this->Fornecedor->find('first', array('conditions' => array('Fornecedor.fornecedor_id' => $id)));
 		$fornecedor = $forn['Fornecedor']['fornecedor_nome'];
+		$this->set('fornecedor', $fornecedor);
+		$this->set('fornecedorId', $id);
+				
 		//$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_nome' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
 		
-		$this->loadModel('Material');
-		$materiais = $this->Material->find('list', array('order' => array('material_nome' => 'asc'), 'fields' => array('Material.material_id', 'Material.material_nome')));
+		//$this->loadModel('Material');
+		//$materiais = $this->Material->find('list', array('order' => array('material_nome' => 'asc'), 'fields' => array('Material.material_id', 'Material.material_nome')));
 		
 		//$this->set(compact('fornecedores'));
-		$this->set(compact('materiais'));
-		$this->set('fornecedor', $fornecedor);
+		//$this->set(compact('materiais'));
 		
+		$this->loadModel('Fornecedor_materiais');
 		if ($this->request->is('get')) {
-			$this->request->data = $this->Fornecedor->read();
+			$this->request->data = $this->Fornecedor_materiais->read();
 		} else {
-       // if(!empty($this->data)){
-			$this->loadModel('Fornecedor_materiais');
-			if( ($this->data['Fornecedor_materiais']['fornecedor_id'] == '') || ($this->data['Fornecedor_materiais']['material_id'] == '') ) {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-	            $this->render('delete','ajax');
-			} else {
-				$contar = count($this->data['Fornecedor_materiais']['material_id']);
-				for($i = 0; $i < $contar; $i++) {
-					if($this->data['Fornecedor_materiais']['material_id'][$i]!=''){
-						$this->Fornecedor_materiais->set(array(
-							'fornecedor_id' => $this->data['Fornecedor_materiais']['fornecedor_id'],
-							'material_id' => $this->data['Fornecedor_materiais']['material_id'][$i]
-						));
-						
-						if($this->Fornecedor_materiais->saveAll()) {
-							if($this->request->is('Ajax')){    // o ajax roda aqui
-			                    $this->set('dados',$this->request->data);
-			                    $this->render('success','ajax');
-			                } 
-			                else{              
-			                    $this->flash('Adicionado com sucesso!','add');
-			                    $this->redirect(array('action' => 'add'));
-			                }
-						} else {
-							echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-			                $this->render('delete','ajax');
+	        if(!empty($this->data)){
+				if( ($this->data['Fornecedor_materiais']['materiais'] == '') ) {
+					$materiaissel = $this->data['Fornecedor_materiais']['materiais'];
+					$this->loadModel('Material');
+					$compforn = $this->Material->find('list', array('conditions' => array("NOT" => array('Material.material_id' => $materiaissel) ), 'fields' => array('Material.material_id')));
+					
+					$this->loadModel('Fornecedor_materiais');
+					if ($this->Fornecedor_materiais->deleteAll(array('Fornecedor_materiais.fornecedor_id' => $id, 'Fornecedor_materiais.material_id' => $compforn), true)) {
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+			                $this->set('dados',$this->request->data);
+			                $this->render('success','ajax');
+			            } else {
+							$this->flash('Não há mais materiais relacionados ao fornecedor em questão!','/fornecedores/relmateriais');
+							$this->redirect(array('action' => 'relmateriais'));
+						}
+						echo "<center>Não há mais materiais relacionados ao fornecedor em questão!</center>";
+					}
+				} else {
+					$contar = count($this->data['Fornecedor_materiais']['materiais']);
+					for($i = 0; $i < $contar; $i++) {
+						$esteMaterial = $this->data['Fornecedor_materiais']['materiais'][$i];
+						if($esteMaterial != ''){
+							$this->loadModel('Fornecedor_materiais');
+							$compforn = $this->Fornecedor_materiais->find('count', array('conditions' => array('Fornecedor_materiais.fornecedor_id' => $id, 'Fornecedor_materiais.material_id' => $esteMaterial)));
+							if($compforn == 0){
+								$this->loadModel('Fornecedor_materiais');
+								$this->Fornecedor_materiais->set(array(
+									'fornecedor_id' => $this->data['Fornecedor_materiais']['fid'],
+									'material_id' => $esteMaterial
+								));
+								
+								if($this->Fornecedor_materiais->saveAll()) {
+									if($this->request->is('Ajax')){    // o ajax roda aqui
+					                    $this->set('dados',$this->request->data);
+					                    $this->render('success','ajax');
+					                } 
+					                else{              
+					                    $this->flash('Adicionado com sucesso!','relmateriais');
+					                    $this->redirect(array('action' => 'relmateriais'));
+					                }
+								} else {
+									echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+					                $this->render('delete','ajax');
+								}
+							}
+							
+							
+						}
+					}
+					$materiaissel = $this->data['Fornecedor_materiais']['materiais'];
+					$this->loadModel('Material');
+					$compforn = $this->Material->find('list', array('conditions' => array("NOT" => array('Material.material_id' => $materiaissel) ), 'fields' => array('Material.material_id')));
+					
+					$this->loadModel('Fornecedor_materiais');
+					if ($this->Fornecedor_materiais->deleteAll(array('Fornecedor_materiais.fornecedor_id' => $id, 'Fornecedor_materiais.material_id' => $compforn), true)) {
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+			                $this->set('dados',$this->request->data);
+			                $this->render('success','ajax');
+			            } else {
+							$this->flash('Alguns materiais foram desaliados ao fornecedor em questão.','/fornecedores/relmateriais');
+							$this->redirect(array('action' => 'relmateriais'));
 						}
 					}
 				}
-			}
-        //}
+	        }
 		}  
     }
 	
-	public function pega_materiais(){ //atualizar o campo de materiais ao escolher fornecedores
+	public function pega_materiais(){ //preencher o campo de materiais
 		
 		$fornID = $this->params['url']['fornecedor_id'];
-		
-		$materiais='';
-		
-		if($fornID!='-1'){ // se equipamentos E materiais, pega o fornecedor de cada e faz a intersceção do ID
+				
+		if($fornID!='-1'){ // checa se o fornecedor é válido
 			$this->loadModel('Fornecedor_materiais');			
 			$materiaissel = $this->Fornecedor_materiais->find('all', array('order' => array('material_nome' => 'asc'), 'conditions' => array('Fornecedor_materiais.fornecedor_id' => $fornID)));
 			$matsel = '';
@@ -212,45 +247,117 @@ class FornecedoresController extends AppController {
 		$this->Render('pega_materiais','ajax');
 	}
     
-    public function relequipamentos() { //relacionar equipamentos à um Fornecedor
-		$this->loadModel('Equipamento');
-		
-		$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_nome' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
-		$equipamentos = $this->Equipamento->find('list', array('order' => array('equipamento_nome' => 'asc'), 'fields' => array('Equipamento.equipamento_id', 'Equipamento.equipamento_nome')));
-		
-		$this->set(compact('fornecedores'));
-		$this->set(compact('equipamentos'));
+	public function searchrelequipamentos() { //pesquisar fornecedores
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			$results = $this->Fornecedor->find('all', array('conditions' => array('Fornecedor.fornecedor_'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
 	
-        if(!empty($this->data)){
-			$this->loadModel('Fornecedor_equipamentos');
-			if( ($this->data['Fornecedor_equipamentos']['fornecedor_id'] == '') || ($this->data['Fornecedor_equipamentos']['equipamento_id'] == '') ) {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-	            $this->render('delete','ajax');
-			} else {
-				$contar = count($this->data['Fornecedor_equipamentos']['equipamento_id']);
-				for($i = 0; $i < $contar; $i++) {
-					$this->Fornecedor_equipamentos->set(array(
-						'fornecedor_id' => $this->data['Fornecedor_equipamentos']['fornecedor_id'],
-						'equipamento_id' => $this->data['Fornecedor_equipamentos']['equipamento_id'][$i]
-					));
+    public function relequipamentos($id = null) { //relacionar equipamentos à um Fornecedor
+		$this->Fornecedor->id = $id;
+		
+		$forn = $this->Fornecedor->find('first', array('conditions' => array('Fornecedor.fornecedor_id' => $id)));
+		$fornecedor = $forn['Fornecedor']['fornecedor_nome'];
+		$this->set('fornecedor', $fornecedor);
+		$this->set('fornecedorId', $id);
+		
+		$this->loadModel('Fornecedor_equipamentos');
+		if ($this->request->is('get')) {
+			$this->request->data = $this->Fornecedor_equipamentos->read();
+		} else {
+	        if(!empty($this->data)){
+				if( ($this->data['Fornecedor_equipamentos']['equipamentos'] == '') ) {
+		            $equipssel = $this->data['Fornecedor_equipamentos']['equipamentos'];
+					$this->loadModel('Equipamento');
+					$compforn = $this->Equipamento->find('list', array('conditions' => array("NOT" => array('Equipamento.equipamento_id' => $equipssel) ), 'fields' => array('Equipamento.equipamento_id')));
 					
-					if($this->Fornecedor_equipamentos->saveAll()) {
+					$this->loadModel('Fornecedor_equipamentos');
+					if ($this->Fornecedor_equipamentos->deleteAll(array('Fornecedor_equipamentos.fornecedor_id' => $id, 'Fornecedor_equipamentos.equipamento_id' => $compforn), true)) {
 						if($this->request->is('Ajax')){    // o ajax roda aqui
-		                    $this->set('dados',$this->request->data);
-		                    $this->render('success','ajax');
-		                } 
-		                else{              
-		                    $this->flash('Adicionado com sucesso!','add');
-		                    $this->redirect(array('action' => 'add'));
-		                }
-					} else {
-						echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-		                $this->render('delete','ajax');
+			                $this->set('dados',$this->request->data);
+			                $this->render('success','ajax');
+			            } else {
+							$this->flash('Não há mais equipamentos relacionados ao fornecedor em questão!','/fornecedores/relequipamentos');
+							$this->redirect(array('action' => 'relequipamentos'));
+						}
+						echo "<center>Não há mais equipamentos relacionados ao fornecedor em questão!</center>";
+					}
+				} else {
+					$contar = count($this->data['Fornecedor_equipamentos']['equipamentos']);
+					for($i = 0; $i < $contar; $i++) {
+						$esteEquip = $this->data['Fornecedor_equipamentos']['equipamentos'][$i];
+						if($esteEquip != ''){
+							$this->loadModel('Fornecedor_equipamentos');
+							$compforn = $this->Fornecedor_equipamentos->find('count', array('conditions' => array('Fornecedor_equipamentos.fornecedor_id' => $id, 'Fornecedor_equipamentos.equipamento_id' => $esteEquip)));
+							if($compforn == 0){
+								$this->loadModel('Fornecedor_equipamentos');
+								$this->Fornecedor_equipamentos->set(array(
+									'fornecedor_id' => $this->data['Fornecedor_equipamentos']['fid'],
+									'equipamento_id' => $esteEquip
+								));
+								
+								if($this->Fornecedor_equipamentos->saveAll()) {
+									if($this->request->is('Ajax')){    // o ajax roda aqui
+					                    $this->set('dados',$this->request->data);
+					                    $this->render('success','ajax');
+					                } 
+					                else{              
+					                    $this->flash('Adicionado com sucesso!','relequipamentos');
+					                    $this->redirect(array('action' => 'relequipamentos'));
+					                }
+								} else {
+									echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+					                $this->render('delete','ajax');
+								}
+							}
+							
+							
+						}
+					}
+					$equipssel = $this->data['Fornecedor_equipamentos']['equipamentos'];
+					$this->loadModel('Equipamento');
+					$compforn = $this->Equipamento->find('list', array('conditions' => array("NOT" => array('Equipamento.equipamento_id' => $equipssel) ), 'fields' => array('Equipamento.equipamento_id')));
+					
+					$this->loadModel('Fornecedor_equipamentos');
+					if ($this->Fornecedor_equipamentos->deleteAll(array('Fornecedor_equipamentos.fornecedor_id' => $id, 'Fornecedor_equipamentos.equipamento_id' => $compforn), true)) {
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+			                $this->set('dados',$this->request->data);
+			                $this->render('success','ajax');
+			            } else {
+							$this->flash('Alguns equipamentos foram desaliados ao fornecedor em questão.','/fornecedores/relequipamentos');
+							$this->redirect(array('action' => 'relequipamentos'));
+						}
 					}
 				}
-			}
-        }  
+	        }
+		}  
     }
+	
+	public function pega_equipamentos(){ //preencher o campo de equipamentos
+		
+		$fornID = $this->params['url']['fornecedor_id'];
+				
+		if($fornID!='-1'){ // checa se o fornecedor é válido
+			$this->loadModel('Fornecedor_equipamentos');			
+			$equipssel = $this->Fornecedor_equipamentos->find('all', array('order' => array('equipamento_nome' => 'asc'), 'conditions' => array('Fornecedor_equipamentos.fornecedor_id' => $fornID)));
+			$equipsel = '';
+			foreach($equipssel as $M):
+				$equipsel[$M['Fornecedor_equipamentos']['equipamento_id']]=$M['Equipamento']['equipamento_id'];
+			endforeach;
+						
+			$this->loadModel('Equipamento');
+			$equipsnsel = $this->Equipamento->find('all', array('order' => array('equipamento_nome' => 'asc'), 'conditions' => array("NOT" => array('Equipamento.equipamento_id' => $equipsel))));
+		}
+		
+		$this->set('equipnsel', $equipsnsel);
+		$this->set('equipsel', $equipssel);
+		$this->Render('pega_equipamentos','ajax');
+	}
 	
 	public function pega_fornecedores_mat_equip(){ //atualizar o campo de fornecedores ao escolher materiais ou equipamentos
 		

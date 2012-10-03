@@ -5,12 +5,24 @@
 	echo $this->Html->script('plugins/scrollTo/jquery.scrollTo-min', array('inline' => false));
 	echo $this->Html->script('ui.multiselect', array('inline' => false));
 	$this->pageTitle = 'Fornecedores';
+	
+	$equipamentos = '';
 ?> 
 
 <script>	
+	$(document).ready(function(){
+		fornID=$("#fid").val();
+		if(fornID=='') fornID='-1';
+		
+		txt_str="fornecedor_id="+fornID;
+		$.get("../pega_equipamentos",txt_str,function(result){ 
+			$("#equipamentos").html(result); // o html renderizado, na action pega_equipamentos, é carregado no campo equipamentos
+		});
+	});
+
 	$(function(){
 		$.localise('ui-multiselect', {/*language: 'en', */path: 'js/locale/'});
-		$("#equipamento_id").multiselect();
+		$("#equipamentos").multiselect();
 	});
 </script>
 
@@ -25,18 +37,20 @@
 			<div class="campos">Equipamentos: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
+			<?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
+			<?php echo $this->Form->input('fid', array('label' => '', 'id' => 'fid', 'value' => $fornecedorId, 'type' => 'hidden')); ?>
             <div class="campos">
-			<?php echo $this->Form->select('fornecedor_id', $fornecedores, array('label' => '', 'id' => 'fornecedor_id', 'empty' => 'Escolha...')); ?>
+			<?php echo $this->Form->input('fornecedor', array('label' => '', 'id' => 'fornecedor', 'value' => $fornecedor, 'readonly', 'class' => array('intextoDes'))); ?>
             </div>
 			
 			<div class="campos">
-			<?php echo $this->Form->select('equipamento_id', $equipamentos, array('label' => '', 'id' => 'equipamento_id', 'class' => array('multiselect'), 'multiple' => 'multiple')); ?>
+			<?php echo $this->Form->select('equipamentos', $equipamentos, array('label' => '', 'id' => 'equipamentos', 'class' => array('multiselect'), 'multiple' => 'multiple')); ?>
             </div>
 			<?php  ?> 
 		</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
-			echo $this->Js->submit('Cadastrar', array(
+			echo $this->Js->submit('Relacionar', array(
                 'before' => $this->Js->get('#sending')->effect('fadeIn'),
                 'success' => $this->Js->get('#sending')->effect('fadeOut'),
                 'update' => '#success'
