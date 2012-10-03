@@ -25,9 +25,10 @@
 			<div class="campos">Materiais: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
-            <div class="campos">
-			<?php echo $this->Form->select('fornecedor_id', $fornecedores, array('label' => '', 'id' => 'fornecedor_id', 'empty' => 'Escolha...')); ?>
-            </div>
+            <?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
+			<div class="campos">
+			<?php echo $this->Form->input('fornecedor_id', array('label' => '', 'id' => 'fornecedor_id', 'value' => $fornecedor, 'readonly', 'class' => array('intextoDes'))); ?> 
+			</div>
 			
 			<div class="campos">
 			<?php echo $this->Form->select('material_id', $materiais, array('label' => '', 'id' => 'material_id', 'class' => array('multiselect'), 'multiple' => 'multiple')); ?>

@@ -71,8 +71,8 @@ $cakeDescription = __d('cake_dev', 'Construti');
 					<ul>
 						<li>Relacionar
 							<ul>
-								<li><a title="Relacionar Materiais" href="<?php echo $this->params->base."/fornecedores/relmateriais"; ?>">Materiais</a></li>
-                                <li><a title="Relacionar Equipamentos" href="<?php echo $this->params->base."/fornecedores/relequipamentos"; ?>">Equipamentos</a></li>								
+								<li><a title="Relacionar Materiais" href="<?php echo $this->params->base."/fornecedores/searchrelmateriais"; ?>">Materiais</a></li>
+                                <li><a title="Relacionar Equipamentos" href="<?php echo $this->params->base."/fornecedores/searchrelequipamentos"; ?>">Equipamentos</a></li>								
 							</ul>
 						</li>
 						<li><a title="Requistar Orçamento" href="<?php echo $this->params->base."/fornecedores/orcamento"; ?>">Orçamento</a></li>
@@ -155,7 +155,7 @@ $cakeDescription = __d('cake_dev', 'Construti');
 		echo $scripts_for_layout;
 		if (class_exists('JsHelper') && method_exists($this->Js, 'writeBuffer')) echo $this->Js->writeBuffer();
 		//echo $this->Js->writeBuffer(array('cache' => false));
-		//echo $this->element('sql_dump'); 
+		echo $this->element('sql_dump'); 
 	?> 
 </body>
 </html>

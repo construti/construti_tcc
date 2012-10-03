@@ -127,16 +127,35 @@ class FornecedoresController extends AppController {
 		}		
     }
 	
-	public function relmateriais() { //relacionar materiais à um Fornecedor
-		$this->loadModel('Material');
+	public function searchrelmateriais() { //pesquisar fornecedores
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			$results = $this->Fornecedor->find('all', array('conditions' => array('Fornecedor.fornecedor_'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function relmateriais($id = null) { //relacionar materiais à um Fornecedor
+		$this->Fornecedor->id = $id;
 		
-		$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_nome' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
+		$forn = $this->Fornecedor->find('first', array('conditions' => array('Fornecedor.fornecedor_id' => $id)));
+		$fornecedor = $forn['Fornecedor']['fornecedor_nome'];
+		//$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_nome' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
+		
+		$this->loadModel('Material');
 		$materiais = $this->Material->find('list', array('order' => array('material_nome' => 'asc'), 'fields' => array('Material.material_id', 'Material.material_nome')));
 		
-		$this->set(compact('fornecedores'));
+		//$this->set(compact('fornecedores'));
 		$this->set(compact('materiais'));
-	
-        if(!empty($this->data)){
+		$this->set('fornecedor', $fornecedor);
+		
+		if ($this->request->is('get')) {
+			$this->request->data = $this->Fornecedor->read();
+		} else {
+       // if(!empty($this->data)){
 			$this->loadModel('Fornecedor_materiais');
 			if( ($this->data['Fornecedor_materiais']['fornecedor_id'] == '') || ($this->data['Fornecedor_materiais']['material_id'] == '') ) {
 				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
@@ -166,9 +185,32 @@ class FornecedoresController extends AppController {
 					}
 				}
 			}
-        }  
+        //}
+		}  
     }
-
+	
+	public function pega_materiais(){ //atualizar o campo de materiais ao escolher fornecedores
+		
+		$fornID = $this->params['url']['fornecedor_id'];
+		
+		$materiais='';
+		
+		if($fornID!='-1'){ // se equipamentos E materiais, pega o fornecedor de cada e faz a intersceção do ID
+			$this->loadModel('Fornecedor_materiais');			
+			$materiaissel = $this->Fornecedor_materiais->find('all', array('order' => array('material_nome' => 'asc'), 'conditions' => array('Fornecedor_materiais.fornecedor_id' => $fornID)));
+			$matsel = '';
+			foreach($materiaissel as $M):
+				$matsel[$M['Fornecedor_materiais']['material_id']]=$M['Material']['material_id'];
+			endforeach;
+						
+			$this->loadModel('Material');
+			$materiaisnsel = $this->Material->find('all', array('order' => array('material_nome' => 'asc'), 'conditions' => array("NOT" => array('Material.material_id' => $matsel))));
+		}
+		
+		$this->set('matnsel', $materiaisnsel);
+		$this->set('matsel', $materiaissel);
+		$this->Render('pega_materiais','ajax');
+	}
     
     public function relequipamentos() { //relacionar equipamentos à um Fornecedor
 		$this->loadModel('Equipamento');
@@ -210,7 +252,7 @@ class FornecedoresController extends AppController {
         }  
     }
 	
-	public function pega_fornecedores_mat_equip(){ //atualizar o campo de salário ao escolher o tipo
+	public function pega_fornecedores_mat_equip(){ //atualizar o campo de fornecedores ao escolher materiais ou equipamentos
 		
 		$matID = $this->params['url']['material_id'];
 		$equipID = $this->params['url']['equipamento_id'];
