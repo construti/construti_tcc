@@ -51,7 +51,7 @@
 		<div id="camposdescricaoD"> <!-- div com a descrição dos campos da direita -->
 			<div class="campos">Tipo*: </div>
 			
-			<div class="campos">Status*: </div>
+			<div class="campos">Situação*: </div>
 			
 			<div class="campos">Término previsto*: </div>
 			

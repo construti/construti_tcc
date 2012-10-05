@@ -1,6 +1,5 @@
 <?php  
-	echo $this->Html->script("validationFornecedor", false); 
-	$this->pageTitle = 'Fornecedores';
+	$this->pageTitle = 'Fornecedores - Atualizar Estoque de Materiais';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Atualização do Estoque de Materiais</div> <!-- título do formulário -->

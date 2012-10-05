@@ -687,7 +687,7 @@ class FornecedoresController extends AppController {
 					$this->loadModel('Estoque_materiais');
 					$estId = $this->Estoque_materiais->find('first', array('conditions' => array('Estoque_materiais.material_id' => $matId)));
 					$this->Estoque_materiais->id = $estId['Estoque_materiais']['estoques_materiais_id'];
-					//$materialPrecoAtual = $this->data['Material_requisitado']['material_preco'.$i];
+					//$materialPrecoAtual = $this->data['Material_requisitado']['preco'.$i];
 					
 					$qntdAtual = $estId['Estoque_materiais']['quantidade'];
 					$qntdAEstocar = $this->data['Material_requisitado']['qnt'.$i];
@@ -698,7 +698,7 @@ class FornecedoresController extends AppController {
 						'quantidade' => $qntdAEstocar
 					));
 					
-					if($this->Estoque_materiais->save()) { //OLHAR AQUI!!
+					if($this->Estoque_materiais->save()) { 
 						if($this->request->is('Ajax')){    // o ajax roda aqui
 		                    $this->set('dados',$this->request->data);
 		                    $this->render('success','ajax');
@@ -744,7 +744,55 @@ class FornecedoresController extends AppController {
     }
 	
 	public function atestoqueequip($id = null) { //atualizar estoque de equipamentos
+		$this->loadModel('Equipamento_requisitado');
+		$results = $this->Equipamento_requisitado->find('all', array('order' => array('equipamento_nome' => 'asc'), 'conditions' => array('Equipamento_requisitado.requisicao_id' => $id)));
 		
+		$requisicao = $results;
+		$this->set(compact('results'));
+		
+        if ($this->request->is('get')) {
+			$this->request->data = $this->Equipamento_requisitado->read();
+		} else {
+			$contar = count($this->data)-1;
+			for($i = 0; $i < $contar; $i++) {
+				if($this->data['Equipamento_requisitado']['recebido'.$i] != 0){
+					$equipId = $this->data['equipamento_id'.$i];
+					$this->loadModel('Estoque_equipamentos');
+					$estId = $this->Estoque_equipamentos->find('first', array('conditions' => array('Estoque_equipamentos.equipamento_id' => $equipId)));
+					$this->Estoque_equipamentos->id = $estId['Estoque_equipamentos']['estoques_equipamentos_id'];
+					//$equipamentoPrecoAtual = $this->data['Equipamento_requisitado']['preco'.$i];
+					
+					$qntdAtual = $estId['Estoque_equipamentos']['quantidade'];
+					$qntdAEstocar = $this->data['Equipamento_requisitado']['qnt'.$i];
+					$qntdAEstocar = $qntdAEstocar + $qntdAtual;
+					$alugado = $this->data['Equipamento_requisitado']['alug'.$i];
+					
+					$this->Estoque_equipamentos->set(array( 
+					//	'equipamento_preco' => $equipamentoPrecoAtual,
+						'alugado' => $alugado, 
+						'quantidade' => $qntdAEstocar
+					));
+					
+					if($this->Estoque_equipamentos->save()) { 
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+		                    $this->set('dados',$this->request->data);
+		                    $this->render('success','ajax');
+		                } 
+		                else{              
+		                    $this->flash('Atualizado com sucesso!','atestoquemat');
+		                    $this->redirect(array('action' => 'atestoquemat'));
+		                }
+					} else {
+						echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+		                $this->render('delete','ajax');
+					}
+					
+				} else {
+					echo "<center> Os equipamentos da ".($i+1)."ª linha não foram estocados. </center><br />";
+					$this->render('delete','ajax');
+				}
+			}
+		}
 	}
 }
 ?>

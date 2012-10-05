@@ -18,6 +18,24 @@ class EquipamentosController extends AppController {
 	
         if(!empty($this->data)){
             if($this->Equipamento->save($this->data)){
+				$this->loadModel('Estoque_equipamentos');
+				$this->Estoque_equipamentos->set(array( 
+						'equipamento_id' => $this->Equipamento->id
+					));
+					
+				if($this->Estoque_equipamentos->save()) { //atualizar tabela de estoque de Equipamentos com ID do novo Equipamento
+					if($this->request->is('Ajax')){    // o ajax roda aqui
+						echo "<center> ID do Equipamento adicionado ao estoque! </center>";
+						$this->render('delete','ajax');
+	                } 
+	                else{              
+	                    $this->flash('ID do Equipamento adicionado ao estoque!','add');
+	                }
+				} else {
+					echo "<center> ID do Equipamento não foi adicionado ao estoque! </center>";
+	                $this->render('delete','ajax');
+				}
+			
 				if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);
                     $this->Render('success','ajax');

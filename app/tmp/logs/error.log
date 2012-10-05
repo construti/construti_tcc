@@ -8893,3 +8893,23 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 #10 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(FornecedoresController), Object(CakeRequest), Object(CakeResponse))
 #11 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #12 {main}
+2012-10-05 13:35:37 Error: [MissingViewException] View file "C:\xampp\htdocs\construti_oficial\app\View\Fornecedores\atestoqueequip.ctp" is missing.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(FornecedoresController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-05 17:02:08 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Funcionarios.id' in 'on clause'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Obra`.`...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Obra`.`...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Obra`.`...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Obra), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\ObrasController.php(123): Model->find('all', Array)
+#6 [internal function]: ObrasController->search()
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ObrasController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}

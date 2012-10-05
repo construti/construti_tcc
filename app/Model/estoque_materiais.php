@@ -21,7 +21,7 @@ class Estoque_materiais extends AppModel{
     var $validate = array(
 		'material_id' => array(
 			'rule' => 'numeric',
-			'allowEmpty' => true,
+			'allowEmpty' => false,
 			'message' => "Somente numeros."
 		),
 		'quantidade' => array(

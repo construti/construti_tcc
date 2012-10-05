@@ -11,7 +11,7 @@
 			<div id="titulosorc">
 				<div id="tituloE">Equipamento</div>
 				<div id="tituloF">Fornecedor</div>
-				<div id="tituloG">Necessidade</div>
+				<div id="tituloG">Interesse</div>
 				<div id="tituloH">Quantidade</div>
 				<div id="tituloI">Valor/Hora</div>
 				<div id="tituloEI">Prazo(dias)</div>
