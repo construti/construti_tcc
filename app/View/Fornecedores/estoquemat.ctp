@@ -2,10 +2,10 @@
 	$this->pageTitle = 'Fornecedores';
 ?>
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Pesquisar Orçamento de Materiais</div> <!-- título do formulário -->
+	<div id="tituloform">Pesquisar Requisições de Materiais</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo">
-	<?php echo $this->Form->create('Orcamento_materiais'); ?> <!-- início do formulário -->
+	<?php echo $this->Form->create('Material_requisitado'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
 			<div class="campos">Pesquisar: </div>
 			<div class="campos">Por: </div>
@@ -15,7 +15,7 @@
 			<div class="campos">
 				<select name="tipo" class="intexto"/>
 					<option value="fornecedor_id" select="selected">Fornecedor</option>
-					<option value="created">Data de Solicitação(dd/mm/aaaa)</option>
+					<option value="created">Data de Requisição(dd/mm/aaaa)</option>
 				</select>
 			</div>
 		</div>
@@ -29,21 +29,21 @@
 	
 	<table class="tabela">
 		<tr>
-			<th>Orçamento ID</th>
+			<th>Requisição ID</th>
 			<th>Fornecedor</th>
-			<th>Data de Solicitação</th>
+			<th>Data de Requisição</th>
 			
 			<th>Ações</th>
 		</tr>
 		
 		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
 		<tr>
-			<td><?php echo $result['Orcamento_materiais']['orcamento_id']; ?></td>
+			<td><?php echo $result['Material_requisitado']['requisicao_id']; ?></td>
 			<td><?php echo $result['Fornecedor']['fornecedor_nome']; ?></td>
-			<td align="center"><?php echo date("d/m/Y", strtotime($result['Orcamento_materiais']['created'])); ?></td>
+			<td align="center"><?php echo date("d/m/Y", strtotime($result['Material_requisitado']['created'])); ?></td>
 						
 			<td align="center">
-				<?php echo $this->Html->link('atualizar', array('action' => 'atprecosmat', $result['Orcamento_materiais']['orcamento_id'])); ?>
+				<?php echo $this->Html->link('estocar', array('action' => 'atestoquemat', $result['Material_requisitado']['requisicao_id'])); ?>
 			</td>
 		</tr>
 		<?php endforeach; } ?>

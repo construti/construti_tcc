@@ -16,8 +16,8 @@
 				<option value="obra_nome" select="selected">Título</option>
 				<option value="obra_responsavel">Responsável</option>
 				<option value="obra_custo">Custo</option>
-				<option value="obra_data_inicio">Data de Início</option>
-				<option value="obra_data_fim">Data de Término</option>
+				<option value="obra_data_inicio">Data de Início(dd/mm/aaaa)</option>
+				<option value="obra_data_fim">Data de Término(dd/mm/aaaa)</option>
 				<option value="obra_status">Status</option>
 				<option value="obra_tipo">Tipo</option>
 				<option value="obra_descricao">Descrição</option>
@@ -50,11 +50,11 @@
 			<td align="center"><?php echo $result['Obra']['obra_id']; ?></td>
 			<td><?php echo $result['Obra']['obra_nome']; ?></td>
 			<td><?php echo $result['Obra']['obra_responsavel']; ?></td>
-			<td><?php echo $result['Obra']['obra_custo']; ?></td>
-			<td><?php echo $result['Obra']['obra_data_inicio']; ?></td>
-			<td><?php echo $result['Obra']['obra_data_fim']; ?></td>
-			<td><?php echo $result['Obra']['obra_status']; ?></td>
-			<td><?php echo $result['Obra']['obra_tipo']; ?></td> 
+			<td align="center"><?php echo $result['Obra']['obra_custo']; ?></td>
+			<td align="center"><?php echo date("d/m/Y", strtotime($result['Obra']['obra_data_inicio'])); ?></td>
+			<td align="center"><?php echo date("d/m/Y", strtotime($result['Obra']['obra_data_fim'])); ?></td>
+			<td align="center"><?php echo $result['Obra']['obra_status']; ?></td>
+			<td align="center"><?php echo $result['Obra']['obra_tipo']; ?></td> 
 						
 			<td align="center">
 				<?php echo $this->Html->link('editar', array('action' => 'edit', $result['Obra']['obra_id'])); ?>

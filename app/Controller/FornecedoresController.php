@@ -473,6 +473,11 @@ class FornecedoresController extends AppController {
 				$fornIds = $this->Fornecedor->find('list', array('conditions' => array('Fornecedor.fornecedor_nome LIKE' => "%$pesquisa%"), 'fields' => array('Fornecedor.fornecedor_id')));
 				$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.fornecedor_id' => $fornIds), 'group' => array('orcamento_id', 'Orcamento_materiais.fornecedor_id') ));
 			} else {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+				
 				$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.'.$tipo.' LIKE' => "%$pesquisa%"), 'group' => array('orcamento_id', 'Orcamento_materiais.fornecedor_id')));
 			}
 		} 
@@ -481,10 +486,10 @@ class FornecedoresController extends AppController {
         }
     }
 	
-	public function atprecosmat($id = null) { //atualizar preços de orçamentos e materiais
+	public function atprecosmat($id = null) { //atualizar preços de orçamentos de materiais
 		$this->loadModel('Orcamento_materiais');
 		//$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.orcamento_id LIKE' => $id)));
-		$results = $this->Orcamento_materiais->query("SELECT Orcamento_materiais.orcamentos_materiais_id, Orcamento_materiais.orcamento_id, Orcamento_materiais.fornecedor_id, Orcamento_materiais.material_id, Orcamento_materiais.quantidade, Orcamento_materiais.material_preco, Orcamento_materiais.created, Orcamento_materiais.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.orcamentos_materiais AS Orcamento_materiais LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Orcamento_materiais.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Orcamento_materiais.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Orcamento_materiais.orcamento_id LIKE 1");
+		$results = $this->Orcamento_materiais->query("SELECT Orcamento_materiais.orcamentos_materiais_id, Orcamento_materiais.orcamento_id, Orcamento_materiais.fornecedor_id, Orcamento_materiais.material_id, Orcamento_materiais.quantidade, Orcamento_materiais.material_preco, Orcamento_materiais.created, Orcamento_materiais.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.orcamentos_materiais AS Orcamento_materiais LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Orcamento_materiais.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Orcamento_materiais.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Orcamento_materiais.orcamento_id LIKE ".$id);
 		
 		$orcamento = $results;
 		$this->set(compact('results'));
@@ -561,6 +566,11 @@ class FornecedoresController extends AppController {
 				$fornIds = $this->Fornecedor->find('list', array('conditions' => array('Fornecedor.fornecedor_nome LIKE' => "%$pesquisa%"), 'fields' => array('Fornecedor.fornecedor_id')));
 				$results = $this->Orcamento_equipamentos->find('all', array('conditions' => array('Orcamento_equipamentos.fornecedor_id' => $fornIds), 'group' => array('orcamento_id', 'Orcamento_equipamentos.fornecedor_id') ));
 			} else {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+				
 				$results = $this->Orcamento_equipamentos->find('all', array('conditions' => array('Orcamento_equipamentos.'.$tipo.' LIKE' => "%$pesquisa%"), 'group' => array('orcamento_id', 'Orcamento_equipamentos.fornecedor_id')));
 			}
 		} 
@@ -569,7 +579,7 @@ class FornecedoresController extends AppController {
         }
     }
 	
-	public function atprecosequip($id = null) { //atualizar preços de orçamentos e equipamentos
+	public function atprecosequip($id = null) { //atualizar preços de orçamentos de equipamentos
 		$this->loadModel('Orcamento_equipamentos');
 		$results = $this->Orcamento_equipamentos->find('all', array('conditions' => array('Orcamento_equipamentos.orcamento_id LIKE' => $id)));
 		$orcamento = $results;
@@ -637,18 +647,22 @@ class FornecedoresController extends AppController {
 		}
     }
 	
-	public function estoque() { //checar estoque
-		if (!empty($this->data['pesquisa']) || $this->data['tipo'] == 'completo'){
-			$this->loadModel('Estoque_materiais');
+	public function estoquemat() { //checar estoque de materiais
+		if (!empty($this->data['pesquisa'])){
+			$this->loadModel('Material_requisitado');
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
             $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
-									
-			if ($tipo == 'material_id') {
-				$this->loadModel('Material');
-				$matIds = $this->Material->find('list', array('conditions' => array('Material.material_nome LIKE' => "%$pesquisa%"), 'fields' => array('Material.material_id')));
-				$results = $this->Estoque_materiais->find('all', array('conditions' => array('Estoque_materiais.material_id' => $matIds)));
+			
+			if ($tipo == 'fornecedor_id') {
+				$fornIds = $this->Fornecedor->find('list', array('conditions' => array('Fornecedor.fornecedor_nome LIKE' => "%$pesquisa%"), 'fields' => array('Fornecedor.fornecedor_id')));
+				$results = $this->Material_requisitado->find('all', array('conditions' => array('Material_requisitado.fornecedor_id' => $fornIds), 'group' => array('requisicao_id', 'Material_requisitado.fornecedor_id') ));
 			} else {
-				$results = $this->Estoque_materiais->find('all');
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+				
+				$results = $this->Material_requisitado->find('all', array('conditions' => array('Material_requisitado.'.$tipo.' LIKE' => "%$pesquisa%"), 'group' => array('requisicao_id', 'Material_requisitado.fornecedor_id')));
 			}
 		} 
 		if (!empty($results)){
@@ -656,63 +670,81 @@ class FornecedoresController extends AppController {
         }
     }
 	
-	public function atestoque() {
-		$contar = count($this->data)-1;
-		pr($contar);
-		for($i = 0; $i < $contar; $i++) {
-			/*if($this->data['Orcamento_equipamentos']['equipamento_preco'.$i] != ''){
-				$this->Orcamento_equipamentos->id = $orcamento[$i]['Orcamento_equipamentos']['orcamentos_equipamentos_id'];
-				$equipPrecoAtual = $this->data['Orcamento_equipamentos']['equipamento_preco'.$i];
-				
-				$this->Orcamento_equipamentos->set(array(
-					'equipamento_preco' => $equipPrecoAtual
-				));
-				
-				if($this->Orcamento_equipamentos->save()) {
-					if($this->request->is('Ajax')){    // o ajax roda aqui
-	                    $this->set('dados',$this->request->data);
-	                    $this->render('success','ajax');
-	                } 
-	                else{              
-	                    $this->flash('Atualizado com sucesso!','atprecosequip');
-	                    $this->redirect(array('action' => 'atprecosequip'));
-	                }
-				} else {
-					echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-	                $this->render('delete','ajax');
-				}
-				
-				$this->loadModel('Equipamento');
-				$equipid = $orcamento[$i]['Orcamento_equipamentos']['equipamento_id'];
-				$this->Equipamento->id = $equipid;
-				$equipUltimoPreco = $this->Equipamento->find('first', array('conditions' => array('Equipamento.equipamento_id LIKE' => $equipid)));
-				$equipUltimoPreco = $equipUltimoPreco['Equipamento']['equipamento_valor_hora'];
-				
-				if (($equipPrecoAtual < $equipUltimoPreco) || ($equipUltimoPreco == 0)){
-					$this->Equipamento->set(array(
-						'equipamento_valor_hora' => $equipPrecoAtual
+	public function atestoquemat($id = null) { //atualizar estoque de materiais
+		$this->loadModel('Material_requisitado');
+		$results = $this->Material_requisitado->query("SELECT Material_requisitado.materiais_requisitados_id, Material_requisitado.requisicao_id, Material_requisitado.fornecedor_id, Material_requisitado.material_id, Material_requisitado.quantidade, Material_requisitado.material_preco, Material_requisitado.created, Material_requisitado.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.materiais_requisitados AS Material_requisitado LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Material_requisitado.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Material_requisitado.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Material_requisitado.requisicao_id LIKE ".$id);
+		
+		$requisicao = $results;
+		$this->set(compact('results'));
+		
+        if ($this->request->is('get')) {
+			$this->request->data = $this->Material_requisitado->read();
+		} else {
+			$contar = count($this->data)-1;
+			for($i = 0; $i < $contar; $i++) {
+				if($this->data['Material_requisitado']['recebido'.$i] != 0){
+					$matId = $this->data['material_id'.$i];
+					$this->loadModel('Estoque_materiais');
+					$estId = $this->Estoque_materiais->find('first', array('conditions' => array('Estoque_materiais.material_id' => $matId)));
+					$this->Estoque_materiais->id = $estId['Estoque_materiais']['estoques_materiais_id'];
+					//$materialPrecoAtual = $this->data['Material_requisitado']['material_preco'.$i];
+					
+					$qntdAtual = $estId['Estoque_materiais']['quantidade'];
+					$qntdAEstocar = $this->data['Material_requisitado']['qnt'.$i];
+					$qntdAEstocar = $qntdAEstocar + $qntdAtual;
+					
+					$this->Estoque_materiais->set(array( 
+					//	'material_preco' => $materialPrecoAtual,
+						'quantidade' => $qntdAEstocar
 					));
 					
-					if($this->Equipamento->save($this->data)) {
+					if($this->Estoque_materiais->save()) { //OLHAR AQUI!!
 						if($this->request->is('Ajax')){    // o ajax roda aqui
 		                    $this->set('dados',$this->request->data);
 		                    $this->render('success','ajax');
 		                } 
 		                else{              
-		                    $this->flash('Atualizado com sucesso!','atprecosequip');
-		                    $this->redirect(array('action' => 'atprecosequip'));
+		                    $this->flash('Atualizado com sucesso!','atestoquemat');
+		                    $this->redirect(array('action' => 'atestoquemat'));
 		                }
 					} else {
 						echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
 		                $this->render('delete','ajax');
 					}
+					
+				} else {
+					echo "<center> Os materiais da ".($i+1)."ª linha não foram estocados. </center><br />";
+					$this->render('delete','ajax');
 				}
-			} else {
-				echo "<center> O valor do campo de preço da ".($i+1)."ª linha está vazio, portanto não foi atualizado. </center><br />";
-				$this->render('delete','ajax');
-			}*/
+			}
 		}
-		$this->render('delete','ajax');
+	}
+	
+	public function estoqueequip() { //checar estoque de equipamentos
+		if (!empty($this->data['pesquisa'])){
+			$this->loadModel('Equipamento_requisitado');
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'fornecedor_id') {
+				$fornIds = $this->Fornecedor->find('list', array('conditions' => array('Fornecedor.fornecedor_nome LIKE' => "%$pesquisa%"), 'fields' => array('Fornecedor.fornecedor_id')));
+				$results = $this->Equipamento_requisitado->find('all', array('conditions' => array('Equipamento_requisitado.fornecedor_id' => $fornIds), 'group' => array('requisicao_id', 'Equipamento_requisitado.fornecedor_id') ));
+			} else {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+				
+				$results = $this->Equipamento_requisitado->find('all', array('conditions' => array('Equipamento_requisitado.'.$tipo.' LIKE' => "%$pesquisa%"), 'group' => array('requisicao_id', 'Equipamento_requisitado.fornecedor_id')));
+			}
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function atestoqueequip($id = null) { //atualizar estoque de equipamentos
+		
 	}
 }
 ?>

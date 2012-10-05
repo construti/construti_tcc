@@ -110,6 +110,13 @@ class FuncionariosController extends AppController {
 		if (!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
             $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'data_nasc') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
 			$results = $this->Funcionario->find('all', array('conditions' => array('Funcionario.funcionario_'.$tipo.' LIKE' => "%$pesquisa%")));
 		} 
 		if (!empty($results)){

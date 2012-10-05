@@ -184,7 +184,7 @@
 			<div id="lacunas">
 				<div id="nome">Nome</div>
 				<div id="qtd">Quantidade</div>
-				<div id="nec">Necessidade</div>
+				<div id="nec">Interesse</div>
 				<div id="forn">Fornecedor</div>
 				<div id="acao">Ação</div>
 			</div>

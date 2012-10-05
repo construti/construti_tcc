@@ -82,7 +82,12 @@ $cakeDescription = __d('cake_dev', 'Construti');
                                 <li><a title="Atualizar Preços de Equipamentos" href="<?php echo $this->params->base."/fornecedores/searchorcequip"; ?>">Equipamentos</a></li>								
 							</ul>
 						</li>
-						<li><a title="Checar Estoque" href="<?php echo $this->params->base."/fornecedores/estoque"; ?>">Estoque</a></li>
+						<li>Estoque
+							<ul>
+								<li><a title="Estoque de Materiais" href="<?php echo $this->params->base."/fornecedores/estoquemat"; ?>">Materiais</a></li>
+								<li><a title="Estoque de Equipamentos" href="<?php echo $this->params->base."/fornecedores/estoqueequip"; ?>">Equipamentos</a></li>
+							</ul>
+						</li>
 					</ul>
 				</li>
 				<li>Programas de Obra
