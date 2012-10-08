@@ -953,6 +953,9 @@ p {
 	width: 300px;
 	resize: none;
 }
+.checkbox {
+	margin: 3px auto 0;
+}
 .campoDescricao {
 	height: 20px;
 	resize: none;

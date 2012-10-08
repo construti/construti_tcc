@@ -4,6 +4,23 @@ class Obra extends AppModel{
 	
 	var $primaryKey = 'obra_id';
 	
+	public $belongsTo = array(
+        'Obras_status' => array(
+            'className' => 'Obras_status',
+            'foreignKey' => 'obra_status',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
+		'Funcionario' => array(
+            'className' => 'Funcionario',
+            'foreignKey' => 'obra_responsavel',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
+	
 	var $validate = array(
 		'obra_nome' => array(
 			'rule' => 'notEmpty',

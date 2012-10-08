@@ -15,7 +15,7 @@
 			<div class="campos">
 				<select name="tipo" class="intexto"/>
 					<option value="fornecedor_id" select="selected">Fornecedor</option>
-					<option value="created">Data de Solicitação</option>
+					<option value="created">Data de Solicitação(dd/mm/aaaa)</option>
 				</select>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 		<tr>
 			<td><?php echo $result['Orcamento_equipamentos']['orcamento_id']; ?></td>
 			<td><?php echo $result['Fornecedor']['fornecedor_nome']; ?></td>
-			<td align="center"><?php echo $result['Orcamento_equipamentos']['created']; ?></td>
+			<td align="center"><?php echo date("d/m/Y", strtotime($result['Orcamento_equipamentos']['created'])); ?></td>
 						
 			<td align="center">
 				<?php echo $this->Html->link('atualizar', array('action' => 'atprecosequip', $result['Orcamento_equipamentos']['orcamento_id'])); ?>

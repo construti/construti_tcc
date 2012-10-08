@@ -27,6 +27,23 @@ class MateriaisController extends AppController {
 		
         if(!empty($this->data)){
             if($this->Material->save($this->data)){
+				$this->loadModel('Estoque_materiais');
+				$this->Estoque_materiais->set(array( 
+						'material_id' => $this->Material->id
+					));
+					
+				if($this->Estoque_materiais->save()) { //atualizar tabela de estoque de Materiais com ID do novo Material
+					if($this->request->is('Ajax')){    // o ajax roda aqui
+						echo "<center> ID do Material adicionado ao estoque! </center>";
+						$this->render('delete','ajax');
+	                } 
+	                else{              
+	                    $this->flash('ID do Material adicionado ao estoque!','add');
+	                }
+				} else {
+					echo "<center> ID do Material não foi adicionado ao estoque! </center>";
+	                $this->render('delete','ajax');
+				}
                 
                 if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);

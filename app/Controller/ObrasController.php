@@ -113,6 +113,13 @@ class ObrasController extends AppController {
 		if (!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
             $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
 			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
 		} 
 		if (!empty($results)){

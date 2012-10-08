@@ -16,7 +16,7 @@
 				<select name="tipo" class="intexto"/>
 					<option value="nome" select="selected">Nome</option>
 					<option value="cpf">CPF</option>
-					<option value="data_nasc">Data de Nascimento</option>
+					<option value="data_nasc">Data de Nascimento(dd/mm/aaaa)</option>
 					<option value="endereco">Endereço</option>
 					<option value="bairro">Bairro</option>
 					<option value="cidade">Cidade</option>
@@ -60,15 +60,15 @@
 		<tr>
 			<td align="center"><?php echo $result['Funcionario']['funcionario_id']; ?></td>
 			<td><?php echo $result['Funcionario']['funcionario_nome']; ?></td>
-			<td><?php echo $result['Funcionario']['funcionario_cpf']; ?></td>
-			<td align="center"><?php echo $result['Funcionario']['funcionario_data_nasc']; ?></td>
+			<td align="center"><?php echo $result['Funcionario']['funcionario_cpf']; ?></td>
+			<td align="center"><?php echo date("d/m/Y", strtotime($result['Funcionario']['funcionario_data_nasc'])); ?></td>
 			<td><?php echo $result['Funcionario']['funcionario_endereco']; ?></td>
 			<td><?php echo $result['Funcionario']['funcionario_bairro']; ?></td>
-			<td><?php echo $result['Funcionario']['funcionario_cidade']; ?></td>
-			<td><?php echo $result['Funcionario']['funcionario_estado']; ?></td>
-			<td><?php echo $result['Funcionario']['funcionario_pais']; ?></td>
+			<td align="center"><?php echo $result['Funcionario']['funcionario_cidade']; ?></td>
+			<td align="center"><?php echo $result['Funcionario']['funcionario_estado']; ?></td>
+			<td align="center"><?php echo $result['Funcionario']['funcionario_pais']; ?></td>
 			<td><?php echo $result['Funcionario']['funcionario_email']; ?></td>
-			<td><?php echo $result['Funcionario']['funcionario_salario']; ?></td>
+			<td align="center"><?php echo $result['Funcionario']['funcionario_salario']; ?></td>
 			<td><?php echo $result['Area']['area_descricao']; ?></td>
 			<td><?php echo $result['Funcionario']['funcionario_tipo']; ?></td> 
 						
