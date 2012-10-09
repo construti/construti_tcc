@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 class FornecedoresController extends AppController {
  
@@ -8,7 +9,7 @@ class FornecedoresController extends AppController {
 	
 	public $helpers = array('Form','Js');
 	
-    public $components = array('RequestHandler'); 
+    public $components = array('RequestHandler', 'Email'); 
 	
 	public $uses = array('Fornecedor'); //usa a Model Fornecedor
 	    
@@ -447,6 +448,38 @@ class FornecedoresController extends AppController {
 					$this->Orcamento_equipamentos->create();
 					$this->Orcamento_equipamentos->save($orcEquip);
 				endforeach;
+				
+				$materiais_equipamentos_orcamento = $this->Orcamento_materiais->query("
+					SELECT * from 
+						(SELECT (SELECT material_nome from materiais where materiais.material_id = M.material_id) as nome,
+								 M.quantidade,
+								(SELECT fornecedor_nome from fornecedores where fornecedores.fornecedor_id = M.fornecedor_id) as fornecedor_nome,  							 'C' as transacao ,
+								'M' as tipo 
+							FROM `orcamentos_materiais` as M where M.orcamento_id = $orcamento_id
+					UNION 
+						SELECT (SELECT equipamento_nome from equipamentos where equipamentos.equipamento_id = E.equipamento_id) as nome,
+								 E.quantidade, 
+								 (SELECT fornecedor_nome from fornecedores where fornecedores.fornecedor_id = E.fornecedor_id) as fornecedor_nome, 							 alugado as transacao ,
+								 'E' as tipo 
+							FROM orcamentos_equipamentos as E where E.orcamento_id = $orcamento_id) 
+					as materiais_equipamentos_orcamento order by fornecedor_nome
+				"); // ESSE SQL RETORNA TODOS OS DADOS DO ORCAMENTO QUE ACABOU DE SER GRAVADO COM NOME DE FORNECEDOR E ITENS 
+				
+				pr($materiais_equipamentos_orcamento);
+				
+				
+				//pr($orcamento_materiais_cadastrados);
+				$mensagem = 'Pedido de Materiais e Equipamentos \n\n';
+				foreach($orcamento_materiais_cadastrados as $o): // Pega a lista de fornecedores dos materiais requisitados.
+						if($b!=$o['Orcamento_materiais']['fornecedor_id']){
+							$b.='>'.$o['Orcamento_materiais']['fornecedor_id'];
+						}
+				endforeach;
+				
+				$mensagem .= 'Fornecedor '.$o['Fornecedor']['fornecedor_nome'].'\n\n';
+				$mensagem .= '<b>Material:</b> '.$o['Material']['material_nome'].'\n';
+				$mensagem .= '<b>Quantidade:</b> '.$o['Material']['material_nome'].'\n\n';
+				$mensagem .= '----------------------------------------------------';
 				
 				if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);
