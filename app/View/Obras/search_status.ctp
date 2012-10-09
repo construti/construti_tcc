@@ -1,5 +1,5 @@
 <?php  
-	$this->pageTitle = 'Status de Obras';
+	$this->pageTitle = 'Situação de Obras';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Pesquisa</div> <!-- título do formulário -->
@@ -23,7 +23,7 @@
 	<table class="tabela">
 		<tr>
 			<th>ID</th>
-			<th>Status</th>
+			<th>Situação</th>
 			
 			<th>Ações</th>
 		</tr>

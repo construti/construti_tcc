@@ -76,7 +76,7 @@ $cakeDescription = __d('cake_dev', 'Construti');
 							</ul>
 						</li>
 						<li><a title="Requistar Orçamento" href="<?php echo $this->params->base."/fornecedores/orcamento"; ?>">Orçamento</a></li>
-						<li>At. Preços
+						<li><div style="width: 115px;">Atualizar Preços</div>
 							<ul>
 								<li><a title="Atualizar Preços de Materiais" href="<?php echo $this->params->base."/fornecedores/searchorcmat"; ?>">Materiais</a></li>
                                 <li><a title="Atualizar Preços de Equipamentos" href="<?php echo $this->params->base."/fornecedores/searchorcequip"; ?>">Equipamentos</a></li>								
@@ -98,10 +98,11 @@ $cakeDescription = __d('cake_dev', 'Construti');
                                 <li><a title="Pesquisar Programa de Obra" href="<?php echo $this->params->base."/obras/search"; ?>">Pesquisar</a></li>
 							</ul>
 						</li>
-						<li>Status
+						<li>Situação
 							<ul>
-								<li><a title="Cadastrar Status de Obra" href="<?php echo $this->params->base."/obras/add_status"; ?>">Cadastrar</a></li>
-                                <li><a title="Pesquisar Status de Obra" href="<?php echo $this->params->base."/obras/search_status"; ?>">Pesquisar</a></li>
+								<li><a title="Cadastrar Situação de Obra" href="<?php echo $this->params->base."/obras/add_status"; ?>">Cadastrar</a></li>
+                                <li><a title="Pesquisar Situação de Obra" href="<?php echo $this->params->base."/obras/search_status"; ?>">Pesquisar</a></li>
+								<li><a title="Atualizar Situação de Obra Cadastrada" href="<?php echo $this->params->base."/obras/search_status_obra"; ?>">Atualizar</a></li>
 							</ul>
 						</li>
 					</ul>
