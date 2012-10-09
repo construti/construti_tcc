@@ -69,18 +69,18 @@
 					//alert('idM: '+ materialID + ' qtdM: ' + materialQTD + ' idE: ' + equipamentoID + ' qtdE: ' + equipamentoQTD + ' alugE:  ' + equipamentoAL);
 					if (materialID != '' && materialQTD!=''){
 						
-					$('#inputsmat').append("<div class='nomeM' id=nomeM"+i+">"+materialNOME+"<input value="+materialID+" name=data['mat']["+i+"]['Orcamento_material']['material_id'] type=hidden readonly></input></div>");
-					$('#inputsmat').append("<div class='qtdM' id=qtdM"+i+">"+materialQTD+"<input value="+materialQTD+" name=data['mat']["+i+"]['Orcamento_material']['quantidade'] type=hidden readonly></input></div>");
-					$('#inputsmat').append("<div class='fornM' id=fornM"+i+">"+fornec+"<input value="+forn+" name=data['mat']["+i+"]['Orcamento_material']['fornecedor_id'] type=hidden readonly></input></div>");
+					$('#inputsmat').append("<div class='nomeM' id=nomeM"+i+">"+materialNOME+"<input value="+materialID+" name=data[mat]["+i+"][Orcamento_materiais][material_id] type=hidden readonly></input></div>");
+					$('#inputsmat').append("<div class='qtdM' id=qtdM"+i+">"+materialQTD+"<input value="+materialQTD+" name=data[mat]["+i+"][Orcamento_materiais][quantidade] type=hidden readonly></input></div>");
+					$('#inputsmat').append("<div class='fornM' id=fornM"+i+">"+fornec+"<input value="+forn+" name=data[mat]["+i+"][Orcamento_materiais][fornecedor_id] type=hidden readonly></input></div>");
 					$('#inputsmat').append("<div class='acaoM' id='acaoM"+i+"'><input value='X' class='deldiv' name='botao' type='button' id='botao"+i+"' onclick='deldivM("+i+")' readonly></input></div>");
 					i++;
 					}
 					
 					if (equipamentoID != '' && equipamentoQTD!='' && typeof equipamentoAL!='undefined'){
-						$('#inputsequip').append("<div class='nomeE' id=nomeE"+i+">"+equipamentoNOME+"<input value="+equipamentoID+" name=data['equip']["+i+"]['Orcamento_equipamento']['equipamento_id'] type=hidden readonly></input></div>");
-						$('#inputsequip').append("<div class='qtdE' id=qtdE"+i+">"+equipamentoQTD+"<input value="+equipamentoQTD+" name=data['equip']["+i+"]['Orcamento_equipamento']['quantidade'] type=hidden readonly></input></div>");
-						$('#inputsequip').append("<div class='alugE' id=alugE"+i+">"+equipamentoAL+"<input value="+equipamentoAL+" name=data['equip']["+i+"]['Orcamento_equipamento']['alugado'] type=hidden readonly></input></div>");
-						$('#inputsequip').append("<div class='fornE' id=fornE"+i+">"+fornec+"<input value="+forn+" name=data['equip']["+i+"]['Orcamento_equipamento']['fornecedor_id'] type=hidden readonly></input></div>");
+						$('#inputsequip').append("<div class='nomeE' id=nomeE"+i+">"+equipamentoNOME+"<input value="+equipamentoID+" name=data[equip]["+i+"][Orcamento_equipamentos][equipamento_id] type=hidden readonly></input></div>");
+						$('#inputsequip').append("<div class='qtdE' id=qtdE"+i+">"+equipamentoQTD+"<input value="+equipamentoQTD+" name=data[equip]["+i+"][Orcamento_equipamentos][quantidade] type=hidden readonly></input></div>");
+						$('#inputsequip').append("<div class='alugE' id=alugE"+i+">"+equipamentoAL+"<input value="+equipamentoAL+" name=data[equip]["+i+"][Orcamento_equipamentos][alugado] type=hidden readonly></input></div>");
+						$('#inputsequip').append("<div class='fornE' id=fornE"+i+">"+fornec+"<input value="+forn+" name=data[equip]["+i+"][Orcamento_equipamentos][fornecedor_id] type=hidden readonly></input></div>");
 						$('#inputsequip').append('<div class="acaoE" id="acaoE'+i+'"><input value="X" class="deldiv" name="botao" type="button" id="botao'+i+'" onclick="deldivE('+i+')" readonly></input></div>');
 					i++;
 					}

@@ -431,21 +431,21 @@ class FornecedoresController extends AppController {
 
 				$orcamento_material = $this->request->data;
 				$orcamento_equipamento = $this->request->data;
+				//pr($orcamento_material);
 				
+				$this->loadModel('Orcamento_materiais');
+				$this->loadModel('Orcamento_equipamentos');
 				
-				$this->loadModel('Orcamento_material');
-				$this->loadModel('Orcamento_equipamento');
-				
-				foreach($orcamento_material as $orcMat):
-					pr($orcMat);
-					$orcMat['Orcamento_material']['orcamento_id'] = $orcamento_id;
-					$this->Orcamento_material->save($orcMat);
+				foreach($orcamento_material['mat'] as $orcMat):
+					$orcMat['Orcamento_materiais']['orcamento_id'] = $orcamento_id;
+					$this->Orcamento_materiais->create();
+					$this->Orcamento_materiais->save($orcMat);
 				endforeach;
 				
-				foreach($orcamento_equipamento as $orcEquip):
-					pr($orcEquip);
-					$orcEquip['Orcamento_equipamento']['orcamento_id'] = $orcamento_id;
-					$this->Orcamento_equipamento->save($orcEquip);
+				foreach($orcamento_equipamento['equip'] as $orcEquip):
+					$orcEquip['Orcamento_equipamentos']['orcamento_id'] = $orcamento_id;
+					$this->Orcamento_equipamentos->create();
+					$this->Orcamento_equipamentos->save($orcEquip);
 				endforeach;
 				
 				if($this->request->is('Ajax')){    // o ajax roda aqui
