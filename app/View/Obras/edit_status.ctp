@@ -1,6 +1,6 @@
 ﻿<?php  
 	echo $this->Html->script("validationStatus", false); 
-	$this->pageTitle = 'Status de Obras';
+	$this->pageTitle = 'Situação de Obras';
 ?>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
@@ -9,7 +9,7 @@
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Obras_status'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Status:</div>
+			<div class="campos">Situação:</div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
 			<?php echo $this->Form->input('id', array('type' => 'hidden')); ?> 

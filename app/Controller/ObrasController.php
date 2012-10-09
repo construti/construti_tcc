@@ -137,6 +137,7 @@ class ObrasController extends AppController {
 		
 
 		$this->set(compact('responsavel')); 
+		$this->set(compact('status'));
 
         if ($this->request->is('get')) {
 			$this->request->data = $this->Obra->read();
@@ -240,6 +241,83 @@ class ObrasController extends AppController {
 			}
 		}		
     }
-    
+	
+    public function search_status_obra() { //pesquisar obras para atualizar a situação
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function at_status($id = null) {
+		$this->Obra->id = $id;
+		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));
+		$this->set(compact('obra'));
+		
+		$this->loadModel('Obras_historico');
+		$historico = $this->Obras_historico->find('all', array('order' => array('andamento' => 'asc'), 'conditions' => array('Obras_historico.obra_id' => $id)));
+		$this->set(compact('historico'));
+		
+		$this->loadModel('Obras_status');
+		$status = $this->Obras_status->find('list', array('order' => array('status_obra' => 'asc'), 'fields' => array('Obras_status.status_id', 'Obras_status.status_obra')));
+		$this->set(compact('status'));
+		
+		if ($this->request->is('get')) {
+			$this->request->data = $this->Obra->read();
+		} else {
+			$this->loadModel('Obras_historico');
+			$ultimo = $this->Obras_historico->find('first', array('order' => array('andamento' => 'desc'), 'conditions' => array('Obras_historico.obra_id' => $id)));
+			$andamento = $ultimo['Obras_historico']['andamento'] + 1;
+			$this->Obras_historico->set(array( 
+						'obra_id' => $id,
+						'andamento' => $andamento
+					));
+			
+			if($this->Obras_historico->save($this->data)){
+				$this->loadModel('Obra');
+				$this->Obra->id = $id;
+				$this->Obra->set(array( 
+						'obra_status' => $this->data['Obras_historico']['obra_status']
+					));
+				if($this->Obra->save()){
+					if($this->request->is('Ajax')){    // o ajax roda aqui
+						echo "<center> Situação de Obra atualizada! </center>";
+						$this->render('delete','ajax');
+	                } 
+	                else{              
+	                    $this->flash('Situação de Obra atualizada','add');
+	                }
+					
+	            } else {
+					echo "<center> Situação de Obra não foi atualizada! </center>";
+	                $this->render('delete','ajax');
+				}
+						
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+                    $this->render('success','ajax');
+                } 
+                else{              
+                    $this->flash('Histórico atualizado!','at_status');
+                    $this->redirect(array('action' => 'at_status'));
+                }
+				
+            } else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}
+		}
+	}
 }
 ?>
