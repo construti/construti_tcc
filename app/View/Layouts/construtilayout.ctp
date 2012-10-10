@@ -96,13 +96,13 @@ $cakeDescription = __d('cake_dev', 'Construti');
 							<ul>
 								<li><a title="Cadastrar Programa de Obra" href="<?php echo $this->params->base."/obras/add"; ?>"><div style="width: 80px;">Gerar Obra</div></a></li>
                                 <li><a title="Pesquisar Programa de Obra" href="<?php echo $this->params->base."/obras/search"; ?>">Pesquisar</a></li>
+								<li><a title="Atualizar Situação de Obra Cadastrada" href="<?php echo $this->params->base."/obras/search_status_obra"; ?>"><div style="width:130px;">Atualizar Situação</div></a></li>
 							</ul>
 						</li>
 						<li>Situação
 							<ul>
 								<li><a title="Cadastrar Situação de Obra" href="<?php echo $this->params->base."/obras/add_status"; ?>">Cadastrar</a></li>
                                 <li><a title="Pesquisar Situação de Obra" href="<?php echo $this->params->base."/obras/search_status"; ?>">Pesquisar</a></li>
-								<li><a title="Atualizar Situação de Obra Cadastrada" href="<?php echo $this->params->base."/obras/search_status_obra"; ?>">Atualizar</a></li>
 							</ul>
 						</li>
 						<li><a title="Visualizar orçamento de Obra" href="<?php echo $this->params->base."/obras/orcamento"; ?>">Orçamento</a></li>

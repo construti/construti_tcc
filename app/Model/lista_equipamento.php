@@ -45,6 +45,10 @@ class Lista_equipamento extends AppModel{
 			'allowEmpty' => false,
 			'message' => "Somente numeros."
 		),
+		'alugado' => array(
+			'rule' => 'notEmpty',
+			'message' => "Este campo não pode ser vazio."
+		),
 		'dt_aluguel_ini' => array(
 			'rule' => array('date','ymd'),
 			'allowEmpty' => false,

@@ -356,8 +356,9 @@ class ObrasController extends AppController {
 		//pr($listaequips);
 		
 		$this->loadModel('Lista_material');
-		$listamats = $this->Lista_material->find('all', array('recursive' => 2, 'order' => 'material_nome', 'conditions' => array('Lista_material.obra_id' => $id)));
+		$listamats = $this->Lista_material->find('all', array('recursive' => 2, 'order' => 'material_nome', 'conditions' => array('Lista_material.obra_id' => $id)));		
 		//pr($listamats);
+		
 		$this->set(compact('projetos', 'listafuncs', 'listaequips', 'listamats', 'obra'));
 	
 		if (!empty($this->data['pesquisa'])){

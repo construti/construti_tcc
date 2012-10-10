@@ -34,6 +34,11 @@ class Lista_funcionario extends AppModel{
 			'rule' => 'numeric',
 			'allowEmpty' => false,
 			'message' => "Somente numeros."
+		),
+		'valor_hora' => array(
+			'rule' => 'numeric',
+			'allowEmpty' => false,
+			'message' => "Somente numeros."
 		)
 		
 	);

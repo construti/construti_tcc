@@ -11,26 +11,27 @@ class Material extends AppModel{
 	var $displayField = 'material_nome';
 	
 	var $hasMany = array(
-		'Embalagem' => array(
-			'className' => 'Embalagem',
-            'foreignKey' => 'embalagem_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-		),
-		'Medida' => array(
-			'className' => 'Medida',
-            'foreignKey' => 'medida_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-		)
+		
 	);
 	
 	var $belongsTo = array(
 		'Material_tipo' => array(
 			'className' => 'Material_tipo',
             'foreignKey' => 'material_tipo',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+		),
+		'Embalagem' => array(
+			'className' => 'Embalagem',
+            'foreignKey' => 'material_embalagem',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+		),
+		'Medida' => array(
+			'className' => 'Medida',
+            'foreignKey' => 'material_medida',
             'conditions' => '',
             'fields' => '',
             'order' => ''
