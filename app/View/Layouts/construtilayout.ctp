@@ -105,6 +105,7 @@ $cakeDescription = __d('cake_dev', 'Construti');
 								<li><a title="Atualizar Situação de Obra Cadastrada" href="<?php echo $this->params->base."/obras/search_status_obra"; ?>">Atualizar</a></li>
 							</ul>
 						</li>
+						<li><a title="Visualizar orçamento de Obra" href="<?php echo $this->params->base."/obras/orcamento"; ?>">Orçamento</a></li>
 					</ul>
 				</li>
 				<li>Requisições

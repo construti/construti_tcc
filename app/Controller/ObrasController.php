@@ -319,5 +319,62 @@ class ObrasController extends AppController {
 			}
 		}
 	}
+	
+	public function orcamento() { //pesquisar obras
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function visualizar_orcamento($id = null) { //pesquisar obras
+		$this->layout = 'blank';
+		$this->loadModel('Obra');
+		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));
+		//pr($obra);
+		
+		$this->loadModel('Projeto');
+		$projetos = $this->Projeto->find('all', array('order' => 'projeto_tipo', 'conditions' => array('Projeto.obra_id' => $id)));
+		//pr($projetos);
+		
+		$this->loadModel('Lista_funcionario');
+		$listafuncs = $this->Lista_funcionario->find('all', array('recursive' => 2, 'order' => 'funcionario_nome', 'conditions' => array('Lista_funcionario.obra_id' => $id)));
+		//pr($listafuncs);
+		
+		$this->loadModel('Lista_equipamento');
+		$listaequips = $this->Lista_equipamento->find('all', array('recursive' => 2, 'order' => 'equipamento_nome', 'conditions' => array('Lista_equipamento.obra_id' => $id)));
+		//pr($listaequips);
+		
+		$this->loadModel('Lista_material');
+		$listamats = $this->Lista_material->find('all', array('recursive' => 2, 'order' => 'material_nome', 'conditions' => array('Lista_material.obra_id' => $id)));
+		//pr($listamats);
+		$this->set(compact('projetos', 'listafuncs', 'listaequips', 'listamats', 'obra'));
+	
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
 }
 ?>

@@ -27,6 +27,16 @@ class Material extends AppModel{
 		)
 	);
 	
+	var $belongsTo = array(
+		'Material_tipo' => array(
+			'className' => 'Material_tipo',
+            'foreignKey' => 'material_tipo',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+		)
+	);
+	
 	public $virtualFields = array(
     'descricao' => 'CONCAT(material_nome, " - ", material_embalagem , " - ", material_qtd_base, " - ", material_medida)'
 );
