@@ -88,6 +88,12 @@ $cakeDescription = __d('cake_dev', 'Construti');
 								<li><a title="Estoque de Equipamentos" href="<?php echo $this->params->base."/fornecedores/estoqueequip"; ?>">Equipamentos</a></li>
 							</ul>
 						</li>
+						<li>Requisitar
+							<ul>
+								<li><a title="Requisitar Materiais" href="<?php echo $this->params->base."/fornecedores/search_req_mat"; ?>">Materiais</a></li>
+                                <li><a title="Requisitar Equipamentos" href="<?php echo $this->params->base."/fornecedores/search_req_equip"; ?>">Equipamentos</a></li>								
+							</ul>
+						</li>
 					</ul>
 				</li>
 				<li>Programas de Obra

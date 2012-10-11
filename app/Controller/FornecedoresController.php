@@ -437,18 +437,22 @@ class FornecedoresController extends AppController {
 				$this->loadModel('Orcamento_materiais');
 				$this->loadModel('Orcamento_equipamentos');
 				
-				foreach($orcamento_material['mat'] as $orcMat):
-					$orcMat['Orcamento_materiais']['orcamento_id'] = $orcamento_id;
-					$this->Orcamento_materiais->create();
-					$this->Orcamento_materiais->save($orcMat);
-				endforeach;
+				if(isset($orcamento_material['mat'])){
+					
+					foreach($orcamento_material['mat'] as $orcMat):
+						$orcMat['Orcamento_materiais']['orcamento_id'] = $orcamento_id;
+						$this->Orcamento_materiais->create();
+						$this->Orcamento_materiais->save($orcMat);
+					endforeach;
+				}
 				
-				foreach($orcamento_equipamento['equip'] as $orcEquip):
-					$orcEquip['Orcamento_equipamentos']['orcamento_id'] = $orcamento_id;
-					$this->Orcamento_equipamentos->create();
-					$this->Orcamento_equipamentos->save($orcEquip);
-				endforeach;
-				
+				if(isset($orcamento_material['equip'])){
+					foreach($orcamento_equipamento['equip'] as $orcEquip):
+						$orcEquip['Orcamento_equipamentos']['orcamento_id'] = $orcamento_id;
+						$this->Orcamento_equipamentos->create();
+						$this->Orcamento_equipamentos->save($orcEquip);
+					endforeach;
+				}
 				$materiais_equipamentos_orcamento = $this->Orcamento_materiais->query("
 					SELECT * from 
 						(SELECT (SELECT material_nome from materiais where materiais.material_id = M.material_id) as nome,
@@ -465,21 +469,36 @@ class FornecedoresController extends AppController {
 					as materiais_equipamentos_orcamento order by fornecedor_nome
 				"); // ESSE SQL RETORNA TODOS OS DADOS DO ORCAMENTO QUE ACABOU DE SER GRAVADO COM NOME DE FORNECEDOR E ITENS 
 				
-				pr($materiais_equipamentos_orcamento);
-				
-				
-				//pr($orcamento_materiais_cadastrados);
-				$mensagem = 'Pedido de Materiais e Equipamentos \n\n';
-				foreach($orcamento_materiais_cadastrados as $o): // Pega a lista de fornecedores dos materiais requisitados.
-						if($b!=$o['Orcamento_materiais']['fornecedor_id']){
-							$b.='>'.$o['Orcamento_materiais']['fornecedor_id'];
+				$mensagem = array();
+				$chave = '';
+				$i = 0;
+				foreach($materiais_equipamentos_orcamento as $o): // Pega a lista de fornecedores dos materiais requisitados.
+						if($chave!=$o['materiais_equipamentos_orcamento']['fornecedor_nome']){
+							$chave =$o['materiais_equipamentos_orcamento']['fornecedor_nome'];
+							$i++;
+							
+							$mensagem[$i].= "<strong>Pedido de Materiais e Equipamentos</strong> \n \n ";
+							$mensagem[$i] .= "<b>Fornecedor:</b>".$o['materiais_equipamentos_orcamento']['fornecedor_nome']." \n\n ";
+						}
+						if($i!=0){
+							$mensagem[$i] .= "<b>Tipo do Item:</b> ".$o['materiais_equipamentos_orcamento']['tipo']." \n ";
+							$mensagem[$i] .= "<b>Item:</b> ".$o['materiais_equipamentos_orcamento']['nome']." \n ";
+							$mensagem[$i] .= "<b>Quantidade:</b> ".$o['materiais_equipamentos_orcamento']['quantidade']." \n ";
+							$mensagem[$i] .= "---------------------------------------------------- \n \n ";
 						}
 				endforeach;
 				
-				$mensagem .= 'Fornecedor '.$o['Fornecedor']['fornecedor_nome'].'\n\n';
-				$mensagem .= '<b>Material:</b> '.$o['Material']['material_nome'].'\n';
-				$mensagem .= '<b>Quantidade:</b> '.$o['Material']['material_nome'].'\n\n';
-				$mensagem .= '----------------------------------------------------';
+				$email = new CakeEmail('default');
+				for($k=1;$k<=sizeof($mensagem);$k++){
+					echo $mensagem[$k];
+					
+					$email->from(array('construti@construti.com' => 'Empresa de Engenharia'));
+					$email->to('dudu.yusuke@gmail.com');
+					$email->subject('Pedido de Orçamento Construti');
+					$email->send($mensagem[$k]);
+					
+					echo " \n\n ";
+				}
 				
 				if($this->request->is('Ajax')){    // o ajax roda aqui
                     $this->set('dados',$this->request->data);
@@ -827,5 +846,139 @@ class FornecedoresController extends AppController {
 			}
 		}
 	}
+	
+	public function search_req_mat() { //pesquisar orçamentos de materiais
+		if (!empty($this->data['pesquisa'])){
+			$this->loadModel('Orcamento_materiais');
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'fornecedor_id') {
+				$fornIds = $this->Fornecedor->find('list', array('conditions' => array('Fornecedor.fornecedor_nome LIKE' => "%$pesquisa%"), 'fields' => array('Fornecedor.fornecedor_id')));
+				$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.fornecedor_id' => $fornIds, 'Orcamento_materiais.material_preco <>' => 0), 'group' => array('orcamento_id', 'Orcamento_materiais.fornecedor_id') ));
+			} else {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+				
+				$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.'.$tipo.' LIKE' => "%$pesquisa%", 'Orcamento_materiais.material_preco <>' => 0), 'group' => array('orcamento_id', 'Orcamento_materiais.fornecedor_id')));
+			}
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function reqmat($id = null) { //atualizar preços de orçamentos de materiais
+		$this->loadModel('Orcamento_materiais');
+		//$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.orcamento_id LIKE' => $id)));
+		$results = $this->Orcamento_materiais->query("SELECT Orcamento_materiais.orcamentos_materiais_id, Orcamento_materiais.orcamento_id, Orcamento_materiais.fornecedor_id, Orcamento_materiais.material_id, Orcamento_materiais.quantidade, Orcamento_materiais.material_preco, Orcamento_materiais.prazo, Orcamento_materiais.created, Orcamento_materiais.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.orcamentos_materiais AS Orcamento_materiais LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Orcamento_materiais.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Orcamento_materiais.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Orcamento_materiais.orcamento_id LIKE ".$id);
+		
+		$orcamento = $results;
+		$this->set(compact('results'));
+		
+        if ($this->request->is('get')) {
+			$this->request->data = $this->Orcamento_materiais->read();
+		} else {
+			$contar = count($this->data)-1;
+			for($i = 0; $i < $contar; $i++) {
+				if($this->data['Orcamento_materiais']['material_preco'.$i] != ''){
+					$this->Orcamento_materiais->id = $orcamento[$i]['Orcamento_materiais']['orcamentos_materiais_id'];
+					$materialPrecoAtual = $this->data['Orcamento_materiais']['material_preco'.$i];
+					$prazo = $this->data['Orcamento_materiais']['prazo'.$i];
+					
+					$this->Orcamento_materiais->set(array(
+						'material_preco' => $materialPrecoAtual,
+						'prazo' => $prazo
+					));
+					
+					if($this->Orcamento_materiais->save()) {
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+		                    $this->set('dados',$this->request->data);
+		                    $this->render('success','ajax');
+		                } 
+		                else{              
+		                    $this->flash('Atualizado com sucesso!','atprecosmat');
+		                    $this->redirect(array('action' => 'atprecosmat'));
+		                }
+					} else {
+						echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+		                $this->render('delete','ajax');
+					}
+					
+				} else {
+					echo "<center> O valor do campo de preço da ".($i+1)."ª linha está vazio, portanto não foi atualizado. </center><br />";
+					$this->render('delete','ajax');
+				}
+			}
+		}
+    }
+	
+	public function search_req_equip() { //pesquisar orçamentos de equipamentos
+		if (!empty($this->data['pesquisa'])){
+			$this->loadModel('Orcamento_equipamentos');
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'fornecedor_id') {
+				$fornIds = $this->Fornecedor->find('list', array('conditions' => array('Fornecedor.fornecedor_nome LIKE' => "%$pesquisa%"), 'fields' => array('Fornecedor.fornecedor_id')));
+				$results = $this->Orcamento_equipamentos->find('all', array('conditions' => array('Orcamento_equipamentos.fornecedor_id' => $fornIds, 'Orcamento_equipamentos.equipamento_preco <>' => 0), 'group' => array('orcamento_id', 'Orcamento_equipamentos.fornecedor_id') ));
+			} else {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+				
+				$results = $this->Orcamento_equipamentos->find('all', array('conditions' => array('Orcamento_equipamentos.'.$tipo.' LIKE' => "%$pesquisa%", 'Orcamento_equipamentos.equipamento_preco <>' => 0), 'group' => array('orcamento_id', 'Orcamento_equipamentos.fornecedor_id')));
+			}
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function reqequip($id = null) { //atualizar preços de orçamentos de equipamentos
+		$this->loadModel('Orcamento_equipamentos');
+		$results = $this->Orcamento_equipamentos->find('all', array('conditions' => array('Orcamento_equipamentos.orcamento_id LIKE' => $id)));
+		$orcamento = $results;
+		$this->set(compact('results'));
+		
+        if ($this->request->is('get')) {
+			$this->request->data = $this->Orcamento_equipamentos->read();
+		} else {
+			$contar = count($this->data)-1;
+			for($i = 0; $i < $contar; $i++) {
+				if($this->data['Orcamento_equipamentos']['equipamento_preco'.$i] != ''){
+					$this->Orcamento_equipamentos->id = $orcamento[$i]['Orcamento_equipamentos']['orcamentos_equipamentos_id'];
+					$equipPrecoAtual = $this->data['Orcamento_equipamentos']['equipamento_preco'.$i];
+					$prazo = $this->data['Orcamento_equipamentos']['prazo'.$i];
+					
+					$this->Orcamento_equipamentos->set(array(
+						'equipamento_preco' => $equipPrecoAtual,
+						'prazo' => $prazo
+					));
+					
+					if($this->Orcamento_equipamentos->save()) {
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+		                    $this->set('dados',$this->request->data);
+		                    $this->render('success','ajax');
+		                } 
+		                else{              
+		                    $this->flash('Atualizado com sucesso!','atprecosequip');
+		                    $this->redirect(array('action' => 'atprecosequip'));
+		                }
+					} else {
+						echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+		                $this->render('delete','ajax');
+					}
+					
+				} else {
+					echo "<center> O valor do campo de preço da ".($i+1)."ª linha está vazio, portanto não foi atualizado. </center><br />";
+					$this->render('delete','ajax');
+				}
+			}
+		}
+    }
 }
 ?>
