@@ -7,7 +7,7 @@ class Lista_funcionario extends AppModel{
 	
 	var $useTable = 'listas_funcionarios';
 	
-	var $primaryKey = 'listas_funcionarios_id';
+	var $primaryKey = 'lista_funcionario_id';
 	
 	public $belongsTo = array(
         'Funcionario' => array(

@@ -106,6 +106,12 @@ $cakeDescription = __d('cake_dev', 'Construti');
 							</ul>
 						</li>
 						<li><a title="Visualizar orçamento de Obra" href="<?php echo $this->params->base."/obras/orcamento"; ?>">Orçamento</a></li>
+						<li>Alocar/Desalocar
+							<ul>
+								<li><a title="Alocar Mão de Obra" href="<?php echo $this->params->base."/obras/search_mao_de_obra"; ?>">Mão de Obra</a></li>
+                                <li><a title="Alocar Equipamentos" href="<?php echo $this->params->base."/obras/search_equipamentos"; ?>">Equipamentos</a></li>
+							</ul>
+						</li>
 					</ul>
 				</li>
 				<li>Requisições

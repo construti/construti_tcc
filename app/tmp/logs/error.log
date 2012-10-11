@@ -9265,3 +9265,80 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 #9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
 #10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #11 {main}
+2012-10-10 23:42:29 Error: [MissingActionException] Action ObrasController::des_alocar_mao_de_obra() could not be found.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-10-11 00:09:13 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Obra.fornecedor_id' in 'where clause'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Obra`.`...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Obra`.`...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Obra`.`...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Obra), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\ObrasController.php(400): Model->find('first', Array)
+#6 [internal function]: ObrasController->des_alocar_mao_de_obra('1')
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ObrasController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-10-11 00:09:33 Error: [MissingActionException] Action ObrasController::pega_mao_de_obra() could not be found.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-10-11 02:55:57 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Lista_funcionario.listas_funcionarios_id' in 'field list'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Lista_f...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Lista_f...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Lista_f...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Lista_funcionario), Array)
+#5 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2522): Model->find('all', Array)
+#6 C:\xampp\htdocs\construti_oficial\app\Controller\ObrasController.php(465): Model->deleteAll(Array, true)
+#7 [internal function]: ObrasController->des_alocar_mao_de_obra('1')
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ObrasController), Array)
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-10-11 04:52:32 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Lista_equipamento.listas_equipamentos_id' in 'field list'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Lista_e...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Lista_e...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Lista_e...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Lista_equipamento), Array)
+#5 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2522): Model->find('all', Array)
+#6 C:\xampp\htdocs\construti_oficial\app\Controller\ObrasController.php(581): Model->deleteAll(Array, true)
+#7 [internal function]: ObrasController->des_alocar_equipamentos('1')
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ObrasController), Array)
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-10-11 05:37:41 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Fornecedor.fornecedor_tipo' in 'where clause'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Fornece...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Fornece...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Fornece...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Fornecedor), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\RequisicoesController.php(77): Model->find('list', Array)
+#6 [internal function]: RequisicoesController->reqequip()
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(RequisicoesController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(RequisicoesController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-10-11 05:37:47 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Fornecedor.fornecedor_tipo' in 'where clause'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Fornece...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Fornece...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Fornece...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Fornecedor), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\RequisicoesController.php(108): Model->find('list', Array)
+#6 [internal function]: RequisicoesController->reqcomp()
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(RequisicoesController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(RequisicoesController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
