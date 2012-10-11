@@ -1038,6 +1038,20 @@ p {
 	margin: 0 auto 10px;
 	padding: 0;
 }
+/** Alocação e Desalocação / Multiselect **/
+#itensSel {
+	float: left;
+	width: 735px;
+	margin: 0 0 0 15%;
+}
+#camposdescricao2 {
+	float: left;
+	width: 150px;
+	margin: 0 auto 10px;
+	text-align: right;
+	font-size: 14px;
+	padding: 0 0 0 13%;
+}
 /** Botões **/
 
 /** Classes **/

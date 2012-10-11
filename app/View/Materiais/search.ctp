@@ -41,7 +41,7 @@
 			<!--<td align="center"><?php echo $result['Embalagem']['embalagem_tipo']; ?></td>
 			<td align="center"><?php echo $result['Material']['material_qtd_base']; ?></td>
 			<td align="center"><?php echo $result['Medida']['medida_tipo']; ?></td>-->			
-			<td align="center"><?php echo $result['Material']['material_tipo']; ?></td>
+			<td align="center"><?php echo $result['Material_tipo']['material_tipo_nome']; ?></td>
 			<td align="center"><?php echo $result['Material']['material_descricao']; ?></td>
 			
 						

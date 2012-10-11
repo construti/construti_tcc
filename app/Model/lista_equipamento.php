@@ -7,7 +7,7 @@ class Lista_equipamento extends AppModel{
 	
 	var $useTable = 'listas_equipamentos';
 	
-	var $primaryKey = 'listas_equipamentos_id';
+	var $primaryKey = 'lista_equipamento_id';
 	
 	public $belongsTo = array(
         'Equipamento' => array(
@@ -45,13 +45,17 @@ class Lista_equipamento extends AppModel{
 			'allowEmpty' => false,
 			'message' => "Somente numeros."
 		),
+		'alugado' => array(
+			'rule' => 'notEmpty',
+			'message' => "Este campo não pode ser vazio."
+		),
 		'dt_aluguel_ini' => array(
-			'rule' => array('date','ymd'),
+			'rule' => array('datetime'),
 			'allowEmpty' => false,
 			'message' => "Este campo não pode ser vazio. Preencha com o formato (dd/mm/aaaa)"
 		),
 		'dt_aluguel_fim' => array(
-			'rule' => array('date','ymd'),
+			'rule' => array('datetime'),
 			'allowEmpty' => false,
 			'message' => "Este campo não pode ser vazio. Preencha com o formato (dd/mm/aaaa)"
 		)

@@ -31,7 +31,7 @@
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Fornecedor_materiais'); ?> <!-- início do formulário -->
-		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
+		<div id="camposdescricao2"> <!-- div com a descrição dos campos -->
 			<div class="campos">Fornecedor: </div>
 			
 			<div class="campos">Materiais: </div>

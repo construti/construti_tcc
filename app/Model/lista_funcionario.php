@@ -7,7 +7,7 @@ class Lista_funcionario extends AppModel{
 	
 	var $useTable = 'listas_funcionarios';
 	
-	var $primaryKey = 'listas_funcionarios_id';
+	var $primaryKey = 'lista_funcionario_id';
 	
 	public $belongsTo = array(
         'Funcionario' => array(
@@ -31,6 +31,11 @@ class Lista_funcionario extends AppModel{
 			'message' => "Somente numeros."
 		),
 		'qtd_horas' => array(
+			'rule' => 'numeric',
+			'allowEmpty' => false,
+			'message' => "Somente numeros."
+		),
+		'valor_hora' => array(
 			'rule' => 'numeric',
 			'allowEmpty' => false,
 			'message' => "Somente numeros."
