@@ -4,7 +4,7 @@
 ?> 
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Edição</div> <!-- título do formulário -->
+	<div id="tituloform">Atualização</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Material'); ?> <!-- início do formulário -->
@@ -13,7 +13,7 @@
 			<div class="campos">Nome*: </div> 
 			<div class="campos">Tipo*: </div> 
 			<div class="campos">Embalagem*: </div> 
-			<div class="campos">Quantidade*: </div> 
+			<div class="campos">Quantidade Base*: </div> 
 			<div class="campos">Medida*: </div> 
 			<div class="campos">Descrição:</div> <br/><br/>
 		</div>
@@ -47,7 +47,7 @@
 		</div>
 		<div id="areaBotao"> <!-- botão de cadastro -->
             <?php 
-                echo $this->Js->submit('Cadastrar', array(
+                echo $this->Js->submit('Atualizar', array(
                     'before' => $this->Js->get('#sending')->effect('fadeIn'),
                     'success' => $this->Js->get('#sending')->effect('fadeOut'),
                     'update' => '#success'

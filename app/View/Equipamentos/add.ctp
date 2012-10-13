@@ -37,14 +37,6 @@
             <div class="campos">
 			<?php echo $this->Form->input('equipamento_nome', array('label' => '', 'id' => 'equipamento_nome', 'class' => array('intexto'))); ?>
 			</div>
-
-			<!--<div class="campos">
-			<?php 
-				$opcoes_alugado = array('S' => 'Sim', 'N' => 'Não');
-				$atributos_alugado = array('label' => '', 'legend' => false, 'id' => 'equipamento_alugado', 'class' => array('intexto'));
-				echo $this->Form->radio('equipamento_alugado', $opcoes_alugado, $atributos_alugado);
-			?>
-			</div>-->
 			
 			<div class="campos">
 			<?php echo $this->Form->select('equipamento_tipo', $tipos, array('label' => '', 'id' => 'equipamento_tipo', 'class' => array('selecionar'), 'empty' => 'Escolha...')); ?>

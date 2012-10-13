@@ -7,7 +7,7 @@
 <div id="formulariocorpo">
 	<?php echo $this->Form->create('Equipamento'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Pesquisar: </div>
+			<div class="campos">Termo de Pesquisa: </div>
 			<div class="campos">Por: </div> 
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
@@ -16,8 +16,8 @@
 				<select name="tipo" class="intexto"/>
 					<option value="nome" select="selected">Nome</option>
 					<option value="tipo">Tipo</option>
-					<option value="descricao">Descrição</option>
 					<option value="valor_hora">Valor/Hora</option>
+					<option value="descricao">Descrição</option>
 				</select>
 			</div>
 		</div>
@@ -39,16 +39,16 @@
 			<th>Ações</th>
 		</tr>
 		
-		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
+		<?php if(!empty($results)) { foreach ($results as $result): ?>
 		<tr>
 			<td align="center"><?php echo $result['Equipamento']['equipamento_id']; ?></td>
 			<td><?php echo $result['Equipamento']['equipamento_nome']; ?></td>
-			<td><?php echo $result['Equipamentos_tipo']['tipo_equipamento']; ?></td>
+			<td align="center"><?php echo $result['Equipamentos_tipo']['tipo_equipamento']; ?></td>
 			<td align="center"><?php echo $result['Equipamentos_tipo']['tipo_valor_hora']; ?></td>
 			<td><?php echo $result['Equipamento']['equipamento_descricao']; ?></td>
 			
 			<td align="center">
-				<?php echo $this->Html->link('editar', array('action' => 'edit', $result['Equipamento']['equipamento_id'])); ?>
+				<?php echo $this->Html->link('editar', array('action' => 'edit', $result['Equipamento']['equipamento_id'], $result['Equipamentos_tipo']['tipo_valor_hora'])); ?>
 				<?php echo $this->Form->postLink('deletar', 
 												array('action' => 'delete', $result['Equipamento']['equipamento_id']), 
 												array('confirm' => 'Quer realmente deletar este equipamento?')); ?>

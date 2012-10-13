@@ -1,5 +1,5 @@
 <?php  
-	$this->pageTitle = 'Áreas';
+	$this->pageTitle = 'Áreas de Funcionários';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Pesquisa</div> <!-- título do formulário -->
@@ -7,7 +7,7 @@
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Area'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Pesquisar: </div>
+			<div class="campos">Área: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
 			<div class="campos"><input type="text" name="pesquisa" class="intexto"/></div>

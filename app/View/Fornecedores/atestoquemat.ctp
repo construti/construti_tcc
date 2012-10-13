@@ -1,5 +1,5 @@
 <?php  
-	$this->pageTitle = 'Fornecedores - Atualizar Estoque de Materiais';
+	$this->pageTitle = 'Fornecedores';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Atualização do Estoque de Materiais</div> <!-- título do formulário -->

@@ -106,7 +106,7 @@
 </script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Requisitar Orçamento</div> <!-- título do formulário -->
+	<div id="tituloform">Requisitar Orçamento à Fornecedores</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 		<div id="camposdescricaoorc"> <!-- div com a descrição dos campos -->

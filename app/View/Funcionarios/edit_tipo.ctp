@@ -1,6 +1,6 @@
 ﻿<?php  
 	echo $this->Html->script("validationTipo", false); 
-	$this->pageTitle = 'Tipos';
+	$this->pageTitle = 'Tipos de Funcionários';
 ?>
 
 <div id="formulariotopo"> <!-- topo do formulário -->

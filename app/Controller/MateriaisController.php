@@ -17,7 +17,6 @@ class MateriaisController extends AppController {
     } 
                
     public function add(){
-		//pr($this->params);
 		$Embalagem = $this->loadModel('Embalagem');
 		$embalagens = $this->Embalagem->find('list', array('fields' => array('embalagem_tipo'),'order' => array('embalagem_tipo' => 'asc'	)));
 		$Medida = $this->loadModel('Medida');
@@ -65,7 +64,6 @@ class MateriaisController extends AppController {
        $this->layout = 'ajax';
         if($this->request->is('Ajax')){  
             $this->request->data['Material'][$this->request->data['field']] = $this->request->data['value']; 
-            //pr($this->request->data);  
             $error = '' ;
 			
             if($this->request->data['field'] == 'material_nome' ) {
@@ -86,12 +84,17 @@ class MateriaisController extends AppController {
    } 
    
    public function search(){
-       
        if(!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
             $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
-            
-            $results = $this->Material->find('all', array('conditions' => array('Material.material_'.$tipo.' LIKE' => "%$pesquisa%")));
+			
+			if ($tipo == 'tipo') {
+				$this->loadModel('Material_tipo');
+				$tipoIds = $this->Material_tipo->find('list', array('conditions' => array('Material_tipo.material_tipo_nome LIKE' => "%$pesquisa%"), 'fields' => array('Material_tipo.material_tipo_id')));
+				$results = $this->Material->find('all', array('conditions' => array('Material.material_tipo' => $tipoIds)));				
+			} else {
+            	$results = $this->Material->find('all', array('conditions' => array('Material.material_'.$tipo.' LIKE' => "%$pesquisa%")));
+			}
        } 
        if (!empty($results)){
             $this->set(compact('results'));

@@ -1,6 +1,6 @@
 ﻿<?php  
 	echo $this->Html->script("validationArea", false); 
-	$this->pageTitle = 'Áreas';
+	$this->pageTitle = 'Áreas de Funcionários';
 ?>
 
 <div id="formulariotopo"> <!-- topo do formulário -->

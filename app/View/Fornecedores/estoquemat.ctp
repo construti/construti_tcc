@@ -7,7 +7,7 @@
 <div id="formulariocorpo">
 	<?php echo $this->Form->create('Material_requisitado'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Pesquisar: </div>
+			<div class="campos">Termo de Pesquisa: </div>
 			<div class="campos">Por: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->

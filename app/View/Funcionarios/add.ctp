@@ -99,7 +99,7 @@
  			
 			<div class="campos">Tipo*: </div>
  			
-			<div class="campos">Salário*: </div>
+			<div class="campos">Salário/Hora*: </div>
 		</div>
 		<div id="camposlacunasD"> <!-- div com os campos da direita a serem preenchidos -->
 			<div class="campos">
