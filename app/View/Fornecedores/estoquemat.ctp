@@ -2,7 +2,7 @@
 	$this->pageTitle = 'Fornecedores';
 ?>
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Pesquisar Requisições de Materiais</div> <!-- título do formulário -->
+	<div id="tituloform">Pesquisa de Requisições de Materiais</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo">
 	<?php echo $this->Form->create('Material_requisitado'); ?> <!-- início do formulário -->
@@ -36,7 +36,7 @@
 			<th>Ações</th>
 		</tr>
 		
-		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
+		<?php if(!empty($results)) { foreach ($results as $result): ?>
 		<tr>
 			<td><?php echo $result['Material_requisitado']['requisicao_id']; ?></td>
 			<td><?php echo $result['Fornecedor']['fornecedor_nome']; ?></td>

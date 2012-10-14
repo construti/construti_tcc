@@ -1,5 +1,5 @@
 <?php  
-	$this->pageTitle = 'Fornecedores - Requisição de Materiais';
+	$this->pageTitle = 'Fornecedores';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Requisição de Materiais</div> <!-- título do formulário -->

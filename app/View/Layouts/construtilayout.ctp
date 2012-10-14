@@ -71,8 +71,8 @@ $cakeDescription = __d('cake_dev', 'Construti');
 					<ul>
 						<li>Relacionar
 							<ul>
-								<li><a title="Relacionar Materiais" href="<?php echo $this->params->base."/fornecedores/searchrelmateriais"; ?>">Materiais</a></li>
-                                <li><a title="Relacionar Equipamentos" href="<?php echo $this->params->base."/fornecedores/searchrelequipamentos"; ?>">Equipamentos</a></li>								
+								<li><a title="Relacionar Materiais à Fornecedores" href="<?php echo $this->params->base."/fornecedores/searchrelmateriais"; ?>">Materiais</a></li>
+                                <li><a title="Relacionar Equipamentos à Fornecedores" href="<?php echo $this->params->base."/fornecedores/searchrelequipamentos"; ?>">Equipamentos</a></li>								
 							</ul>
 						</li>
 						<li><a title="Requistar Orçamento" href="<?php echo $this->params->base."/fornecedores/orcamento"; ?>">Orçamento</a></li>
@@ -82,16 +82,16 @@ $cakeDescription = __d('cake_dev', 'Construti');
                                 <li><a title="Atualizar Preços de Equipamentos" href="<?php echo $this->params->base."/fornecedores/searchorcequip"; ?>">Equipamentos</a></li>								
 							</ul>
 						</li>
-						<li>Estoque
-							<ul>
-								<li><a title="Estoque de Materiais" href="<?php echo $this->params->base."/fornecedores/estoquemat"; ?>">Materiais</a></li>
-								<li><a title="Estoque de Equipamentos" href="<?php echo $this->params->base."/fornecedores/estoqueequip"; ?>">Equipamentos</a></li>
-							</ul>
-						</li>
 						<li>Requisitar
 							<ul>
 								<li><a title="Requisitar Materiais" href="<?php echo $this->params->base."/fornecedores/search_req_mat"; ?>">Materiais</a></li>
                                 <li><a title="Requisitar Equipamentos" href="<?php echo $this->params->base."/fornecedores/search_req_equip"; ?>">Equipamentos</a></li>								
+							</ul>
+						</li>
+						<li>Estoque/Galpão
+							<ul>
+								<li><a title="Estoque de Materiais" href="<?php echo $this->params->base."/fornecedores/estoquemat"; ?>">Materiais</a></li>
+								<li><a title="Galpão de Equipamentos" href="<?php echo $this->params->base."/fornecedores/estoqueequip"; ?>">Equipamentos</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -111,20 +111,13 @@ $cakeDescription = __d('cake_dev', 'Construti');
                                 <li><a title="Pesquisar Situação de Obra" href="<?php echo $this->params->base."/obras/search_status"; ?>">Pesquisar</a></li>
 							</ul>
 						</li>
-						<li><a title="Visualizar orçamento de Obra" href="<?php echo $this->params->base."/obras/orcamento"; ?>">Orçamento</a></li>
+						<li><a title="Acompanhamento de Custos de Obra" href="<?php echo $this->params->base."/obras/custo_obra"; ?>">Custos de Obra</a></li>
 						<li>Alocar/Desalocar
 							<ul>
 								<li><a title="Alocar Mão de Obra" href="<?php echo $this->params->base."/obras/search_mao_de_obra"; ?>">Mão de Obra</a></li>
                                 <li><a title="Alocar Equipamentos" href="<?php echo $this->params->base."/obras/search_equipamentos"; ?>">Equipamentos</a></li>
 							</ul>
 						</li>
-					</ul>
-				</li>
-				<li>Requisições
-					<ul>
-						<li><a title="Requisitar Equipamento" href="<?php echo $this->params->base."/requisicoes/reqequip"; ?>">Equipamento</a></li>
-						<li><a title="Requisitar Material" href="<?php echo $this->params->base."/requisicoes/reqmat"; ?>">Material</a></li>
-						<li><a title="Requisitar Ambos" href="<?php echo $this->params->base."/requisicoes/reqcomp"; ?>">Completa</a></li>
 					</ul>
 				</li>
 				<li>Relatórios

@@ -1,5 +1,5 @@
 <?php  
-	$this->pageTitle = 'Situação de Obras';
+	$this->pageTitle = 'Obras';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
 	<div id="tituloform">Pesquisa de Obras</div> <!-- título do formulário -->
@@ -7,21 +7,23 @@
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Obra'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			Pesquisar: <br/><br/>
-			Por: 
+			<div class="campos">Termo de Pesquisa: </div>
+			<div class="campos">Por: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
-			<input type="text" name="pesquisa" class="intexto"/><br/><br/>
-			<select name="tipo" class="intexto"/>
-				<option value="obra_nome" select="selected">Título</option>
-				<option value="obra_responsavel">Responsável</option>
-				<option value="obra_custo">Custo</option>
-				<option value="obra_data_inicio">Data de Início(dd/mm/aaaa)</option>
-				<option value="obra_data_fim">Data de Término(dd/mm/aaaa)</option>
-				<option value="obra_status">Situação</option>
-				<option value="obra_tipo">Tipo</option>
-				<option value="obra_descricao">Descrição</option>
-			</select>
+			<div class="campos"><input type="text" name="pesquisa" class="intexto"/></div>
+			<div class="campos">
+				<select name="tipo" class="intexto"/>
+					<option value="obra_nome" select="selected">Título</option>
+					<option value="obra_responsavel">Responsável</option>
+					<option value="obra_custo">Custo</option>
+					<option value="obra_data_inicio">Data de Início(dd/mm/aaaa)</option>
+					<option value="obra_data_fim">Data de Término(dd/mm/aaaa)</option>
+					<option value="obra_status">Situação</option>
+					<option value="obra_tipo">Tipo</option>
+					<option value="obra_descricao">Descrição</option>
+				</select>
+			</div>
 		</div>
 		<div id="areaBotao"> <!-- botão de cadastro -->
 			<?php echo $this->Form->end('Pesquisar'); ?> <!-- fim do formulário -->

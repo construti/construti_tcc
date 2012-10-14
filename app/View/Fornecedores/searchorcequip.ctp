@@ -2,7 +2,7 @@
 	$this->pageTitle = 'Fornecedores';
 ?>
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Pesquisar Solicitações de Orçamentos de Equipamentos</div> <!-- título do formulário -->
+	<div id="tituloform">Pesquisa de Solicitações de Orçamentos de Equipamentos</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo">
 	<?php echo $this->Form->create('Orcamento_equipamentos'); ?> <!-- início do formulário -->

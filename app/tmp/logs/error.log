@@ -9617,3 +9617,89 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 2012-10-13 18:07:51 Error: [MissingControllerException] Controller class CssController could not be found.
 #0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2012-10-14 16:43:44 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:43:44 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:44:43 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:44:44 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:45:52 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:45:52 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:45:57 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:45:57 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:47:03 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:47:03 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:47:40 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:47:40 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 16:52:22 Error: [MissingActionException] Action ObrasController::orcamento() could not be found.
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ObrasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-10-14 17:02:45 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Fornecedor.fornecedor_tipo' in 'where clause'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Fornece...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Fornece...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Fornece...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Fornecedor), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\RequisicoesController.php(77): Model->find('list', Array)
+#6 [internal function]: RequisicoesController->reqequip()
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(RequisicoesController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(RequisicoesController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-10-14 17:03:35 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Fornecedor.fornecedor_tipo' in 'where clause'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Fornece...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Fornece...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Fornece...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Fornecedor), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\RequisicoesController.php(108): Model->find('list', Array)
+#6 [internal function]: RequisicoesController->reqcomp()
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(RequisicoesController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(RequisicoesController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-10-14 17:03:36 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Fornecedor.fornecedor_tipo' in 'where clause'
+#0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('SELECT `Fornece...', Array)
+#2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('SELECT `Fornece...', Array, Array)
+#3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(1058): DboSource->fetchAll('SELECT `Fornece...', false)
+#4 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(2663): DboSource->read(Object(Fornecedor), Array)
+#5 C:\xampp\htdocs\construti_oficial\app\Controller\RequisicoesController.php(77): Model->find('list', Array)
+#6 [internal function]: RequisicoesController->reqequip()
+#7 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(RequisicoesController), Array)
+#8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(RequisicoesController), Object(CakeRequest), Object(CakeResponse))
+#10 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-10-14 17:04:51 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-14 17:04:52 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

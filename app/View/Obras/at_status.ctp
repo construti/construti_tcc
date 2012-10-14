@@ -1,5 +1,5 @@
 <?php  
-	$this->pageTitle = 'Situação de Obras';
+	$this->pageTitle = 'Obras';
 ?> 
 
 <script type="text/javascript" language="javascript">
@@ -25,7 +25,7 @@
 </script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Atualizar Situação</div> <!-- título do formulário -->
+	<div id="tituloform">Atualizar Situação de Obra</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<table class="tabela2">
@@ -65,7 +65,7 @@
 				<td id="c1"><?php echo $h['Obras_historico']['andamento']; ?></td>
 				<td id="c2"><?php echo $h['Obras_status']['status_obra']; ?></td>
 				<td id="c3"><?php echo $h['Obras_historico']['motivo']; ?></td>
-				<td id="c4"><?php echo $h['Obras_historico']['created']; ?></td>
+				<td id="c4"><?php echo date("d/m/Y", strtotime($h['Obras_historico']['created'])); ?></td>
 			</tr>
 			<?php endforeach; ?>
 		</table>

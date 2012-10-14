@@ -2,7 +2,7 @@
 	$this->pageTitle = 'Fornecedores';
 ?>
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Pesquisar Requisições de Equipamentos</div> <!-- título do formulário -->
+	<div id="tituloform">Pesquisa de Requisições de Equipamentos</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo">
 	<?php echo $this->Form->create('Equipamento_requisitado'); ?> <!-- início do formulário -->
@@ -36,14 +36,14 @@
 			<th>Ações</th>
 		</tr>
 		
-		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
+		<?php if(!empty($results)) { foreach ($results as $result): ?>
 		<tr>
 			<td><?php echo $result['Equipamento_requisitado']['requisicao_id']; ?></td>
 			<td><?php echo $result['Fornecedor']['fornecedor_nome']; ?></td>
 			<td align="center"><?php echo date("d/m/Y", strtotime($result['Equipamento_requisitado']['created'])); ?></td>
 						
 			<td align="center">
-				<?php echo $this->Html->link('estocar', array('action' => 'atestoqueequip', $result['Equipamento_requisitado']['requisicao_id'])); ?>
+				<?php echo $this->Html->link('atualizar galpão', array('action' => 'atestoqueequip', $result['Equipamento_requisitado']['requisicao_id'])); ?>
 			</td>
 		</tr>
 		<?php endforeach; } ?>

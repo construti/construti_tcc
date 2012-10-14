@@ -1,13 +1,14 @@
 <?php  
-	$this->pageTitle = 'Situação de Obras';
+	$this->pageTitle = 'Obras';
 ?> 
+
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Pesquisa</div> <!-- título do formulário -->
+	<div id="tituloform">Pesquisa de Situação de Obras</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Obras_status'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Pesquisar: </div>
+			<div class="campos">Situação: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
 			<div class="campos"><input type="text" name="pesquisa" class="intexto"/></div>

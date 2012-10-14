@@ -320,7 +320,7 @@ class ObrasController extends AppController {
 		}
 	}
 	
-	public function orcamento() { //pesquisar obras
+	public function custo_obra() { //pesquisar obras
 		if (!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
             $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
@@ -337,7 +337,7 @@ class ObrasController extends AppController {
         }
     }
 	
-	public function visualizar_orcamento($id = null) { //pesquisar obras
+	public function visualizar_custo($id = null) { //pesquisar obras
 		$this->layout = 'blank';
 		$this->loadModel('Obra');
 		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));

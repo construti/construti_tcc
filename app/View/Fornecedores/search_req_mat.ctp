@@ -2,12 +2,12 @@
 	$this->pageTitle = 'Fornecedores';
 ?>
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Pesquisar Orçamento de Materiais</div> <!-- título do formulário -->
+	<div id="tituloform">Pesquisa de Solicitações de Orçamentos de Materiais</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo">
 	<?php echo $this->Form->create('Orcamento_materiais'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Pesquisar: </div>
+			<div class="campos">Termo de Pesquisa: </div>
 			<div class="campos">Por: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
@@ -36,7 +36,7 @@
 			<th>Ações</th>
 		</tr>
 		
-		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
+		<?php if(!empty($results)) { foreach ($results as $result): ?>
 		<tr>
 			<td><?php echo $result['Orcamento_materiais']['orcamento_id']; ?></td>
 			<td><?php echo $result['Fornecedor']['fornecedor_nome']; ?></td>
