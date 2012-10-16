@@ -17,7 +17,7 @@
 			
 			<?php $k = 0; ?>
 			<?php foreach ($results as $result): ?>
-				<div>
+				<div style="width: 100%; float: left;">
 					<?php echo $this->Form->input('material_id', array('name' => 'material_id'.$k, 'type' => 'hidden', 'value' => $result['Material_requisitado']['material_id'])); ?>
 					<div id="campoA"><?php echo $result[0]['Material__descricao'] ?></div>
 					<div id="campoB"><?php echo $result['Fornecedor']['fornecedor_nome']; ?></div>

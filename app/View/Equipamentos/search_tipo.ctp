@@ -1,13 +1,13 @@
 <?php  
-	$this->pageTitle = 'Tipos de Equipamentos';
+	$this->pageTitle = 'Equipamentos';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Pesquisa</div> <!-- título do formulário -->
+	<div id="tituloform">Pesquisa de Tipos de Equipamentos</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Equipamentos_tipo'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Pesquisar: </div>
+			<div class="campos">Termo de Pesquisa: </div>
 			<div class="campos">Por: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->

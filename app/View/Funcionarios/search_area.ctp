@@ -1,8 +1,8 @@
 <?php  
-	$this->pageTitle = 'Áreas de Funcionários';
+	$this->pageTitle = 'Funcionários';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Pesquisa</div> <!-- título do formulário -->
+	<div id="tituloform">Pesquisa de Áreas de Funcionários</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Area'); ?> <!-- início do formulário -->

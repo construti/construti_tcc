@@ -40,7 +40,7 @@
 </script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Alocar/Desalocar Mão de Obra</div> <!-- título do formulário -->
+	<div id="tituloform">Alocar/Desalocar Mão de Obra à Obra</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Lista_funcionario'); ?> <!-- início do formulário -->

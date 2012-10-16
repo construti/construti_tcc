@@ -1,10 +1,10 @@
 ﻿<?php  
 	echo $this->Html->script("validationTipo", false); 
-	$this->pageTitle = 'Tipos de Funcionários';
+	$this->pageTitle = 'Funcionários';
 ?>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Atualização</div> <!-- título do formulário -->
+	<div id="tituloform">Atualização de Tipos de Funcionários</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Tipo'); ?> <!-- início do formulário -->
