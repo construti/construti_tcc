@@ -7,16 +7,18 @@
 <div id="formulariocorpo">
 	<?php echo $this->Form->create('Material'); ?> <!--<form action="search" method="post" >--> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			Termo de Pesquisa: <br/><br/>
-			Por: 
+			<div class="campos">Termo de Pesquisa: </div>
+			<div class="campos">Por: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
-			<input type="text" name="pesquisa" class="intexto"/><br/><br/>
-			<select name="tipo" class="intexto"/>
-				<option value="nome" select="selected">Nome</option>
-				<option value="tipo" select="selected">Tipo</option>
-				<option value="descricao">Descrição</option>
-			</select>
+			<div class="campos"><input type="text" name="pesquisa" class="intexto"/></div>
+			<div class="campos">
+				<select name="tipo" class="intexto"/>
+					<option value="nome" select="selected">Nome</option>
+					<option value="tipo" select="selected">Tipo</option>
+					<option value="descricao">Descrição</option>
+				</select>
+			</div>
 		</div>
 		<div id="areaBotao"><?php echo $this->Form->end('Pesquisar'); ?></div> <!-- botão de cadastro -->
 </div>

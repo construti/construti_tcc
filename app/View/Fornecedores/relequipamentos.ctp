@@ -22,7 +22,7 @@
 
 	$(function(){
 		$.localise('ui-multiselect', {/*language: 'en', */path: 'js/locale/'});
-		$("#equipamentos").multiselect();
+		$("#equipamentos").multiselect({dividerLocation: 0.5});
 	});
 </script>
 

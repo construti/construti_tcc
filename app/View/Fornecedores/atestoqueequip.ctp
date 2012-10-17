@@ -45,7 +45,7 @@
 		</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
-			echo $this->Js->submit('Atualizar', array(
+			echo $this->Js->submit('Receber', array(
                 'before' => $this->Js->get('#sending')->effect('fadeIn'),
                 'success' => $this->Js->get('#sending')->effect('fadeOut'),
                 'update' => '#success', 

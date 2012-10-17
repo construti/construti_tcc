@@ -23,7 +23,7 @@
 					<?php echo $this->Form->input('material_preco'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_materiais']['material_preco'])); ?>
 					<?php echo $this->Form->input('prazo'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_materiais']['prazo'])); ?>
 					<?php echo $this->Form->input('orcamento_id'.$k, array('label' => '', 'id' => 'orcamento_id', 'type' => 'hidden', 'value' => $result['Orcamento_materiais']['orcamento_id'])); ?>
-					<div id="campoA"><?php echo $result[0]['Material__descricao'] ?></div>
+					<div id="campoA"><?php echo $result['Material']['material_nome']." (".$result['Material']['Embalagem']['embalagem_tipo']." - ".$result['Material']['material_qtd_base']." - ".$result['Material']['Medida']['medida_tipo'].")"; ?></div>
 					<div id="campoB"><?php echo $result['Fornecedor']['fornecedor_nome']; ?></div>
 					<div id="campoC">
 						<?php echo $this->Form->input('qnt'.$k, array('label' => '', 'id' => 'qnt', 'type' => 'hidden', 'value' => $result['Orcamento_materiais']['quantidade'])); ?>

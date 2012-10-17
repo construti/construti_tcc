@@ -43,7 +43,7 @@
 			<td align="center"><?php echo date("d/m/Y", strtotime($result['Orcamento_equipamentos']['created'])); ?></td>
 						
 			<td align="center">
-				<?php echo $this->Html->link('atualizar', array('action' => 'atprecosequip', $result['Orcamento_equipamentos']['orcamento_id'])); ?>
+				<?php echo $this->Html->link('atualizar', array('action' => 'atprecosequip', $result['Orcamento_equipamentos']['orcamento_id'], $result['Orcamento_equipamentos']['fornecedor_id'])); ?>
 			</td>
 		</tr>
 		<?php endforeach; } ?>

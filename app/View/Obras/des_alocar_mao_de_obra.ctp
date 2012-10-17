@@ -35,7 +35,7 @@
 
 	$(function(){
 		$.localise('ui-multiselect', {/*language: 'en', */path: 'js/locale/'});
-		$("#funcionarios").multiselect();
+		$("#funcionarios").multiselect({dividerLocation: 0.5});
 	});
 </script>
 
@@ -66,7 +66,7 @@
 		</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
-			echo $this->Js->submit('(Des)Alocar', array(
+			echo $this->Js->submit('Atualizar', array(
                 'before' => $this->Js->get('#sending')->effect('fadeIn'),
                 'success' => $this->Js->get('#sending')->effect('fadeOut'),
                 'update' => '#success',

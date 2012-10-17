@@ -19,7 +19,7 @@
 			<?php foreach ($results as $result): ?>
 				<div style="width: 100%; float: left;">
 					<?php echo $this->Form->input('material_id', array('name' => 'material_id'.$k, 'type' => 'hidden', 'value' => $result['Material_requisitado']['material_id'])); ?>
-					<div id="campoA"><?php echo $result[0]['Material__descricao'] ?></div>
+					<div id="campoA"><?php echo $result['Material']['material_nome']." (".$result['Material']['Embalagem']['embalagem_tipo']." - ".$result['Material']['material_qtd_base']." - ".$result['Material']['Medida']['medida_tipo'].")"; ?></div>
 					<div id="campoB"><?php echo $result['Fornecedor']['fornecedor_nome']; ?></div>
 					<div id="campoC">
 						<?php echo $this->Form->input('qnt'.$k, array('label' => '', 'id' => 'qnt', 'type' => 'hidden', 'value' => $result['Material_requisitado']['quantidade'])); ?>

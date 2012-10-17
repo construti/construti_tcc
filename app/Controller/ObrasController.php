@@ -284,38 +284,83 @@ class ObrasController extends AppController {
 						'andamento' => $andamento
 					));
 			
-			if($this->Obras_historico->save($this->data)){
-				$this->loadModel('Obra');
-				$this->Obra->id = $id;
-				$this->Obra->set(array( 
-						'obra_status' => $this->data['Obras_historico']['obra_status']
-					));
-				if($this->Obra->save()){
+			$this->loadModel('Obras_status');
+			$situacao = $this->Obras_status->find('first', array('conditions' => array('Obras_status.status_id' => $this->data['Obras_historico']['obra_status'])));
+			$situacao = $situacao['Obras_status']['status_obra'];
+			
+			if($situacao != "Cancelada" && $situacao != "Paralisada") {
+				if($this->Obras_historico->save($this->data)){
+					$this->loadModel('Obra');
+					$this->Obra->id = $id;
+					$this->Obra->set(array( 
+							'obra_status' => $this->data['Obras_historico']['obra_status']
+						));
+					if($this->Obra->save()){
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+							echo "<center> Situação de Obra atualizada! </center>";
+							$this->render('delete','ajax');
+		                } 
+		                else{              
+		                    $this->flash('Situação de Obra atualizada','add');
+		                }
+						
+		            } else {
+						echo "<center> Situação de Obra não foi atualizada! </center>";
+		                $this->render('delete','ajax');
+					}
+							
 					if($this->request->is('Ajax')){    // o ajax roda aqui
-						echo "<center> Situação de Obra atualizada! </center>";
-						$this->render('delete','ajax');
+	                    $this->set('dados',$this->request->data);
+	                    $this->render('success','ajax');
 	                } 
 	                else{              
-	                    $this->flash('Situação de Obra atualizada','add');
+	                    $this->flash('Histórico atualizado!','at_status');
+	                    $this->redirect(array('action' => 'at_status'));
 	                }
 					
 	            } else {
-					echo "<center> Situação de Obra não foi atualizada! </center>";
+					echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
 	                $this->render('delete','ajax');
 				}
+			} else {
+				if(trim($this->data['Obras_historico']['motivo']) != "" ) {
+					if($this->Obras_historico->save($this->data)){
+						$this->loadModel('Obra');
+						$this->Obra->id = $id;
+						$this->Obra->set(array( 
+								'obra_status' => $this->data['Obras_historico']['obra_status']
+							));
+						if($this->Obra->save()){
+							if($this->request->is('Ajax')){    // o ajax roda aqui
+								echo "<center> Situação de Obra atualizada! </center>";
+								$this->render('delete','ajax');
+			                } 
+			                else{              
+			                    $this->flash('Situação de Obra atualizada','add');
+			                }
+							
+			            } else {
+							echo "<center> Situação de Obra não foi atualizada! </center>";
+			                $this->render('delete','ajax');
+						}
+								
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+		                    $this->set('dados',$this->request->data);
+		                    $this->render('success','ajax');
+		                } 
+		                else{              
+		                    $this->flash('Histórico atualizado!','at_status');
+		                    $this->redirect(array('action' => 'at_status'));
+		                }
 						
-				if($this->request->is('Ajax')){    // o ajax roda aqui
-                    $this->set('dados',$this->request->data);
-                    $this->render('success','ajax');
-                } 
-                else{              
-                    $this->flash('Histórico atualizado!','at_status');
-                    $this->redirect(array('action' => 'at_status'));
-                }
-				
-            } else {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-                $this->render('delete','ajax');
+		            } else {
+						echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+		                $this->render('delete','ajax');
+					}
+				} else {
+					echo "<center> Não foi possível atualizar a Situação de Obra. Preencha o motivo! </center>";
+					$this->render('delete','ajax');
+				}
 			}
 		}
 	}
