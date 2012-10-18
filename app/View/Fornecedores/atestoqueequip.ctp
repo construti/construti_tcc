@@ -32,8 +32,7 @@
 							}
 						?></div>
 					<div id="campoH">
-						<?php echo $this->Form->input('qnt'.$k, array('label' => '', 'id' => 'qnt', 'type' => 'hidden', 'value' => $result['Equipamento_requisitado']['quantidade'])); ?>
-						<?php echo $result['Equipamento_requisitado']['quantidade']; ?>
+						<?php echo $this->Form->input('qnt'.$k, array('label' => '', 'id' => 'qnt', 'value' => $result['Equipamento_requisitado']['quantidade'], 'class' => array('intextoOrc'))); ?>
 					</div>
 					<div id="campoI"><?php echo $result['Equipamento_requisitado']['equipamento_preco']; ?></div>
 					<div id="campoEI">

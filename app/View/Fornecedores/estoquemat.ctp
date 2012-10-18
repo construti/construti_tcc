@@ -43,7 +43,7 @@
 			<td align="center"><?php echo date("d/m/Y", strtotime($result['Material_requisitado']['created'])); ?></td>
 						
 			<td align="center">
-				<?php echo $this->Html->link('estocar', array('action' => 'atestoquemat', $result['Material_requisitado']['requisicao_id'])); ?>
+				<?php echo $this->Html->link('estocar', array('action' => 'atestoquemat', $result['Material_requisitado']['requisicao_id'], $result['Material_requisitado']['fornecedor_id'])); ?>
 			</td>
 		</tr>
 		<?php endforeach; } ?>

@@ -907,99 +907,122 @@ p {
 	text-align: center;
 	color: #0011aa;
 	background: #aaa;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
+	margin: 0 auto;
+	padding: 0;
+}
+#historico2 h1 {
+	width: 750px;
+	font-size: 140%;
+	text-align: center;
+	color: #0011aa;
+	background: #aaa;
+	border: 2px solid #444;
 	margin: 0 auto;
 	padding: 0;
 }
 #tabela3 {
 	width: 600px;
 	background: #aaa;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
 	border-collapse: collapse;
 	border-top-width: 0;
 	margin: 0 auto;
 	padding: 0;
 }
-#tabela3 #t1 {
+#tabela4 {
+	width: 750px;
+	background: #aaa;
+	border: 2px solid #444;
+	border-collapse: collapse;
+	border-top-width: 0;
+	margin: 0 auto;
+	padding: 0;
+}
+#t1 {
 	width: 100px;
 	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
 	border-top-width: 0;
 	margin: 0;
 	padding: 0 2px;
 }
-#tabela3 #t2 {
+#t2 {
 	width: 100px;
 	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
 	border-top-width: 0;
 	margin: 0;
 	padding: 0 2px;
 }
-#tabela3 #t3 {
+#t3 {
 	width: 350px;
 	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
 	border-top-width: 0;
 	margin: 0;
 	padding: 0 2px;
 }
-#tabela3 #t4 {
+#t4 {
 	width: 100px;
 	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
 	border-top-width: 0;
 	margin: 0;
 	padding: 0 2px;
 }
-#tabela3 #c1 {
+#c1 {
 	width: 100px;
 	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
 	border-top-width: 0;
 	margin: 0;
 	padding: 0;
 }
-#tabela3 #c2 {
+#c2 {
 	width: 100px;
 	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
 	border-top-width: 0;
 	margin: 0;
 	padding: 0;
 }
-#tabela3 #c3 {
+#c3 {
 	width: 350px;
 	text-align: justify;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
 	border-top-width: 0;
 	margin: 0;
 	padding: 0;
 }
-#tabela3 #c4 {
+#c4 {
 	width: 100px;
 	text-align: center;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444;
+	border: 2px solid #444;
+	border-top-width: 0;
+	margin: 0;
+	padding: 0;
+}
+#c2_1 {
+	width: 300px;
+	text-align: center;
+	border: 2px solid #444;
+	border-top-width: 0;
+	margin: 0;
+	padding: 0;
+}
+#c3_1 {
+	width: 150px;
+	text-align: center;
+	border: 2px solid #444;
+	border-top-width: 0;
+	margin: 0;
+	padding: 0;
+}
+#c5 {
+	width: 400px;
+	text-align: justify;
+	border: 2px solid #444;
 	border-top-width: 0;
 	margin: 0;
 	padding: 0;

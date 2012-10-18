@@ -714,9 +714,9 @@ class FornecedoresController extends AppController {
         }
     }
 	
-	public function atestoquemat($id = null) { //atualizar estoque de materiais
+	public function atestoquemat($id = null, $fid = null) { //atualizar estoque de materiais
 		$this->loadModel('Material_requisitado');
-		$results = $this->Material_requisitado->find('all', array('recursive' => 2, 'conditions' => array('Material_requisitado.requisicao_id LIKE' => $id)));
+		$results = $this->Material_requisitado->find('all', array('recursive' => 2, 'conditions' => array('Material_requisitado.requisicao_id' => $id, 'Material_requisitado.fornecedor_id' => $fid)));
 		//$results = $this->Material_requisitado->query("SELECT Material_requisitado.materiais_requisitados_id, Material_requisitado.requisicao_id, Material_requisitado.fornecedor_id, Material_requisitado.material_id, Material_requisitado.quantidade, Material_requisitado.material_preco, Material_requisitado.created, Material_requisitado.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.materiais_requisitados AS Material_requisitado LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Material_requisitado.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Material_requisitado.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Material_requisitado.requisicao_id LIKE ".$id);
 		
 		$requisicao = $results;
@@ -736,14 +736,38 @@ class FornecedoresController extends AppController {
 					
 					$qntdAtual = $estId['Estoque_materiais']['quantidade'];
 					$qntdAEstocar = $this->data['Material_requisitado']['qnt'.$i];
-					$qntdAEstocar = $qntdAEstocar + $qntdAtual;
+					$qntdTotal = $qntdAEstocar + $qntdAtual;
 					
 					$this->Estoque_materiais->set(array( 
 					//	'material_preco' => $materialPrecoAtual,
-						'quantidade' => $qntdAEstocar
+						'quantidade' => $qntdTotal
 					));
 					
-					if($this->Estoque_materiais->save()) { 
+					if($this->Estoque_materiais->save()) { // atualiza o estoque de materiais
+						$this->loadModel('Estoque_materiais_historico');
+						$ultimo = $this->Estoque_materiais_historico->find('first', array('order' => array('andamento' => 'desc'), 'conditions' => array('Estoque_materiais_historico.estoques_materiais_id' => $estId['Estoque_materiais']['estoques_materiais_id'])));
+						$andamento = $ultimo['Estoque_materiais_historico']['andamento'] + 1;
+						
+						$this->Estoque_materiais_historico->set(array( 
+							'estoques_materiais_id' => $estId['Estoque_materiais']['estoques_materiais_id'],
+							'andamento' => $andamento,
+							'quantidade_estocada' => $qntdAEstocar, 
+							'quantidade' => $qntdTotal
+						));
+						
+						if($this->Estoque_materiais_historico->save()) { // atualiza o histórico de estoque de materiais
+							if($this->request->is('Ajax')){    // o ajax roda aqui
+								echo "<center> Histórico do estoque de materiais atualizado! </center><br/>";
+								$this->render('delete','ajax');
+			                } 
+			                else{              
+			                    $this->flash('Histórico do estoque de materiais atualizado!','add');
+			                }
+						} else {
+							echo "<center> Histórico do estoque de materiais não foi atualizado! </center>";
+			                $this->render('delete','ajax');
+						}
+					
 						if($this->request->is('Ajax')){    // o ajax roda aqui
 		                    $this->set('dados',$this->request->data);
 		                    $this->render('success','ajax');
@@ -763,6 +787,37 @@ class FornecedoresController extends AppController {
 				}
 			}
 		}
+	}
+	
+	public function search_hist_estoque_mat() { //busca de materiais em estoque
+		if(!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'tipo') {
+				$this->loadModel('Material_tipo');
+				$tipoIds = $this->Material_tipo->find('list', array('conditions' => array('Material_tipo.material_tipo_nome LIKE' => "%$pesquisa%"), 'fields' => array('Material_tipo.material_tipo_id')));
+				$this->loadModel('Material');
+				$results = $this->Material->find('all', array('conditions' => array('Material.material_tipo' => $tipoIds)));				
+			} else {
+				$this->loadModel('Material');
+            	$results = $this->Material->find('all', array('conditions' => array('Material.material_'.$tipo.' LIKE' => "%$pesquisa%")));
+			}
+       } 
+       if (!empty($results)){
+            $this->set(compact('results'));
+        }
+	}
+	
+	public function hist_estoque_mat($id = null) { //checar histórico de materiais
+		$this->loadModel('Estoque_materiais');
+		$estoque = $this->Estoque_materiais->find('first', array('recursive' => 2, 'conditions' => array('Estoque_materiais.material_id' => $id)));
+		$estoque_id = $estoque['Estoque_materiais']['estoques_materiais_id'];
+	
+		$this->loadModel('Estoque_materiais_historico');
+		$historico = $this->Estoque_materiais_historico->find('all', array('order' => 'andamento', 'conditions' => array('Estoque_materiais_historico.estoques_materiais_id' => $estoque_id)));
+		
+		$this->set(compact('historico', 'estoque'));
 	}
 	
 	public function estoqueequip() { //checar estoque de equipamentos
@@ -788,9 +843,9 @@ class FornecedoresController extends AppController {
         }
     }
 	
-	public function atestoqueequip($id = null) { //atualizar estoque de equipamentos
+	public function atestoqueequip($id = null, $fid = null) { //atualizar estoque de equipamentos
 		$this->loadModel('Equipamento_requisitado');
-		$results = $this->Equipamento_requisitado->find('all', array('order' => array('equipamento_nome' => 'asc'), 'conditions' => array('Equipamento_requisitado.requisicao_id' => $id)));
+		$results = $this->Equipamento_requisitado->find('all', array('order' => array('equipamento_nome' => 'asc'), 'conditions' => array('Equipamento_requisitado.requisicao_id' => $id, 'Equipamento_requisitado.fornecedor_id' => $fid)));
 		
 		$requisicao = $results;
 		$this->set(compact('results'));
@@ -809,16 +864,40 @@ class FornecedoresController extends AppController {
 					
 					$qntdAtual = $estId['Estoque_equipamentos']['quantidade'];
 					$qntdAEstocar = $this->data['Equipamento_requisitado']['qnt'.$i];
-					$qntdAEstocar = $qntdAEstocar + $qntdAtual;
+					$qntdTotal = $qntdAEstocar + $qntdAtual;
 					$alugado = $this->data['Equipamento_requisitado']['alug'.$i];
 					
 					$this->Estoque_equipamentos->set(array( 
 					//	'equipamento_preco' => $equipamentoPrecoAtual,
 						'alugado' => $alugado, 
-						'quantidade' => $qntdAEstocar
+						'quantidade' => $qntdTotal
 					));
 					
 					if($this->Estoque_equipamentos->save()) { 
+						$this->loadModel('Estoque_equipamentos_historico');
+						$ultimo = $this->Estoque_equipamentos_historico->find('first', array('order' => array('andamento' => 'desc'), 'conditions' => array('Estoque_equipamentos_historico.estoques_equipamentos_id' => $estId['Estoque_equipamentos']['estoques_equipamentos_id'])));
+						$andamento = $ultimo['Estoque_equipamentos_historico']['andamento'] + 1;
+						
+						$this->Estoque_equipamentos_historico->set(array( 
+							'estoques_equipamentos_id' => $estId['Estoque_equipamentos']['estoques_equipamentos_id'],
+							'andamento' => $andamento,
+							'quantidade_estocada' => $qntdAEstocar, 
+							'quantidade' => $qntdTotal
+						));
+						
+						if($this->Estoque_equipamentos_historico->save()) { // atualiza o histórico do galpão de equipamentos
+							if($this->request->is('Ajax')){    // o ajax roda aqui
+								echo "<center> Histórico do galpão de equipamentos atualizado! </center><br/>";
+								$this->render('delete','ajax');
+			                } 
+			                else{              
+			                    $this->flash('Histórico do galpão de equipamentos atualizado!','add');
+			                }
+						} else {
+							echo "<center> Histórico do galpão de equipamentos não foi atualizado! </center>";
+			                $this->render('delete','ajax');
+						}
+					
 						if($this->request->is('Ajax')){    // o ajax roda aqui
 		                    $this->set('dados',$this->request->data);
 		                    $this->render('success','ajax');
@@ -838,6 +917,44 @@ class FornecedoresController extends AppController {
 				}
 			}
 		}
+	}
+	
+	public function search_hist_estoque_equip() { //busca de equipamentos no galpão
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'tipo'){
+				$this->loadModel('Equipamentos_tipo');
+				$tipoIds = $this->Equipamentos_tipo->find('list', array('conditions' => array('Equipamentos_tipo.tipo_equipamento LIKE' => "%$pesquisa%"), 'fields' => array('Equipamentos_tipo.tipo_id')));
+				
+				$this->loadModel('Equipamento');
+				$results = $this->Equipamento->find('all', array('conditions' => array('Equipamento.equipamento_tipo' => $tipoIds)));
+			} elseif ($tipo == 'valor_hora') {
+				$this->loadModel('Equipamentos_tipo');
+				$tipoIds = $this->Equipamentos_tipo->find('list', array('conditions' => array('Equipamentos_tipo.tipo_valor_hora LIKE' => "$pesquisa"), 'fields' => array('Equipamentos_tipo.tipo_id')));
+				
+				$this->loadModel('Equipamento');
+				$results = $this->Equipamento->find('all', array('conditions' => array('Equipamento.equipamento_tipo' => $tipoIds)));
+			} else {
+				$this->loadModel('Equipamento');
+				$results = $this->Equipamento->find('all', array('conditions' => array('Equipamento.equipamento_'.$tipo.' LIKE' => "%$pesquisa%")));
+			}
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+	}
+	
+	public function hist_estoque_equip($id = null) { //checar histórico de equipamentos
+		$this->loadModel('Estoque_equipamentos');
+		$estoque = $this->Estoque_equipamentos->find('first', array('recursive' => 2, 'conditions' => array('Estoque_equipamentos.equipamento_id' => $id)));
+		$estoque_id = $estoque['Estoque_equipamentos']['estoques_equipamentos_id'];
+	
+		$this->loadModel('Estoque_equipamentos_historico');
+		$historico = $this->Estoque_equipamentos_historico->find('all', array('order' => 'andamento', 'conditions' => array('Estoque_equipamentos_historico.estoques_equipamentos_id' => $estoque_id)));
+		
+		$this->set(compact('historico', 'estoque'));
 	}
 	
 	public function search_req_mat() { //pesquisar orçamentos de materiais

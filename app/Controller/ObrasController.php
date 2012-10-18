@@ -450,10 +450,48 @@ class ObrasController extends AppController {
 			$this->request->data = $this->Lista_funcionario->read();
 		} else {
 	        if(!empty($this->data)){
+				$histerros = 0;
+				$histsalvos = 0;
 				if( ($this->data['Lista_funcionario']['funcionarios'] == '') ) {
 		            $funcssel = $this->data['Lista_funcionario']['funcionarios'];
 					$this->loadModel('Funcionario');
 					$compfunc = $this->Funcionario->find('list', array('conditions' => array("NOT" => array('Funcionario.funcionario_id' => $funcssel) ), 'fields' => array('Funcionario.funcionario_id')));
+					$desalocados = count($compfunc);
+					$desalocadosId = array_keys($compfunc);
+					
+					//SALVAR HISTÓRICO DA DESALOCAÇÃO DE MÃO DE OBRA
+					for($i = 0; $i < $desalocados; $i++) {
+						$this->loadModel('Lista_funcionario');
+						$lista_func_id = $this->Lista_funcionario->find('first', array('conditions' => array('Lista_funcionario.funcionario_id' => $desalocadosId[$i], 'Lista_funcionario.obra_id' => $id)));
+						
+						if(count($lista_func_id) > 0){
+							$this->loadModel('Lista_funcionario_historico');
+							$ultimo = $this->Lista_funcionario_historico->find('first', array('order' => array('andamento' => 'desc'), 'conditions' => array('Lista_funcionario_historico.obra_id' => $id)));
+							$andamento = $ultimo['Lista_funcionario_historico']['andamento'] + 1;
+							
+							$ultimoID = $this->Lista_funcionario_historico->find('first', array('order' => array('listas_funcionarios_historicos_id' => 'desc')));
+							$ultimoID = $ultimoID['Lista_funcionario_historico']['listas_funcionarios_historicos_id'];
+							$ultimoID++;
+															
+							$this->Lista_funcionario_historico->set(array(
+								'listas_funcionarios_historicos_id' => $ultimoID,
+								'funcionario_id' => $lista_func_id['Lista_funcionario']['funcionario_id'],
+								'obra_id' => $id,
+								'andamento' => $andamento,
+								'qtd_horas' => $lista_func_id['Lista_funcionario']['qtd_horas'],
+								'situacao' => "Desalocado"
+							));
+							
+							if($this->Lista_funcionario_historico->save()) { // atualiza o histórico de mão de obra
+								if($this->request->is('Ajax')){    // o ajax roda aqui
+									$this->render('delete','ajax');
+				                } 
+							} else {
+								$histerros++;
+				                $this->render('delete','ajax');
+							}
+						}
+					}					
 					
 					$this->loadModel('Lista_funcionario');
 					if ($this->Lista_funcionario->deleteAll(array('Lista_funcionario.obra_id' => $id, 'Lista_funcionario.funcionario_id' => $compfunc), true)) {
@@ -484,6 +522,37 @@ class ObrasController extends AppController {
 								'valor_hora' => $salfunc['Funcionario']['funcionario_salario']
 							));
 							if($this->Lista_funcionario->save()) {
+								//SALVAR HISTÓRICO DA ALOCAÇÃO DE MÃO DE OBRA
+								$this->loadModel('Lista_funcionario_historico');
+								$ultimo = $this->Lista_funcionario_historico->find('first', array('order' => array('andamento' => 'desc'), 'conditions' => array('Lista_funcionario_historico.obra_id' => $id)));
+								$andamento = $ultimo['Lista_funcionario_historico']['andamento'] + 1;
+								
+								$ultimoID = $this->Lista_funcionario_historico->find('first', array('order' => array('listas_funcionarios_historicos_id' => 'desc')));
+								$ultimoID = $ultimoID['Lista_funcionario_historico']['listas_funcionarios_historicos_id'];
+								$ultimoID++;
+								
+								$this->Lista_funcionario_historico->set(array(
+									'listas_funcionarios_historicos_id' => $ultimoID,
+									'funcionario_id' => $esteFunc,
+									'obra_id' => $id,
+									'andamento' => $andamento,
+									'qtd_horas' => $this->data['funcionarioSel'][$i],
+									'situacao' => "Alocado"
+								));
+								
+								if($this->Lista_funcionario_historico->save()) { // atualiza o histórico de mão de obra
+									if($this->request->is('Ajax')){    // o ajax roda aqui
+										$histsalvos++;
+										$this->render('delete','ajax');
+					                } 
+					                else{              
+					                    $histsalvos++;
+					                }
+								} else {
+									$histerros++;
+					                $this->render('delete','ajax');
+								}
+								
 								if($this->request->is('Ajax')){    // o ajax roda aqui
 				                    $this->set('dados',$this->request->data);
 				                    $this->render('success','ajax');
@@ -502,9 +571,45 @@ class ObrasController extends AppController {
 					$funcssel = $this->data['Lista_funcionario']['funcionarios'];
 					$this->loadModel('Funcionario');
 					$compfunc = $this->Funcionario->find('list', array('conditions' => array("NOT" => array('Funcionario.funcionario_id' => $funcssel) ), 'fields' => array('Funcionario.funcionario_id')));
+					$desalocados = count($compfunc);
+					$desalocadosId = array_keys($compfunc);
+					
+					//SALVAR HISTÓRICO DA DESALOCAÇÃO DE MÃO DE OBRA
+					for($i = 0; $i < $desalocados; $i++) {
+						$this->loadModel('Lista_funcionario');
+						$lista_func_id = $this->Lista_funcionario->find('first', array('conditions' => array('Lista_funcionario.funcionario_id' => $desalocadosId[$i], 'Lista_funcionario.obra_id' => $id)));
+						
+						if(count($lista_func_id) > 0){
+							$this->loadModel('Lista_funcionario_historico');
+							$ultimo = $this->Lista_funcionario_historico->find('first', array('order' => array('andamento' => 'desc'), 'conditions' => array('Lista_funcionario_historico.obra_id' => $id)));
+							$andamento = $ultimo['Lista_funcionario_historico']['andamento'] + 1;
+							
+							$ultimoID = $this->Lista_funcionario_historico->find('first', array('order' => array('listas_funcionarios_historicos_id' => 'desc')));
+							$ultimoID = $ultimoID['Lista_funcionario_historico']['listas_funcionarios_historicos_id'];
+							$ultimoID++;
+															
+							$this->Lista_funcionario_historico->set(array(
+								'listas_funcionarios_historicos_id' => $ultimoID,
+								'funcionario_id' => $lista_func_id['Lista_funcionario']['funcionario_id'],
+								'obra_id' => $id,
+								'andamento' => $andamento,
+								'qtd_horas' => $lista_func_id['Lista_funcionario']['qtd_horas'],
+								'situacao' => "Desalocado"
+							));
+							
+							if($this->Lista_funcionario_historico->save()) { // atualiza o histórico de mão de obra
+								if($this->request->is('Ajax')){    // o ajax roda aqui
+									$this->render('delete','ajax');
+				                } 
+							} else {
+								$histerros++;
+				                $this->render('delete','ajax');
+							}
+						}
+					}
 					
 					$this->loadModel('Lista_funcionario');
-					if ($this->Lista_funcionario->deleteAll(array('Lista_funcionario.obra_id' => $id, 'Lista_funcionario.funcionario_id' => $compfunc), true)) {
+					if ($this->Lista_funcionario->deleteAll(array('Lista_funcionario.obra_id' => $id, 'Lista_funcionario.funcionario_id' => $compfunc), true)) {								
 						if($this->request->is('Ajax')){    // o ajax roda aqui
 			                $this->set('dados',$this->request->data);
 			                $this->render('success','ajax');
@@ -513,6 +618,12 @@ class ObrasController extends AppController {
 							$this->redirect(array('action' => 'des_alocar_mao_de_obra'));
 						}
 					}
+				}
+				if($histsalvos > 0) {
+					echo "<center>Histórico de alocação de Mão de Obra atualizado com sucesso!</center>";
+				}
+				if($histerros > 0) {
+					echo "<center>Histórico de alocação de Mão de Obra não foi atualizado para alguns Funcionários!</center>";
 				}
 	        }
 		}  
@@ -566,10 +677,50 @@ class ObrasController extends AppController {
 			$this->request->data = $this->Lista_equipamento->read();
 		} else {
 	        if(!empty($this->data)){
+				$histerros = 0;
+				$histsalvos = 0;
 				if( ($this->data['Lista_equipamento']['equipamentos'] == '') ) {
 		            $equipssel = $this->data['Lista_equipamento']['equipamentos'];
 					$this->loadModel('Estoque_equipamentos');
-					$compequip = $this->Estoque_equipamentos->find('list', array('conditions' => array("NOT" => array('Estoque_equipamentos.equipamento_id' => $equipssel) ), 'fields' => array('Estoque_equipamentos.equipamento_id')));
+					$compequip = $this->Estoque_equipamentos->find('list', array('conditions' => array("NOT" => array('Estoque_equipamentos.equipamento_id' => $equipssel) ), 'fields' => array('Estoque_equipamentos.equipamento_id', 'Estoque_equipamentos.equipamento_id')));
+					$desalocados = count($compequip);
+					$desalocadosId = array_keys($compequip);
+					
+					//SALVAR HISTÓRICO DA DESALOCAÇÃO DE EQUIPAMENTOS
+					for($i = 0; $i < $desalocados; $i++) {
+						$this->loadModel('Lista_equipamento');
+						$lista_equip_id = $this->Lista_equipamento->find('first', array('conditions' => array('Lista_equipamento.equipamento_id' => $desalocadosId[$i], 'Lista_equipamento.obra_id' => $id)));
+						
+						if(count($lista_equip_id) > 0){
+							$this->loadModel('Lista_equipamento_historico');
+							$ultimo = $this->Lista_equipamento_historico->find('first', array('order' => array('andamento' => 'desc'), 'conditions' => array('Lista_equipamento_historico.obra_id' => $id)));
+							$andamento = $ultimo['Lista_equipamento_historico']['andamento'] + 1;
+							
+							$ultimoID = $this->Lista_equipamento_historico->find('first', array('order' => array('listas_equipamentos_historicos_id' => 'desc')));
+							$ultimoID = $ultimoID['Lista_equipamento_historico']['listas_equipamentos_historicos_id'];
+							$ultimoID++;
+															
+							$this->Lista_equipamento_historico->set(array(
+								'listas_equipamentos_historicos_id' => $ultimoID,
+								'equipamento_id' => $lista_equip_id['Lista_equipamento']['equipamento_id'],
+								'obra_id' => $id,
+								'andamento' => $andamento,
+								'qtd' => $lista_equip_id['Lista_equipamento']['qtd'],
+								'valor_hora' => $lista_equip_id['Lista_equipamento']['valor_hora'],
+								'qtd_horas' => $lista_equip_id['Lista_equipamento']['qtd_hora'],
+								'situacao' => "Desalocado"
+							));
+							
+							if($this->Lista_equipamento_historico->save()) { // atualiza o histórico de mão de obra
+								if($this->request->is('Ajax')){    // o ajax roda aqui
+									$this->render('delete','ajax');
+				                } 
+							} else {
+								$histerros++;
+				                $this->render('delete','ajax');
+							}
+						}
+					}
 					
 					$this->loadModel('Lista_equipamento');
 					if ($this->Lista_equipamento->deleteAll(array('Lista_equipamento.obra_id' => $id, 'Lista_equipamento.equipamento_id' => $compequip), true)) {
@@ -605,6 +756,39 @@ class ObrasController extends AppController {
 							));
 							
 							if($this->Lista_equipamento->save()) {
+								//SALVAR HISTÓRICO DA ALOCAÇÃO DE EQUIPAMENTOS
+								$this->loadModel('Lista_equipamento_historico');
+								$ultimo = $this->Lista_equipamento_historico->find('first', array('order' => array('andamento' => 'desc'), 'conditions' => array('Lista_equipamento_historico.obra_id' => $id)));
+								$andamento = $ultimo['Lista_equipamento_historico']['andamento'] + 1;
+								
+								$ultimoID = $this->Lista_equipamento_historico->find('first', array('order' => array('listas_equipamentos_historicos_id' => 'desc')));
+								$ultimoID = $ultimoID['Lista_equipamento_historico']['listas_equipamentos_historicos_id'];
+								$ultimoID++;
+								
+								$this->Lista_equipamento_historico->set(array(
+									'listas_equipamentos_historicos_id' => $ultimoID,
+									'equipamento_id' => $esteEquip,
+									'obra_id' => $id,
+									'andamento' => $andamento,
+									'qtd' => $valorEquip['Estoque_equipamentos']['quantidade'],
+									'qtd_horas' => $this->data['equipamentoHora'][$i],
+									'valor_hora' => $valorEquip['Estoque_equipamentos']['valor_hora'],
+									'situacao' => "Alocado"
+								));
+								
+								if($this->Lista_equipamento_historico->save()) { // atualiza o histórico de mão de obra
+									if($this->request->is('Ajax')){    // o ajax roda aqui
+										$histsalvos++;
+										$this->render('delete','ajax');
+					                } 
+					                else{              
+					                    $histsalvos++;
+					                }
+								} else {
+									$histerros++;
+					                $this->render('delete','ajax');
+								}
+								
 								if($this->request->is('Ajax')){    // o ajax roda aqui
 				                    $this->set('dados',$this->request->data);
 				                    $this->render('success','ajax');
@@ -621,7 +805,45 @@ class ObrasController extends AppController {
 					}
 					$equipssel = $this->data['Lista_equipamento']['equipamentos'];
 					$this->loadModel('Estoque_equipamentos');
-					$compequip = $this->Estoque_equipamentos->find('list', array('conditions' => array("NOT" => array('Estoque_equipamentos.equipamento_id' => $equipssel) ), 'fields' => array('Estoque_equipamentos.equipamento_id')));
+					$compequip = $this->Estoque_equipamentos->find('list', array('conditions' => array("NOT" => array('Estoque_equipamentos.equipamento_id' => $equipssel) ), 'fields' => array('Estoque_equipamentos.equipamento_id', 'Estoque_equipamentos.equipamento_id')));
+					$desalocados = count($compequip);
+					$desalocadosId = array_keys($compequip);
+					
+					//SALVAR HISTÓRICO DA DESALOCAÇÃO DE EQUIPAMENTOS
+					for($i = 0; $i < $desalocados; $i++) {
+						$this->loadModel('Lista_equipamento');
+						$lista_equip_id = $this->Lista_equipamento->find('first', array('conditions' => array('Lista_equipamento.equipamento_id' => $desalocadosId[$i], 'Lista_equipamento.obra_id' => $id)));
+						
+						if(count($lista_equip_id) > 0){
+							$this->loadModel('Lista_equipamento_historico');
+							$ultimo = $this->Lista_equipamento_historico->find('first', array('order' => array('andamento' => 'desc'), 'conditions' => array('Lista_equipamento_historico.obra_id' => $id)));
+							$andamento = $ultimo['Lista_equipamento_historico']['andamento'] + 1;
+							
+							$ultimoID = $this->Lista_equipamento_historico->find('first', array('order' => array('listas_equipamentos_historicos_id' => 'desc')));
+							$ultimoID = $ultimoID['Lista_equipamento_historico']['listas_equipamentos_historicos_id'];
+							$ultimoID++;
+															
+							$this->Lista_equipamento_historico->set(array(
+								'listas_equipamentos_historicos_id' => $ultimoID,
+								'equipamento_id' => $lista_equip_id['Lista_equipamento']['equipamento_id'],
+								'obra_id' => $id,
+								'andamento' => $andamento,
+								'qtd' => $lista_equip_id['Lista_equipamento']['qtd'],
+								'valor_hora' => $lista_equip_id['Lista_equipamento']['valor_hora'],
+								'qtd_horas' => $lista_equip_id['Lista_equipamento']['qtd_hora'],
+								'situacao' => "Desalocado"
+							));
+							
+							if($this->Lista_equipamento_historico->save()) { // atualiza o histórico de mão de obra
+								if($this->request->is('Ajax')){    // o ajax roda aqui
+									$this->render('delete','ajax');
+				                } 
+							} else {
+								$histerros++;
+				                $this->render('delete','ajax');
+							}
+						}
+					}
 					
 					$this->loadModel('Lista_equipamento');
 					if ($this->Lista_equipamento->deleteAll(array('Lista_equipamento.obra_id' => $id, 'Lista_equipamento.equipamento_id' => $compequip), true)) {
@@ -634,11 +856,17 @@ class ObrasController extends AppController {
 						}
 					}
 				}
+				if($histsalvos > 0) {
+					echo "<center>Histórico de alocação de Equipamentos atualizado com sucesso!</center>";
+				}
+				if($histerros > 0) {
+					echo "<center>Histórico de alocação de Equipamentos não foi atualizado para alguns Equipamentos!</center>";
+				}
 	        }
 		}  
 	}
 	
-	public function pega_equipamentos(){ //preenche multiselect com Equipamentos
+	public function pega_equipamentos() { //preenche multiselect com Equipamentos
 		$obraID = $this->params['url']['obra_id'];
 				
 		if($obraID!='-1'){ // checa se o fornecedor é válido
@@ -656,6 +884,64 @@ class ObrasController extends AppController {
 		$this->set('equipnsel', $equipsnsel);
 		$this->set('equipsel', $equipssel);
 		$this->Render('pega_equipamentos','ajax');
+	}
+	
+	public function search_hist_mao_de_obra() { //pesquisar obras para visualização do histórico de alocação de mão de obra
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+	}
+	
+	public function hist_mao_de_obra($id = null) {
+		$this->loadModel('Obra');
+		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));
+	
+		$this->loadModel('Lista_funcionario_historico');
+		$historico = $this->Lista_funcionario_historico->find('all', array('order' => 'andamento', 'conditions' => array('Lista_funcionario_historico.obra_id' => $id)));
+		
+		$custo = $this->Lista_funcionario_historico->find('all', array('conditions' => array('Lista_funcionario_historico.obra_id' => $id, 'Lista_funcionario_historico.situacao' => "Alocado")));
+		$this->set(compact('historico', 'obra', 'custo'));
+	}
+	
+	public function search_hist_equipamentos() { //pesquisar obras para visualização do histórico de alocação de equipamentos
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+	}
+	
+	public function hist_equipamentos($id = null) {
+		$this->loadModel('Obra');
+		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));
+	
+		$this->loadModel('Lista_equipamento_historico');
+		$historico = $this->Lista_equipamento_historico->find('all', array('order' => 'andamento', 'conditions' => array('Lista_equipamento_historico.obra_id' => $id)));
+		
+		$custo = $this->Lista_equipamento_historico->find('all', array('conditions' => array('Lista_equipamento_historico.obra_id' => $id, 'Lista_equipamento_historico.situacao' => "Alocado")));
+		$this->set(compact('historico', 'obra', 'custo'));
 	}
 }
 ?>
