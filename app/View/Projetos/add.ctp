@@ -13,7 +13,7 @@
 			<div class="campos">Obra*: </div>
 			<div class="campos">Tipo*: </div>
 			<div class="campos">Projeto*: </div>
-			<div class="campos">Custo: </div>
+			<div class="campos">Custo*: </div>
 			<div class="campos">Descrição: </div>
 			 
 		</div>

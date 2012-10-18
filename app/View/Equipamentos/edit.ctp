@@ -8,7 +8,7 @@
 			$("#equipamento_tipo").change(function(){  // quando mudar o valor do campo equipamento_tipo é atribuido o valor desse campo e passado como parametro GET para a action pega_valor_tipo
 				tipo=$(this).val();
 				txt_str="equipamento_tipo="+tipo;
-				$.get("../equipamentos/pega_valor_tipo",txt_str,function(result){ 
+				$.get("../../pega_valor_tipo",txt_str,function(result){ 
 					$("#valor_hora").val(result); // o html renderizado na action pega_tipo_area é carregado no campo equipamento_tipo
 				});
 			});
@@ -51,7 +51,7 @@
 			</div>
 			
 			<div class="campos">
-			<?php echo $this->Form->input('valor_hora', array('label' => '', 'id' => 'valor_hora','readonly', 'class' => array('intextoDes'))); ?> 
+			<?php echo $this->Form->input('valor_hora', array('label' => '', 'id' => 'valor_hora','readonly', 'value' => $valorAt, 'class' => array('intextoDes'))); ?> 
 			</div>
 			
 			<div class="campos">

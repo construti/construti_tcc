@@ -20,7 +20,6 @@ class FuncionariosController extends AppController {
 		$areas = $this->Area->find('list', array('order' => array('area_descricao' => 'asc'), 'fields' => array('Area.area_id', 'Area.area_descricao')));
 		
 		$this->set(compact('areas'));
-	
 		
         if(!empty($this->data)){
 			
@@ -130,6 +129,12 @@ class FuncionariosController extends AppController {
 		
 		$this->set(compact('areas'));
 		$this->Funcionario->id = $id;
+		
+		$funcionario = $this->Funcionario->read();
+		$this->loadModel('Tipo');
+		$func_tipos = $this->Tipo->find('list', array('order' => array('tipo_funcionario' => 'asc'), 'fields' => array('Tipo.tipo_funcionario', 'Tipo.tipo_funcionario'), 'conditions' => array('Tipo.tipo_area_id' => $funcionario['Funcionario']['funcionario_area'])));
+		$this->set('funcionario_tipo', $func_tipos);
+		
         if ($this->request->is('get')) {
 			$this->request->data = $this->Funcionario->read();
 		} else {
@@ -274,6 +279,8 @@ class FuncionariosController extends AppController {
 			if ($tipo == 'area_id'){
 				$areaIds = $this->Area->find('list', array('conditions' => array('Area.area_descricao LIKE' => "%$pesquisa%"), 'fields' => array('Area.area_id')));
 				$results = $this->Tipo->find('all', array('conditions' => array('Tipo.tipo_area_id' => $areaIds)));
+			} elseif ($tipo == 'valor_hora') {
+				$results = $this->Tipo->find('all', array('conditions' => array('Tipo.tipo_'.$tipo.' LIKE' => "$pesquisa")));
 			} else {
 				$results = $this->Tipo->find('all', array('conditions' => array('Tipo.tipo_'.$tipo.' LIKE' => "%$pesquisa%")));
 			}

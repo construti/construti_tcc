@@ -2,7 +2,9 @@
 
 class Material_tipo extends AppModel{
     var $name = 'Material_tipo';
+	
 	var $useTable = 'materiais_tipos';
+	
 	var $primaryKey = 'material_tipo_id';
 	
 	var $displayField = 'material_tipo_nome';

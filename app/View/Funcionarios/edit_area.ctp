@@ -1,10 +1,10 @@
 ﻿<?php  
 	echo $this->Html->script("validationArea", false); 
-	$this->pageTitle = 'Áreas';
+	$this->pageTitle = 'Funcionários';
 ?>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Atualização</div> <!-- título do formulário -->
+	<div id="tituloform">Atualização de Áreas de Funcionários</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Area'); ?> <!-- início do formulário -->

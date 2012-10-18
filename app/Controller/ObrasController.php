@@ -284,43 +284,88 @@ class ObrasController extends AppController {
 						'andamento' => $andamento
 					));
 			
-			if($this->Obras_historico->save($this->data)){
-				$this->loadModel('Obra');
-				$this->Obra->id = $id;
-				$this->Obra->set(array( 
-						'obra_status' => $this->data['Obras_historico']['obra_status']
-					));
-				if($this->Obra->save()){
+			$this->loadModel('Obras_status');
+			$situacao = $this->Obras_status->find('first', array('conditions' => array('Obras_status.status_id' => $this->data['Obras_historico']['obra_status'])));
+			$situacao = $situacao['Obras_status']['status_obra'];
+			
+			if($situacao != "Cancelada" && $situacao != "Paralisada") {
+				if($this->Obras_historico->save($this->data)){
+					$this->loadModel('Obra');
+					$this->Obra->id = $id;
+					$this->Obra->set(array( 
+							'obra_status' => $this->data['Obras_historico']['obra_status']
+						));
+					if($this->Obra->save()){
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+							echo "<center> Situação de Obra atualizada! </center>";
+							$this->render('delete','ajax');
+		                } 
+		                else{              
+		                    $this->flash('Situação de Obra atualizada','add');
+		                }
+						
+		            } else {
+						echo "<center> Situação de Obra não foi atualizada! </center>";
+		                $this->render('delete','ajax');
+					}
+							
 					if($this->request->is('Ajax')){    // o ajax roda aqui
-						echo "<center> Situação de Obra atualizada! </center>";
-						$this->render('delete','ajax');
+	                    $this->set('dados',$this->request->data);
+	                    $this->render('success','ajax');
 	                } 
 	                else{              
-	                    $this->flash('Situação de Obra atualizada','add');
+	                    $this->flash('Histórico atualizado!','at_status');
+	                    $this->redirect(array('action' => 'at_status'));
 	                }
 					
 	            } else {
-					echo "<center> Situação de Obra não foi atualizada! </center>";
+					echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
 	                $this->render('delete','ajax');
 				}
+			} else {
+				if(trim($this->data['Obras_historico']['motivo']) != "" ) {
+					if($this->Obras_historico->save($this->data)){
+						$this->loadModel('Obra');
+						$this->Obra->id = $id;
+						$this->Obra->set(array( 
+								'obra_status' => $this->data['Obras_historico']['obra_status']
+							));
+						if($this->Obra->save()){
+							if($this->request->is('Ajax')){    // o ajax roda aqui
+								echo "<center> Situação de Obra atualizada! </center>";
+								$this->render('delete','ajax');
+			                } 
+			                else{              
+			                    $this->flash('Situação de Obra atualizada','add');
+			                }
+							
+			            } else {
+							echo "<center> Situação de Obra não foi atualizada! </center>";
+			                $this->render('delete','ajax');
+						}
+								
+						if($this->request->is('Ajax')){    // o ajax roda aqui
+		                    $this->set('dados',$this->request->data);
+		                    $this->render('success','ajax');
+		                } 
+		                else{              
+		                    $this->flash('Histórico atualizado!','at_status');
+		                    $this->redirect(array('action' => 'at_status'));
+		                }
 						
-				if($this->request->is('Ajax')){    // o ajax roda aqui
-                    $this->set('dados',$this->request->data);
-                    $this->render('success','ajax');
-                } 
-                else{              
-                    $this->flash('Histórico atualizado!','at_status');
-                    $this->redirect(array('action' => 'at_status'));
-                }
-				
-            } else {
-				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-                $this->render('delete','ajax');
+		            } else {
+						echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+		                $this->render('delete','ajax');
+					}
+				} else {
+					echo "<center> Não foi possível atualizar a Situação de Obra. Preencha o motivo! </center>";
+					$this->render('delete','ajax');
+				}
 			}
 		}
 	}
 	
-	public function orcamento() { //pesquisar obras
+	public function custo_obra() { //pesquisar obras
 		if (!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
             $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
@@ -337,7 +382,7 @@ class ObrasController extends AppController {
         }
     }
 	
-	public function visualizar_orcamento($id = null) { //pesquisar obras
+	public function visualizar_custo($id = null) { //pesquisar obras
 		$this->layout = 'blank';
 		$this->loadModel('Obra');
 		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));

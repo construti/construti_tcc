@@ -22,12 +22,12 @@
 
 	$(function(){
 		$.localise('ui-multiselect', {/*language: 'en', */path: 'js/locale/'});
-		$("#equipamentos").multiselect();
+		$("#equipamentos").multiselect({dividerLocation: 0.5});
 	});
 </script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Relacionar Equipamentos</div> <!-- título do formulário -->
+	<div id="tituloform">Relacionar Equipamentos a um Fornecedor</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Fornecedor_equipamentos'); ?> <!-- início do formulário -->

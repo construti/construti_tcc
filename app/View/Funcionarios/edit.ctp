@@ -1,7 +1,6 @@
 <?php  
 	echo $this->Html->script("validationFuncionario", false); 
 	$this->pageTitle = 'Funcionários';
-	$funcionario_tipo = '';
 ?> 
 
 <script>
@@ -9,7 +8,7 @@
 			$("#funcionario_area").change(function(){  // quando mudar o valor do campo funcionario_area é atribuido o valor desse campo e passado como parametro GET para a action pega_tipo_area
 				area=$(this).val();
 				txt_str="funcionario_area="+area;
-				$.get("../funcionarios/pega_tipo_area",txt_str,function(result){ 
+				$.get("../pega_tipo_area",txt_str,function(result){ 
 					$("#funcionario_tipo").html(result); // o html renderizado na action pega_tipo_area é carregado no campo funcionario_tipo
 				});
 			});
@@ -19,7 +18,7 @@
 			$("#funcionario_tipo").change(function(){  // quando mudar o valor do campo funcionario_tipo é atribuido o valor desse campo e passado como parametro GET para a action pega_valor_tipo
 				tipo=$(this).val();
 				txt_str="funcionario_tipo="+tipo;
-				$.get("../funcionarios/pega_valor_tipo",txt_str,function(result){ 
+				$.get("../pega_valor_tipo",txt_str,function(result){ 
 					$("#funcionario_salario").val(result); // o html renderizado na action pega_tipo_area Ã© carregado no campo funcionario_tipo
 				});
 			});
@@ -31,17 +30,9 @@
 		    window.open("popup_area","Area","resizable=no,status=no,scrollbars=no,height=223,width=375,left=490,top=320,menubar=no,addressbar=no");
 		}
 		
-		/*function popupAreaPesq() {
-		    window.open("popup_area_pesq","Area","resizable=no,status=no,scrollbars=no,height=223,width=330,left=490,top=320,menubar=no,addressbar=no");
-		}*/
-		
 		function popupTipoCad() {
 		    window.open("popup_tipo","Tipo","resizable=no,status=no,scrollbars=no,height=303,width=375,left=490,top=320,menubar=no,addressbar=no");
 		}
-		
-		/*function popupTipoPesq() {
-		    window.open("popup_tipo_pesq","Tipo","resizable=no,status=no,scrollbars=no,height=303,width=330,left=490,top=320,menubar=no,addressbar=no");
-		}*/
 </script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
@@ -108,7 +99,7 @@
  			
 			<div class="campos">Tipo*: </div>
  			
-			<div class="campos">Salário*: </div>
+			<div class="campos">Salário/Hora*: </div>
 		</div>
 		<div id="camposlacunasD"> <!-- div com os campos da direita a serem preenchidos -->
 			<div class="campos">

@@ -13,7 +13,7 @@
 			<div class="campos">Nome*: </div> 
 			<div class="campos">Tipo*: </div> 
 			<div class="campos">Embalagem*: </div> 
-			<div class="campos">Quantidade*: </div> 
+			<div class="campos">Quantidade Base*: </div> 
 			<div class="campos">Medida*: </div> 
 			<div class="campos">Descrição:</div> <br/><br/>
 		</div>

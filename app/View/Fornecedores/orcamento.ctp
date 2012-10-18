@@ -100,13 +100,13 @@
 	
 	$(function(){
 		//$.localise('ui-multiselect', {/*language: 'en', */path: 'js/locale/'});
-		$("#forns").multiselect();
+		$("#forns").multiselect({dividerLocation: 0.5});
 	});	
 	
 </script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Requisitar Orçamento</div> <!-- título do formulário -->
+	<div id="tituloform">Requisição de Orçamento à Fornecedores</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 		<div id="camposdescricaoorc"> <!-- div com a descrição dos campos -->
@@ -156,7 +156,7 @@
             </div>
 			
 			<div style="margin: 40px 0 0 0;">
-				<?php echo $this->Form->select('forns', $fornecedores, array('label' => '', 'id' => 'forns', 'class' => array('multiselect'), 'multiple' => 'multiple')); ?>
+				<?php echo $this->Form->select('forns', $fornecedores, array('label' => '', 'id' => 'forns', 'class' => array('multiselect2'), 'multiple' => 'multiple')); ?>
 			</div>
 		</div>
 	<div id="areaBotao"> <!-- botão para adicionar à lista -->

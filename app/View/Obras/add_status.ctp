@@ -1,6 +1,6 @@
 ﻿<?php  
 	echo $this->Html->script("validationStatus", false); 
-	$this->pageTitle = 'Situação de Obras';
+	$this->pageTitle = 'Obras';
 ?>
 
 <div id="formulariotopo"> <!-- topo do formulário -->

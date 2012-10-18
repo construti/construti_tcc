@@ -1,8 +1,8 @@
 <?php  
-	$this->pageTitle = 'Fornecedores - Atualizar Estoque de Equipamentos';
+	$this->pageTitle = 'Fornecedores';
 ?> 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Atualização do Estoque de Equipamentos</div> <!-- título do formulário -->
+	<div id="tituloform">Atualização do Galpão de Equipamentos</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Equipamento_requisitado'); ?> <!-- início do formulário -->
@@ -45,11 +45,11 @@
 		</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
-			echo $this->Js->submit('Estocar', array(
+			echo $this->Js->submit('Receber', array(
                 'before' => $this->Js->get('#sending')->effect('fadeIn'),
                 'success' => $this->Js->get('#sending')->effect('fadeOut'),
                 'update' => '#success', 
-				'confirm' => 'Quer realmente estocar os equipamentos selecionados?'
+				'confirm' => 'Quer realmente atualizar o galpão com os equipamentos selecionados?'
 				
             ));
             echo $this->Form->end(); //fim do formulário

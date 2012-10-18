@@ -81,19 +81,34 @@ class EquipamentosController extends AppController {
 		if (!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
             $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
-			$results = $this->Equipamento->find('all', array('conditions' => array('Equipamento.equipamento_'.$tipo.' LIKE' => "%$pesquisa%")));
+			
+			if ($tipo == 'tipo'){
+				$this->loadModel('Equipamentos_tipo');
+				$tipoIds = $this->Equipamentos_tipo->find('list', array('conditions' => array('Equipamentos_tipo.tipo_equipamento LIKE' => "%$pesquisa%"), 'fields' => array('Equipamentos_tipo.tipo_id')));
+				
+				$results = $this->Equipamento->find('all', array('conditions' => array('Equipamento.equipamento_tipo' => $tipoIds)));
+			} elseif ($tipo == 'valor_hora') {
+				$this->loadModel('Equipamentos_tipo');
+				$tipoIds = $this->Equipamentos_tipo->find('list', array('conditions' => array('Equipamentos_tipo.tipo_valor_hora LIKE' => "$pesquisa"), 'fields' => array('Equipamentos_tipo.tipo_id')));
+				
+				$results = $this->Equipamento->find('all', array('conditions' => array('Equipamento.equipamento_tipo' => $tipoIds)));
+			} else {
+				$results = $this->Equipamento->find('all', array('conditions' => array('Equipamento.equipamento_'.$tipo.' LIKE' => "%$pesquisa%")));
+			}
 		} 
 		if (!empty($results)){
 			$this->set(compact('results'));
         }
     }
 	
-	public function edit($id = null) { //atualizar um equipamento
+	public function edit($id = null, $valor = null) { //atualizar um equipamento
 		$this->loadModel('Equipamentos_tipo');
 		$tipos = $this->Equipamentos_tipo->find('list', array('order' => array('tipo_equipamento' => 'asc'), 'fields' => array('Equipamentos_tipo.tipo_id', 'Equipamentos_tipo.tipo_equipamento')));
 		
 		$this->set(compact('tipos'));
 		$this->Equipamento->id = $id;
+		
+		$this->set('valorAt', $valor);
 		
         if ($this->request->is('get')) {
 			$this->request->data = $this->Equipamento->read();
@@ -205,7 +220,7 @@ class EquipamentosController extends AppController {
 		$this->loadModel('Equipamentos_tipo');
 		
 		$f_area = $this->params['url']['equipamento_tipo'];
-		$equip = $this->Equipamentos_tipo->find('first', array('conditions' => array('Equipamentos_tipo.tipo_id LIKE' => "%$f_area%")));
+		$equip = $this->Equipamentos_tipo->find('first', array('conditions' => array('Equipamentos_tipo.tipo_id' => "$f_area")));
 		$equip = $equip['Equipamentos_tipo']['tipo_valor_hora'];
 		$this->set('valor',$equip);
 		$this->Render('pega_valor_tipo','ajax');

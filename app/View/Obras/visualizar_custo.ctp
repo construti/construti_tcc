@@ -35,7 +35,7 @@ hr{
 }
 </style>
 <div id="orcamento"> <!-- resultados da pesquisa -->
-	<h1>Orçamento</h1>
+	<h1>Acompanhamento de Custos de Obra</h1>
 	
 	<h2>Obra</h2>
 	

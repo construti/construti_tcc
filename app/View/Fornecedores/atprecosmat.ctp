@@ -20,7 +20,7 @@
 			<?php foreach ($results as $result): ?>
 				<div>
 					<?php echo $this->Form->input('orcamentos_materiais_id', array('name' => 'orcamentos_materiais_id'.$k, 'type' => 'hidden', 'value' => $result['Orcamento_materiais']['orcamentos_materiais_id'])); ?>
-					<div id="campoA"><?php echo $result[0]['Material__descricao'] ?></div>
+					<div id="campoA"><?php echo $result['Material']['material_nome']." (".$result['Material']['Embalagem']['embalagem_tipo']." - ".$result['Material']['material_qtd_base']." - ".$result['Material']['Medida']['medida_tipo'].")"; ?></div>
 					<div id="campoB"><?php echo $result['Fornecedor']['fornecedor_nome']; ?></div>
 					<div id="campoC"><?php echo $result['Orcamento_materiais']['quantidade']; ?></div>
 					<div id="campoD">

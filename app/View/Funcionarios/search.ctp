@@ -7,7 +7,7 @@
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Funcionario'); ?> <!-- início do formulário -->
 		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
-			<div class="campos">Pesquisar: </div>
+			<div class="campos">Termo de Pesquisa: </div>
 			<div class="campos">Por: </div>
 		</div>
 		<div id="camposlacunas"> <!-- div com os campos a serem preenchidos -->
@@ -56,7 +56,7 @@
 			<th>Ações</th>
 		</tr>
 		
-		<?php if(!empty($this->data['pesquisa'])) { foreach ($results as $result): ?>
+		<?php if(!empty($results)) { foreach ($results as $result): ?>
 		<tr>
 			<td align="center"><?php echo $result['Funcionario']['funcionario_id']; ?></td>
 			<td><?php echo $result['Funcionario']['funcionario_nome']; ?></td>

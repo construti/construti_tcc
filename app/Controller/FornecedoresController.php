@@ -146,14 +146,6 @@ class FornecedoresController extends AppController {
 		$fornecedor = $forn['Fornecedor']['fornecedor_nome'];
 		$this->set('fornecedor', $fornecedor);
 		$this->set('fornecedorId', $id);
-				
-		//$fornecedores = $this->Fornecedor->find('list', array('order' => array('fornecedor_nome' => 'asc'), 'fields' => array('Fornecedor.fornecedor_id', 'Fornecedor.fornecedor_nome')));
-		
-		//$this->loadModel('Material');
-		//$materiais = $this->Material->find('list', array('order' => array('material_nome' => 'asc'), 'fields' => array('Material.material_id', 'Material.material_nome')));
-		
-		//$this->set(compact('fornecedores'));
-		//$this->set(compact('materiais'));
 		
 		$this->loadModel('Fornecedor_materiais');
 		if ($this->request->is('get')) {
@@ -233,7 +225,7 @@ class FornecedoresController extends AppController {
 				
 		if($fornID!='-1'){ // checa se o fornecedor é válido
 			$this->loadModel('Fornecedor_materiais');			
-			$materiaissel = $this->Fornecedor_materiais->find('all', array('order' => array('material_nome' => 'asc'), 'conditions' => array('Fornecedor_materiais.fornecedor_id' => $fornID)));
+			$materiaissel = $this->Fornecedor_materiais->find('all', array('recursive' => 2, 'order' => array('material_nome' => 'asc'), 'conditions' => array('Fornecedor_materiais.fornecedor_id' => $fornID)));
 			$matsel = '';
 			foreach($materiaissel as $M):
 				$matsel[$M['Fornecedor_materiais']['material_id']]=$M['Material']['material_id'];
@@ -538,10 +530,10 @@ class FornecedoresController extends AppController {
         }
     }
 	
-	public function atprecosmat($id = null) { //atualizar preços de orçamentos de materiais
+	public function atprecosmat($id = null, $fid = null) { //atualizar preços de orçamentos de materiais
 		$this->loadModel('Orcamento_materiais');
-		//$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.orcamento_id LIKE' => $id)));
-		$results = $this->Orcamento_materiais->query("SELECT Orcamento_materiais.orcamentos_materiais_id, Orcamento_materiais.orcamento_id, Orcamento_materiais.fornecedor_id, Orcamento_materiais.material_id, Orcamento_materiais.quantidade, Orcamento_materiais.material_preco, Orcamento_materiais.created, Orcamento_materiais.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.orcamentos_materiais AS Orcamento_materiais LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Orcamento_materiais.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Orcamento_materiais.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Orcamento_materiais.orcamento_id LIKE ".$id);
+		$results = $this->Orcamento_materiais->find('all', array('recursive' => 2, 'conditions' => array('Orcamento_materiais.orcamento_id' => $id , 'Orcamento_materiais.fornecedor_id' => $fid)));
+		//$results = $this->Orcamento_materiais->query("SELECT Orcamento_materiais.orcamentos_materiais_id, Orcamento_materiais.orcamento_id, Orcamento_materiais.fornecedor_id, Orcamento_materiais.material_id, Orcamento_materiais.quantidade, Orcamento_materiais.material_preco, Orcamento_materiais.created, Orcamento_materiais.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.orcamentos_materiais AS Orcamento_materiais LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Orcamento_materiais.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Orcamento_materiais.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Orcamento_materiais.orcamento_id LIKE ".$id);
 		
 		$orcamento = $results;
 		$this->set(compact('results'));
@@ -631,9 +623,9 @@ class FornecedoresController extends AppController {
         }
     }
 	
-	public function atprecosequip($id = null) { //atualizar preços de orçamentos de equipamentos
+	public function atprecosequip($id = null, $fid = null) { //atualizar preços de orçamentos de equipamentos
 		$this->loadModel('Orcamento_equipamentos');
-		$results = $this->Orcamento_equipamentos->find('all', array('conditions' => array('Orcamento_equipamentos.orcamento_id LIKE' => $id)));
+		$results = $this->Orcamento_equipamentos->find('all', array('conditions' => array('Orcamento_equipamentos.orcamento_id' => $id, 'Orcamento_equipamentos.fornecedor_id' => $fid)));
 		$orcamento = $results;
 		$this->set(compact('results'));
 		
@@ -724,7 +716,8 @@ class FornecedoresController extends AppController {
 	
 	public function atestoquemat($id = null) { //atualizar estoque de materiais
 		$this->loadModel('Material_requisitado');
-		$results = $this->Material_requisitado->query("SELECT Material_requisitado.materiais_requisitados_id, Material_requisitado.requisicao_id, Material_requisitado.fornecedor_id, Material_requisitado.material_id, Material_requisitado.quantidade, Material_requisitado.material_preco, Material_requisitado.created, Material_requisitado.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.materiais_requisitados AS Material_requisitado LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Material_requisitado.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Material_requisitado.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Material_requisitado.requisicao_id LIKE ".$id);
+		$results = $this->Material_requisitado->find('all', array('recursive' => 2, 'conditions' => array('Material_requisitado.requisicao_id LIKE' => $id)));
+		//$results = $this->Material_requisitado->query("SELECT Material_requisitado.materiais_requisitados_id, Material_requisitado.requisicao_id, Material_requisitado.fornecedor_id, Material_requisitado.material_id, Material_requisitado.quantidade, Material_requisitado.material_preco, Material_requisitado.created, Material_requisitado.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.materiais_requisitados AS Material_requisitado LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Material_requisitado.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Material_requisitado.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Material_requisitado.requisicao_id LIKE ".$id);
 		
 		$requisicao = $results;
 		$this->set(compact('results'));
@@ -872,8 +865,8 @@ class FornecedoresController extends AppController {
 	
 	public function reqmat($id = null) { //atualizar estoque de materiais
 		$this->loadModel('Orcamento_materiais');
-		//$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.orcamento_id LIKE' => $id)));
-		$results = $this->Orcamento_materiais->query("SELECT Orcamento_materiais.orcamentos_materiais_id, Orcamento_materiais.orcamento_id, Orcamento_materiais.fornecedor_id, Orcamento_materiais.material_id, Orcamento_materiais.quantidade, Orcamento_materiais.material_preco, Orcamento_materiais.prazo, Orcamento_materiais.created, Orcamento_materiais.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.orcamentos_materiais AS Orcamento_materiais LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Orcamento_materiais.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Orcamento_materiais.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Orcamento_materiais.orcamento_id LIKE ".$id);
+		$results = $this->Orcamento_materiais->find('all', array('recursive' => 2, 'conditions' => array('Orcamento_materiais.orcamento_id LIKE' => $id)));
+		//$results = $this->Orcamento_materiais->query("SELECT Orcamento_materiais.orcamentos_materiais_id, Orcamento_materiais.orcamento_id, Orcamento_materiais.fornecedor_id, Orcamento_materiais.material_id, Orcamento_materiais.quantidade, Orcamento_materiais.material_preco, Orcamento_materiais.prazo, Orcamento_materiais.created, Orcamento_materiais.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.orcamentos_materiais AS Orcamento_materiais LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Orcamento_materiais.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Orcamento_materiais.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Orcamento_materiais.orcamento_id LIKE ".$id);
 		
 		$requisicao = $results;
 		$this->set(compact('results'));
@@ -900,8 +893,8 @@ class FornecedoresController extends AppController {
 		                    $this->render('success','ajax');
 		                } 
 		                else{              
-		                    $this->flash('Atualizado com sucesso!','atestoquemat');
-		                    $this->redirect(array('action' => 'atestoquemat'));
+		                    $this->flash('Atualizado com sucesso!','reqmat');
+		                    $this->redirect(array('action' => 'reqmat'));
 		                }
 					} else {
 						echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
@@ -973,8 +966,8 @@ class FornecedoresController extends AppController {
 		                    $this->render('success','ajax');
 		                } 
 		                else{              
-		                    $this->flash('Atualizado com sucesso!','atestoquemat');
-		                    $this->redirect(array('action' => 'atestoquemat'));
+		                    $this->flash('Atualizado com sucesso!','reqequip');
+		                    $this->redirect(array('action' => 'reqequip'));
 		                }
 					} else {
 						echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";

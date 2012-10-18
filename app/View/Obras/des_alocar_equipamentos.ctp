@@ -4,7 +4,7 @@
 	echo $this->Html->script('plugins/localisation/jquery.localisation-min', array('inline' => false));
 	echo $this->Html->script('plugins/scrollTo/jquery.scrollTo-min', array('inline' => false));
 	echo $this->Html->script('ui.multiselect', array('inline' => false));
-	$this->pageTitle = 'Fornecedores';
+	$this->pageTitle = 'Obras';
 	
 	$equipamentos = '';
 ?> 
@@ -35,16 +35,16 @@
 
 	$(function(){
 		$.localise('ui-multiselect', {/*language: 'en', */path: 'js/locale/'});
-		$("#equipamentos").multiselect();
+		$("#equipamentos").multiselect({dividerLocation: 0.5});
 	});
 </script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Alocar/Desalocar Equipamentos</div> <!-- título do formulário -->
+	<div id="tituloform">Alocar/Desalocar Equipamentos à Obra</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Lista_equipamento'); ?> <!-- início do formulário -->
-		<div id="camposdescricao"> <!-- div com a descrição dos campos -->
+		<div id="camposdescricao2"> <!-- div com a descrição dos campos -->
 			<div class="campos">Obra: </div>
 			
 			<div class="campos">Equipamentos: </div>
@@ -66,7 +66,7 @@
 		</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
-			echo $this->Js->submit('(Des)Alocar', array(
+			echo $this->Js->submit('Atualizar', array(
                 'before' => $this->Js->get('#sending')->effect('fadeIn'),
                 'success' => $this->Js->get('#sending')->effect('fadeOut'),
                 'update' => '#success',

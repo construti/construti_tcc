@@ -35,12 +35,12 @@
 
 	$(function(){
 		$.localise('ui-multiselect', {/*language: 'en', */path: 'js/locale/'});
-		$("#funcionarios").multiselect();
+		$("#funcionarios").multiselect({dividerLocation: 0.5});
 	});
 </script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Alocar/Desalocar Mão de Obra</div> <!-- título do formulário -->
+	<div id="tituloform">Alocar/Desalocar Mão de Obra à Obra</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 	<?php echo $this->Form->create('Lista_funcionario'); ?> <!-- início do formulário -->
@@ -66,7 +66,7 @@
 		</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
-			echo $this->Js->submit('(Des)Alocar', array(
+			echo $this->Js->submit('Atualizar', array(
                 'before' => $this->Js->get('#sending')->effect('fadeIn'),
                 'success' => $this->Js->get('#sending')->effect('fadeOut'),
                 'update' => '#success',
