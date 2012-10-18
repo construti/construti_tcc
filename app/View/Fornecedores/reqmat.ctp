@@ -26,8 +26,8 @@
 					<div id="campoA"><?php echo $result['Material']['material_nome']." (".$result['Material']['Embalagem']['embalagem_tipo']." - ".$result['Material']['material_qtd_base']." - ".$result['Material']['Medida']['medida_tipo'].")"; ?></div>
 					<div id="campoB"><?php echo $result['Fornecedor']['fornecedor_nome']; ?></div>
 					<div id="campoC">
-						<?php echo $this->Form->input('qnt'.$k, array('label' => '', 'id' => 'qnt', 'type' => 'hidden', 'value' => $result['Orcamento_materiais']['quantidade'])); ?>
-						<?php echo $result['Orcamento_materiais']['quantidade']; ?>
+						<?php echo $this->Form->input('qnt'.$k, array('size'=>'10', 'label' => '', 'id' => 'qnt', 'type' => 'text', 'value' => $result['Orcamento_materiais']['quantidade'])); ?>
+						<?php //echo $result['Orcamento_materiais']['quantidade']; ?>
 					</div>
 					<div id="campoD"><?php echo $result['Orcamento_materiais']['material_preco']; ?></div>
 					<div id="campoAD">

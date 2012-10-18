@@ -22,8 +22,8 @@
 					<?php echo $this->Form->input('equipamento_id', array('name' => 'equipamento_id'.$k, 'type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['equipamento_id'])); ?>
 					<?php echo $this->Form->input('fornecedor_id'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['fornecedor_id'])); ?>
 					<?php echo $this->Form->input('equipamento_preco'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['equipamento_preco'])); ?>
-					<?php echo $this->Form->input('dt_aluguel_ini'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['dt_aluguel_ini'])); ?>
-					<?php echo $this->Form->input('dt_aluguel_fim'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['dt_aluguel_fim'])); ?>
+					<?php // echo $this->Form->input('dt_aluguel_ini'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['dt_aluguel_ini'])); ?>
+					<?php //echo $this->Form->input('dt_aluguel_fim'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['dt_aluguel_fim'])); ?>
 					<?php echo $this->Form->input('prazo'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['prazo'])); ?>
 					<?php echo $this->Form->input('orcamento_id'.$k, array('label' => '', 'id' => 'orcamento_id', 'type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['orcamento_id'])); ?>
 					<div id="campoE"><?php echo $result['Equipamento']['equipamento_nome'] ?></div>
@@ -38,8 +38,8 @@
 							}
 						?></div>
 					<div id="campoH">
-						<?php echo $this->Form->input('qnt'.$k, array('label' => '', 'id' => 'qnt', 'type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['quantidade'])); ?>
-						<?php echo $result['Orcamento_equipamentos']['quantidade']; ?>
+						<?php echo $this->Form->input('qnt'.$k, array('size'=>'10','label' => '', 'id' => 'qnt', 'type' => 'text', 'value' => $result['Orcamento_equipamentos']['quantidade'])); ?>
+						<?php //echo $result['Orcamento_equipamentos']['quantidade']; ?>
 					</div>
 					<div id="campoI"><?php echo $result['Orcamento_equipamentos']['equipamento_preco']; ?></div>
 					<div id="campoEI">
