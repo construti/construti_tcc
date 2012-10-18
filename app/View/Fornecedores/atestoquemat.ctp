@@ -22,8 +22,7 @@
 					<div id="campoA"><?php echo $result['Material']['material_nome']." (".$result['Material']['Embalagem']['embalagem_tipo']." - ".$result['Material']['material_qtd_base']." - ".$result['Material']['Medida']['medida_tipo'].")"; ?></div>
 					<div id="campoB"><?php echo $result['Fornecedor']['fornecedor_nome']; ?></div>
 					<div id="campoC">
-						<?php echo $this->Form->input('qnt'.$k, array('label' => '', 'id' => 'qnt', 'type' => 'hidden', 'value' => $result['Material_requisitado']['quantidade'])); ?>
-						<?php echo $result['Material_requisitado']['quantidade']; ?>
+						<?php echo $this->Form->input('qnt'.$k, array('label' => '', 'id' => 'qnt', 'value' => $result['Material_requisitado']['quantidade'], 'class' => array('intextoOrc'))); ?>
 					</div>
 					<div id="campoD"><?php echo $result['Material_requisitado']['material_preco']; ?></div>
 					<div id="campoAD">

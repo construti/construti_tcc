@@ -90,8 +90,18 @@ $cakeDescription = __d('cake_dev', 'Construti');
 						</li>
 						<li>Estoque/Galpão
 							<ul>
-								<li><a title="Estoque de Materiais" href="<?php echo $this->params->base."/fornecedores/estoquemat"; ?>">Materiais</a></li>
-								<li><a title="Galpão de Equipamentos" href="<?php echo $this->params->base."/fornecedores/estoqueequip"; ?>">Equipamentos</a></li>
+								<li>Materiais
+									<ul>
+										<li><a title="Atualizar Estoque de Materiais" href="<?php echo $this->params->base."/fornecedores/estoquemat"; ?>">Atualizar</a></li>
+										<li><a title="Histórico do Estoque de Materiais" href="<?php echo $this->params->base."/fornecedores/search_hist_estoque_mat"; ?>">Histórico</a></li>
+									</ul>
+								</li>
+								<li>Equipamentos
+									<ul>
+										<li><a title="Atualizar Galpão de Equipamentos" href="<?php echo $this->params->base."/fornecedores/estoqueequip"; ?>">Atualizar</a></li>
+										<li><a title="Histórico do Galpão de Equipamentos" href="<?php echo $this->params->base."/fornecedores/search_hist_estoque_equip"; ?>">Histórico</a></li>
+									</ul>
+								</li>
 							</ul>
 						</li>
 					</ul>
@@ -114,8 +124,15 @@ $cakeDescription = __d('cake_dev', 'Construti');
 						<li><a title="Acompanhamento de Custos de Obra" href="<?php echo $this->params->base."/obras/custo_obra"; ?>">Custos de Obra</a></li>
 						<li>Alocar/Desalocar
 							<ul>
-								<li><a title="Alocar Mão de Obra" href="<?php echo $this->params->base."/obras/search_mao_de_obra"; ?>">Mão de Obra</a></li>
-                                <li><a title="Alocar Equipamentos" href="<?php echo $this->params->base."/obras/search_equipamentos"; ?>">Equipamentos</a></li>
+								<li><a title="Alocar/Desalocar Mão de Obra" href="<?php echo $this->params->base."/obras/search_mao_de_obra"; ?>">Mão de Obra</a></li>
+                                <li><a title="Alocar/Desalocar Equipamentos" href="<?php echo $this->params->base."/obras/search_equipamentos"; ?>">Equipamentos</a></li>
+								<li>Históricos
+									<ul>
+										<li><a title="Histórico de Mão de Obra" href="<?php echo $this->params->base."/obras/search_hist_mao_de_obra"; ?>">Mão de Obra</a></li>
+		                                <li><a title="Histórico de Equipamentos" href="<?php echo $this->params->base."/obras/search_hist_equipamentos"; ?>">Equipamentos</a></li>
+										
+									</ul>
+								</li>
 							</ul>
 						</li>
 					</ul>
