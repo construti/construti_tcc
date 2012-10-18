@@ -943,5 +943,79 @@ class ObrasController extends AppController {
 		$custo = $this->Lista_equipamento_historico->find('all', array('conditions' => array('Lista_equipamento_historico.obra_id' => $id, 'Lista_equipamento_historico.situacao' => "Alocado")));
 		$this->set(compact('historico', 'obra', 'custo'));
 	}
+	
+	 public function add_taxa($id = null) { //registra uma taxa de obra paga
+		$this->loadModel('Obra');
+		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));
+		$obraId =  $obra['Obra']['obra_id'];
+		$obra = $obra['Obra']['obra_nome'];
+		
+		$this->set(compact('obra', 'obraId'));
+	
+        if(!empty($this->data)){
+			$this->loadModel('Obra_taxa');
+            if($this->Obra_taxa->save($this->data)){
+				
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+                    $this->render('success','ajax');
+                } 
+                else{              
+                    $this->flash('Adicionado com sucesso!','add');
+                    $this->redirect(array('action' => 'add'));
+                }
+				
+            } else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}
+        }
+    }
+	
+	public function search_taxa() { //pesquisar obras
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function search_taxa_hist() { //pesquisar obras
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function hist_taxas($id = null) {
+		$this->loadModel('Obra');
+		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));
+	
+		$this->loadModel('Obra_taxa');
+		$historico = $this->Obra_taxa->find('all', array('order' => 'descricao', 'conditions' => array('Obra_taxa.obra_id' => $id)));
+		
+		$this->set(compact('historico', 'obra'));
+	}
 }
 ?>
