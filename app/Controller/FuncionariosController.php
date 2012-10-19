@@ -355,5 +355,15 @@ class FuncionariosController extends AppController {
 		$this->Render('pega_valor_tipo','ajax');
 	}
 	
+	public function pega_valor_tipo_obra(){ //atualizar o campo de salário ao escolher o tipo
+		$this->loadModel('Tipo');
+		
+		$f_area = $this->params['url']['funcionario_tipo'];
+		$funcionario = $this->Tipo->find('first', array('conditions' => array('Tipo.tipo_id' => $f_area)));
+		$funcionario = $funcionario['Tipo']['tipo_valor_hora'];
+		$this->set('salario',$funcionario);
+		$this->Render('pega_valor_tipo','ajax');
+	}
+	
 }
 ?>

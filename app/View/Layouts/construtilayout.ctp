@@ -135,12 +135,12 @@ $cakeDescription = __d('cake_dev', 'Construti');
 								</li>
 							</ul>
 						</li>
-					</ul>
-				</li>
-				<li>Relatórios
-					<ul>
-						<li><a title="Gerar Relatório Analítico" href="<?php echo $this->params->base."/relatorios/analiticos"; ?>">Analíticos</a></li>
-                        <li><a title="Gerar Relatório Sintético" href="<?php echo $this->params->base."/relatorios/sinteticos"; ?>">Sintéticos</a></li>
+						<li>Orçamento
+							<ul>
+								<li><a title="Orçar Obra" href="<?php echo $this->params->base."/obras/orcamento_obra"; ?>">Gerar</a></li>
+                                <li><a title="Pesquisar Orçamento de Obra" href="<?php echo $this->params->base."/obras/search_orcamento"; ?>">Pesquisar</a></li>
+							</ul>
+						</li>
 					</ul>
 				</li>
 				<li><a href="<?php echo $this->params->base."/usuarios/logout"; ?>">Sair</a></li> <!-- logoff do sistema -->

@@ -365,6 +365,43 @@ class ObrasController extends AppController {
 		}
 	}
 	
+	public function orcamento_obra() { //pesquisar obras
+		$this->loadModel('Obra');
+		$obras = $this->Obra->find('list', array('order' => 'obra_nome', 'fields' => array('obra_nome')));
+		
+		$this->loadModel('Tipo');
+		$tiposFunc = $this->Tipo->find('list', array('order' => 'tipo_funcionario', 'fields' => array('tipo_funcionario')));
+		
+		$this->loadModel('Material');
+		$tiposMat = $this->Material->query("SELECT materiais.material_id, concat(materiais.material_nome, ' (' ,(SELECT embalagem_tipo from embalagens WHERE embalagens.embalagem_id = materiais.material_embalagem), ' - ', materiais.material_qtd_base, ' ', (SELECT medida_tipo from medidas WHERE medidas.medida_id = materiais.material_medida), ')') AS descricao from materiais");
+		//$tiposFunc = $this->Material->find('list', array('order' => 'tipo_funcionario', 'fields' => array('tipo_funcionario')));
+		
+		$this->loadModel('Equipamento');
+		$tiposEquip = $this->Equipamento->find('list', array('order' => 'equipamento_nome', 'fields' => array('equipamento_nome')));
+		
+		$this->set(compact('obras', 'tiposFunc', 'tiposMat', 'tiposEquip'));
+    }
+	
+	public function pega_valor_material(){ //atualizar o campo de salário ao escolher o tipo
+		$this->loadModel('Material');
+		
+		$f_area = $this->params['url']['material_tipo'];
+		$material = $this->Material->find('first', array('conditions' => array('Material.material_id' => $f_area)));
+		$material = $material['Material']['material_ultimo_preco'];
+		$this->set('valor', $material);
+		$this->Render('pega_valor','ajax');
+	}
+	
+	public function pega_valor_equipamento(){ //atualizar o campo de salário ao escolher o tipo
+		$this->loadModel('Equipamento');
+		
+		$f_area = $this->params['url']['equipamento_tipo'];
+		$equipamento = $this->Equipamento->find('first', array('conditions' => array('Equipamento.equipamento_id' => $f_area)));
+		$equipamento = $equipamento['Equipamento']['equipamento_valor_hora'];
+		$this->set('valor', $equipamento);
+		$this->Render('pega_valor','ajax');
+	}
+	
 	public function custo_obra() { //pesquisar obras
 		if (!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
@@ -381,6 +418,7 @@ class ObrasController extends AppController {
 			$this->set(compact('results'));
         }
     }
+	
 	
 	public function visualizar_custo($id = null) { //pesquisar obras
 		$this->layout = 'blank';
