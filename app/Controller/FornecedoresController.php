@@ -980,9 +980,10 @@ class FornecedoresController extends AppController {
         }
     }
 	
-	public function reqmat($id = null) { //atualizar estoque de materiais
+	public function reqmat($id = null, $forn_id = null) { //atualizar estoque de materiais
 		$this->loadModel('Orcamento_materiais');
-		$results = $this->Orcamento_materiais->find('all', array('recursive' => 2, 'conditions' => array('Orcamento_materiais.orcamento_id LIKE' => $id)));
+		
+		$results = $this->Orcamento_materiais->find('all', array('recursive' => 2, 'conditions' => array('Orcamento_materiais.fornecedor_id'=>$forn_id,'Orcamento_materiais.orcamento_id LIKE' => $id)));
 		//$results = $this->Orcamento_materiais->query("SELECT Orcamento_materiais.orcamentos_materiais_id, Orcamento_materiais.orcamento_id, Orcamento_materiais.fornecedor_id, Orcamento_materiais.material_id, Orcamento_materiais.quantidade, Orcamento_materiais.material_preco, Orcamento_materiais.prazo, Orcamento_materiais.created, Orcamento_materiais.modified, Fornecedor.fornecedor_id, Fornecedor.fornecedor_nome, Fornecedor.fornecedor_cnpj, Fornecedor.fornecedor_estado, Fornecedor.fornecedor_cidade, Fornecedor.fornecedor_bairro, Fornecedor.fornecedor_endereco, Fornecedor.fornecedor_contato, Fornecedor.fornecedor_email, Fornecedor.fornecedor_descricao, Fornecedor.created, Fornecedor.modified, Material.material_id, Material.material_nome, Material.material_tipo, Material.material_ultimo_preco, Material.material_descricao, Material.material_embalagem, Material.material_qtd_base, Material.material_medida, Material.created, Material.modified, (CONCAT(material_nome, ' - ', embalagem_tipo, ' - ', material_qtd_base, ' ', medida_tipo)) AS Material__descricao FROM construti_oficial.orcamentos_materiais AS Orcamento_materiais LEFT JOIN construti_oficial.fornecedores AS Fornecedor ON (Orcamento_materiais.fornecedor_id = Fornecedor.fornecedor_id) LEFT JOIN construti_oficial.materiais AS Material ON (Orcamento_materiais.material_id = Material.material_id) LEFT JOIN construti_oficial.embalagens AS Embalagem ON (Embalagem.embalagem_id = Material.material_embalagem) LEFT JOIN construti_oficial.medidas AS Medida ON (Medida.medida_id = Material.material_medida) WHERE Orcamento_materiais.orcamento_id LIKE ".$id);
 		
 		$requisicao = $results;
@@ -1049,9 +1050,9 @@ class FornecedoresController extends AppController {
         }
     }
 	
-	public function reqequip($id = null) { //atualizar estoque de equipamentos
+	public function reqequip($id = null, $forn_id=null) { //atualizar estoque de equipamentos
 		$this->loadModel('Orcamento_equipamentos');
-		$results = $this->Orcamento_equipamentos->find('all', array('order' => array('equipamento_nome' => 'asc'), 'conditions' => array('Orcamento_equipamentos.orcamento_id' => $id)));
+		$results = $this->Orcamento_equipamentos->find('all', array('order' => array('equipamento_nome' => 'asc'), 'conditions' => array('Orcamento_equipamentos.fornecedor_id'=>$forn_id,'Orcamento_equipamentos.orcamento_id' => $id)));
 		
 		$requisicao = $results;
 		$this->set(compact('results'));

@@ -43,7 +43,8 @@
 			<td align="center"><?php echo date("d/m/Y", strtotime($result['Orcamento_materiais']['created'])); ?></td>
 						
 			<td align="center">
-				<?php echo $this->Html->link('requisitar', array('action' => 'reqmat', $result['Orcamento_materiais']['orcamento_id'])); ?>
+				<a href="<?php echo $this->params->base.'/fornecedores/reqmat/'.$result['Orcamento_materiais']['orcamento_id'].'/'.$result['Orcamento_materiais']['fornecedor_id'] ?>">Requisitar</a>
+				<?php //echo $this->Html->link('requisitar', array('action' => 'reqmat', $result['Orcamento_materiais']['orcamento_id'])); ?>
 			</td>
 		</tr>
 		<?php endforeach; } ?>
