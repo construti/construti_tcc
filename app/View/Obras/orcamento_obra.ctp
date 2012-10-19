@@ -87,13 +87,12 @@
 		
 		$("#adicionarProj").click(function() {
 		
-			var projetoID = $("#projetos_nome").val();
-			var projetoNOME = $('#projetos_nome option:selected').html();
+			var projetoNOME = $("#projetos_nome").val();
 			var projetoCUSTO = $("#projetos_custo").val();
 				
-			if (projetoID != '' && projetoCUSTO!=''){
+			if (projetoNOME != '' && projetoCUSTO!=''){
 				
-				$('#inputsproj').append("<div class='nomeP' id=nomeP"+i+">"+projetoNOME+"<input value="+projetoID+" name=data[proj]["+i+"][Previsao_projeto][projeto_id] type=hidden readonly></input></div>");
+				$('#inputsproj').append("<div class='nomeP' id=nomeP"+i+">"+projetoNOME+"<input value="+projetoNOME+" name=data[proj]["+i+"][Previsao_projeto][tipo] type=hidden readonly></input></div>");
 				$('#inputsproj').append("<div class='custoP' id=custoP"+i+">"+projetoCUSTO+"<input value="+projetoCUSTO+" name=data[proj]["+i+"][Previsao_projeto][custo] type=hidden readonly></input></div>");
 				$('#inputsproj').append("<div class='acaoT' id='acaoP"+i+"'><input value='X' class='deldiv' name='botaoP' type='button' id='botaoP"+i+"' onclick='deldivP("+i+")' readonly></input></div>");
 				i++;
@@ -117,10 +116,10 @@
 				
 			if (maoID != '' && maoQTD!='' && maoHORAS!='' && maoSAL!=''){
 				
-				$('#inputsmao').append("<div class='tipoM' id=tipoM"+k+">"+maoTIPO+"<input value="+maoID+" name=data[mao]["+k+"][Previsao_funcionarios][tipo_id] type=hidden readonly></input></div>");
-				$('#inputsmao').append("<div class='horasM' id=qtdM"+k+">"+maoQTD+"<input value="+maoQTD+" name=data[mao]["+k+"][Previsao_funcionarios][qtd] type=hidden readonly></input></div>");
-				$('#inputsmao').append("<div class='horasM' id=horasM"+k+">"+maoHORAS+"<input value="+maoHORAS+" name=data[mao]["+k+"][Previsao_funcionarios][qtd_horas] type=hidden readonly></input></div>");
-				$('#inputsmao').append("<div class='salM' id=salM"+k+">"+maoSAL+"<input value="+maoSAL+" name=data[mao]["+k+"][Previsao_funcionarios][salario] type=hidden readonly></input></div>");
+				$('#inputsmao').append("<div class='tipoM' id=tipoM"+k+">"+maoTIPO+"<input value="+maoID+" name=data[mao]["+k+"][Previsao_funcionario][tipo_id] type=hidden readonly></input></div>");
+				$('#inputsmao').append("<div class='horasM' id=qtdM"+k+">"+maoQTD+"<input value="+maoQTD+" name=data[mao]["+k+"][Previsao_funcionario][qtd] type=hidden readonly></input></div>");
+				$('#inputsmao').append("<div class='horasM' id=horasM"+k+">"+maoHORAS+"<input value="+maoHORAS+" name=data[mao]["+k+"][Previsao_funcionario][qtd_horas] type=hidden readonly></input></div>");
+				$('#inputsmao').append("<div class='salM' id=salM"+k+">"+maoSAL+"<input value="+maoSAL+" name=data[mao]["+k+"][Previsao_funcionario][salario] type=hidden readonly></input></div>");
 				$('#inputsmao').append("<div class='acaoT' id='acaoM"+k+"'><input value='X' class='deldiv' name='botaoM' type='button' id='botaoM"+k+"' onclick='deldivM("+k+")' readonly></input></div>");
 				k++;
 			}
@@ -144,9 +143,9 @@
 				
 			if (matID != '' && matQTD!='' && matCUSTO!=''){
 				
-				$('#inputsmat').append("<div class='descM' id=descMt"+m+">"+matDESC+"<input value="+matID+" name=data[mat]["+m+"][Previsao_materiais][material_id] type=hidden readonly></input></div>");
-				$('#inputsmat').append("<div class='horasM' id=qtdMt"+m+">"+matQTD+"<input value="+matQTD+" name=data[mat]["+m+"][Previsao_materiais][qtd] type=hidden readonly></input></div>");
-				$('#inputsmat').append("<div class='salM' id=custoMt"+m+">"+matCUSTO+"<input value="+matCUSTO+" name=data[mat]["+m+"][Previsao_materiais][custo] type=hidden readonly></input></div>");
+				$('#inputsmat').append("<div class='descM' id=descMt"+m+">"+matDESC+"<input value="+matID+" name=data[mat]["+m+"][Previsao_material][material_id] type=hidden readonly></input></div>");
+				$('#inputsmat').append("<div class='horasM' id=qtdMt"+m+">"+matQTD+"<input value="+matQTD+" name=data[mat]["+m+"][Previsao_material][qtd] type=hidden readonly></input></div>");
+				$('#inputsmat').append("<div class='salM' id=custoMt"+m+">"+matCUSTO+"<input value="+matCUSTO+" name=data[mat]["+m+"][Previsao_material][custo] type=hidden readonly></input></div>");
 				$('#inputsmat').append("<div class='acaoT' id='acaoMt"+m+"'><input value='X' class='deldiv' name='botaoMt' type='button' id='botaoMt"+m+"' onclick='deldivMt("+m+")' readonly></input></div>");
 				m++;
 			}
@@ -170,10 +169,10 @@
 				
 			if (equipID != '' && equipQTD!='' && equipVALHORA!='' && equipHORAS!=''){
 				
-				$('#inputsequip').append("<div class='tipoM' id=tipoE"+n+">"+equipTIPO+"<input value="+equipID+" name=data[equip]["+n+"][Previsao_equipamentos][tipo_id] type=hidden readonly></input></div>");
-				$('#inputsequip').append("<div class='horasM' id=qtdE"+n+">"+equipQTD+"<input value="+equipQTD+" name=data[equip]["+n+"][Previsao_equipamentos][qtd] type=hidden readonly></input></div>");
-				$('#inputsequip').append("<div class='horasM' id=valhoraE"+n+">"+equipVALHORA+"<input value="+equipVALHORA+" name=data[equip]["+n+"][Previsao_equipamentos][valor_hora] type=hidden readonly></input></div>");
-				$('#inputsequip').append("<div class='salM' id=horasE"+n+">"+equipHORAS+"<input value="+equipHORAS+" name=data[equip]["+n+"][Previsao_equipamentos][qtd_horas] type=hidden readonly></input></div>");
+				$('#inputsequip').append("<div class='tipoM' id=tipoE"+n+">"+equipTIPO+"<input value="+equipID+" name=data[equip]["+n+"][Previsao_equipamento][tipo_id] type=hidden readonly></input></div>");
+				$('#inputsequip').append("<div class='horasM' id=qtdE"+n+">"+equipQTD+"<input value="+equipQTD+" name=data[equip]["+n+"][Previsao_equipamento][qtd] type=hidden readonly></input></div>");
+				$('#inputsequip').append("<div class='horasM' id=valhoraE"+n+">"+equipVALHORA+"<input value="+equipVALHORA+" name=data[equip]["+n+"][Previsao_equipamento][valor_hora] type=hidden readonly></input></div>");
+				$('#inputsequip').append("<div class='salM' id=horasE"+n+">"+equipHORAS+"<input value="+equipHORAS+" name=data[equip]["+n+"][Previsao_equipamento][qtd_horas] type=hidden readonly></input></div>");
 				$('#inputsequip').append("<div class='acaoT' id='acaoE"+n+"'><input value='X' class='deldiv' name='botaoE' type='button' id='botaoE"+n+"' onclick='deldivE("+n+")' readonly></input></div>");
 				n++;
 			}
@@ -365,7 +364,7 @@
 	<div id="tituloform">Previsão de Orçamento de Obra</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
-		<?php echo $this->Form->create('previsao_obra'); ?> <!-- início do formulário -->
+		<?php echo $this->Form->create('Previsao_obra'); ?> <!-- início do formulário -->
 		<div style="float: left; width: 800px;	margin: 0 0 10px; text-align: right; font-size: 14px; padding: 20px 0 0 10%;"> <!-- div com a descrição dos campos -->
 			<div style="width: 800px; height: 25px ; margin: 0; padding: 0; float: left; text-align: center;">
 				<div style="float: left; padding: 0 0 0 35%;">Obra: </div>

@@ -380,7 +380,131 @@ class ObrasController extends AppController {
 		$tiposEquip = $this->Equipamento->find('list', array('order' => 'equipamento_nome', 'fields' => array('equipamento_nome')));
 		
 		$this->set(compact('obras', 'tiposFunc', 'tiposMat', 'tiposEquip'));
+		
+		if(!empty($this->data)){
+			
+			$obra_id = $this->data['Previsao_obra']['obra_id'];
+			$tam_proj = count($this->data['proj']);
+			$tam_mao = count($this->data['mao']);
+			$tam_mat = count($this->data['mat']);
+			$tam_equip = count($this->data['equip']);
+			$tam_taxa = count($this->data['taxa']);
+			
+			if (($obra_id != '') && ($tam_proj > 0) && ($tam_mao > 0) && ($tam_mat > 0) && ($tam_equip > 0) && ($tam_taxa > 0)) {
+				$this->loadModel('Previsao_projeto'); //Cadastra previsões de projetos
+				foreach($this->data['proj'] as $prevProj): 
+					$prevProj['Previsao_projeto']['obra_id'] = $obra_id;
+					$this->Previsao_projeto->create();
+					$this->Previsao_projeto->save($prevProj);
+				endforeach;
+				
+				$this->loadModel('Previsao_funcionario'); //Cadastra previsões de funcionário
+				foreach($this->data['mao'] as $prevMao):
+					$prevMao['Previsao_funcionario']['obra_id'] = $obra_id;
+					$this->Previsao_funcionario->create();
+					$this->Previsao_funcionario->save($prevMao);
+				endforeach;
+				
+				$this->loadModel('Previsao_material'); //Cadastra previsões de materiais
+				foreach($this->data['mat'] as $prevMat):
+					$prevMat['Previsao_material']['obra_id'] = $obra_id;
+					$this->Previsao_material->create();
+					$this->Previsao_material->save($prevMat);
+				endforeach;
+				
+				$this->loadModel('Previsao_equipamento'); //Cadastra previsões de equipamentos
+				foreach($this->data['equip'] as $prevEquip):
+					$prevEquip['Previsao_equipamento']['obra_id'] = $obra_id;
+					$this->Previsao_equipamento->create();
+					$this->Previsao_equipamento->save($prevEquip);
+				endforeach;
+				
+				$this->loadModel('Previsao_taxa'); //Cadastra previsões de taxas
+				foreach($this->data['taxa'] as $prevTaxa):
+					$prevTaxa['Previsao_taxa']['obra_id'] = $obra_id;
+					$this->Previsao_taxa->create();
+					$this->Previsao_taxa->save($prevTaxa);
+				endforeach;
+				
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    echo "<center> Cadastro de Orçamento efetuado com sucesso, acesse o menu e pesquise pelo mesmo para imprimí-lo! </center>";
+                    $this->render('success','ajax');
+                } 
+                else{              
+                    $this->flash('Cadastro de Orçamento efetuado com sucesso, acesse o menu e pesquise pelo mesmo para imprimí-lo!','orcamento_obra');
+                    $this->redirect(array('action' => 'orcamento_obra'));
+                }
+				
+			} else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}
+			
+			/*if($this->Obra->save($this->data)){
+				//$id_da_obra = $this->Obra->getLastInsertId(); 
+				
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+                    $this->render('success','ajax');
+                } 
+                else{              
+                    $this->flash('Adicionado com sucesso!','add');
+                    $this->redirect(array('action' => 'add'));
+                }
+				
+            } else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}*/
+        }
     }
+	
+	public function search_orcamento() { //pesquisar Obras para visualização de Orçamentos
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+	}
+	
+	public function visualizar_orcamento($id = null) { //visualizar Orçamento da Obra selecionada
+		$this->layout = 'blank';
+		$this->loadModel('Obra');
+		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));
+		//pr($obra);
+		
+		$this->loadModel('Previsao_projeto');
+		$projetos = $this->Previsao_projeto->find('all', array('order' => 'tipo', 'conditions' => array('Previsao_projeto.obra_id' => $id)));
+		//pr($projetos);
+		
+		$this->loadModel('Previsao_funcionario');
+		$listafuncs = $this->Previsao_funcionario->find('all', array('order' => 'tipo_funcionario', 'conditions' => array('Previsao_funcionario.obra_id' => $id)));
+		//pr($listafuncs);
+		
+		$this->loadModel('Previsao_equipamento');
+		$listaequips = $this->Previsao_equipamento->find('all', array('order' => 'tipo_equipamento', 'conditions' => array('Previsao_equipamento.obra_id' => $id)));
+		//pr($listaequips);
+		
+		$this->loadModel('Previsao_material');
+		$listamats = $this->Previsao_material->find('all', array('recursive' => 2, 'order' => 'material_nome', 'conditions' => array('Previsao_material.obra_id' => $id)));		
+		//pr($listamats);
+		
+		$this->loadModel('Previsao_taxa');
+		$listataxas = $this->Previsao_taxa->find('all', array('order' => 'descricao', 'conditions' => array('Previsao_taxa.obra_id' => $id)));		
+		//pr($listataxas);
+		
+		$this->set(compact('projetos', 'listafuncs', 'listaequips', 'listamats', 'listataxas', 'obra'));
+	}
 	
 	public function pega_valor_material(){ //atualizar o campo de salário ao escolher o tipo
 		$this->loadModel('Material');
@@ -980,6 +1104,80 @@ class ObrasController extends AppController {
 		
 		$custo = $this->Lista_equipamento_historico->find('all', array('conditions' => array('Lista_equipamento_historico.obra_id' => $id, 'Lista_equipamento_historico.situacao' => "Alocado")));
 		$this->set(compact('historico', 'obra', 'custo'));
+	}
+	
+	 public function add_taxa($id = null) { //registra uma taxa de obra paga
+		$this->loadModel('Obra');
+		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));
+		$obraId =  $obra['Obra']['obra_id'];
+		$obra = $obra['Obra']['obra_nome'];
+		
+		$this->set(compact('obra', 'obraId'));
+	
+        if(!empty($this->data)){
+			$this->loadModel('Obra_taxa');
+            if($this->Obra_taxa->save($this->data)){
+				
+				if($this->request->is('Ajax')){    // o ajax roda aqui
+                    $this->set('dados',$this->request->data);
+                    $this->render('success','ajax');
+                } 
+                else{              
+                    $this->flash('Adicionado com sucesso!','add');
+                    $this->redirect(array('action' => 'add'));
+                }
+				
+            } else {
+				echo "<center> O cadastro falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+                $this->render('delete','ajax');
+			}
+        }
+    }
+	
+	public function search_taxa() { //pesquisar obras
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function search_taxa_hist() { //pesquisar obras
+		if (!empty($this->data['pesquisa'])){
+            $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
+            $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			
+			if ($tipo == 'obra_data_inicio' || $tipo == 'obra_data_fim') {
+				//Data formatada como dd/mm/yyyy
+				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+				
+				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			} 
+			$results = $this->Obra->find('all', array('conditions' => array('Obra.'.$tipo.' LIKE' => "%$pesquisa%")));
+		} 
+		if (!empty($results)){
+			$this->set(compact('results'));
+        }
+    }
+	
+	public function hist_taxas($id = null) {
+		$this->loadModel('Obra');
+		$obra = $this->Obra->find('first', array('conditions' => array('Obra.obra_id' => $id)));
+	
+		$this->loadModel('Obra_taxa');
+		$historico = $this->Obra_taxa->find('all', array('order' => 'descricao', 'conditions' => array('Obra_taxa.obra_id' => $id)));
+		
+		$this->set(compact('historico', 'obra'));
 	}
 }
 ?>

@@ -135,6 +135,12 @@ $cakeDescription = __d('cake_dev', 'Construti');
 								</li>
 							</ul>
 						</li>
+						<li>Taxas
+							<ul>
+								<li><a title="Registrar Taxas de Obra Pagas" href="<?php echo $this->params->base."/obras/search_taxa"; ?>">Registrar</a></li>
+                                <li><a title="Visualizar Taxas de Obra Pagas" href="<?php echo $this->params->base."/obras/search_taxa_hist"; ?>">Visualizar</a></li>
+							</ul>
+						</li>
 						<li>Orçamento
 							<ul>
 								<li><a title="Orçar Obra" href="<?php echo $this->params->base."/obras/orcamento_obra"; ?>">Gerar</a></li>
