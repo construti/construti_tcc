@@ -22,7 +22,7 @@
 					<?php echo $this->Form->input('equipamento_id', array('name' => 'equipamento_id'.$k, 'type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['equipamento_id'])); ?>
 					<?php echo $this->Form->input('fornecedor_id'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['fornecedor_id'])); ?>
 					<?php echo $this->Form->input('equipamento_preco'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['equipamento_preco'])); ?>
-					<?php // echo $this->Form->input('dt_aluguel_ini'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['dt_aluguel_ini'])); ?>
+					<?php //echo $this->Form->input('dt_aluguel_ini'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['dt_aluguel_ini'])); ?>
 					<?php //echo $this->Form->input('dt_aluguel_fim'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['dt_aluguel_fim'])); ?>
 					<?php echo $this->Form->input('prazo'.$k, array('type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['prazo'])); ?>
 					<?php echo $this->Form->input('orcamento_id'.$k, array('label' => '', 'id' => 'orcamento_id', 'type' => 'hidden', 'value' => $result['Orcamento_equipamentos']['orcamento_id'])); ?>

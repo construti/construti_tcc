@@ -566,32 +566,6 @@ class FornecedoresController extends AppController {
 						echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
 		                $this->render('delete','ajax');
 					}
-					
-					/*$this->loadModel('Material');
-					$materialid = $orcamento[$i]['Orcamento_materiais']['material_id'];
-					$this->Material->id = $materialid;
-					$materialUltimoPreco = $this->Material->find('first', array('conditions' => array('Material.material_id LIKE' => $materialid)));
-					$materialUltimoPreco = $materialUltimoPreco['Material']['material_ultimo_preco'];
-					
-					if (($materialPrecoAtual < $materialUltimoPreco) || ($materialUltimoPreco == 0)){
-						$this->Material->set(array(
-							'material_ultimo_preco' => $materialPrecoAtual
-						));
-						
-						if($this->Material->save($this->data)) {
-							if($this->request->is('Ajax')){    // o ajax roda aqui
-			                    $this->set('dados',$this->request->data);
-			                    $this->render('success','ajax');
-			                } 
-			                else{              
-			                    $this->flash('Atualizado com sucesso!','atprecosmat');
-			                    $this->redirect(array('action' => 'atprecosmat'));
-			                }
-						} else {
-							echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-			                $this->render('delete','ajax');
-						}
-					}*/
 				} else {
 					echo "<center> O valor do campo de preço da ".($i+1)."ª linha está vazio, portanto não foi atualizado. </center><br />";
 					$this->render('delete','ajax');
@@ -657,32 +631,6 @@ class FornecedoresController extends AppController {
 						echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
 		                $this->render('delete','ajax');
 					}
-					
-					/*$this->loadModel('Equipamento');
-					$equipid = $orcamento[$i]['Orcamento_equipamentos']['equipamento_id'];
-					$this->Equipamento->id = $equipid;
-					$equipUltimoPreco = $this->Equipamento->find('first', array('conditions' => array('Equipamento.equipamento_id LIKE' => $equipid)));
-					$equipUltimoPreco = $equipUltimoPreco['Equipamento']['equipamento_valor_hora'];
-					
-					if (($equipPrecoAtual < $equipUltimoPreco) || ($equipUltimoPreco == 0)){
-						$this->Equipamento->set(array(
-							'equipamento_valor_hora' => $equipPrecoAtual
-						));
-						
-						if($this->Equipamento->save($this->data)) {
-							if($this->request->is('Ajax')){    // o ajax roda aqui
-			                    $this->set('dados',$this->request->data);
-			                    $this->render('success','ajax');
-			                } 
-			                else{              
-			                    $this->flash('Atualizado com sucesso!','atprecosequip');
-			                    $this->redirect(array('action' => 'atprecosequip'));
-			                }
-						} else {
-							echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
-			                $this->render('delete','ajax');
-						}
-					}*/
 				} else {
 					echo "<center> O valor do campo de preço da ".($i+1)."ª linha está vazio, portanto não foi atualizado. </center><br />";
 					$this->render('delete','ajax');
@@ -1005,7 +953,34 @@ class FornecedoresController extends AppController {
 					$grava_requisicao['Materiais_requisitado']['requisicao_id'] = $this->request->data['Materiais_requisitado']['orcamento_id'.$i];
 					$grava_requisicao['Materiais_requisitado']['fornecedor_id'] = $this->request->data['Materiais_requisitado']['fornecedor_id'.$i];
 					$this->Materiais_requisitado->create();
-					if($this->Materiais_requisitado->save($grava_requisicao)) { 
+					if($this->Materiais_requisitado->save($grava_requisicao)) {
+						$this->loadModel('Material');
+						$materialid = $grava_requisicao['Materiais_requisitado']['material_id'];
+						$this->Material->id = $materialid;
+						$materialUltimoPreco = $this->Material->find('first', array('conditions' => array('Material.material_id LIKE' => $materialid)));
+						$materialUltimoPreco = $materialUltimoPreco['Material']['material_ultimo_preco'];
+						$materialPrecoAtual = $grava_requisicao['Materiais_requisitado']['material_preco'];
+						
+						if (($materialPrecoAtual < $materialUltimoPreco) || ($materialUltimoPreco == 0)){
+							$this->Material->set(array(
+								'material_ultimo_preco' => $materialPrecoAtual
+							));
+							
+							if($this->Material->save($this->data)) {
+								if($this->request->is('Ajax')){    // o ajax roda aqui
+				                    $this->set('dados',$this->request->data);
+				                    $this->render('success','ajax');
+				                } 
+				                else{              
+				                    $this->flash('Atualizado com sucesso!','atprecosmat');
+				                    $this->redirect(array('action' => 'atprecosmat'));
+				                }
+							} else {
+								echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+				                $this->render('delete','ajax');
+							}
+						}
+						
 						if($this->request->is('Ajax')){    // o ajax roda aqui
 		                    $this->set('dados',$this->request->data);
 		                    $this->render('success','ajax');
@@ -1073,12 +1048,42 @@ class FornecedoresController extends AppController {
 					$grava_requisicao['Equipamento_requisitado']['prazo'] = $this->request->data['Equipamento_requisitado']['prazo'.$i];
 					$grava_requisicao['Equipamento_requisitado']['requisicao_id'] = $this->request->data['Equipamento_requisitado']['orcamento_id'.$i];
 					$grava_requisicao['Equipamento_requisitado']['fornecedor_id'] = $this->request->data['Equipamento_requisitado']['fornecedor_id'.$i];
-					$grava_requisicao['Equipamento_requisitado']['dt_aluguel_fim'] = $this->request->data['Equipamento_requisitado']['dt_aluguel_fim'.$i];
+					$grava_requisicao['Equipamento_requisitado']['dt_aluguel_ini'] = $this->request->data['Equipamento_requisitado']['dt_aluguel_ini'.$i];
 					$grava_requisicao['Equipamento_requisitado']['dt_aluguel_fim'] = $this->request->data['Equipamento_requisitado']['dt_aluguel_fim'.$i];
 					//pr($grava_requisicao);
 					$this->Equipamento_requisitado->create();
 					
 					if($this->Equipamento_requisitado->save($grava_requisicao)) { 
+						$this->loadModel('Equipamento');
+						$equipid = $grava_requisicao['Equipamento_requisitado']['equipamento_id'];
+						$equipTipo = $this->Equipamento->find('first', array('conditions' => array('Equipamento.equipamento_id LIKE' => $equipid)));
+						
+						$this->loadModel('Equipamentos_tipo');
+						$equipUltimoPreco = $this->Equipamentos_tipo->find('first', array('conditions' => array('Equipamentos_tipo.tipo_id LIKE' => $equipTipo['Equipamento']['equipamento_tipo'])));
+						$equipUltimoPreco = $equipUltimoPreco['Equipamentos_tipo']['tipo_valor_hora'];
+						$this->Equipamentos_tipo->id = $equipUltimoPreco['Equipamentos_tipo']['tipo_id'];
+						$equipPrecoAtual = $grava_requisicao['Equipamento_requisitado']['equipamento_preco'];
+						
+						if (($equipPrecoAtual < $equipUltimoPreco) || ($equipUltimoPreco == 0)){
+							$this->Equipamentos_tipo->set(array(
+								'tipo_valor_hora' => $equipPrecoAtual
+							));
+							
+							if($this->Equipamento->save($this->data)) {
+								if($this->request->is('Ajax')){    // o ajax roda aqui
+				                    $this->set('dados',$this->request->data);
+				                    $this->render('success','ajax');
+				                } 
+				                else{              
+				                    $this->flash('Atualizado com sucesso!','atprecosequip');
+				                    $this->redirect(array('action' => 'atprecosequip'));
+				                }
+							} else {
+								echo "<center> A atualização falhou, verifique se todos os campos obrigatórios foram preenchidos! </center>";
+				                $this->render('delete','ajax');
+							}
+						}
+					
 						if($this->request->is('Ajax')){    // o ajax roda aqui
 		                    $this->set('dados',$this->request->data);
 		                    $this->render('success','ajax');
