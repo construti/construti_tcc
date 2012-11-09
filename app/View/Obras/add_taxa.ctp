@@ -21,7 +21,6 @@
             <div class="campos">
 				<?php $opcoes_tipo = array(
 					'Água' => 'Água', 
-					'Alimentação' => 'Alimentação',
 					'COFINS' => 'COFINS',
 					'Esgoto' => 'Esgoto',
 					'ISS' => 'ISS',
@@ -29,8 +28,7 @@
 					'PASEP' => 'PASEP',
 					'PIS' => 'PIS',
 					'Telefone' => 'Telefone',
-					'Transporte' => 'Transporte',
-					'Xerox' => 'Xerox'
+					'Transporte' => 'Transporte'
 				);
 				  echo $this->Form->select('descricao', $opcoes_tipo, array('label' => '', 'id' => 'descricao', 'class' => array('selecionar'), 'empty' => 'Escolha...')); ?>
 			</div>
