@@ -106,7 +106,7 @@
 </script>
 
 <div id="formulariotopo"> <!-- topo do formulário -->
-	<div id="tituloform">Requisição de Orçamento à Fornecedores</div> <!-- título do formulário -->
+	<div id="tituloform">Requisição de Orçamento a Fornecedores</div> <!-- título do formulário -->
 </div>
 <div id="formulariocorpo"> <!-- corpo do formulário -->
 		<div id="camposdescricaoorc"> <!-- div com a descrição dos campos -->
@@ -195,7 +195,7 @@
 	</div>
 	<div id="areaBotao"> <!-- botão de cadastro -->
         <?php 
-			echo $this->Js->submit('Cadastrar', array(
+			echo $this->Js->submit('Requisitar', array(
                 'before' => $this->Js->get('#sending')->effect('fadeIn'),
                 'success' => $this->Js->get('#sending')->effect('fadeOut'),
                 'update' => '#success'

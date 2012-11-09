@@ -10061,3 +10061,9 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 #8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(FornecedoresController), Object(CakeRequest), Object(CakeResponse))
 #9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #10 {main}
+2012-11-06 23:46:55 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-06 23:46:55 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
