@@ -9953,6 +9953,9 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 #1 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
 #2 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+<<<<<<< HEAD
+2012-10-19 07:47:13 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'dt_aluguel_fim' cannot be null
+=======
 >>>>>>> construti/master
 2012-10-19 02:35:35 Error: [MissingActionException] Action ObrasController::search_orcamento() could not be found.
 #0 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
@@ -10050,12 +10053,18 @@ Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 #9 C:\xampp\htdocs\construti_oficial\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #10 {main}
 2012-10-19 04:05:31 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'dt_aluguel_ini' cannot be null
+>>>>>>> tcc_construti/master
 #0 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
 #1 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('INSERT INTO `co...', Array)
 #2 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Datasource\DboSource.php(985): DboSource->execute('INSERT INTO `co...')
 #3 C:\xampp\htdocs\construti_oficial\lib\Cake\Model\Model.php(1705): DboSource->create(Object(Equipamento_requisitado), Array, Array)
+<<<<<<< HEAD
+#4 C:\xampp\htdocs\construti_oficial\app\Controller\FornecedoresController.php(1081): Model->save(Array)
+#5 [internal function]: FornecedoresController->reqequip('1', '1')
+=======
 #4 C:\xampp\htdocs\construti_oficial\app\Controller\FornecedoresController.php(1056): Model->save(Array)
 #5 [internal function]: FornecedoresController->reqequip('1', '2')
+>>>>>>> tcc_construti/master
 #6 C:\xampp\htdocs\construti_oficial\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(FornecedoresController), Array)
 #7 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
 #8 C:\xampp\htdocs\construti_oficial\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(FornecedoresController), Object(CakeRequest), Object(CakeResponse))
