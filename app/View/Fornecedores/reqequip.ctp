@@ -45,6 +45,14 @@
 					<div id="campoEI">
 						<?php echo $this->Form->checkbox('requisitar'.$k, array('label' => '', 'id' => 'requisitar', 'class' => array('checkbox'))); ?>
 					</div>
+					<div style=" border: 2px solid #008; position:relative; float:left; margin:0px; width:99.5%; ">
+						<spam style="position:relative; float:left;">Data Aluguel:</spam>	
+						<?php echo $this->Form->input('dt_aluguel_ini'.$k, array('size'=>'10','label' => '', 'id' => 'dt_aluguel_ini', 'minYear' => date('Y') - 70, 'maxYear' => date('Y') - 18, 'dateFormat' => 'DMY','style'=>'position:relative; float:left; margin-left:10px' , 'class' => array('intexto'))); ?>
+						
+						<spam style=" position:relative; float:left; margin-left: 50px">Data Devolução:</spam>	
+						<?php echo $this->Form->input('dt_aluguel_fim'.$k, array('size'=>'10','label' => '', 'id' => 'dt_aluguel_fim', 'minYear' => date('Y') - 70, 'maxYear' => date('Y') - 18, 'dateFormat' => 'DMY', 'style'=>'position:relative; float:left; margin-left:10px', 'class' => array('intexto'))); ?>
+					</div>
+					
 					<?php $k++; ?>
 				</div>
 			<?php endforeach; ?>

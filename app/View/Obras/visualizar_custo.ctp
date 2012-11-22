@@ -191,10 +191,30 @@ hr{
 			<td colspan="4" style="text-align:right; border-top: solid 1px #aaa; font-weight: bold;"><?php echo $tmat ?></td>
 		</tr>
 	</table>
-	
+	<hr>
+	<h2>Taxas</h2>
+	<table class="tabela">
+		<tr>
+			<th>Taxa</th>
+			<th>Custo</th>
+		</tr>
+		<?php $totalTax = 0; ?>
+		<?php foreach ($listaTaxas as $lt): ?>
+		<?php $totalTax += $lt['Obra_taxa']['custo']; ?>
+		<tr>
+			<td align="center"><?php echo $lt['Obra_taxa']['descricao']; ?></td>
+			<td align="center"><?php echo $lt['Obra_taxa']['custo']; ?></td>
+			
+		</tr>
+		<?php endforeach; ?>
+		<tr>
+			<td id="tmat">Total Taxas</td>
+			<td colspan="4" style="text-align:right; border-top: solid 1px #aaa; font-weight: bold;"><?php echo $totalTax ?></td>
+		</tr>
+	</table>
 	<hr>
 	<h2>TOTAL</h2>
-	<h1>R$ <?php echo $TOTAL = $tproj + $tmaoobra + $tequip + $tmat; ?></h1>
+	<h1>R$ <?php echo $TOTAL = $tproj + $tmaoobra + $tequip + $tmat + $totalTax; ?></h1>
 	<br/>
 	<div id="botao"><input type="button" value="Imprimir" onclick=javascript:window.print()></div>
 </div>

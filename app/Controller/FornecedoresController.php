@@ -906,22 +906,41 @@ class FornecedoresController extends AppController {
 	}
 	
 	public function search_req_mat() { //pesquisar orçamentos de materiais
-		if (!empty($this->data['pesquisa'])){
+		
+		$this->loadModel('Material');
+		$tiposMat = $this->Material->query("SELECT materiais.material_id, concat(materiais.material_nome, ' (' ,(SELECT embalagem_tipo from embalagens WHERE embalagens.embalagem_id = materiais.material_embalagem), ' - ', materiais.material_qtd_base, ' ', (SELECT medida_tipo from medidas WHERE medidas.medida_id = materiais.material_medida), ')') AS descricao from materiais");
+		
+		$this->set(compact('tiposMat'));
+		
+		if (!empty($this->data)){
 			$this->loadModel('Orcamento_materiais');
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
             $tipo = $this->data['tipo']; //guarda o tipo da palavra a ser pesquisada
+			$tp_pesq = $this->data['tipo_pesq']; //guarda o tipo da palavra a ser pesquisada
+			$mat_id = $this->data['Orcamento_materiais']['mat_desc']; //guarda o material
 			
-			if ($tipo == 'fornecedor_id') {
-				$fornIds = $this->Fornecedor->find('list', array('conditions' => array('Fornecedor.fornecedor_nome LIKE' => "%$pesquisa%"), 'fields' => array('Fornecedor.fornecedor_id')));
-				$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.fornecedor_id' => $fornIds, 'Orcamento_materiais.material_preco <>' => 0), 'group' => array('orcamento_id', 'Orcamento_materiais.fornecedor_id') ));
-			} else {
-				//Data formatada como dd/mm/yyyy
-				list($d, $m, $y) = preg_split('/\//', $pesquisa);
+			//pr($this->data);
+			
+			if($tp_pesq == 1){ //se a pesquisa foi por materiais
 				
-				$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+				$results = $this->Orcamento_materiais->query('SELECT distinct orcamento_id, material_id, (SELECT material_nome from materiais where materiais.material_id = orcamentos_materiais.material_id) as material_descricao ,fornecedor_id  FROM orcamentos_materiais where material_id = '.$mat_id.' order by orcamento_id desc');
 				
-				$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.'.$tipo.' LIKE' => "%$pesquisa%", 'Orcamento_materiais.material_preco <>' => 0), 'group' => array('orcamento_id', 'Orcamento_materiais.fornecedor_id')));
+				pr($results);
 			}
+			
+			else if($tp_pesq == 2){ // se a pesquisa foi por fornecedor ou data
+				if ($tipo == 'fornecedor_id') {
+					$fornIds = $this->Fornecedor->find('list', array('conditions' => array('Fornecedor.fornecedor_nome LIKE' => "%$pesquisa%"), 'fields' => array('Fornecedor.fornecedor_id')));
+					$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.fornecedor_id' => $fornIds, 'Orcamento_materiais.material_preco <>' => 0), 'group' => array('orcamento_id', 'Orcamento_materiais.fornecedor_id') ));
+				} else {
+					//Data formatada como dd/mm/yyyy
+					list($d, $m, $y) = preg_split('/\//', $pesquisa);
+					$pesquisa = sprintf('%4d-%02d-%02d', $y, $m, $d);
+					$results = $this->Orcamento_materiais->find('all', array('conditions' => array('Orcamento_materiais.'.$tipo.' LIKE' => "%$pesquisa%", 'Orcamento_materiais.material_preco <>' => 0), 'group' => array('orcamento_id', 'Orcamento_materiais.fornecedor_id')));
+				}	
+			}
+			
+			
 		} 
 		if (!empty($results)){
 			$this->set(compact('results'));
@@ -1036,7 +1055,6 @@ class FornecedoresController extends AppController {
 			$this->request->data = $this->Orcamento_equipamentos->read();
 		} else {
 			$contar = count($this->data)-1;
-			//pr($this->data);
 			$this->loadModel('Equipamento_requisitado');
 			for($i = 0; $i < $contar; $i++) {
 				if($this->data['Equipamento_requisitado']['requisitar'.$i] != 0){
@@ -1049,10 +1067,15 @@ class FornecedoresController extends AppController {
 					$grava_requisicao['Equipamento_requisitado']['requisicao_id'] = $this->request->data['Equipamento_requisitado']['orcamento_id'.$i];
 					$grava_requisicao['Equipamento_requisitado']['fornecedor_id'] = $this->request->data['Equipamento_requisitado']['fornecedor_id'.$i];
 					$grava_requisicao['Equipamento_requisitado']['dt_aluguel_ini'] = $this->request->data['Equipamento_requisitado']['dt_aluguel_ini'.$i];
+					list($d, $m, $y) = preg_split('/\//', $grava_requisicao['Equipamento_requisitado']['dt_aluguel_ini']);
+					$grava_requisicao['Equipamento_requisitado']['dt_aluguel_ini'] = sprintf('%4d-%02d-%02d', $y, $m, $d);
+					
 					$grava_requisicao['Equipamento_requisitado']['dt_aluguel_fim'] = $this->request->data['Equipamento_requisitado']['dt_aluguel_fim'.$i];
+					list($d, $m, $y) = preg_split('/\//', $grava_requisicao['Equipamento_requisitado']['dt_aluguel_fim']);
+					$grava_requisicao['Equipamento_requisitado']['dt_aluguel_fim'] = sprintf('%4d-%02d-%02d', $y, $m, $d);
+					
 					//pr($grava_requisicao);
 					$this->Equipamento_requisitado->create();
-					
 					if($this->Equipamento_requisitado->save($grava_requisicao)) { 
 						$this->loadModel('Equipamento');
 						$equipid = $grava_requisicao['Equipamento_requisitado']['equipamento_id'];
@@ -1060,11 +1083,11 @@ class FornecedoresController extends AppController {
 						
 						$this->loadModel('Equipamentos_tipo');
 						$equipUltimoPreco = $this->Equipamentos_tipo->find('first', array('conditions' => array('Equipamentos_tipo.tipo_id LIKE' => $equipTipo['Equipamento']['equipamento_tipo'])));
-						$equipUltimoPreco = $equipUltimoPreco['Equipamentos_tipo']['tipo_valor_hora'];
+						$equipUltimoPreco2 = $equipUltimoPreco['Equipamentos_tipo']['tipo_valor_hora'];
 						$this->Equipamentos_tipo->id = $equipUltimoPreco['Equipamentos_tipo']['tipo_id'];
 						$equipPrecoAtual = $grava_requisicao['Equipamento_requisitado']['equipamento_preco'];
 						
-						if (($equipPrecoAtual < $equipUltimoPreco) || ($equipUltimoPreco == 0)){
+						if (($equipPrecoAtual < $equipUltimoPreco2) || ($equipUltimoPreco2 == 0)){
 							$this->Equipamentos_tipo->set(array(
 								'tipo_valor_hora' => $equipPrecoAtual
 							));
