@@ -567,10 +567,17 @@ class ObrasController extends AppController {
 		//pr($listamats);
 		
 		$this->loadModel('Obra_taxa');
+
 		$listaTaxas = $this->Obra_taxa->find('all', array('recursive' => -1, 'order' => 'descricao', 'conditions' => array('Obra_taxa.obra_id' => $id)));
 		//pr($listaTaxas);
 		
 		$this->set(compact('projetos', 'listafuncs', 'listaequips', 'listamats','listaTaxas', 'obra'));
+
+		$listataxas = $this->Obra_taxa->find('all', array('order' => 'descricao', 'conditions' => array('Obra_taxa.obra_id' => $id)));		
+		//pr($listataxas);
+		
+		$this->set(compact('projetos', 'listafuncs', 'listaequips', 'listamats', 'listataxas', 'obra'));
+
 	
 		if (!empty($this->data['pesquisa'])){
             $pesquisa = $this->data['pesquisa']; //guarda a palavra a ser pesquisada
